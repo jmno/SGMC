@@ -32,7 +32,6 @@ public class EquipaCirurgica extends Activity {
 
 	private ArrayAdapter<ProfissonalSaude> adapter;
 	private ArrayAdapter<Tipo> adaptadorTipo;
-	private int mId;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -69,8 +68,7 @@ public class EquipaCirurgica extends Activity {
 						.findViewById(R.id.spinner_DialogNovoProfissional_Tipo);
 				final EditText ccEditText = (EditText) dialog
 						.findViewById(R.id.editText_DialogNovoProfissional_cc);
-				ArrayList<String> lista = new ArrayList<>(Arrays.asList(
-						"Medico", "Enfermeiro", "Tótó"));
+				
 				spinnerTipo.setAdapter(adaptadorTipo);
 				Button guardar = (Button) dialog
 						.findViewById(R.id.btn_DialogNovoProfissional_Guardar);
