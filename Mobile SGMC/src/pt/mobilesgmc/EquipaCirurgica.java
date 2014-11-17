@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import org.apache.http.ParseException;
-import org.apache.http.client.ClientProtocolException;
 import org.json.JSONException;
 
 import pt.mobilesgmc.modelo.Notifications;
@@ -13,20 +12,10 @@ import pt.mobilesgmc.modelo.ProfissonalSaude;
 import pt.mobilesgmc.modelo.RestClientException;
 import pt.mobilesgmc.modelo.Tipo;
 import pt.mobilesgmc.modelo.WebServiceUtils;
-import android.R.bool;
 import android.app.Activity;
-import android.app.AlarmManager;
 import android.app.Dialog;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
-import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
-import android.support.v4.app.NotificationCompat;
-import android.support.v4.app.TaskStackBuilder;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
