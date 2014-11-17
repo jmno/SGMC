@@ -24,7 +24,7 @@ import android.provider.Telephony.Sms.Conversations;
 import pt.mobilesgmc.modelo.*;
 public class WebServiceUtils {
 	
-	public static String URL = "http://sgmc.apphb.com/Service1.svc/REST/";
+	public static String URL = "https://sgmc.apphb.com/Service1.svc/REST/";
 	
 	public static LinkedList<ProfissonalSaude> listaProfissionaisSaude = new LinkedList<ProfissonalSaude>(); 
 	public static LinkedList<Tipo> listaTipos = new LinkedList<Tipo>();
@@ -68,15 +68,16 @@ public class WebServiceUtils {
 
 	}
 	
-	public static Boolean adicionarProfissionalSaude(String nome, String tipo) throws ClientProtocolException, IOException, ParseException, JSONException, RestClientException
+	public static Boolean adicionarProfissionalSaude(ProfissonalSaude profissional) throws ClientProtocolException, IOException, ParseException, JSONException, RestClientException
 	{
 		Boolean adicionou = false;
 
 		JSONObject jsonObject = new JSONObject();
-		jsonObject.put("nome", nome);
-		jsonObject.put("tipo", tipo);
+		jsonObject.put("cc", profissional.getCc());
+		jsonObject.put("idTipo", profissional.getTipo().getId());
+		jsonObject.put("nome", profissional.getNome());
 		
-		HttpPost httpPost = new HttpPost("http://sgmc.apphb.com/Service1.svc/REST/setProfissionalSaude");
+		HttpPost httpPost = new HttpPost(URL +"addProfissionalSaude");
 		StringEntity se = new StringEntity(jsonObject.toString());
 		
 		se.setContentType("text/json");

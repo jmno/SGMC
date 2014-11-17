@@ -67,6 +67,8 @@ public class EquipaCirurgica extends Activity {
 						.findViewById(R.id.editText_DialogNovoProfissional_Nome);
 				final Spinner spinnerTipo = (Spinner) dialog
 						.findViewById(R.id.spinner_DialogNovoProfissional_Tipo);
+				final EditText ccEditText = (EditText) dialog
+						.findViewById(R.id.editText_DialogNovoProfissional_cc);
 				ArrayList<String> lista = new ArrayList<>(Arrays.asList(
 						"Medico", "Enfermeiro", "Tótó"));
 				spinnerTipo.setAdapter(adaptadorTipo);
@@ -76,12 +78,15 @@ public class EquipaCirurgica extends Activity {
 				guardar.setOnClickListener(new OnClickListener() {
 					@Override
 					public void onClick(View v) {
-						String nome = nomeEditText.getText().toString();
-
-						String tipo = spinnerTipo.getSelectedItem().toString();
+						ProfissonalSaude p = new ProfissonalSaude();
+						
+						p.setNome(nomeEditText.getText().toString());
+						
+						p.setCc (ccEditText.getText().toString());
+						p.setTipo((Tipo)spinnerTipo.getSelectedItem());
 						try {
 							new adicionarProfissionalSaude()
-									.execute(nome, tipo);
+									.execute(p);
 						} catch (Exception e) {
 
 						}
@@ -163,15 +168,14 @@ public class EquipaCirurgica extends Activity {
 	}
 
 	private class adicionarProfissionalSaude extends
-			AsyncTask<String, Void, Boolean> {
+			AsyncTask<ProfissonalSaude, Void, Boolean> {
 
 		@Override
-		protected Boolean doInBackground(String... params) {
+		protected Boolean doInBackground(ProfissonalSaude... params) {
 			Boolean adicionou = false;
 
 			try {
-				adicionou = WebServiceUtils.adicionarProfissionalSaude(
-						params[0], params[1]);
+				adicionou = WebServiceUtils.adicionarProfissionalSaude(params[0]);
 			} catch (ParseException | IOException | JSONException
 					| RestClientException e) {
 				// TODO Auto-generated catch block

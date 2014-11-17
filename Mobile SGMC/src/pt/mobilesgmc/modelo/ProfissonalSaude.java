@@ -5,6 +5,7 @@ public class ProfissonalSaude {
 	private int id;
 	private String nome;
 	private String cc;
+	private Tipo tipo;
 	public int getId() {
 		return id;
 	}
@@ -39,10 +40,23 @@ public class ProfissonalSaude {
 		nome = this.nome;
 		cc = this.cc;
 	}
+	public ProfissonalSaude(int id, String nome, String cc, Tipo tipo)
+	{
+		id = this.id;
+		nome = this.nome;
+		cc = this.cc;
+		tipo = this.tipo;
+	}
 	
 	@Override
 	public String toString() {
 		return nome ;
+	}
+	public Tipo getTipo() {
+		return tipo;
+	}
+	public void setTipo(Tipo tipo) {
+		this.tipo = tipo;
 	}
 	
 
