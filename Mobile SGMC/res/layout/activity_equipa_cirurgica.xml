@@ -1,0 +1,219 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+         android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical" 
+    >
+    <ScrollView
+        
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <Button
+                android:id="@+id/btn_TesteWebservice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:text="@string/btn_WebService" />
+            <TextView
+                android:id="@+id/textEquipa"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/btn_TesteWebservice"
+                android:layout_marginLeft="10dip"
+                android:layout_marginTop="10dip"
+                android:text="@string/text_equipa_cirurgia"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <TextView
+                android:id="@+id/textCirurgiao"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/textEquipa"
+                android:layout_marginLeft="10dip"
+                android:layout_marginTop="10dip"
+                android:text="@string/texto_cirurgiao"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <Spinner
+                android:id="@+id/spinner_Cirurgião"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:entries="@array/spinnerInicio"
+                android:layout_toRightOf="@+id/textCirurgiao"
+                android:layout_alignBottom="@+id/textCirurgiao" />
+            
+            <TextView
+                android:id="@+id/textView_1Ajudante"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/textCirurgiao"
+                android:layout_marginLeft="25dip"
+                android:layout_marginTop="25dip"
+                android:text="@string/_1_ajudante_"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <Spinner
+                android:id="@+id/spinner_1Ajudante"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:entries="@array/spinnerInicio"
+                android:layout_toRightOf="@+id/textView_1Ajudante"
+                android:layout_alignBottom="@+id/textView_1Ajudante" />
+
+            <TextView
+                android:id="@+id/textView_2Ajudante"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/textView_1Ajudante"
+                android:layout_marginLeft="25dip"
+                android:layout_marginTop="25dip"
+                android:text="@string/_2_ajudante_"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <Spinner
+                android:id="@+id/spinner_2Ajudante"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:entries="@array/spinnerInicio"
+                android:layout_toRightOf="@+id/textView_2Ajudante"
+                android:layout_alignBottom="@+id/textView_2Ajudante" />
+            
+             <TextView
+                android:id="@+id/textView_3Ajudante"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/textView_2Ajudante"
+                android:layout_marginLeft="25dip"
+                android:layout_marginTop="25dip"
+                android:text="@string/_3_ajudante_"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <Spinner
+                android:id="@+id/spinner_3Ajudante"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:entries="@array/spinnerInicio"
+                android:layout_toRightOf="@+id/textView_3Ajudante"
+                android:layout_alignBottom="@+id/textView_3Ajudante" />
+            
+             <TextView
+                android:id="@+id/textView_Anestesista"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/textView_3Ajudante"
+                android:layout_marginLeft="25dip"
+                android:layout_marginTop="25dip"
+                android:text="@string/_Anestesista_"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <Spinner
+                android:id="@+id/spinner_Anestesista"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:entries="@array/spinnerInicio"
+                android:layout_toRightOf="@+id/textView_Anestesista"
+                android:layout_alignBottom="@+id/textView_Anestesista" />
+            
+            <TextView
+                android:id="@+id/textView_Enf_Instrumentista"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/textView_Anestesista"
+                android:layout_marginLeft="25dip"
+                android:layout_marginTop="25dip"
+                android:text="@string/_Enfermeiro_Instrumentista_"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <Spinner
+                android:id="@+id/spinner_Enf_Instrumentista"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:entries="@array/spinnerInicio"
+                android:layout_toRightOf="@+id/textView_Enf_Instrumentista"
+                android:layout_alignBottom="@+id/textView_Enf_Instrumentista" />
+            
+            <TextView
+                android:id="@+id/textView_Enf_Circulante"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/textView_Enf_Instrumentista"
+                android:layout_marginLeft="25dip"
+                android:layout_marginTop="25dip"
+                android:text="@string/_Enfermeiro_Circulante_"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <Spinner
+                android:id="@+id/spinner_Enf_Circulante"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:entries="@array/spinnerInicio"
+                android:layout_toRightOf="@+id/textView_Enf_Circulante"
+                android:layout_alignBottom="@+id/textView_Enf_Circulante" />
+            
+              <TextView
+                android:id="@+id/textView_Enf_de_Anestesia"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/textView_Enf_Circulante"
+                android:layout_marginLeft="25dip"
+                android:layout_marginTop="25dip"
+                android:text="@string/_Enfermeiro_Anestesia_"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <Spinner
+                android:id="@+id/spinner_Enf_de_Anestesia"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:entries="@array/spinnerInicio"
+                android:layout_toRightOf="@+id/textView_Enf_de_Anestesia"
+                android:layout_alignBottom="@+id/textView_Enf_de_Anestesia"/>
+            
+              <TextView
+                android:id="@+id/textView_Assistente_Operacional"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/textView_Enf_de_Anestesia"
+                android:layout_marginLeft="25dip"
+                android:layout_marginTop="25dip"
+                android:text="@string/_Assistente_Operacional_"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <Spinner
+                android:id="@+id/spinner_Assistente_Operacional"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:entries="@array/spinnerInicio"
+                android:layout_toRightOf="@+id/textView_Assistente_Operacional"
+                android:layout_alignBottom="@+id/textView_Assistente_Operacional"/>
+            <Button
+                android:id="@+id/btn_AdicionarProfissional"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="true"
+                android:background="@drawable/ic_action_user_add" />
+            
+            
+        </RelativeLayout>
+    </ScrollView>
+     <Button
+        android:id="@+id/btn_GuardarEquipaProfissionais"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|right"
+        android:layout_marginRight="15dip"
+        android:layout_marginBottom="15dip"
+        android:background="@drawable/ic_action_done" />
+
+    
+
+</LinearLayout>
