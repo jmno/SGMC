@@ -1,7 +1,5 @@
 package pt.mobilesgmc;
 
-import com.example.mobilegsmc.R;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,24 +9,30 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
+import com.example.mobilegsmc.R;
+
 public class Login extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login);
+
 		
+
 		Button btn_Login = (Button) findViewById(R.id.btn_Login);
 		btn_Login.setOnClickListener(new OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
-				Intent intent = new Intent(getBaseContext(),EquipaCirurgica.class);
-				startActivity(intent);
+				Intent equipa = new Intent(getBaseContext(),EquipaCirurgica.class);
+				startActivity(equipa);
 			}
 		});
-		
+
 	}
+	
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -48,4 +52,8 @@ public class Login extends Activity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
+
+
+	
+
 }
