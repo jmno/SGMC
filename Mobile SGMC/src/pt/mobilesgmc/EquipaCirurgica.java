@@ -81,7 +81,8 @@ public class EquipaCirurgica extends Activity {
 						p.setNome(nomeEditText.getText().toString());
 						
 						p.setCc (ccEditText.getText().toString());
-						p.setTipo((Tipo)spinnerTipo.getSelectedItem());
+						Tipo ti = (Tipo) spinnerTipo.getSelectedItem();
+						p.setIdTipo(ti.getId());
 						try {
 							new adicionarProfissionalSaude()
 									.execute(p);

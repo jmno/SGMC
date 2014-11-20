@@ -35,7 +35,7 @@ public class Tipo {
 	{
 		descricao = this.descricao;
 	}
-
+	
 	@Override
 	public String toString() {
 		return descricao;

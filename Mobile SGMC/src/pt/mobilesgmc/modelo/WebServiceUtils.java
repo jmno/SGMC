@@ -74,7 +74,7 @@ public class WebServiceUtils {
 
 		JSONObject jsonObject = new JSONObject();
 		jsonObject.put("cc", profissional.getCc());
-		jsonObject.put("idTipo", profissional.getTipo().getId());
+		jsonObject.put("idTipo", profissional.getIdTipo());
 		jsonObject.put("nome", profissional.getNome());
 		
 		HttpPost httpPost = new HttpPost(URL +"addProfissionalSaude");
