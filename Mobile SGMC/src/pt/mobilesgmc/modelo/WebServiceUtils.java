@@ -2,6 +2,8 @@ package pt.mobilesgmc.modelo;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -34,6 +36,7 @@ public class WebServiceUtils {
 
 	public static LinkedList<ProfissonalSaude> listaProfissionaisSaude = new LinkedList<ProfissonalSaude>();
 	public static LinkedList<Tipo> listaTipos = new LinkedList<Tipo>();
+	public static LinkedList<Utente> listaUtentes = new LinkedList<>();
 
 	public static ArrayList<ProfissonalSaude> getAllProfissionalSaude()
 			throws ClientProtocolException, IOException, RestClientException,
@@ -176,6 +179,59 @@ public class WebServiceUtils {
 		}
 
 		return profissionaisSaude;
+
+	}
+	
+	public static ArrayList<Utente> getAllUtentes()
+			throws ClientProtocolException, IOException, RestClientException,
+			ParseException, JSONException {
+		ArrayList<Utente> utentes = null;
+		Date data = new Date(System.currentTimeMillis());
+		HttpGet request = new HttpGet(URL + "getAllUtentes");
+		// request.setContentType(new BasicHeader(HTTP.CONTENT_TYPE,
+		// "application/json"));
+		request.setHeader("Accept", "Application/JSON");
+		HttpClient client = new DefaultHttpClient();
+
+		BasicHttpResponse basicHttpResponse = (BasicHttpResponse) client
+				.execute(request);
+
+		if (basicHttpResponse.getStatusLine().getStatusCode() == 200) {
+			utentes = new ArrayList<Utente>();
+			JSONArray array = new JSONArray(
+					EntityUtils.toString(basicHttpResponse.getEntity()));
+			for (int i = 0; i < array.length(); i++) {
+				JSONObject o = array.getJSONObject(i);
+			
+				Utente u = new Utente();
+				u.setId(Integer.parseInt(o.getString("id")));
+				u.setNome(o.getString("nomeUtente"));
+				u.setNumProcesso(Integer.parseInt(o.getString("numProcesso")));
+				SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy");
+				try{
+				 data = (Date) formatter.parse(o.getString("dataNascimento"));
+				
+				} catch (java.text.ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				u.setDataNascimento(data);
+				//u.setDataNascimento(Date.parse(o.getString("dataNascimento")));
+				u.setSubsistema(o.getString("subsistema"));
+				u.setAlergias(o.getString("alergias"));
+				u.setPatologias(o.getString("patologias"));
+				u.setAntecedentesCirurgicos(o.getString("antecedentesCirurgicos"));
+			
+				utentes.add(u);
+			}
+		} else {
+			throw new RestClientException(
+					"HTTP Response with invalid status code "
+							+ basicHttpResponse.getStatusLine().getStatusCode()
+							+ ".");
+		}
+
+		return utentes;
 
 	}
 
