@@ -62,47 +62,75 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int ic_launcher=0x7f020017;
     }
     public static final class id {
-        public static final int action_settings=0x7f09001f;
+        public static final int action_settings=0x7f090037;
         public static final int btn_AdicionarProfissional=0x7f090012;
-        public static final int btn_DialogNovoProfissional_Cancelar=0x7f09001d;
-        public static final int btn_DialogNovoProfissional_Guardar=0x7f09001e;
+        public static final int btn_DialogNovoProfissional_Cancelar=0x7f090035;
+        public static final int btn_DialogNovoProfissional_Guardar=0x7f090036;
         public static final int btn_GuardarEquipaProfissionais=0x7f090013;
-        public static final int btn_Login=0x7f090016;
-        public static final int editText_DialogNovoProfissional_Nome=0x7f090018;
-        public static final int editText_DialogNovoProfissional_cc=0x7f09001a;
+        public static final int btn_Login=0x7f090018;
+        public static final int buttonEquipa=0x7f090014;
+        public static final int buttonUtentes=0x7f090015;
+        public static final int editText_DialogNovoProfissional_Nome=0x7f090030;
+        public static final int editText_DialogNovoProfissional_cc=0x7f090032;
+        public static final int linearLayout1=0x7f09001a;
+        public static final int linearLayout2=0x7f09001d;
+        public static final int linearLayout3=0x7f090020;
+        public static final int linearLayout4=0x7f090023;
+        public static final int linearLayout5=0x7f090026;
+        public static final int linearLayout_antecedentes=0x7f09002c;
+        public static final int linearLayout_patologias=0x7f090029;
+        public static final int listViewUtentes=0x7f090019;
         public static final int spinner_1Ajudante=0x7f090003;
         public static final int spinner_2Ajudante=0x7f090005;
         public static final int spinner_3Ajudante=0x7f090007;
         public static final int spinner_Anestesista=0x7f090009;
         public static final int spinner_Assistente_Operacional=0x7f090011;
         public static final int spinner_Cirurgião=0x7f090001;
-        public static final int spinner_DialogNovoProfissional_Tipo=0x7f09001c;
+        public static final int spinner_DialogNovoProfissional_Tipo=0x7f090034;
         public static final int spinner_Enf_Circulante=0x7f09000d;
         public static final int spinner_Enf_Instrumentista=0x7f09000b;
         public static final int spinner_Enf_de_Anestesia=0x7f09000f;
         public static final int textCirurgiao=0x7f090000;
+        public static final int textViewAlergiasUtente=0x7f090028;
+        public static final int textViewAntecedentes=0x7f09002d;
+        public static final int textViewAntecedentesUtente=0x7f09002e;
+        public static final int textViewDataNascimento=0x7f090021;
+        public static final int textViewDataNascimentoUtente=0x7f090022;
+        public static final int textViewNome=0x7f09001b;
+        public static final int textViewNomeUtente=0x7f09001c;
+        public static final int textViewNumProc=0x7f09001e;
+        public static final int textViewNumProcessoUtente=0x7f09001f;
+        public static final int textViewPatologias=0x7f09002a;
+        public static final int textViewPatologiasUtente=0x7f09002b;
+        public static final int textViewSubsistema=0x7f090024;
+        public static final int textViewSubsistemaUtente=0x7f090025;
         public static final int textView_1Ajudante=0x7f090002;
         public static final int textView_2Ajudante=0x7f090004;
         public static final int textView_3Ajudante=0x7f090006;
         public static final int textView_Anestesista=0x7f090008;
         public static final int textView_Assistente_Operacional=0x7f090010;
-        public static final int textView_DialogNovoProfissional_CC=0x7f090019;
-        public static final int textView_DialogNovoProfissional_Nome=0x7f090017;
-        public static final int textView_DialogNovoProfissional_Tipo=0x7f09001b;
+        public static final int textView_DialogNovoProfissional_CC=0x7f090031;
+        public static final int textView_DialogNovoProfissional_Nome=0x7f09002f;
+        public static final int textView_DialogNovoProfissional_Tipo=0x7f090033;
         public static final int textView_Enf_Circulante=0x7f09000c;
         public static final int textView_Enf_Instrumentista=0x7f09000a;
         public static final int textView_Enf_de_Anestesia=0x7f09000e;
-        public static final int txtView_InputPassword=0x7f090014;
-        public static final int txtView_InputUsername=0x7f090015;
+        public static final int textViewalergias=0x7f090027;
+        public static final int txtView_InputPassword=0x7f090016;
+        public static final int txtView_InputUsername=0x7f090017;
     }
     public static final class layout {
         public static final int activity_equipa_cirurgica=0x7f030000;
-        public static final int activity_login=0x7f030001;
-        public static final int dialog_novoprofissional=0x7f030002;
+        public static final int activity_home=0x7f030001;
+        public static final int activity_login=0x7f030002;
+        public static final int activity_utentes=0x7f030003;
+        public static final int dialog_novoprofissional=0x7f030004;
     }
     public static final class menu {
         public static final int equipa_cirurgica=0x7f080000;
-        public static final int login=0x7f080001;
+        public static final int home=0x7f080001;
+        public static final int login=0x7f080002;
+        public static final int utentes=0x7f080003;
     }
     public static final class string {
         public static final int _1_ajudante_=0x7f06000b;
@@ -113,6 +141,13 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int _Enfermeiro_Anestesia_=0x7f060011;
         public static final int _Enfermeiro_Circulante_=0x7f060010;
         public static final int _Enfermeiro_Instrumentista_=0x7f06000f;
+        public static final int _Nome_=0x7f060014;
+        public static final int _NumProc_=0x7f060015;
+        public static final int _alergias_=0x7f060018;
+        public static final int _antecedentesCirurgicos_=0x7f06001a;
+        public static final int _dataNascimento_=0x7f060016;
+        public static final int _patologias_=0x7f060019;
+        public static final int _subsistema_=0x7f060017;
         public static final int action_settings=0x7f060005;
         public static final int app_name=0x7f060000;
         public static final int btn_WebService=0x7f060007;
@@ -123,7 +158,9 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int text_equipa_cirurgia=0x7f060008;
         public static final int texto_cirurgiao=0x7f06000a;
         public static final int title_activity_equipa_cirurgica=0x7f060006;
+        public static final int title_activity_home=0x7f06001b;
         public static final int title_activity_login=0x7f060003;
+        public static final int title_activity_utentes=0x7f060013;
     }
     public static final class styleable {
         /** 

@@ -25,5 +25,14 @@
     <string name="_Enfermeiro_Circulante_">Enfermeiro Circulante:</string>
     <string name="_Enfermeiro_Anestesia_">Enfermeiro de Anestesia:</string>
     <string name="_Assistente_Operacional_">Assistente Operacional:</string>
+    <string name="title_activity_utentes">UtentesActivity</string>
+    <string name="_Nome_">Nome:</string>
+    <string name="_NumProc_">Número Processo:</string>
+    <string name="_dataNascimento_">Data Nascimento:</string>
+    <string name="_subsistema_">Subsistema:</string>
+    <string name="_alergias_">Alergias:</string>
+    <string name="_patologias_">Patologias:</string>
+    <string name="_antecedentesCirurgicos_">Antecendentes Cirurgicos:</string>
+    <string name="title_activity_home">HomeActivity</string>
 
 </resources>

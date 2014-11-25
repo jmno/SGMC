@@ -26,7 +26,9 @@ public class Login extends Activity {
 
 			@Override
 			public void onClick(View v) {
-				Intent equipa = new Intent(getBaseContext(),EquipaCirurgica.class);
+				
+				
+				Intent equipa = new Intent(getBaseContext(),HomeActivity.class);
 				startActivity(equipa);
 			}
 		});

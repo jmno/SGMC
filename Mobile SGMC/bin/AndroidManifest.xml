@@ -30,6 +30,14 @@
             android:label="@string/title_activity_equipa_cirurgica"
             android:windowSoftInputMode="stateHidden" >
         </activity>
+        <activity
+            android:name="pt.mobilesgmc.UtentesActivity"
+            android:label="@string/title_activity_utentes" >
+        </activity>
+        <activity
+            android:name="pt.mobilesgmc.HomeActivity"
+            android:label="@string/title_activity_home" >
+        </activity>
     </application>
 
 </manifest>
