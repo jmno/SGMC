@@ -2,6 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/backgroundapp"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
@@ -143,7 +144,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge" />
-
     </LinearLayout>
 
     <LinearLayout
@@ -166,5 +166,17 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge" />
     </LinearLayout>
+
+    <EditText
+        android:id="@+id/editText_findUtente"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/linearLayout1"
+        android:layout_alignLeft="@+id/listViewUtentes"
+        android:ems="10"
+        android:hint="Ex: Ana, Bé, Carlos..." >
+
+        <requestFocus />
+    </EditText>
 
 </RelativeLayout>

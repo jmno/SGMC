@@ -2,6 +2,7 @@ package pt.mobilesgmc;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Comparator;
 
 import org.apache.http.ParseException;
 import org.json.JSONException;
@@ -19,30 +20,100 @@ import com.example.mobilegsmc.R.menu;
 import android.app.Activity;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class UtentesActivity extends Activity {
-	
+
 	private ArrayAdapter<Utente> adaptadorUtente;
-	private ListView listaUtentes;
+	public static ListView listaUtentes;
+	private TextView txt_nomeUtente;
+	private TextView txt_numProcessoUtente;
+	private TextView txt_dataNascimentoUtente;
+	private TextView txt_subSistemaUtente;
+	private TextView txt_alergiasUtente;
+	private TextView txt_patologiasUtente;
+	private TextView txt_antecedentesUtente;
+	private EditText inputSearch;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_utentes);
-		
+
 		listaUtentes = (ListView) findViewById(R.id.listViewUtentes);
-		
+		inputSearch = (EditText) findViewById(R.id.editText_findUtente);
+		txt_nomeUtente = (TextView) findViewById(R.id.textViewNomeUtente);
+		txt_numProcessoUtente = (TextView) findViewById(R.id.textViewNumProcessoUtente);
+		txt_dataNascimentoUtente = (TextView) findViewById(R.id.textViewDataNascimentoUtente);
+		txt_subSistemaUtente = (TextView) findViewById(R.id.textViewSubsistemaUtente);
+		txt_alergiasUtente = (TextView) findViewById(R.id.textViewAlergiasUtente);
+		txt_patologiasUtente = (TextView) findViewById(R.id.textViewPatologiasUtente);
+		txt_antecedentesUtente = (TextView) findViewById(R.id.textViewAntecedentesUtente);
+		listaUtentes.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+					long arg3) {
+				
+				Utente a =(Utente) listaUtentes.getItemAtPosition(arg2);
+				txt_nomeUtente.setText(a.getNome().toString());
+				txt_numProcessoUtente.setText(String.valueOf(a.getNumProcesso()));
+				txt_dataNascimentoUtente.setText(a.getDataNascimento().toString());
+				txt_subSistemaUtente.setText(a.getSubsistema().toString());
+				if(a.getAlergias().equals("null") || a.getAlergias().equals("NULL") || a.getAlergias().equals(""))
+					txt_alergiasUtente.setText("N/A");
+				else
+				txt_alergiasUtente.setText(a.getAlergias().toString());
+				
+				if(a.getPatologias().equals("null") || a.getPatologias().equals("NULL") || a.getPatologias().equals(""))
+					txt_patologiasUtente.setText("N/A");
+				else
+				txt_patologiasUtente.setText(a.getPatologias().toString());
+				
+				if(a.getAntecedentesCirurgicos().equals("null") || a.getAntecedentesCirurgicos().equals("NULL") || a.getAntecedentesCirurgicos().equals(""))
+					txt_antecedentesUtente.setText("N/A");
+				else
+					txt_antecedentesUtente.setText(a.getAntecedentesCirurgicos().toString());
+				
+			}
+		});
 		new getUtentes().execute();
 		
-		
-		
-		
+		inputSearch.addTextChangedListener(new TextWatcher() {
+
+			@Override
+			public void onTextChanged(CharSequence cs, int arg1, int arg2,
+					int arg3) {
+				// When user changed the Text
+				adaptadorUtente.getFilter().filter(cs);
+			}
+
+			@Override
+			public void beforeTextChanged(CharSequence arg0, int arg1,
+					int arg2, int arg3) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void afterTextChanged(Editable arg0) {
+				// TODO Auto-generated method stub
+			}
+		});
+
 	}
+	
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -62,7 +133,7 @@ public class UtentesActivity extends Activity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
-	
+
 	private class getUtentes extends AsyncTask<String, Void, ArrayList<Utente>> {
 
 		@Override
@@ -77,24 +148,32 @@ public class UtentesActivity extends Activity {
 			}
 
 			return lista;
-		}}
-	
-	
-	protected void onPostExecute(ArrayList<Utente> lista) {
-		if (lista != null) {
-			adaptadorUtente = new ArrayAdapter<Utente>(getBaseContext(),
-					android.R.layout.simple_list_item_1, lista);
-			listaUtentes.setAdapter(adaptadorUtente);
-			// new Notifications(getApplicationContext(),
-			// "Connexão Efetuada com Sucesso!");
-			Toast.makeText(getApplicationContext(), "Get Utentes successful!",
-					Toast.LENGTH_LONG).show();
-		} else {
-			Toast.makeText(getApplicationContext(),
-					"Get Utentes unsuccessful...", Toast.LENGTH_LONG).show();
+		}
 
+		protected void onPostExecute(ArrayList<Utente> lista) {
+			if (lista != null) {
+				adaptadorUtente = new ArrayAdapter<Utente>(getBaseContext(),
+						android.R.layout.simple_list_item_1, lista);
+				adaptadorUtente.sort(new Comparator<Utente>() {
+
+					@Override
+					public int compare(Utente lhs, Utente rhs) {
+						return lhs.getNome().compareTo(rhs.getNome());
+					}
+				});
+				listaUtentes.setAdapter(adaptadorUtente);
+				
+				// new Notifications(getApplicationContext(),
+				// "Connexão Efetuada com Sucesso!");
+				Toast.makeText(getApplicationContext(),
+						"Get Utentes successful!", Toast.LENGTH_LONG).show();
+			} else {
+				Toast.makeText(getApplicationContext(),
+						"Get Utentes unsuccessful...", Toast.LENGTH_LONG)
+						.show();
+
+			}
 		}
 	}
-
 
 }

@@ -27,6 +27,7 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.provider.Telephony.Sms.Conversations;
+import android.text.method.DateTimeKeyListener;
 import pt.mobilesgmc.Login;
 import pt.mobilesgmc.modelo.*;
 
@@ -186,7 +187,7 @@ public class WebServiceUtils {
 			throws ClientProtocolException, IOException, RestClientException,
 			ParseException, JSONException {
 		ArrayList<Utente> utentes = null;
-		Date data = new Date(System.currentTimeMillis());
+		Date data = null;
 		HttpGet request = new HttpGet(URL + "getAllUtentes");
 		// request.setContentType(new BasicHeader(HTTP.CONTENT_TYPE,
 		// "application/json"));
@@ -207,20 +208,15 @@ public class WebServiceUtils {
 				u.setId(Integer.parseInt(o.getString("id")));
 				u.setNome(o.getString("nomeUtente"));
 				u.setNumProcesso(Integer.parseInt(o.getString("numProcesso")));
-				SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy");
-				try{
-				 data = (Date) formatter.parse(o.getString("dataNascimento"));
+				String dataNas = o.getString("dataNascimento");
+				data = JsonDateToDate(dataNas);
 				
-				} catch (java.text.ParseException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
 				u.setDataNascimento(data);
 				//u.setDataNascimento(Date.parse(o.getString("dataNascimento")));
 				u.setSubsistema(o.getString("subsistema"));
 				u.setAlergias(o.getString("alergias"));
 				u.setPatologias(o.getString("patologias"));
-				u.setAntecedentesCirurgicos(o.getString("antecedentesCirurgicos"));
+				u.setAntecedentesCirurgicos(o.getString("antecendentesCirurgicos"));
 			
 				utentes.add(u);
 			}
@@ -234,7 +230,43 @@ public class WebServiceUtils {
 		return utentes;
 
 	}
+	
+	 public static Date JsonDateToDate(String jsonDate)
+	  {
+	    //  "/Date(1321867151710+0100)/"
+	    int idx1 = jsonDate.indexOf("(");
+	    int idx2 = jsonDate.indexOf(")") - 5;
+	    String s = jsonDate.substring(idx1+1, idx2);
+	    long l = Long.valueOf(s);
+	    return new Date(l);
+	  }
 
+	 public static String logIn(String username, String password)
+				throws ClientProtocolException, IOException, RestClientException,
+				ParseException, JSONException {
+		 	String token = "";
+		 	
+			HttpPost httpPost = new HttpPost(URL + "login?username="+username + "&password="+password);
+			
+			HttpClient httpClient = new DefaultHttpClient();
+			BasicHttpResponse httpResponse = (BasicHttpResponse) httpClient
+					.execute(httpPost);
+
+			if (httpResponse.getStatusLine().getStatusCode() == 200) {
+				HttpEntity entity = httpResponse.getEntity();
+				token = EntityUtils.toString(entity);
+				
+			}
+			else {
+				throw new RestClientException(
+						"HTTP Response with invalid status code "
+								+ httpResponse.getStatusLine().getStatusCode()
+								+ ".");
+			}
+
+			return token;
+
+		}
 	
 
 }

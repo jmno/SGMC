@@ -80,7 +80,7 @@ public class Utente {
 	}
 	@Override
 	public String toString() {
-		return numProcesso +" " + nome ;
+		return nome ;
 	}
 	
 	

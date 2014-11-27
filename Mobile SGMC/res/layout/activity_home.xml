@@ -2,6 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/backgroundapp"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
@@ -15,14 +16,17 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="78dp"
+        android:background="@drawable/buttonlogin"
         android:text="Equipa Cirurgica" />
 
     <Button
         android:id="@+id/buttonUtentes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
+        android:layout_alignLeft="@+id/buttonEquipa"
+        android:layout_alignRight="@+id/buttonEquipa"
         android:layout_centerVertical="true"
+        android:background="@drawable/buttonlogin"
         android:text="Utentes" />
 
 </RelativeLayout>

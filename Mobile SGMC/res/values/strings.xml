@@ -34,5 +34,8 @@
     <string name="_patologias_">Patologias:</string>
     <string name="_antecedentesCirurgicos_">Antecendentes Cirurgicos:</string>
     <string name="title_activity_home">HomeActivity</string>
+    <string name="username_">Username ...</string>
+    <string name="password_">Password ...</string>
+    <string name="login">Log In</string>
 
 </resources>

@@ -14,6 +14,7 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -43,7 +44,9 @@ public class EquipaCirurgica extends Activity {
 		setContentView(R.layout.activity_equipa_cirurgica);
 		// new getProfissionaisSaude().execute();
 		atualizaAGui();
-		
+		String token = PreferenceManager.getDefaultSharedPreferences(this).getString("token", "defaultStringIfNothingFound"); 
+		Toast.makeText(this,token, Toast.LENGTH_LONG).show();
+
 		Button btnAdd = (Button) findViewById(R.id.btn_AdicionarProfissional);
 		btnAdd.setOnClickListener(new OnClickListener() {
 
