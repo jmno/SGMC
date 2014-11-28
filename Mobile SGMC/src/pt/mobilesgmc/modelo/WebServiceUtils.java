@@ -39,12 +39,12 @@ public class WebServiceUtils {
 	public static LinkedList<Tipo> listaTipos = new LinkedList<Tipo>();
 	public static LinkedList<Utente> listaUtentes = new LinkedList<>();
 
-	public static ArrayList<ProfissonalSaude> getAllProfissionalSaude()
+	public static ArrayList<ProfissonalSaude> getAllProfissionalSaude(String token)
 			throws ClientProtocolException, IOException, RestClientException,
 			ParseException, JSONException {
 		ArrayList<ProfissonalSaude> profissionaisSaude = null;
 
-		HttpGet request = new HttpGet(URL + "getProfissionalSaude");
+		HttpGet request = new HttpGet(URL + "getProfissionalSaude?token="+token);
 		// request.setContentType(new BasicHeader(HTTP.CONTENT_TYPE,
 		// "application/json"));
 		request.setHeader("Accept", "Application/JSON");
@@ -147,12 +147,12 @@ public class WebServiceUtils {
 
 		return listaTipos;
 	}
-	public static ArrayList<ProfissonalSaude> getAllProfissionalSaudeByIdTipo(int idTipo)
+	public static ArrayList<ProfissonalSaude> getAllProfissionalSaudeByIdTipo(int idTipo, String token)
 			throws ClientProtocolException, IOException, RestClientException,
 			ParseException, JSONException {
 		ArrayList<ProfissonalSaude> profissionaisSaude = null;
 
-		HttpGet request = new HttpGet(URL + "getProfissionaisByIdTipo" + "?idTipo=" + idTipo);
+		HttpGet request = new HttpGet(URL + "getProfissionaisByIdTipo" + "?idTipo=" + idTipo+"&token="+token);
 		
 		request.setHeader("Accept", "Application/JSON");
 		HttpClient client = new DefaultHttpClient();

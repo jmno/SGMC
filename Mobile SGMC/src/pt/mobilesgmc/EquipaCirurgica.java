@@ -37,14 +37,16 @@ public class EquipaCirurgica extends Activity {
 	private ArrayAdapter<Tipo> adaptadorTipo;
 	private ArrayAdapter<ProfissonalSaude> adaptador;
 	private Spinner spinnerTipo;
+	private String token;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_equipa_cirurgica);
+		
 		// new getProfissionaisSaude().execute();
 		atualizaAGui();
-		String token = PreferenceManager.getDefaultSharedPreferences(this).getString("token", "defaultStringIfNothingFound"); 
+		token = PreferenceManager.getDefaultSharedPreferences(this).getString("token", "defaultStringIfNothingFound"); 
 		Toast.makeText(this,token, Toast.LENGTH_LONG).show();
 
 		Button btnAdd = (Button) findViewById(R.id.btn_AdicionarProfissional);
@@ -108,13 +110,13 @@ public class EquipaCirurgica extends Activity {
 	}
 
 	private void atualizaAGui() {
-		new getProfissionaisSaudeByTipo().execute(1);
-		new getProfissionaisSaudeByTipo().execute(4);
-		new getProfissionaisSaudeByTipo().execute(5);
-		new getProfissionaisSaudeByTipo().execute(7);
-		new getProfissionaisSaudeByTipo().execute(8);
-		new getProfissionaisSaudeByTipo().execute(9);
-		new getProfissionaisSaudeByTipo().execute(6);
+		new getProfissionaisSaudeByTipo().execute("1",token);
+		new getProfissionaisSaudeByTipo().execute("4",token);
+		new getProfissionaisSaudeByTipo().execute("5",token);
+		new getProfissionaisSaudeByTipo().execute("7",token);
+		new getProfissionaisSaudeByTipo().execute("8",token);
+		new getProfissionaisSaudeByTipo().execute("9",token);
+		new getProfissionaisSaudeByTipo().execute("6",token);
 
 		
 	}
@@ -244,16 +246,16 @@ public class EquipaCirurgica extends Activity {
 	}
 
 	private class getProfissionaisSaudeByTipo extends
-			AsyncTask<Integer, Void, ArrayList<ProfissonalSaude>> {
+			AsyncTask<String, Void, ArrayList<ProfissonalSaude>> {
 
 		@Override
-		protected ArrayList<ProfissonalSaude> doInBackground(Integer... params) {
+		protected ArrayList<ProfissonalSaude> doInBackground(String... params) {
 			ArrayList<ProfissonalSaude> lista = null;
 
 			try {
 				lista = WebServiceUtils
-						.getAllProfissionalSaudeByIdTipo(params[0]);
-				idTipo = params[0];
+						.getAllProfissionalSaudeByIdTipo(Integer.parseInt(params[0]),token);
+				idTipo = Integer.parseInt(params[0]);
 			} catch (IOException | RestClientException | ParseException
 					| JSONException e) {
 				e.printStackTrace();
@@ -261,6 +263,8 @@ public class EquipaCirurgica extends Activity {
 
 			return lista;
 		}
+
+		
 
 		@Override
 		protected void onPostExecute(ArrayList<ProfissonalSaude> lista) {

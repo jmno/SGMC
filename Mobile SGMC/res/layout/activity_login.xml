@@ -25,18 +25,19 @@
             android:id="@+id/textView1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
             android:layout_below="@+id/imageView1"
+            android:layout_centerHorizontal="true"
             android:text="Mobile SGMC"
-            android:textSize="40dip"
+            android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="#FFFFFF"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
+            android:textSize="40dip" />
 
         <EditText
             android:id="@+id/editTextUsername"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/imageView1"
+            android:digits="abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="100dip"
             android:ems="10"
@@ -54,19 +55,19 @@
             android:ems="10"
             android:hint="@string/password_"
             android:inputType="textPassword"
-            android:textColor="#FFFFFF"  />
+            android:textColor="#FFFFFF" />
 
         <Button
             android:id="@+id/btn_Login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="#FFFFFF"
             android:layout_alignLeft="@+id/editTextPassword"
             android:layout_alignRight="@+id/editTextPassword"
             android:layout_below="@+id/editTextPassword"
             android:layout_marginTop="26dp"
             android:background="@drawable/buttonlogin"
-            android:text="@string/login" />
+            android:text="@string/login"
+            android:textColor="#FFFFFF" />
 
     </RelativeLayout>
 

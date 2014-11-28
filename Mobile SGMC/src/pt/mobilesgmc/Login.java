@@ -8,6 +8,7 @@ import org.json.JSONException;
 import pt.mobilesgmc.modelo.RestClientException;
 import pt.mobilesgmc.modelo.WebServiceUtils;
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -26,13 +27,15 @@ import com.example.mobilegsmc.R;
 public class Login extends Activity {
 	EditText txtUser;
 	EditText txtPass;
-
+	ProgressDialog ringProgressDialog = null;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login);
-
+		
+		
 		txtUser = (EditText) findViewById(R.id.editTextUsername);
 		txtPass = (EditText) findViewById(R.id.editTextPassword);
 
@@ -52,6 +55,7 @@ public class Login extends Activity {
 		});
 
 	}
+	
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -71,11 +75,38 @@ public class Login extends Activity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
+	
+	public void launchRingDialog(View view) {
+		 
+		new Thread(new Runnable() {
+			@Override
+			public void run() {
+				try {
+					// Here you should write your time consuming task...
+					// Let the progress ring for 10 seconds...
+					Thread.sleep(10000);
+				} catch (Exception e) {
+
+				}
+				ringProgressDialog.dismiss();
+			}
+		}).start();
+	}
 
 	private class LogInWeb extends AsyncTask<String, Void, String> {
 
 	
-
+		@Override
+		protected void onPreExecute() {
+			ringProgressDialog = new ProgressDialog(Login.this);
+			ringProgressDialog.setIcon(R.drawable.ic_launcher);
+			ringProgressDialog.setTitle("Please wait...");
+			ringProgressDialog.setMessage("Loging in...");
+			
+			//ringProgressDialog = ProgressDialog.show(Login.this, "Please wait ...",	"Loging in...", true);
+			ringProgressDialog.setCancelable(false);
+			ringProgressDialog.show();
+		};
 		@Override
 		protected String doInBackground(String... params) {
 			String token = "";
@@ -94,11 +125,12 @@ public class Login extends Activity {
 		protected void onPostExecute(String token) {
 			if (token != null) {
 				if (!token.isEmpty()) {
+
 					// new Notifications(getApplicationContext(),
 					// "Connexão Efetuada com Sucesso!");
 					
 					PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putString("token", token).commit();  
-
+					ringProgressDialog.dismiss();
 					Intent equipa = new Intent(getBaseContext(),
 							HomeActivity.class);
 					startActivity(equipa);
