@@ -2,6 +2,7 @@ package pt.mobilesgmc;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Comparator;
 
 import org.apache.http.ParseException;
 import org.json.JSONException;
@@ -9,6 +10,7 @@ import org.json.JSONException;
 import pt.mobilesgmc.modelo.ProfissonalSaude;
 import pt.mobilesgmc.modelo.RestClientException;
 import pt.mobilesgmc.modelo.Tipo;
+import pt.mobilesgmc.modelo.Utente;
 import pt.mobilesgmc.modelo.WebServiceUtils;
 import android.app.Activity;
 import android.app.Dialog;
@@ -38,7 +40,7 @@ public class EquipaCirurgica extends Activity {
 	private ArrayAdapter<ProfissonalSaude> adaptador;
 	private Spinner spinnerTipo;
 	private String token;
-
+	private Dialog dialog;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -52,11 +54,12 @@ public class EquipaCirurgica extends Activity {
 		Button btnAdd = (Button) findViewById(R.id.btn_AdicionarProfissional);
 		btnAdd.setOnClickListener(new OnClickListener() {
 
+			
+
 			@Override
 			public void onClick(View arg0) {
 				new getTipo().execute();
-				// create a Dialog component
-				final Dialog dialog = new Dialog(EquipaCirurgica.this);
+				dialog = new Dialog(EquipaCirurgica.this);
 
 				// tell the Dialog to use the dialog.xml as it's layout
 				// description
@@ -103,7 +106,7 @@ public class EquipaCirurgica extends Activity {
 					}
 				});
 
-				dialog.show();
+				
 
 			}
 		});
@@ -111,12 +114,8 @@ public class EquipaCirurgica extends Activity {
 
 	private void atualizaAGui() {
 		new getProfissionaisSaudeByTipo().execute("1",token);
-		new getProfissionaisSaudeByTipo().execute("4",token);
-		new getProfissionaisSaudeByTipo().execute("5",token);
-		new getProfissionaisSaudeByTipo().execute("7",token);
-		new getProfissionaisSaudeByTipo().execute("8",token);
-		new getProfissionaisSaudeByTipo().execute("9",token);
-		new getProfissionaisSaudeByTipo().execute("6",token);
+		new getProfissionaisSaudeByTipo().execute("2",token);
+		
 
 		
 	}
@@ -236,6 +235,7 @@ public class EquipaCirurgica extends Activity {
 				// "Connexão Efetuada com Sucesso!");
 				Toast.makeText(getApplicationContext(), "Get Tipo successful!",
 						Toast.LENGTH_LONG).show();
+				dialog.show();
 			} else {
 				Toast.makeText(getApplicationContext(),
 						"Get Tipo unsuccessful...", Toast.LENGTH_LONG).show();
@@ -287,38 +287,37 @@ public class EquipaCirurgica extends Activity {
 		switch (id) {
 		case 1:
 			Spinner spinnerCirurgião = (Spinner) findViewById(R.id.spinner_Cirurgião);
+			adaptador.sort(new Comparator<ProfissonalSaude>() {
+
+				@Override
+				public int compare(ProfissonalSaude lhs, ProfissonalSaude rhs) {
+					return lhs.getNome().compareTo(rhs.getNome());
+				}
+			});
 			spinnerCirurgião.setAdapter(adaptador);
-			break;
-		case 2:
-			break;
-		case 3:
-			break;
-		case 4:
 			Spinner spinnerPrimAjudante = (Spinner) findViewById(R.id.spinner_1Ajudante);
 			spinnerPrimAjudante.setAdapter(adaptador);
 			Spinner spinnerSegundoAjudante = (Spinner) findViewById(R.id.spinner_2Ajudante);
 			spinnerSegundoAjudante.setAdapter(adaptador);
 			Spinner spinnerTerceiroAjudante = (Spinner) findViewById(R.id.spinner_3Ajudante);
 			spinnerTerceiroAjudante.setAdapter(adaptador);
-
-			break;
-		case 5:
+		case 2:
 			Spinner spinnerAnestesista = (Spinner) findViewById(R.id.spinner_Anestesista);
+			adaptador.sort(new Comparator<ProfissonalSaude>() {
+
+				@Override
+				public int compare(ProfissonalSaude lhs, ProfissonalSaude rhs) {
+					return lhs.getNome().compareTo(rhs.getNome());
+				}
+			});
+
 			spinnerAnestesista.setAdapter(adaptador);
-			break;
-		case 6:
 			Spinner spinnerAssistente = (Spinner) findViewById(R.id.spinner_Assistente_Operacional);
 			spinnerAssistente.setAdapter(adaptador);
-			break;
-		case 7:
 			Spinner spinnerEnfermeiroinstrumentista = (Spinner) findViewById(R.id.spinner_Enf_Instrumentista);
 			spinnerEnfermeiroinstrumentista.setAdapter(adaptador);
-			break;
-		case 8:
 			Spinner spinnerEnfermeiroCiruculante = (Spinner) findViewById(R.id.spinner_Enf_Circulante);
 			spinnerEnfermeiroCiruculante.setAdapter(adaptador);
-			break;
-		case 9:
 			Spinner spinnerEnfermeiroAnestesia = (Spinner) findViewById(R.id.spinner_Enf_de_Anestesia);
 			spinnerEnfermeiroAnestesia.setAdapter(adaptador);
 			break;

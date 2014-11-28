@@ -267,6 +267,35 @@ public class WebServiceUtils {
 			return token;
 
 		}
+
+	public static Boolean isLoggedIn(String token) throws ClientProtocolException, IOException, RestClientException {
+		Boolean resultado = false;
+		
+		HttpGet request = new HttpGet(URL + "isLoggedIn?token="+token);
+		// request.setContentType(new BasicHeader(HTTP.CONTENT_TYPE,
+		// "application/json"));
+		request.setHeader("Accept", "Application/JSON");
+		HttpClient client = new DefaultHttpClient();
+
+		BasicHttpResponse basicHttpResponse = (BasicHttpResponse) client
+				.execute(request);
+
+		if (basicHttpResponse.getStatusLine().getStatusCode() == 200) {
+			
+				HttpEntity entity = basicHttpResponse.getEntity();
+				resultado = Boolean.valueOf(EntityUtils.toString(entity));
+				
+			
+		} else {
+			throw new RestClientException(
+					"HTTP Response with invalid status code "
+							+ basicHttpResponse.getStatusLine().getStatusCode()
+							+ ".");
+		}
+		
+		
+		return resultado;
+	}
 	
 
 }
