@@ -8,31 +8,54 @@
         android:layout_height="match_parent"
         android:background="@drawable/backgroundmenu"
         android:orientation="vertical" >
+        
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:src="@drawable/ic_launcher" />
+            android:src="@drawable/ic_icon" />
+
+        <TextView
+            android:id="@+id/menuText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dip"
+            android:text="@string/app_name"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="#FFFFFF"
+            android:textStyle="italic" />
 
         <Button
             android:id="@+id/buttonEquipa"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
+            android:layout_gravity="center"
             android:layout_marginTop="78dp"
             android:background="@drawable/buttonlogin"
-            android:text="Equipa Cirurgica" />
+            android:text="@string/equipa_cirurgica" />
 
         <Button
             android:id="@+id/buttonUtentes"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
+            android:layout_gravity="center"
             android:layout_marginTop="10dip"
             android:background="@drawable/buttonlogin"
-            android:text="Utentes" />
+            android:text="@string/utentes" />
+
+       
+             <Button
+            android:id="@+id/btnLogOff"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginTop="10dip"
+            android:background="@drawable/buttonlogin"
+            android:text="@string/sair" />
+
+       
     </LinearLayout>
 
     <RelativeLayout
@@ -43,6 +66,26 @@
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:paddingTop="@dimen/activity_vertical_margin" >
+
+        <ImageView
+            android:id="@+id/imgHomeActivity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_launcher" />
+
+        <TextView
+            android:id="@+id/textView_HomeActivity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/imgHomeActivity"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="@string/app_name"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="#FFFFFF"
+            android:textStyle="italic" />
     </RelativeLayout>
 
 </pt.mobilesgmc.view.viewgroup.FlyOutContainer>

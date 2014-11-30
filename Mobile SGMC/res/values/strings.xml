@@ -43,5 +43,8 @@
     <string name="username_">Username ...</string>
     <string name="password_">Password ...</string>
     <string name="login">Log In</string>
+    <string name="utentes">Utentes</string>
+    <string name="equipa_cirurgica">Equipa Cirurgica</string>
+    <string name="sair">Sair</string>
 
 </resources>

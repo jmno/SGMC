@@ -1,5 +1,7 @@
 package pt.mobilesgmc;
 
+import com.example.mobilegsmc.R;
+
 import pt.mobilesgmc.modelo.OnSwipeTouchListener;
 import pt.mobilesgmc.view.viewgroup.FlyOutContainer;
 import android.app.Activity;
@@ -13,12 +15,12 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.Toast;
-
-import com.example.mobilegsmc.R;
 
 public class HomeActivity extends Activity {
-
+//IMPLEMENTAR ONBACKPRESSED NÃO IR PARA O ECRA DE LOGIN,SAIR APENAS DA APLICAÇÃO.
+//ACABAR MENU
+//
+	
 	FlyOutContainer root;
 	
 	@Override
