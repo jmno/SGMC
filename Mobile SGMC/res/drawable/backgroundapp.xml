@@ -8,6 +8,11 @@
         android:startColor="#36465D"
         android:type="linear" />
 
+<!-- <gradient  -->
+<!--     android:centerColor="#FFFFFF" -->
+<!--     android:endColor="#FFFFFF" -->
+<!--     android:startColor="#FFFFFF" -->
+<!--     /> -->
     <corners 
         android:radius="0dp"/>
    

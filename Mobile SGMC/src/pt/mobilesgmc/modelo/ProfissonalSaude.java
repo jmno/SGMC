@@ -1,6 +1,8 @@
 package pt.mobilesgmc.modelo;
 
-public class ProfissonalSaude {
+import java.util.Comparator;
+
+public class ProfissonalSaude implements Comparable<ProfissonalSaude>{
 
 	private int id;
 	private String nome;
@@ -59,6 +61,21 @@ public class ProfissonalSaude {
 	public void setIdTipo(int idTipo) {
 		this.idTipo = idTipo;
 	}
+	
+	 @Override
+	    public int compareTo(ProfissonalSaude o) {
+	        return Comparators.NAME.compare(this, o);
+	    }
+
+	public static class Comparators {
+
+        public static Comparator<ProfissonalSaude> NAME = new Comparator<ProfissonalSaude>() {
+            @Override
+            public int compare(ProfissonalSaude o1, ProfissonalSaude o2) {
+                return o1.nome.toLowerCase().compareTo(o2.nome.toLowerCase());
+            }
+        };
+	   }
 	
 
 }

@@ -1,15 +1,12 @@
 package pt.mobilesgmc.modelo;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.sql.Date;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
 import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
 import org.apache.http.ParseException;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
@@ -22,14 +19,6 @@ import org.apache.http.util.EntityUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import android.content.Context;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
-import android.provider.Telephony.Sms.Conversations;
-import android.text.method.DateTimeKeyListener;
-import pt.mobilesgmc.Login;
-import pt.mobilesgmc.modelo.*;
 
 public class WebServiceUtils {
 
@@ -75,9 +64,69 @@ public class WebServiceUtils {
 		return profissionaisSaude;
 
 	}
+	public static ArrayList<Cirurgia> getAllCirurgias(String token)
+			throws ClientProtocolException, IOException, RestClientException,
+			ParseException, JSONException {
+		ArrayList<Cirurgia> cirurgias = null;
+		Date data =null;
+
+		HttpGet request = new HttpGet(URL + "getAllCirurgias?token="+token);
+		// request.setContentType(new BasicHeader(HTTP.CONTENT_TYPE,
+		// "application/json"));
+		request.setHeader("Accept", "Application/JSON");
+		HttpClient client = new DefaultHttpClient();
+
+		BasicHttpResponse basicHttpResponse = (BasicHttpResponse) client
+				.execute(request);
+
+		if (basicHttpResponse.getStatusLine().getStatusCode() == 200) {
+			cirurgias = new ArrayList<Cirurgia>();
+			JSONArray array = new JSONArray(
+					EntityUtils.toString(basicHttpResponse.getEntity()));
+			for (int i = 0; i < array.length(); i++) {
+				JSONObject o = array.getJSONObject(i);
+				Cirurgia c = new Cirurgia();
+				c.setId(Integer.parseInt(o.getString("id")));
+				c.setEspecialidade(o.getString("especialidade"));
+				c.setCirurgia(o.getString("cirurgia"));
+				data = JsonDateToDate(o.getString("data"));
+				c.setData(data);
+				
+				c.setHora(JsonTimeToTime(o.getString("hora")));
+				c.setTipoCirurgia(o.getString("tipoCirurgia"));
+				c.setLateralidade(o.getString("lateralidade"));
+				c.setClassificacaoASA(o.getString("classifASA"));
+				c.setHoraChamadaUtente(JsonTimeToTime(o.getString("horaChamadaUtente")));
+				c.setHoraEntradaBlocoOperatorio(JsonTimeToTime(o.getString("horaEntradaBO")));
+				c.setHoraSaideBlocoOperatorio(JsonTimeToTime(o.getString("horaSaidaBO")));
+				c.setHoraEntradaSala(JsonTimeToTime(o.getString("horaEntradaSala")));
+				c.setHoraSaidaSala(JsonTimeToTime(o.getString("horaSaidaSala")));
+				c.setHoraInicioAnestesia(JsonTimeToTime(o.getString("horaInicioAnestesia")));
+				c.setHoraFimAnestesia(JsonTimeToTime(o.getString("horaFimAnestesia")));
+				c.setHoraInicioCirurgia(JsonTimeToTime(o.getString("horaInicioCirurgia")));
+				c.setHoraFimCirurgia(JsonTimeToTime(o.getString("horaFimCirurgia")));
+				c.setHoraEntradaRecobro(JsonTimeToTime(o.getString("horaEntradaRecobro")));
+				c.setHoraFimRecobro(JsonTimeToTime(o.getString("horaSaidaRecobro")));
+				c.setDestinoDoente(o.getString("destinoDoente"));
+				c.setInfoRelevante(o.getString("infoRelevante"));
+				c.setIdSala(Integer.parseInt(o.getString("idSala")));
+				c.setIdUtente(Integer.parseInt(o.getString("idUtente")));
+				
+				cirurgias.add(c);
+			}
+		} else {
+			throw new RestClientException(
+					"HTTP Response with invalid status code "
+							+ basicHttpResponse.getStatusLine().getStatusCode()
+							+ ".");
+		}
+
+		return cirurgias;
+
+	}
 
 	public static Boolean adicionarProfissionalSaude(
-			ProfissonalSaude profissional) throws ClientProtocolException,
+			ProfissonalSaude profissional,String token) throws ClientProtocolException,
 			IOException, ParseException, JSONException, RestClientException {
 		Boolean adicionou = false;
 
@@ -89,7 +138,7 @@ public class WebServiceUtils {
 
 			jsonObject.put("nome", profissional.getNome());
 
-			HttpPost httpPost = new HttpPost(URL + "addProfissionalSaude");
+			HttpPost httpPost = new HttpPost(URL + "addProfissionalSaude?token=" + token);
 			StringEntity se = new StringEntity(jsonObject.toString());
 
 			se.setContentType("text/json");
@@ -114,11 +163,11 @@ public class WebServiceUtils {
 		return adicionou;
 	}
 
-	public static ArrayList<Tipo> getAllTipo() throws ClientProtocolException,
+	public static ArrayList<Tipo> getAllTipo(String token) throws ClientProtocolException,
 			IOException, ParseException, JSONException, RestClientException {
 		ArrayList<Tipo> listaTipos = null;
 
-		HttpGet request = new HttpGet(URL + "getAllTipos");
+		HttpGet request = new HttpGet(URL + "getAllTipos?token="+token);
 		// request.setContentType(new BasicHeader(HTTP.CONTENT_TYPE,
 		// "application/json"));
 		request.setHeader("Accept", "Application/JSON");
@@ -183,12 +232,12 @@ public class WebServiceUtils {
 
 	}
 	
-	public static ArrayList<Utente> getAllUtentes()
+	public static ArrayList<Utente> getAllUtentes(String token)
 			throws ClientProtocolException, IOException, RestClientException,
 			ParseException, JSONException {
 		ArrayList<Utente> utentes = null;
 		Date data = null;
-		HttpGet request = new HttpGet(URL + "getAllUtentes");
+		HttpGet request = new HttpGet(URL + "getAllUtentes?token="+token);
 		// request.setContentType(new BasicHeader(HTTP.CONTENT_TYPE,
 		// "application/json"));
 		request.setHeader("Accept", "Application/JSON");
@@ -240,6 +289,29 @@ public class WebServiceUtils {
 	    long l = Long.valueOf(s);
 	    return new Date(l);
 	  }
+	 
+	 public static java.sql.Time JsonTimeToTime(String jsonTime)
+	 {
+		int horas=0;
+		int minutos=0;
+		int segundos=0;
+		try{
+			horas = Integer.valueOf(jsonTime.substring(2,4));
+			minutos = Integer.valueOf(jsonTime.substring(5,7));
+			segundos = Integer.valueOf(jsonTime.substring(8,10));
+		}
+		catch (Exception e)
+		{
+			
+		}
+		 java.sql.Time t = new java.sql.Time(horas,minutos ,segundos );
+		 
+		 
+		 return t;
+	 }
+	
+	 
+	
 
 	 public static String logIn(String username, String password)
 				throws ClientProtocolException, IOException, RestClientException,
@@ -295,6 +367,141 @@ public class WebServiceUtils {
 		
 		
 		return resultado;
+	}
+	
+	
+//	 ALTERAR AQUI A LISTA.. PARA PASSARMOS APENAS COMO PARAMENTROS O Q O WEBSERVICE PEDE, E DEPOIS CHAMAMOS OUTRO METODO PARA CADA PROFISSIONAL PARA ELE ADICIONAR A JUNCAO.
+	public static Boolean adicionarEquipa(
+			
+			
+			//INT = ADICONAR EQUIPA
+			//BOOL => FOREACH ELEMENTO LISTA ADICIONARA JUNCAO EQUIPA
+			List<ProfissionalDaCirurgia> lista,String nomeEquipa,int idCirurgia,String token) throws ClientProtocolException,
+			IOException, ParseException, JSONException, RestClientException {
+			
+			Boolean adicionou = false;
+			int idEquipa;
+
+			JSONObject jsonObject = new JSONObject();
+			jsonObject.put("idCirurgia", idCirurgia);
+			jsonObject.put("nomeEquipa", nomeEquipa);
+
+			HttpPost httpPost = new HttpPost(URL + "addEquipaCirurgica?token=" + token);
+			StringEntity se = new StringEntity(jsonObject.toString());
+
+			se.setContentType("text/json");
+			httpPost.setEntity(se);
+			HttpClient httpClient = new DefaultHttpClient();
+			BasicHttpResponse httpResponse = (BasicHttpResponse) httpClient
+					.execute(httpPost);
+
+			if (httpResponse.getStatusLine().getStatusCode() == 200) {
+				HttpEntity entity = httpResponse.getEntity();
+				String string = EntityUtils.toString(entity);
+				idEquipa = Integer.valueOf(string);
+			} else {
+				throw new RestClientException(
+						"HTTP Response with invalid status code"
+								+ httpResponse.getStatusLine().getStatusCode()
+								+ ".");
+
+			}
+			
+			httpPost = new HttpPost(URL + "addJuncaoEquipaCirurgica?token=" + token);
+			for (ProfissionalDaCirurgia profissionalDaCirurgia : lista) {
+				jsonObject = new JSONObject();
+				jsonObject.put("idEquipa", idEquipa);
+				jsonObject.put("idProfissional", profissionalDaCirurgia.getProfissional().getId());
+				jsonObject.put("tipoProfissional", profissionalDaCirurgia.getTipo());
+				
+				se = new StringEntity(jsonObject.toString());
+				
+				se.setContentType("text/json");
+				httpPost.setEntity(se);
+				httpClient = new DefaultHttpClient();
+				httpResponse = (BasicHttpResponse) httpClient
+						.execute(httpPost);
+				
+				if (httpResponse.getStatusLine().getStatusCode() == 200) {
+					HttpEntity entity = httpResponse.getEntity();
+					String string = EntityUtils.toString(entity);
+					adicionou = Boolean.valueOf(string);
+				} else {
+					throw new RestClientException(
+							"HTTP Response with invalid status code"
+									+ httpResponse.getStatusLine().getStatusCode()
+									+ ".");
+
+				}
+			}
+			
+
+
+		return adicionou;
+	}
+	
+	public static ArrayList<EquipaComJuncao> getAllEquipas(String token)
+			throws ClientProtocolException, IOException, RestClientException,
+			ParseException, JSONException {
+		ArrayList<EquipaComJuncao> equipas = null;
+		LinkedList<ProfissionalDaCirurgia> lista = null;
+		LinkedList<ProfissonalSaude> listaProfissonalSaudes = null;
+		Date data = null;
+		HttpGet request = new HttpGet(URL + "getAllEquipas?token="+token);
+		// request.setContentType(new BasicHeader(HTTP.CONTENT_TYPE,
+		// "application/json"));
+		request.setHeader("Accept", "Application/JSON");
+		HttpClient client = new DefaultHttpClient();
+
+		BasicHttpResponse basicHttpResponse = (BasicHttpResponse) client
+				.execute(request);
+
+		if (basicHttpResponse.getStatusLine().getStatusCode() == 200) {
+			equipas = new ArrayList<EquipaComJuncao>();
+			listaProfissonalSaudes = new LinkedList<ProfissonalSaude>();
+			JSONArray array = new JSONArray(
+					EntityUtils.toString(basicHttpResponse.getEntity()));
+			for (int i = 0; i < array.length(); i++) {
+				lista = new LinkedList<ProfissionalDaCirurgia>();
+				
+				JSONObject o = array.getJSONObject(i);
+			
+				EquipaComJuncao equipa = new EquipaComJuncao();
+				equipa.setIdEquipa(Integer.parseInt(o.getString("idEquipa")));
+				equipa.setNomeEquipa(o.getString("nomeEquipa"));
+				JSONArray arrayComProfissionais = o.getJSONArray("profissional");
+				
+				for(int j=0; j<arrayComProfissionais.length(); j++)
+				{
+					JSONObject novoProfissional = arrayComProfissionais.getJSONObject(j);
+//					JSONObject objeto = novoArrayProfissionais.getJSONObject(j);
+					ProfissionalDaCirurgia proCir = new ProfissionalDaCirurgia();
+					JSONObject n = novoProfissional.getJSONObject("profissional");
+					
+					proCir.setTipo(novoProfissional.getString("tipo"));
+					ProfissonalSaude pro = new ProfissonalSaude();
+					pro.setId(n.getInt("id"));
+					pro.setCc(n.getString("cc"));
+					pro.setIdTipo(n.getInt("idTipo"));
+					pro.setNome(n.getString("nome"));
+						
+					proCir.setProfissional(pro);
+					lista.add(proCir);
+					
+				}
+			
+				equipa.setListaProfissionais(lista);
+				equipas.add(equipa);
+			}
+		} else {
+			throw new RestClientException(
+					"HTTP Response with invalid status code "
+							+ basicHttpResponse.getStatusLine().getStatusCode()
+							+ ".");
+		}
+
+		return equipas;
+
 	}
 	
 

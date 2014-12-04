@@ -20,6 +20,7 @@ import com.example.mobilegsmc.R.menu;
 import android.app.Activity;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.Menu;
@@ -45,11 +46,15 @@ public class UtentesActivity extends Activity {
 	private TextView txt_patologiasUtente;
 	private TextView txt_antecedentesUtente;
 	private EditText inputSearch;
+	private String token;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_utentes);
+
+		token = PreferenceManager.getDefaultSharedPreferences(this).getString(
+				"token", "defaultStringIfNothingFound");
 
 		listaUtentes = (ListView) findViewById(R.id.listViewUtentes);
 		inputSearch = (EditText) findViewById(R.id.editText_findUtente);
@@ -65,31 +70,39 @@ public class UtentesActivity extends Activity {
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 					long arg3) {
-				
-				Utente a =(Utente) listaUtentes.getItemAtPosition(arg2);
+
+				Utente a = (Utente) listaUtentes.getItemAtPosition(arg2);
 				txt_nomeUtente.setText(a.getNome().toString());
 				txt_numProcessoUtente.setText(String.valueOf(a.getNumProcesso()));
-				txt_dataNascimentoUtente.setText(a.getDataNascimento().toString());
+				txt_dataNascimentoUtente.setText(a.getDataNascimento()
+						.toString());
 				txt_subSistemaUtente.setText(a.getSubsistema().toString());
-				if(a.getAlergias().equals("null") || a.getAlergias().equals("NULL") || a.getAlergias().equals(""))
+				if (a.getAlergias().equals("null")
+						|| a.getAlergias().equals("NULL")
+						|| a.getAlergias().equals(""))
 					txt_alergiasUtente.setText("N/A");
 				else
-				txt_alergiasUtente.setText(a.getAlergias().toString());
-				
-				if(a.getPatologias().equals("null") || a.getPatologias().equals("NULL") || a.getPatologias().equals(""))
+					txt_alergiasUtente.setText(a.getAlergias().toString());
+
+				if (a.getPatologias().equals("null")
+						|| a.getPatologias().equals("NULL")
+						|| a.getPatologias().equals(""))
 					txt_patologiasUtente.setText("N/A");
 				else
-				txt_patologiasUtente.setText(a.getPatologias().toString());
-				
-				if(a.getAntecedentesCirurgicos().equals("null") || a.getAntecedentesCirurgicos().equals("NULL") || a.getAntecedentesCirurgicos().equals(""))
+					txt_patologiasUtente.setText(a.getPatologias().toString());
+
+				if (a.getAntecedentesCirurgicos().equals("null")
+						|| a.getAntecedentesCirurgicos().equals("NULL")
+						|| a.getAntecedentesCirurgicos().equals(""))
 					txt_antecedentesUtente.setText("N/A");
 				else
-					txt_antecedentesUtente.setText(a.getAntecedentesCirurgicos().toString());
-				
+					txt_antecedentesUtente.setText(a
+							.getAntecedentesCirurgicos().toString());
+
 			}
 		});
 		new getUtentes().execute();
-		
+
 		inputSearch.addTextChangedListener(new TextWatcher() {
 
 			@Override
@@ -113,7 +126,6 @@ public class UtentesActivity extends Activity {
 		});
 
 	}
-	
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -141,7 +153,7 @@ public class UtentesActivity extends Activity {
 			ArrayList<Utente> lista = null;
 
 			try {
-				lista = WebServiceUtils.getAllUtentes();
+				lista = WebServiceUtils.getAllUtentes(token);
 			} catch (IOException | RestClientException | ParseException
 					| JSONException e) {
 				e.printStackTrace();
@@ -158,11 +170,12 @@ public class UtentesActivity extends Activity {
 
 					@Override
 					public int compare(Utente lhs, Utente rhs) {
-						return lhs.getNome().compareTo(rhs.getNome());
+						return lhs.getNome().toLowerCase()
+								.compareTo(rhs.getNome().toLowerCase());
 					}
 				});
 				listaUtentes.setAdapter(adaptadorUtente);
-				
+
 				// new Notifications(getApplicationContext(),
 				// "Connexão Efetuada com Sucesso!");
 				Toast.makeText(getApplicationContext(),

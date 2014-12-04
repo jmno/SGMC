@@ -33,7 +33,8 @@
         </activity>
         <activity
             android:name="pt.mobilesgmc.UtentesActivity"
-            android:label="@string/title_activity_utentes" >
+            android:label="@string/title_activity_utentes" 
+            android:windowSoftInputMode="stateHidden">
         </activity>
         <activity
             android:name="pt.mobilesgmc.HomeActivity"

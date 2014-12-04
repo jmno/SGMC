@@ -1,12 +1,26 @@
 package pt.mobilesgmc;
 
-import com.example.mobilegsmc.R;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Comparator;
 
+import org.apache.http.ParseException;
+import org.json.JSONException;
+import org.w3c.dom.Text;
+
+import pt.mobilesgmc.modelo.Cirurgia;
 import pt.mobilesgmc.modelo.OnSwipeTouchListener;
+import pt.mobilesgmc.modelo.RestClientException;
+import pt.mobilesgmc.modelo.WebServiceUtils;
 import pt.mobilesgmc.view.viewgroup.FlyOutContainer;
 import android.app.Activity;
+import android.app.Dialog;
+import android.content.DialogInterface;
+import android.content.DialogInterface.OnDismissListener;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.DisplayMetrics;
 import android.view.Display;
 import android.view.Menu;
@@ -14,62 +28,84 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.WindowManager;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.TextView;
+
+import com.example.mobilegsmc.R;
 
 public class HomeActivity extends Activity {
-//IMPLEMENTAR ONBACKPRESSED NÃO IR PARA O ECRA DE LOGIN,SAIR APENAS DA APLICAÇÃO.
-//ACABAR MENU
-//
-	
+	// IMPLEMENTAR ONBACKPRESSED NÃO IR PARA O ECRA DE LOGIN,SAIR APENAS DA
+	// APLICAÇÃO.
+	// ACABAR MENU
+	//
+
 	FlyOutContainer root;
-	
+	String token;
+	private ArrayAdapter<Cirurgia> adaptadorCirurgias;
+	private Dialog dialog;
+	public static ListView listaCirurgias;
+	public static EditText texto_cirurgia;
+	public static TextView textoCirurgiaAUsar;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_home);
 
-		
-		
-		
-		this.root = (FlyOutContainer) this.getLayoutInflater().inflate(R.layout.activity_home, null);
-		 Display display = getWindowManager().getDefaultDisplay();
-		    DisplayMetrics outMetrics = new DisplayMetrics ();
-		    display.getMetrics(outMetrics);
+		token = PreferenceManager.getDefaultSharedPreferences(this).getString(
+				"token", "defaultStringIfNothingFound");
 
-		    float density  = getResources().getDisplayMetrics().density;
-		    float dpWidth  = outMetrics.widthPixels / density;
-		    int margin = (80*(int)dpWidth)/100;
+		this.root = (FlyOutContainer) this.getLayoutInflater().inflate(
+				R.layout.activity_home, null);
+		Display display = getWindowManager().getDefaultDisplay();
+		DisplayMetrics outMetrics = new DisplayMetrics();
+		display.getMetrics(outMetrics);
+
+		float density = getResources().getDisplayMetrics().density;
+		float dpWidth = outMetrics.widthPixels / density;
+		int margin = (80 * (int) dpWidth) / 100;
 		root.setMargin(margin);
 		this.setContentView(root);
-		
-		
-		
-		root.setOnTouchListener(new OnSwipeTouchListener(this){
-			public void onSwipeTop() {
-		      //  Toast.makeText(SampleActivity.this, "top", Toast.LENGTH_SHORT).show();
-		    }
-		    public void onSwipeRight() {
-		    	String estado = root.getState().toString();
-		    	if(estado.equals("CLOSED"))
-		    	toggleMenu(findViewById(R.layout.activity_home));
-		      //  Toast.makeText(SampleActivity.this, "right", Toast.LENGTH_SHORT).show();
-		    }
-		    public void onSwipeLeft() {
-		    	String estado = root.getState().toString();
-		    	if(estado.equals("OPEN"))
-		    	toggleMenu(findViewById(R.layout.activity_home));
-		    }
-		    public void onSwipeBottom() {
-		       // Toast.makeText(SampleActivity.this, "bottom", Toast.LENGTH_SHORT).show();
-		    }
 
-		public boolean onTouch(View v, MotionEvent event) {
-		    return gestureDetector.onTouchEvent(event);
-		}
-			
-			
+		root.setOnTouchListener(new OnSwipeTouchListener(this) {
+			public void onSwipeTop() {
+				// Toast.makeText(SampleActivity.this, "top",
+				// Toast.LENGTH_SHORT).show();
+			}
+
+			public void onSwipeRight() {
+				String estado = root.getState().toString();
+				if (estado.equals("CLOSED"))
+					toggleMenu(findViewById(R.layout.activity_home));
+				// Toast.makeText(SampleActivity.this, "right",
+				// Toast.LENGTH_SHORT).show();
+			}
+
+			public void onSwipeLeft() {
+				String estado = root.getState().toString();
+				if (estado.equals("OPEN"))
+					toggleMenu(findViewById(R.layout.activity_home));
+			}
+
+			public void onSwipeBottom() {
+				// Toast.makeText(SampleActivity.this, "bottom",
+				// Toast.LENGTH_SHORT).show();
+			}
+
+			public boolean onTouch(View v, MotionEvent event) {
+				return gestureDetector.onTouchEvent(event);
+			}
+
 		});
-		
+		texto_cirurgia = (EditText) root
+				.findViewById(R.id.editText_escolhaCirurgia);
+
 		Button btnEquipa = (Button) root.findViewById(R.id.buttonEquipa);
 		btnEquipa.setOnClickListener(new OnClickListener() {
 
@@ -79,7 +115,7 @@ public class HomeActivity extends Activity {
 						EquipaCirurgica.class);
 				toggleMenu(findViewById(R.layout.activity_home));
 				startActivity(utentes);
-				
+
 			}
 		});
 		Button btnUtentes = (Button) root.findViewById(R.id.buttonUtentes);
@@ -92,6 +128,64 @@ public class HomeActivity extends Activity {
 						UtentesActivity.class);
 				toggleMenu(findViewById(R.layout.activity_home));
 				startActivity(utentes);
+			}
+		});
+		
+		textoCirurgiaAUsar = (TextView) root.findViewById(R.id.textViewCirurgia);
+
+		Button btnAdd = (Button) findViewById(R.id.btnEscolhaCirurgia);
+		btnAdd.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View arg0) {
+				new getAllCirurgias().execute();
+
+				dialog = new Dialog(HomeActivity.this);
+
+				// tell the Dialog to use the dialog.xml as it's layout
+				// description
+				dialog.setContentView(R.layout.dialog_procuracirurgias);
+				dialog.setTitle("Escolha a Cirurgia:");
+				dialog.getWindow()
+						.setSoftInputMode(
+								WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+				final EditText nomeEditText = (EditText) dialog
+						.findViewById(R.id.editText_escolhaCirurgia);
+				listaCirurgias = (ListView) dialog
+						.findViewById(R.id.listView_cirurgias);
+
+				listaCirurgias
+						.setOnItemClickListener(new OnItemClickListener() {
+
+							@Override
+							public void onItemClick(AdapterView<?> arg0,
+									View arg1, int arg2, long arg3) {
+
+								Cirurgia c = (Cirurgia) listaCirurgias
+										.getItemAtPosition(arg2);
+								PreferenceManager
+										.getDefaultSharedPreferences(
+												getApplicationContext())
+										.edit()
+										.putString("idCirurgia",
+												String.valueOf(c.getId()))
+										.commit();
+
+								dialog.dismiss();
+							}
+						});
+
+				dialog.setOnDismissListener(new OnDismissListener() {
+
+					@Override
+					public void onDismiss(DialogInterface dialog) {
+						String cirurgia = PreferenceManager
+								.getDefaultSharedPreferences(getApplicationContext()).getString(
+										"idCirurgia",
+										"defaultStringIfNothingFound");
+						textoCirurgiaAUsar.setText(cirurgia);
+					}
+				});
 			}
 		});
 
@@ -109,17 +203,61 @@ public class HomeActivity extends Activity {
 		// Handle action bar item clicks here. The action bar will
 		// automatically handle clicks on the Home/Up button, so long
 		// as you specify a parent activity in AndroidManifest.xml.
-		int id = item.getItemId();
-		if (id == R.id.action_settings) {
-			return true;
-		}
+		// int id = item.getItemId();
+		// if (id == R.id.action_settings) {
+		// return true;
+		// }
 		return super.onOptionsItemSelected(item);
 	}
-	
-	public void toggleMenu(View v){
+
+	public void toggleMenu(View v) {
 		this.root.toggleMenu();
 	}
-	
-	
+
+	@Override
+	public boolean onTouchEvent(MotionEvent event) {
+		String estado = root.getState().toString();
+		if (estado.equals("OPEN"))
+			this.root.toggleMenu();
+		return super.onTouchEvent(event);
+	}
+
+	private class getAllCirurgias extends
+			AsyncTask<Cirurgia, Void, ArrayList<Cirurgia>> {
+
+		@Override
+		protected ArrayList<Cirurgia> doInBackground(Cirurgia... params) {
+			ArrayList<Cirurgia> lista = null;
+			try {
+				lista = WebServiceUtils.getAllCirurgias(token);
+			} catch (ParseException | IOException | JSONException
+					| RestClientException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+			return lista;
+		}
+
+		@Override
+		protected void onPostExecute(ArrayList<Cirurgia> lista) {
+			if (lista != null) {
+				adaptadorCirurgias = new ArrayAdapter<Cirurgia>(
+						getBaseContext(), android.R.layout.simple_list_item_1,
+						lista);
+				adaptadorCirurgias.sort(new Comparator<Cirurgia>() {
+
+					@Override
+					public int compare(Cirurgia lhs, Cirurgia rhs) {
+						return lhs.getCirurgia().toLowerCase()
+								.compareTo(rhs.getCirurgia().toLowerCase());
+					}
+				});
+				listaCirurgias.setAdapter(adaptadorCirurgias);
+				dialog.show();
+			}
+		}
+
+	}
 
 }
