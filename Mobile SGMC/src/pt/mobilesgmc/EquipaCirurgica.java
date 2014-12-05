@@ -3,7 +3,6 @@ package pt.mobilesgmc;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -32,9 +31,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.WindowManager;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
-import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -383,6 +379,8 @@ public class EquipaCirurgica extends Activity {
 
 			}
 		});
+
+		
 		// spinnerEquipa.setOnItemSelectedListener(new OnItemSelectedListener()
 		// {
 		//
@@ -508,8 +506,10 @@ public class EquipaCirurgica extends Activity {
 		protected void onPostExecute(Boolean result) {
 			String a = (result ? "Profissional Adicionado com Sucesso!"
 					: "Profissional Não Adicionado!");
+			
 			Toast.makeText(getApplicationContext(), a, Toast.LENGTH_LONG)
 					.show();
+
 			super.onPostExecute(result);
 		}
 

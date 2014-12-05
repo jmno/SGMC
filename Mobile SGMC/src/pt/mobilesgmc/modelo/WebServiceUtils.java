@@ -381,6 +381,30 @@ public class WebServiceUtils {
 			
 			Boolean adicionou = false;
 			int idEquipa;
+			
+			/*
+			 * JSONObject jsonObject = new JSONObject();
+			jsonObject.put("cc", profissional.getCc());
+			jsonObject.put("id", 1);
+
+			jsonObject.put("idTipo", profissional.getIdTipo());
+
+			jsonObject.put("nome", profissional.getNome());
+
+			HttpPost httpPost = new HttpPost(URL + "addProfissionalSaude?token=" + token);
+			StringEntity se = new StringEntity(jsonObject.toString());
+
+			se.setContentType("text/json");
+			httpPost.setEntity(se);
+			HttpClient httpClient = new DefaultHttpClient();
+			BasicHttpResponse httpResponse = (BasicHttpResponse) httpClient
+					.execute(httpPost);
+
+			if (httpResponse.getStatusLine().getStatusCode() == 200) {
+				HttpEntity entity = httpResponse.getEntity();
+				String string = EntityUtils.toString(entity);
+				adicionou = Boolean.valueOf(string);
+			 */
 
 			JSONObject jsonObject = new JSONObject();
 			jsonObject.put("idCirurgia", idCirurgia);
@@ -396,6 +420,25 @@ public class WebServiceUtils {
 					.execute(httpPost);
 
 			if (httpResponse.getStatusLine().getStatusCode() == 200) {
+				HttpEntity entity = httpResponse.getEntity();
+				Boolean string = Boolean.valueOf(EntityUtils.toString(entity));
+//				idEquipa = Integer.valueOf(string);
+			} else {
+				throw new RestClientException(
+						"HTTP Response with invalid status code"
+								+ httpResponse.getStatusLine().getStatusCode()
+								+ ".");
+
+			}
+			
+
+			HttpGet request = new HttpGet(URL + "getIdEquipaByNome?token=" + token+"&nome="+nomeEquipa);
+			request.setHeader("Accept", "Application/JSON");
+			HttpClient client = new DefaultHttpClient();
+
+			BasicHttpResponse basicHttpResponse = (BasicHttpResponse) client
+					.execute(request);
+			if (basicHttpResponse.getStatusLine().getStatusCode() == 200) {
 				HttpEntity entity = httpResponse.getEntity();
 				String string = EntityUtils.toString(entity);
 				idEquipa = Integer.valueOf(string);

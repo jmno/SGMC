@@ -93,6 +93,7 @@
             android:id="@+id/spinner_Cirurgião"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+           android:layout_marginTop="50dip"
             android:layout_alignBottom="@+id/textCirurgiao"
             android:layout_toRightOf="@+id/textCirurgiao" />
 
