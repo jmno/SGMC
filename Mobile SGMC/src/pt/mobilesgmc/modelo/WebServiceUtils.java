@@ -1,6 +1,10 @@
 package pt.mobilesgmc.modelo;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.nio.charset.Charset;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -14,7 +18,9 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicHeader;
 import org.apache.http.message.BasicHttpResponse;
+import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -27,7 +33,7 @@ public class WebServiceUtils {
 	public static LinkedList<ProfissonalSaude> listaProfissionaisSaude = new LinkedList<ProfissonalSaude>();
 	public static LinkedList<Tipo> listaTipos = new LinkedList<Tipo>();
 	public static LinkedList<Utente> listaUtentes = new LinkedList<>();
-
+	public static HttpClient client = new DefaultHttpClient();
 	public static ArrayList<ProfissonalSaude> getAllProfissionalSaude(String token)
 			throws ClientProtocolException, IOException, RestClientException,
 			ParseException, JSONException {
@@ -37,8 +43,6 @@ public class WebServiceUtils {
 		// request.setContentType(new BasicHeader(HTTP.CONTENT_TYPE,
 		// "application/json"));
 		request.setHeader("Accept", "Application/JSON");
-		HttpClient client = new DefaultHttpClient();
-
 		BasicHttpResponse basicHttpResponse = (BasicHttpResponse) client
 				.execute(request);
 
@@ -74,7 +78,6 @@ public class WebServiceUtils {
 		// request.setContentType(new BasicHeader(HTTP.CONTENT_TYPE,
 		// "application/json"));
 		request.setHeader("Accept", "Application/JSON");
-		HttpClient client = new DefaultHttpClient();
 
 		BasicHttpResponse basicHttpResponse = (BasicHttpResponse) client
 				.execute(request);
@@ -143,8 +146,7 @@ public class WebServiceUtils {
 
 			se.setContentType("text/json");
 			httpPost.setEntity(se);
-			HttpClient httpClient = new DefaultHttpClient();
-			BasicHttpResponse httpResponse = (BasicHttpResponse) httpClient
+			BasicHttpResponse httpResponse = (BasicHttpResponse) client
 					.execute(httpPost);
 
 			if (httpResponse.getStatusLine().getStatusCode() == 200) {
@@ -171,8 +173,6 @@ public class WebServiceUtils {
 		// request.setContentType(new BasicHeader(HTTP.CONTENT_TYPE,
 		// "application/json"));
 		request.setHeader("Accept", "Application/JSON");
-		HttpClient client = new DefaultHttpClient();
-
 		BasicHttpResponse basicHttpResponse = (BasicHttpResponse) client
 				.execute(request);
 
@@ -204,7 +204,6 @@ public class WebServiceUtils {
 		HttpGet request = new HttpGet(URL + "getProfissionaisByIdTipo" + "?idTipo=" + idTipo+"&token="+token);
 		
 		request.setHeader("Accept", "Application/JSON");
-		HttpClient client = new DefaultHttpClient();
 
 		BasicHttpResponse basicHttpResponse = (BasicHttpResponse) client
 				.execute(request);
@@ -241,7 +240,6 @@ public class WebServiceUtils {
 		// request.setContentType(new BasicHeader(HTTP.CONTENT_TYPE,
 		// "application/json"));
 		request.setHeader("Accept", "Application/JSON");
-		HttpClient client = new DefaultHttpClient();
 
 		BasicHttpResponse basicHttpResponse = (BasicHttpResponse) client
 				.execute(request);
@@ -320,8 +318,7 @@ public class WebServiceUtils {
 		 	
 			HttpPost httpPost = new HttpPost(URL + "login?username="+username + "&password="+password);
 			
-			HttpClient httpClient = new DefaultHttpClient();
-			BasicHttpResponse httpResponse = (BasicHttpResponse) httpClient
+			BasicHttpResponse httpResponse = (BasicHttpResponse) client
 					.execute(httpPost);
 
 			if (httpResponse.getStatusLine().getStatusCode() == 200) {
@@ -347,7 +344,6 @@ public class WebServiceUtils {
 		// request.setContentType(new BasicHeader(HTTP.CONTENT_TYPE,
 		// "application/json"));
 		request.setHeader("Accept", "Application/JSON");
-		HttpClient client = new DefaultHttpClient();
 
 		BasicHttpResponse basicHttpResponse = (BasicHttpResponse) client
 				.execute(request);
@@ -373,10 +369,9 @@ public class WebServiceUtils {
 //	 ALTERAR AQUI A LISTA.. PARA PASSARMOS APENAS COMO PARAMENTROS O Q O WEBSERVICE PEDE, E DEPOIS CHAMAMOS OUTRO METODO PARA CADA PROFISSIONAL PARA ELE ADICIONAR A JUNCAO.
 	public static Boolean adicionarEquipa(
 			
-			
 			//INT = ADICONAR EQUIPA
 			//BOOL => FOREACH ELEMENTO LISTA ADICIONARA JUNCAO EQUIPA
-			List<ProfissionalDaCirurgia> lista,String nomeEquipa,int idCirurgia,String token) throws ClientProtocolException,
+			String nomeEquipa,int idCirurgia,String token) throws ClientProtocolException,
 			IOException, ParseException, JSONException, RestClientException {
 			
 			Boolean adicionou = false;
@@ -410,77 +405,90 @@ public class WebServiceUtils {
 			jsonObject.put("idCirurgia", idCirurgia);
 			jsonObject.put("nomeEquipa", nomeEquipa);
 
-			HttpPost httpPost = new HttpPost(URL + "addEquipaCirurgica?token=" + token);
+			HttpPost httpPost = new HttpPost(URL + "addEquipaCirurgica?token="+token);
 			StringEntity se = new StringEntity(jsonObject.toString());
 
-			se.setContentType("text/json");
+			se.setContentType("application/json;charset=UTF-8");//text/plain;charset=UTF-8
+            se.setContentEncoding(new BasicHeader(HTTP.CONTENT_TYPE,"application/json;charset=UTF-8"));
 			httpPost.setEntity(se);
-			HttpClient httpClient = new DefaultHttpClient();
-			BasicHttpResponse httpResponse = (BasicHttpResponse) httpClient
+			BasicHttpResponse httpResponse = (BasicHttpResponse) client
 					.execute(httpPost);
-
 			if (httpResponse.getStatusLine().getStatusCode() == 200) {
 				HttpEntity entity = httpResponse.getEntity();
-				Boolean string = Boolean.valueOf(EntityUtils.toString(entity));
-//				idEquipa = Integer.valueOf(string);
-			} else {
-				throw new RestClientException(
-						"HTTP Response with invalid status code"
-								+ httpResponse.getStatusLine().getStatusCode()
-								+ ".");
-
-			}
-			
-
-			HttpGet request = new HttpGet(URL + "getIdEquipaByNome?token=" + token+"&nome="+nomeEquipa);
-			request.setHeader("Accept", "Application/JSON");
-			HttpClient client = new DefaultHttpClient();
-
-			BasicHttpResponse basicHttpResponse = (BasicHttpResponse) client
-					.execute(request);
-			if (basicHttpResponse.getStatusLine().getStatusCode() == 200) {
-				HttpEntity entity = httpResponse.getEntity();
 				String string = EntityUtils.toString(entity);
-				idEquipa = Integer.valueOf(string);
+				adicionou = Boolean.valueOf(string);
 			} else {
 				throw new RestClientException(
 						"HTTP Response with invalid status code"
 								+ httpResponse.getStatusLine().getStatusCode()
 								+ ".");
-
-			}
-			
-			httpPost = new HttpPost(URL + "addJuncaoEquipaCirurgica?token=" + token);
-			for (ProfissionalDaCirurgia profissionalDaCirurgia : lista) {
-				jsonObject = new JSONObject();
-				jsonObject.put("idEquipa", idEquipa);
-				jsonObject.put("idProfissional", profissionalDaCirurgia.getProfissional().getId());
-				jsonObject.put("tipoProfissional", profissionalDaCirurgia.getTipo());
-				
-				se = new StringEntity(jsonObject.toString());
-				
-				se.setContentType("text/json");
-				httpPost.setEntity(se);
-				httpClient = new DefaultHttpClient();
-				httpResponse = (BasicHttpResponse) httpClient
-						.execute(httpPost);
-				
-				if (httpResponse.getStatusLine().getStatusCode() == 200) {
-					HttpEntity entity = httpResponse.getEntity();
-					String string = EntityUtils.toString(entity);
-					adicionou = Boolean.valueOf(string);
-				} else {
-					throw new RestClientException(
-							"HTTP Response with invalid status code"
-									+ httpResponse.getStatusLine().getStatusCode()
-									+ ".");
-
-				}
 			}
 			
 
+			
 
 		return adicionou;
+	}
+	
+	public static int getEquipaID(String nomeEquipa, String token) throws ParseException, IOException, RestClientException
+	{
+		int resultado = 0;
+		
+		HttpGet request = new HttpGet(URL + "getIdEquipaByNome?token=" + token+"&nome="+nomeEquipa);
+		request.setHeader("Accept", "Application/JSON");
+
+		BasicHttpResponse basicHttpResponse = (BasicHttpResponse) client
+				.execute(request);
+		if (basicHttpResponse.getStatusLine().getStatusCode() == 200) {
+			HttpEntity entity = basicHttpResponse.getEntity();
+			String string = EntityUtils.toString(entity);
+			resultado = Integer.valueOf(string);
+		} else {
+			throw new RestClientException(
+					"HTTP Response with invalid status code"
+							+ basicHttpResponse.getStatusLine().getStatusCode()
+							+ ".");
+
+		}
+		
+		return resultado;
+	}
+	
+	public static Boolean adicionarJuncoes(List<ProfissionalDaCirurgia> lista,int idEquipa, String token) throws ClientProtocolException, IOException, RestClientException, JSONException
+	{
+		Boolean adicionou = false;
+		HttpPost httpPost = new HttpPost(URL + "addJuncaoEquipaCirurgica?token=" + token);
+		for (ProfissionalDaCirurgia profissionalDaCirurgia : lista) {
+			JSONObject jsonObject = new JSONObject();
+			jsonObject.put("idEquipa", idEquipa);
+			jsonObject.put("idProfissional", profissionalDaCirurgia.getProfissional().getId());
+			jsonObject.put("tipoProfissional", profissionalDaCirurgia.getTipo());
+			
+			StringEntity se = new StringEntity(jsonObject.toString());
+			se.setContentType("application/json;charset=UTF-8");//text/plain;charset=UTF-8
+            se.setContentEncoding(new BasicHeader(HTTP.CONTENT_TYPE,"application/json;charset=UTF-8"));
+            
+			httpPost.setEntity(se);
+			BasicHttpResponse httpResponse = (BasicHttpResponse) client
+					.execute(httpPost);
+			
+			if (httpResponse.getStatusLine().getStatusCode() == 200) {
+				HttpEntity entity = httpResponse.getEntity();
+				String string = EntityUtils.toString(entity);
+				adicionou = Boolean.valueOf(string);
+			} else {
+				throw new RestClientException(
+						"HTTP Response with invalid status code"
+								+ httpResponse.getStatusLine().getStatusCode()
+								+ ".");
+
+			}
+		}
+		
+		return adicionou;
+		
+
+		
 	}
 	
 	public static ArrayList<EquipaComJuncao> getAllEquipas(String token)
@@ -494,7 +502,6 @@ public class WebServiceUtils {
 		// request.setContentType(new BasicHeader(HTTP.CONTENT_TYPE,
 		// "application/json"));
 		request.setHeader("Accept", "Application/JSON");
-		HttpClient client = new DefaultHttpClient();
 
 		BasicHttpResponse basicHttpResponse = (BasicHttpResponse) client
 				.execute(request);

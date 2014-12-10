@@ -85,6 +85,7 @@
             android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:layout_below="@id/textview_NomeEquipa"
+            android:layout_marginTop="50dp"
             android:layout_marginLeft="25dip"
             android:text="@string/texto_cirurgiao"
             android:textAppearance="?android:attr/textAppearanceMedium" />
@@ -103,6 +104,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/spinner_Cirurgião"
             android:layout_marginLeft="25dip"
+             android:layout_marginTop="30dip"
             android:text="@string/_1_ajudante_"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -112,6 +114,7 @@
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/textView_1Ajudante"
             android:layout_toRightOf="@+id/textView_1Ajudante"
+             android:layout_marginTop="30dip"
             android:entries="@array/spinnerInicio" />
 
         <TextView
@@ -120,6 +123,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/textView_1Ajudante"
             android:layout_marginLeft="25dip"
+             android:layout_marginTop="30dip"
             android:text="@string/_2_ajudante_"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -129,6 +133,7 @@
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/textView_2Ajudante"
             android:layout_toRightOf="@+id/textView_2Ajudante"
+             android:layout_marginTop="30dip"
             android:entries="@array/spinnerInicio" />
 
         <TextView
@@ -138,6 +143,7 @@
             android:layout_below="@id/textView_2Ajudante"
             android:layout_marginLeft="25dip"
             android:text="@string/_3_ajudante_"
+             android:layout_marginTop="30dip"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <Spinner
@@ -146,6 +152,7 @@
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/textView_3Ajudante"
             android:layout_toRightOf="@+id/textView_3Ajudante"
+             android:layout_marginTop="30dip"
             android:entries="@array/spinnerInicio" />
 
         <TextView
@@ -154,6 +161,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/textView_3Ajudante"
             android:layout_marginLeft="25dip"
+             android:layout_marginTop="30dip"
             android:text="@string/_Anestesista_"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -163,6 +171,7 @@
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/textView_Anestesista"
             android:layout_toRightOf="@+id/textView_Anestesista"
+             android:layout_marginTop="30dip"
             android:entries="@array/spinnerInicio" />
 
         <TextView
@@ -172,6 +181,7 @@
             android:layout_below="@id/textView_Anestesista"
             android:layout_marginLeft="25dip"
             android:text="@string/_Enfermeiro_Instrumentista_"
+             android:layout_marginTop="30dip"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <Spinner
@@ -180,6 +190,7 @@
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/textView_Enf_Instrumentista"
             android:layout_toRightOf="@+id/textView_Enf_Instrumentista"
+             android:layout_marginTop="30dip"
             android:entries="@array/spinnerInicio" />
 
         <TextView
@@ -189,6 +200,7 @@
             android:layout_below="@id/textView_Enf_Instrumentista"
             android:layout_marginLeft="25dip"
             android:text="@string/_Enfermeiro_Circulante_"
+             android:layout_marginTop="30dip"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <Spinner
@@ -197,6 +209,7 @@
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/textView_Enf_Circulante"
             android:layout_toRightOf="@+id/textView_Enf_Circulante"
+             android:layout_marginTop="30dip"
             android:entries="@array/spinnerInicio" />
 
         <TextView
@@ -206,6 +219,7 @@
             android:layout_below="@id/textView_Enf_Circulante"
             android:layout_marginLeft="25dip"
             android:text="@string/_Enfermeiro_Anestesia_"
+             android:layout_marginTop="30dip"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <Spinner
@@ -214,6 +228,7 @@
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/textView_Enf_de_Anestesia"
             android:layout_toRightOf="@+id/textView_Enf_de_Anestesia"
+             android:layout_marginTop="30dip"
             android:entries="@array/spinnerInicio" />
 
         <TextView
@@ -223,6 +238,7 @@
             android:layout_below="@id/textView_Enf_de_Anestesia"
             android:layout_marginLeft="25dip"
             android:text="@string/_Assistente_Operacional_"
+             android:layout_marginTop="30dip"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <Spinner
@@ -231,6 +247,7 @@
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/textView_Assistente_Operacional"
             android:layout_toRightOf="@+id/textView_Assistente_Operacional"
+             android:layout_marginTop="30dip"
             android:entries="@array/spinnerInicio" />
 
         <Button
@@ -240,23 +257,19 @@
             android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true"
             android:layout_marginLeft="25dip"
+             android:layout_marginTop="30dip"
             android:background="@drawable/add_user" />
 
-        <Spinner
-            android:id="@+id/spinner_Equipas"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/spinner_Assistente_Operacional"
-            android:layout_marginLeft="25dip"
-            android:entries="@array/spinnerInicio" />
+      
 
         <Button
             android:id="@+id/btn_PesquisarEquipas"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
-            android:layout_below="@+id/spinner_Equipas"
+            android:layout_below="@+id/spinner_Assistente_Operacional"
             android:layout_marginLeft="25dip"
+             android:layout_marginTop="35dip"
             android:background="@drawable/search" />
 
         <Button

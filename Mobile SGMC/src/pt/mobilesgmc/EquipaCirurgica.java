@@ -3,12 +3,14 @@ package pt.mobilesgmc;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 
 import org.apache.http.ParseException;
 import org.json.JSONException;
 
+import pt.mobilesgmc.modelo.Cirurgia;
 import pt.mobilesgmc.modelo.EquipaComJuncao;
 import pt.mobilesgmc.modelo.OnSwipeTouchListener;
 import pt.mobilesgmc.modelo.ProfissionalDaCirurgia;
@@ -19,7 +21,9 @@ import pt.mobilesgmc.modelo.WebServiceUtils;
 import pt.mobilesgmc.view.viewgroup.FlyOutContainer;
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.DialogInterface.OnDismissListener;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -31,11 +35,14 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.WindowManager;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
+import android.widget.AdapterView.OnItemClickListener;
 
 import com.example.mobilegsmc.R;
 
@@ -53,6 +60,7 @@ public class EquipaCirurgica extends Activity {
 	private Spinner spinnerTipo;
 	private String token;
 	private Dialog dialog;
+	private Dialog dialogoEquipas;
 	FlyOutContainer root;
 	private Spinner spinnerAssistente;
 	private Spinner spinnerCirurgiao;
@@ -67,6 +75,8 @@ public class EquipaCirurgica extends Activity {
 	private EditText editNomeEquipa;
 	private String nomeEquipa;
 	private int idCirurgia;
+	public static ListView listaEquipas;
+	public EquipaComJuncao equipaCirurgica;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -79,7 +89,7 @@ public class EquipaCirurgica extends Activity {
 				"token", "defaultStringIfNothingFound");
 		idCirurgia = Integer.parseInt(PreferenceManager
 				.getDefaultSharedPreferences(getApplicationContext())
-				.getString("idCirurgia", "defaultStringIfNothingFound"));
+				.getString("idCirurgia", "0"));
 		Toast.makeText(this, token, Toast.LENGTH_LONG).show();
 
 		this.root = (FlyOutContainer) this.getLayoutInflater().inflate(
@@ -302,20 +312,98 @@ public class EquipaCirurgica extends Activity {
 			}
 		});
 
-		spinnerEquipa = (Spinner) findViewById(R.id.spinner_Equipas);
-		new getEquipas().execute(token);
-
 		Button btnProcurarCirurgias = (Button) root
 				.findViewById(R.id.btn_PesquisarEquipas);
 		btnProcurarCirurgias.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
-				EquipaComJuncao equipa = (EquipaComJuncao) spinnerEquipa
-						.getItemAtPosition(spinnerEquipa
-								.getSelectedItemPosition());
+				/****************/
+				new getEquipas().execute(token);
+				// new getAllCirurgias().execute();
+
+				dialogoEquipas = new Dialog(EquipaCirurgica.this);
+
+				// tell the Dialog to use the dialog.xml as it's layout
+				// description
+				dialogoEquipas.setContentView(R.layout.dialog_procurarequipas);
+				dialogoEquipas.setTitle("Escolha a Equipa:");
+				dialogoEquipas.getWindow()
+						.setSoftInputMode(
+								WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+				final EditText nomeEditText = (EditText) dialogoEquipas
+						.findViewById(R.id.editText_escolhaEquipa);
+				listaEquipas = (ListView) dialogoEquipas
+						.findViewById(R.id.listView_equipas);
+
+				listaEquipas.setOnItemClickListener(new OnItemClickListener() {
+
+					@Override
+					public void onItemClick(AdapterView<?> arg0, View arg1,
+							int arg2, long arg3) {
+
+						equipaCirurgica = (EquipaComJuncao) listaEquipas
+								.getItemAtPosition(arg2);
+						preencheSpinnersComEquipa(equipaCirurgica);
+						dialogoEquipas.dismiss();
+					}
+				});
+
+				dialogoEquipas.setOnDismissListener(new OnDismissListener() {
+
+					@Override
+					public void onDismiss(DialogInterface dialog) {
+						
+
+					}
+				});
+
+				/****************/
+
+				// spinnerEquipa.setOnItemSelectedListener(new
+				// OnItemSelectedListener()
+				// {
+				//
+				//
+				//
+				// @Override
+				// public void onItemSelected(AdapterView<?> arg0, View arg1,
+				// int arg2, long arg3) {
+				// EquipaComJuncao equipa = (EquipaComJuncao)
+				// spinnerEquipa.getItemAtPosition(spinnerEquipa.getSelectedItemPosition());
+				// //
+				//
+				//
+				// }
+				//
+				// @Override
+				// public void onNothingSelected(AdapterView<?> arg0) {
+				// // TODO Auto-generated method stub
+				//
+				// }
+				// });
+
+			}
+
+			public void reloadSpinners()
+			{
+				spinnerCirurgiao.setSelection(0);
+				spinnerPrimAjudante.setSelection(0);
+				spinnerSegundoAjudante.setSelection(0);
+				spinnerTerceiroAjudante.setSelection(0);
+				spinnerAnestesista.setSelection(0);
+				spinnerAssistente.setSelection(0);
+				spinnerEnfermeiroAnestesia.setSelection(0);
+				spinnerEnfermeiroCiruculante.setSelection(0);
+				spinnerEnfermeiroinstrumentista.setSelection(0);
+			}
+			public void preencheSpinnersComEquipa(EquipaComJuncao e) {
+				EquipaComJuncao equipa = e;
+				reloadSpinners();
 				Toast.makeText(getApplicationContext(), equipa.getNomeEquipa(),
 						Toast.LENGTH_SHORT).show();
+				
+				String nomeEquipa = equipa.getNomeEquipa();
 
 				List<ProfissionalDaCirurgia> profissionalcirurgia = equipa
 						.getListaProfissionais();
@@ -325,6 +413,8 @@ public class EquipaCirurgica extends Activity {
 						equipa.getListaProfissionais().get(1).getTipo()
 								.toString(), Toast.LENGTH_SHORT).show();
 
+//				editNomeEquipa.setText(nomeEquipa);
+				
 				for (ProfissionalDaCirurgia prof : profissionalcirurgia) {
 
 					String tipo = prof.getTipo();
@@ -336,18 +426,24 @@ public class EquipaCirurgica extends Activity {
 					}
 					if (tipo.equals("1A")) {
 
-						spinnerPrimAjudante.setSelection(spinnerDaMeATuaPosicao(
-								adaptador1ajudante, prof.getProfissional()));
+						spinnerPrimAjudante
+								.setSelection(spinnerDaMeATuaPosicao(
+										adaptador1ajudante,
+										prof.getProfissional()));
 					}
 					if (tipo.equals("2A")) {
 
-						spinnerSegundoAjudante.setSelection(spinnerDaMeATuaPosicao(
-								adaptador2ajudante, prof.getProfissional()));
+						spinnerSegundoAjudante
+								.setSelection(spinnerDaMeATuaPosicao(
+										adaptador2ajudante,
+										prof.getProfissional()));
 					}
 					if (tipo.equals("3A")) {
 
-						spinnerTerceiroAjudante.setSelection(spinnerDaMeATuaPosicao(
-								adaptador3ajudante, prof.getProfissional()));
+						spinnerTerceiroAjudante
+								.setSelection(spinnerDaMeATuaPosicao(
+										adaptador3ajudante,
+										prof.getProfissional()));
 					}
 					if (tipo.equals("A")) {
 
@@ -356,18 +452,24 @@ public class EquipaCirurgica extends Activity {
 					}
 					if (tipo.equals("EI")) {
 
-						spinnerEnfermeiroinstrumentista.setSelection(spinnerDaMeATuaPosicao(
-								adaptadorEnfermeiro, prof.getProfissional()));
+						spinnerEnfermeiroinstrumentista
+								.setSelection(spinnerDaMeATuaPosicao(
+										adaptadorEnfermeiro,
+										prof.getProfissional()));
 					}
 					if (tipo.equals("EC")) {
 
-						spinnerEnfermeiroCiruculante.setSelection(spinnerDaMeATuaPosicao(
-								adaptadorEnfermeiro, prof.getProfissional()));
+						spinnerEnfermeiroCiruculante
+								.setSelection(spinnerDaMeATuaPosicao(
+										adaptadorEnfermeiro,
+										prof.getProfissional()));
 					}
 					if (tipo.equals("EA")) {
 
-						spinnerEnfermeiroAnestesia.setSelection(spinnerDaMeATuaPosicao(
-								adaptadorEnfermeiro, prof.getProfissional()));
+						spinnerEnfermeiroAnestesia
+								.setSelection(spinnerDaMeATuaPosicao(
+										adaptadorEnfermeiro,
+										prof.getProfissional()));
 					}
 					if (tipo.equals("AO")) {
 
@@ -379,30 +481,6 @@ public class EquipaCirurgica extends Activity {
 
 			}
 		});
-
-		
-		// spinnerEquipa.setOnItemSelectedListener(new OnItemSelectedListener()
-		// {
-		//
-		//
-		//
-		// @Override
-		// public void onItemSelected(AdapterView<?> arg0, View arg1,
-		// int arg2, long arg3) {
-		// EquipaComJuncao equipa = (EquipaComJuncao)
-		// spinnerEquipa.getItemAtPosition(spinnerEquipa.getSelectedItemPosition());
-		// //
-		//
-		//
-		// }
-		//
-		// @Override
-		// public void onNothingSelected(AdapterView<?> arg0) {
-		// // TODO Auto-generated method stub
-		//
-		// }
-		// });
-
 	}
 
 	private int spinnerDaMeATuaPosicao(ArrayAdapter<ProfissonalSaude> adapter,
@@ -506,7 +584,7 @@ public class EquipaCirurgica extends Activity {
 		protected void onPostExecute(Boolean result) {
 			String a = (result ? "Profissional Adicionado com Sucesso!"
 					: "Profissional Não Adicionado!");
-			
+
 			Toast.makeText(getApplicationContext(), a, Toast.LENGTH_LONG)
 					.show();
 
@@ -521,10 +599,25 @@ public class EquipaCirurgica extends Activity {
 		@Override
 		protected Boolean doInBackground(List<ProfissionalDaCirurgia>... params) {
 			Boolean adicionou = false;
-
+			String nomeEquipaFinal = nomeEquipa;
 			try {
-				adicionou = WebServiceUtils.adicionarEquipa(params[0],
-						nomeEquipa, idCirurgia, token);
+				int idEquipa = WebServiceUtils.getEquipaID(nomeEquipaFinal,
+						token);
+				if (idEquipa != -1) {
+					nomeEquipaFinal = nomeEquipaFinal.concat("1");
+					adicionou = WebServiceUtils.adicionarEquipa(
+							nomeEquipaFinal, idCirurgia, token);
+				} else {
+					adicionou = WebServiceUtils.adicionarEquipa(
+							nomeEquipaFinal, idCirurgia, token);
+				}
+				idEquipa = WebServiceUtils.getEquipaID(nomeEquipaFinal, token);
+				adicionou = WebServiceUtils.adicionarJuncoes(params[0],
+						idEquipa, token);
+				if(adicionou){
+				Intent main = new Intent(getBaseContext(),
+						HomeActivity.class);
+				startActivity(main);}
 			} catch (ParseException | IOException | JSONException
 					| RestClientException e) {
 				// TODO Auto-generated catch block
@@ -537,7 +630,7 @@ public class EquipaCirurgica extends Activity {
 		@Override
 		protected void onPostExecute(Boolean result) {
 			String a = (result ? "Equipa Adicionado com Sucesso!"
-					: "Equipa Não Adicionado!");
+					: "Equipa N�o Adicionado!");
 			Toast.makeText(getApplicationContext(), a, Toast.LENGTH_LONG)
 					.show();
 			super.onPostExecute(result);
@@ -707,13 +800,16 @@ public class EquipaCirurgica extends Activity {
 				adaptadorEquipa = new ArrayAdapter<EquipaComJuncao>(
 						getBaseContext(), android.R.layout.simple_list_item_1,
 						lista);
-				spinnerEquipa.setAdapter(adaptadorEquipa);
+				adaptadorEquipa.sort(new Comparator<EquipaComJuncao>() {
 
-			} else {
-				Toast.makeText(getApplicationContext(),
-						"Get Equipas unsuccessful...", Toast.LENGTH_LONG)
-						.show();
-
+					@Override
+					public int compare(EquipaComJuncao lhs, EquipaComJuncao rhs) {
+						return lhs.getNomeEquipa().toLowerCase()
+								.compareTo(rhs.getNomeEquipa().toLowerCase());
+					}
+				});
+				listaEquipas.setAdapter(adaptadorEquipa);
+				dialogoEquipas.show();
 			}
 		}
 	}
