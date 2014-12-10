@@ -47,6 +47,7 @@ public class UtentesActivity extends Activity {
 	private TextView txt_antecedentesUtente;
 	private EditText inputSearch;
 	private String token;
+	private int idUtente = 0;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -66,7 +67,7 @@ public class UtentesActivity extends Activity {
 		txt_patologiasUtente = (TextView) findViewById(R.id.textViewPatologiasUtente);
 		txt_antecedentesUtente = (TextView) findViewById(R.id.textViewAntecedentesUtente);
 		listaUtentes.setOnItemClickListener(new OnItemClickListener() {
-
+		
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 					long arg3) {
@@ -101,7 +102,10 @@ public class UtentesActivity extends Activity {
 
 			}
 		});
-		new getUtentes().execute();
+		idUtente = PreferenceManager
+				.getDefaultSharedPreferences(
+						getApplicationContext()).getInt("idUtente", 0);
+		new getUtentes().execute(idUtente);
 
 		inputSearch.addTextChangedListener(new TextWatcher() {
 
@@ -146,10 +150,10 @@ public class UtentesActivity extends Activity {
 		return super.onOptionsItemSelected(item);
 	}
 
-	private class getUtentes extends AsyncTask<String, Void, ArrayList<Utente>> {
+	private class getUtentes extends AsyncTask<Integer, Void, ArrayList<Utente>> {
 
 		@Override
-		protected ArrayList<Utente> doInBackground(String... params) {
+		protected ArrayList<Utente> doInBackground(Integer... params) {
 			ArrayList<Utente> lista = null;
 
 			try {
@@ -175,7 +179,8 @@ public class UtentesActivity extends Activity {
 					}
 				});
 				listaUtentes.setAdapter(adaptadorUtente);
-
+				if(idUtente!=0)
+				populateList(idUtente);
 				// new Notifications(getApplicationContext(),
 				// "Connexão Efetuada com Sucesso!");
 				Toast.makeText(getApplicationContext(),
@@ -186,6 +191,53 @@ public class UtentesActivity extends Activity {
 						.show();
 
 			}
+		}
+
+		private void populateList(int idUtente) {
+			
+			int posicao=0;
+			String nomeUtente = "";
+		
+			for(int i = 0; i < adaptadorUtente.getCount(); i++)
+			{
+				Utente novo = (Utente) listaUtentes.getItemAtPosition(i);
+				int id = novo.getId();
+				if (id == idUtente){
+					posicao = i;
+					nomeUtente = novo.getNome();
+					listaUtentes.setSelection(posicao);
+				}
+			}
+			
+			
+			Utente a = (Utente) listaUtentes.getItemAtPosition(posicao);
+			txt_nomeUtente.setText(a.getNome().toString());
+			txt_numProcessoUtente.setText(String.valueOf(a.getNumProcesso()));
+			txt_dataNascimentoUtente.setText(a.getDataNascimento()
+					.toString());
+			txt_subSistemaUtente.setText(a.getSubsistema().toString());
+			if (a.getAlergias().equals("null")
+					|| a.getAlergias().equals("NULL")
+					|| a.getAlergias().equals(""))
+				txt_alergiasUtente.setText("N/A");
+			else
+				txt_alergiasUtente.setText(a.getAlergias().toString());
+
+			if (a.getPatologias().equals("null")
+					|| a.getPatologias().equals("NULL")
+					|| a.getPatologias().equals(""))
+				txt_patologiasUtente.setText("N/A");
+			else
+				txt_patologiasUtente.setText(a.getPatologias().toString());
+
+			if (a.getAntecedentesCirurgicos().equals("null")
+					|| a.getAntecedentesCirurgicos().equals("NULL")
+					|| a.getAntecedentesCirurgicos().equals(""))
+				txt_antecedentesUtente.setText("N/A");
+			else
+				txt_antecedentesUtente.setText(a
+						.getAntecedentesCirurgicos().toString());
+			
 		}
 	}
 

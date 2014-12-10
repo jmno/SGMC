@@ -170,6 +170,13 @@ public class HomeActivity extends Activity {
 										.putString("idCirurgia",
 												String.valueOf(c.getId()))
 										.commit();
+								PreferenceManager
+								.getDefaultSharedPreferences(
+										getApplicationContext())
+								.edit()
+								.putInt("idUtente",
+										c.getIdUtente())
+								.commit();
 
 								dialog.dismiss();
 							}
