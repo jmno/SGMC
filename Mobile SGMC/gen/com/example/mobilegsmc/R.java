@@ -145,7 +145,6 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int textview_NomeEquipa=0x7f090004;
     }
     public static final class layout {
-<<<<<<< HEAD
         public static final int activity_equipa_cirurgica=0x7f030000;
         public static final int activity_home=0x7f030001;
         public static final int activity_login=0x7f030002;
@@ -153,22 +152,12 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int dialog_novoprofissional=0x7f030004;
         public static final int dialog_procuracirurgias=0x7f030005;
         public static final int dialog_procurarequipas=0x7f030006;
-=======
-        public static final int activity_dados_cirurgia=0x7f030000;
-        public static final int activity_equipa_cirurgica=0x7f030001;
-        public static final int activity_home=0x7f030002;
-        public static final int activity_login=0x7f030003;
-        public static final int activity_utentes=0x7f030004;
-        public static final int dialog_novoprofissional=0x7f030005;
-        public static final int dialog_procuracirurgias=0x7f030006;
->>>>>>> 7b09f7b700c28750797dc36c9ed727ce6906b3ec
     }
     public static final class menu {
-        public static final int dados_cirurgia=0x7f080000;
-        public static final int equipa_cirurgica=0x7f080001;
-        public static final int home=0x7f080002;
-        public static final int login=0x7f080003;
-        public static final int utentes=0x7f080004;
+        public static final int equipa_cirurgica=0x7f080000;
+        public static final int home=0x7f080001;
+        public static final int login=0x7f080002;
+        public static final int utentes=0x7f080003;
     }
     public static final class string {
         public static final int _1_ajudante_=0x7f06000b;
@@ -199,7 +188,6 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int sair=0x7f060021;
         public static final int text_equipa_cirurgia=0x7f060008;
         public static final int texto_cirurgiao=0x7f06000a;
-        public static final int title_activity_dados_cirurgia=0x7f060022;
         public static final int title_activity_equipa_cirurgica=0x7f060006;
         public static final int title_activity_home=0x7f06001b;
         public static final int title_activity_login=0x7f060003;
