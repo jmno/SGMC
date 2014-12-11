@@ -39,6 +39,11 @@
             android:name="pt.mobilesgmc.HomeActivity"
             android:label="@string/title_activity_home" >
         </activity>
+        <activity
+            android:name="pt.mobilesgmc.DadosCirurgia"
+            android:label="@string/title_activity_home"
+            android:windowSoftInputMode="stateHidden" >
+        </activity>
     </application>
 
 </manifest>

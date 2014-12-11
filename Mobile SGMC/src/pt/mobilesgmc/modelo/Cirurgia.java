@@ -29,6 +29,7 @@ public class Cirurgia {
 	private String infoRelevante;
 	private int idSala;
 	private int idUtente;
+	private int idEquipa;
 
 	public int getId() {
 		return id;
@@ -46,13 +47,6 @@ public class Cirurgia {
 		this.especialidade = especialidade;
 	}
 
-	public String getCirurgia() {
-		return cirurgia;
-	}
-
-	public void setCirurgia(String cirurgia) {
-		this.cirurgia = cirurgia;
-	}
 
 	public Date getData() {
 		return data;
@@ -222,6 +216,22 @@ public class Cirurgia {
 
 	@Override
 	public String toString() {
-		return "Id:" + id +  " Cirurgia: " + cirurgia + " Data: " + data.toString();
+		return "Id:" + id +  " Cirurgia: " + getCirurgia() + " Data: " + data.toString();
+	}
+
+	public int getIdEquipa() {
+		return idEquipa;
+	}
+
+	public void setIdEquipa(int idEquipa) {
+		this.idEquipa = idEquipa;
+	}
+
+	public String getCirurgia() {
+		return cirurgia;
+	}
+
+	public void setCirurgia(String cirurgia) {
+		this.cirurgia = cirurgia;
 	}
 }

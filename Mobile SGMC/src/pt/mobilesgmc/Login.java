@@ -177,7 +177,11 @@ public class Login extends Activity {
 							HomeActivity.class);
 					startActivity(equipa);
 			} else {
-				Toast.makeText(getApplicationContext(), "Sess√£o expirada!", Toast.LENGTH_SHORT).show();
+				Toast.makeText(getApplicationContext(), "Sess„o expirada!", Toast.LENGTH_SHORT).show();
+				PreferenceManager
+				.getDefaultSharedPreferences(
+						getApplicationContext())
+				.edit().clear().commit();
 				ringProgressDialog.dismiss();
 
 

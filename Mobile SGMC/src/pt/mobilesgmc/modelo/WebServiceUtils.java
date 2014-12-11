@@ -111,6 +111,7 @@ public class WebServiceUtils {
 				c.setHoraEntradaRecobro(JsonTimeToTime(o.getString("horaEntradaRecobro")));
 				c.setHoraFimRecobro(JsonTimeToTime(o.getString("horaSaidaRecobro")));
 				c.setDestinoDoente(o.getString("destinoDoente"));
+				c.setIdEquipa(Integer.parseInt(o.getString("idEquipa")));
 				c.setInfoRelevante(o.getString("infoRelevante"));
 				c.setIdSala(Integer.parseInt(o.getString("idSala")));
 				c.setIdUtente(Integer.parseInt(o.getString("idUtente")));
@@ -551,6 +552,65 @@ public class WebServiceUtils {
 		}
 
 		return equipas;
+
+	}
+	
+	public static EquipaComJuncao getEquipaByID(int idEquipa,String token)
+			throws ClientProtocolException, IOException, RestClientException,
+			ParseException, JSONException {
+		EquipaComJuncao equipa = null;
+		LinkedList<ProfissionalDaCirurgia> lista = null;
+		LinkedList<ProfissonalSaude> listaProfissonalSaudes = null;
+		Date data = null;
+		HttpGet request = new HttpGet(URL + "getEquipaJuncaoById?token="+token+"&id="+idEquipa);
+		// request.setContentType(new BasicHeader(HTTP.CONTENT_TYPE,
+		// "application/json"));
+		request.setHeader("Accept", "Application/JSON");
+
+		BasicHttpResponse basicHttpResponse = (BasicHttpResponse) client
+				.execute(request);
+
+		if (basicHttpResponse.getStatusLine().getStatusCode() == 200) {
+			equipa = new EquipaComJuncao();
+			listaProfissonalSaudes = new LinkedList<ProfissonalSaude>();
+			JSONObject o = new JSONObject(
+					EntityUtils.toString(basicHttpResponse.getEntity()));
+			
+				lista = new LinkedList<ProfissionalDaCirurgia>();
+				
+				equipa.setIdEquipa(Integer.parseInt(o.getString("idEquipa")));
+				equipa.setNomeEquipa(o.getString("nomeEquipa"));
+				JSONArray arrayComProfissionais = o.getJSONArray("profissional");
+				
+				for(int j=0; j<arrayComProfissionais.length(); j++)
+				{
+					JSONObject novoProfissional = arrayComProfissionais.getJSONObject(j);
+					ProfissionalDaCirurgia proCir = new ProfissionalDaCirurgia();
+					JSONObject n = novoProfissional.getJSONObject("profissional");
+					
+					proCir.setTipo(novoProfissional.getString("tipo"));
+					ProfissonalSaude pro = new ProfissonalSaude();
+					pro.setId(n.getInt("id"));
+					pro.setCc(n.getString("cc"));
+					pro.setIdTipo(n.getInt("idTipo"));
+					pro.setNome(n.getString("nome"));
+						
+					proCir.setProfissional(pro);
+					lista.add(proCir);
+					
+				}
+			
+				equipa.setListaProfissionais(lista);
+				
+			
+		} else {
+			throw new RestClientException(
+					"HTTP Response with invalid status code "
+							+ basicHttpResponse.getStatusLine().getStatusCode()
+							+ ".");
+		}
+
+		return equipa;
 
 	}
 	

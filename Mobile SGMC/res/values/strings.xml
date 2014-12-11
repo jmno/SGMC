@@ -13,13 +13,90 @@
     <string-array name="spinnerInicio">
         <item></item>
     </string-array>
-    
-     <string-array name="menuDrawer">
+    <string-array name="menuDrawer">
         <item>Equipa Cirurgica</item>
         <item>Utentes</item>
     </string-array>
+    <string-array name="lateralidadeArray">
+        <item>Direita</item>
+        <item>Esquerda</item>
+        <item>Bi Lateral</item>
+        <item>Não Aplicável</item>
+    </string-array>
+    <string-array name="arrayClassificacaoASA">
+        <item>ASA I</item>
+        <item>ASA II</item>
+        <item>ASA III</item>
+        <item>ASA IV</item>
+        <item>ASA V</item>
+        <item>ASA VI</item>
+    </string-array>
+    <string-array name="arraySalas">
+        <item>Sala 1</item>
+        <item>Sala 2</item>
+        <item>Sala 3</item>
+        <item>Sala 4</item>
+        <item>Sala 5</item>
+        <item>Sala 6</item>
+        <item>Sala 7</item>
+        <item>Sala 8</item>
+        <item>Sala 9</item>
+        <item>Sala 10</item>
+        <item>Sala 11</item>
+        <item>Sala 12</item>
+        <item>Sala 13</item>
+        <item>Sala 14</item>
+        <item>Sala 15</item>
+    </string-array>
     
+      <string-array name="arrayEspecialidade">
+        <item>Anatomia Patológica</item>
+        <item>Anestesiologia</item>
+        <item>Cardiologia</item>
+        <item>Cirurgia Cardiotoráxica</item>
+        <item>Estomatologia</item>
+        <item>Farmacologia Clínica</item>
+        <item>Medicina Interna</item>
+        <item>Nefrologia</item>
+        <item>Neurologia</item>
+        <item>Ortopedia</item>
+        <item>Psiquiatria</item>
+        <item>Urologia</item>
+    </string-array>
 
+       <string-array name="arrayTipoCirurgia">
+        <item>Cirurgia bucomaxilofacial</item>
+        <item>Cirurgia oftalmológica</item>
+        <item>Cirurgia otorrinolaringológica</item>
+        <item>Cirurgia Cardiotoráxica</item>
+        <item>Cirurgia de cabeça e pescoço</item>
+        <item>Cirurgia cardíaca</item>
+        <item>Cirurgia urológica</item>
+        <item>Cirurgia oncológica</item>
+        <item>Cirurgia plástica</item>
+        <item>Cirurgia reconstrutiva</item>
+        <item>Cirurgia estética</item>
+        <item>Cirurgia robótica</item>
+    </string-array>
+      
+    <string-array name="arrayDestino">
+        <item>Bloco 1</item>
+        <item>Bloco 2</item>
+        <item>Bloco 3</item>
+        <item>Bloco 4</item>
+        <item>Bloco 5</item>
+        <item>Bloco 6</item>
+        <item>Bloco 7</item>
+        <item>Bloco 8</item>
+        <item>Bloco 9</item>
+        <item>Bloco 10</item>
+        <item>Bloco 11</item>
+        <item>Bloco 12</item>
+        <item>Bloco 13</item>
+        <item>Bloco 14</item>
+        <item>Bloco 15</item>
+    </string-array>   
+       
     <string name="text_equipa_cirurgia">Equipa Cirurgia</string>
     <string name="introduza_o_nome_do_novo_profissional_">Introduza o nome do novo profissional...</string>
     <string name="texto_cirurgiao">Cirurgião:</string>
@@ -46,5 +123,13 @@
     <string name="utentes">Utentes</string>
     <string name="equipa_cirurgica">Equipa Cirurgica</string>
     <string name="sair">Sair</string>
+    <string name="_Especialidade_Cirurgica_">Especialidade Cirúrgica:</string>
+    <string name="_Cirurgia_">Cirurgia:</string>
+    <string name="_Data_">Data:</string>
+    <string name="_TipoCirurgia_"></string>
+    <string name="_TipoCirurgia1_">Tipo Cirurgia:</string>
+    <string name="_Sala_">Sala:</string>
+    <string name="_Lateralidade_">Lateralidade:</string>
+    <string name="_ClassifASA_">Classificação ASA</string>
 
 </resources>

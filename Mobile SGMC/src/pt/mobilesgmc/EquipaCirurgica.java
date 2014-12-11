@@ -1,6 +1,7 @@
 package pt.mobilesgmc;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -28,6 +29,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -48,7 +50,11 @@ import com.example.mobilegsmc.R;
 
 //import pt.mobilesgmc.modelo.Notifications;
 
-public class EquipaCirurgica extends Activity {
+public class EquipaCirurgica extends Activity implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8374033655851874766L;
 	private int idTipo;
 	private ArrayAdapter<Tipo> adaptadorTipo;
 	private ArrayAdapter<ProfissonalSaude> adaptadorCirurgiao;
@@ -77,6 +83,7 @@ public class EquipaCirurgica extends Activity {
 	private int idCirurgia;
 	public static ListView listaEquipas;
 	public EquipaComJuncao equipaCirurgica;
+	public int idEquipa;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -90,8 +97,10 @@ public class EquipaCirurgica extends Activity {
 		idCirurgia = Integer.parseInt(PreferenceManager
 				.getDefaultSharedPreferences(getApplicationContext())
 				.getString("idCirurgia", "0"));
-		Toast.makeText(this, token, Toast.LENGTH_LONG).show();
-
+		idEquipa = Integer.parseInt(PreferenceManager
+				.getDefaultSharedPreferences(getApplicationContext())
+				.getString("idEquipa", "-1"));
+		
 		this.root = (FlyOutContainer) this.getLayoutInflater().inflate(
 				R.layout.activity_equipa_cirurgica, null);
 		Display display = getWindowManager().getDefaultDisplay();
@@ -103,6 +112,10 @@ public class EquipaCirurgica extends Activity {
 		int margin = (80 * (int) dpWidth) / 100;
 		root.setMargin(margin);
 		this.setContentView(root);
+
+//		idEquipa = Integer.parseInt(PreferenceManager
+//				.getDefaultSharedPreferences(getApplicationContext())
+//				.getString("idEquipa", "-1"));
 
 		root.setOnTouchListener(new OnSwipeTouchListener(this) {
 			public void onSwipeTop() {
@@ -134,6 +147,7 @@ public class EquipaCirurgica extends Activity {
 			}
 
 		});
+		editNomeEquipa = (EditText) findViewById(R.id.edit_text_NomeEquipa);
 
 		Button btnEquipa = (Button) root.findViewById(R.id.buttonEquipa);
 		btnEquipa.setOnClickListener(new OnClickListener() {
@@ -304,7 +318,6 @@ public class EquipaCirurgica extends Activity {
 					lista.add(profissional);
 				}
 
-				editNomeEquipa = (EditText) findViewById(R.id.edit_text_NomeEquipa);
 				nomeEquipa = editNomeEquipa.getText().toString();
 				if (!lista.isEmpty())
 					new adicionarEquipa().execute(lista);
@@ -328,7 +341,8 @@ public class EquipaCirurgica extends Activity {
 				// description
 				dialogoEquipas.setContentView(R.layout.dialog_procurarequipas);
 				dialogoEquipas.setTitle("Escolha a Equipa:");
-				dialogoEquipas.getWindow()
+				dialogoEquipas
+						.getWindow()
 						.setSoftInputMode(
 								WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 				final EditText nomeEditText = (EditText) dialogoEquipas
@@ -345,6 +359,7 @@ public class EquipaCirurgica extends Activity {
 						equipaCirurgica = (EquipaComJuncao) listaEquipas
 								.getItemAtPosition(arg2);
 						preencheSpinnersComEquipa(equipaCirurgica);
+						editNomeEquipa.setText(equipaCirurgica.getNomeEquipa());
 						dialogoEquipas.dismiss();
 					}
 				});
@@ -353,7 +368,6 @@ public class EquipaCirurgica extends Activity {
 
 					@Override
 					public void onDismiss(DialogInterface dialog) {
-						
 
 					}
 				});
@@ -385,102 +399,23 @@ public class EquipaCirurgica extends Activity {
 
 			}
 
-			public void reloadSpinners()
-			{
-				spinnerCirurgiao.setSelection(0);
-				spinnerPrimAjudante.setSelection(0);
-				spinnerSegundoAjudante.setSelection(0);
-				spinnerTerceiroAjudante.setSelection(0);
-				spinnerAnestesista.setSelection(0);
-				spinnerAssistente.setSelection(0);
-				spinnerEnfermeiroAnestesia.setSelection(0);
-				spinnerEnfermeiroCiruculante.setSelection(0);
-				spinnerEnfermeiroinstrumentista.setSelection(0);
-			}
-			public void preencheSpinnersComEquipa(EquipaComJuncao e) {
-				EquipaComJuncao equipa = e;
-				reloadSpinners();
-				Toast.makeText(getApplicationContext(), equipa.getNomeEquipa(),
-						Toast.LENGTH_SHORT).show();
-				
-				String nomeEquipa = equipa.getNomeEquipa();
+			
 
-				List<ProfissionalDaCirurgia> profissionalcirurgia = equipa
-						.getListaProfissionais();
-
-				Toast.makeText(
-						getApplicationContext(),
-						equipa.getListaProfissionais().get(1).getTipo()
-								.toString(), Toast.LENGTH_SHORT).show();
-
-//				editNomeEquipa.setText(nomeEquipa);
-				
-				for (ProfissionalDaCirurgia prof : profissionalcirurgia) {
-
-					String tipo = prof.getTipo();
-
-					if (tipo.equals("C")) {
-
-						spinnerCirurgiao.setSelection(spinnerDaMeATuaPosicao(
-								adaptadorCirurgiao, prof.getProfissional()));
-					}
-					if (tipo.equals("1A")) {
-
-						spinnerPrimAjudante
-								.setSelection(spinnerDaMeATuaPosicao(
-										adaptador1ajudante,
-										prof.getProfissional()));
-					}
-					if (tipo.equals("2A")) {
-
-						spinnerSegundoAjudante
-								.setSelection(spinnerDaMeATuaPosicao(
-										adaptador2ajudante,
-										prof.getProfissional()));
-					}
-					if (tipo.equals("3A")) {
-
-						spinnerTerceiroAjudante
-								.setSelection(spinnerDaMeATuaPosicao(
-										adaptador3ajudante,
-										prof.getProfissional()));
-					}
-					if (tipo.equals("A")) {
-
-						spinnerAnestesista.setSelection(spinnerDaMeATuaPosicao(
-								adaptadorEnfermeiro, prof.getProfissional()));
-					}
-					if (tipo.equals("EI")) {
-
-						spinnerEnfermeiroinstrumentista
-								.setSelection(spinnerDaMeATuaPosicao(
-										adaptadorEnfermeiro,
-										prof.getProfissional()));
-					}
-					if (tipo.equals("EC")) {
-
-						spinnerEnfermeiroCiruculante
-								.setSelection(spinnerDaMeATuaPosicao(
-										adaptadorEnfermeiro,
-										prof.getProfissional()));
-					}
-					if (tipo.equals("EA")) {
-
-						spinnerEnfermeiroAnestesia
-								.setSelection(spinnerDaMeATuaPosicao(
-										adaptadorEnfermeiro,
-										prof.getProfissional()));
-					}
-					if (tipo.equals("AO")) {
-
-						spinnerAssistente.setSelection(spinnerDaMeATuaPosicao(
-								adaptadorEnfermeiro, prof.getProfissional()));
-					}
-
-				}
-
-			}
+			
 		});
+
+		if (idCirurgia != 0 & idEquipa != -1) {
+			try{
+			new getEquipaByID().execute(HomeActivity.getCirurgia().getIdEquipa());
+			}
+			catch(Exception e)
+			{
+				Log.i("Webservice:", "ERROR - " + e.getMessage());
+			}
+		}
+		else{
+			
+			Log.i("equipa","Não foi encontrada Equipa");}
 	}
 
 	private int spinnerDaMeATuaPosicao(ArrayAdapter<ProfissonalSaude> adapter,
@@ -497,9 +432,101 @@ public class EquipaCirurgica extends Activity {
 	private void atualizaAGui() {
 		new getProfissionaisSaudeByTipo().execute("1", token);
 		new getProfissionaisSaudeByTipo().execute("2", token);
-
+	}
+	
+	
+	public void reloadSpinners() {
+		spinnerCirurgiao.setSelection(0);
+		spinnerPrimAjudante.setSelection(0);
+		spinnerSegundoAjudante.setSelection(0);
+		spinnerTerceiroAjudante.setSelection(0);
+		spinnerAnestesista.setSelection(0);
+		spinnerAssistente.setSelection(0);
+		spinnerEnfermeiroAnestesia.setSelection(0);
+		spinnerEnfermeiroCiruculante.setSelection(0);
+		spinnerEnfermeiroinstrumentista.setSelection(0);
 	}
 
+	public void preencheSpinnersComEquipa(EquipaComJuncao e) {
+		EquipaComJuncao equipa = e;
+		reloadSpinners();
+		Toast.makeText(getApplicationContext(), equipa.getNomeEquipa(),
+				Toast.LENGTH_SHORT).show();
+
+		String nomeEquipa = equipa.getNomeEquipa();
+
+		List<ProfissionalDaCirurgia> profissionalcirurgia = equipa
+				.getListaProfissionais();
+
+	
+
+		// editNomeEquipa.setText(nomeEquipa);
+
+		for (ProfissionalDaCirurgia prof : profissionalcirurgia) {
+
+			String tipo = prof.getTipo();
+
+			if (tipo.equals("C")) {
+
+				spinnerCirurgiao.setSelection(spinnerDaMeATuaPosicao(
+						adaptadorCirurgiao, prof.getProfissional()));
+			}
+			if (tipo.equals("1A")) {
+
+				spinnerPrimAjudante
+						.setSelection(spinnerDaMeATuaPosicao(
+								adaptador1ajudante,
+								prof.getProfissional()));
+			}
+			if (tipo.equals("2A")) {
+
+				spinnerSegundoAjudante
+						.setSelection(spinnerDaMeATuaPosicao(
+								adaptador2ajudante,
+								prof.getProfissional()));
+			}
+			if (tipo.equals("3A")) {
+
+				spinnerTerceiroAjudante
+						.setSelection(spinnerDaMeATuaPosicao(
+								adaptador3ajudante,
+								prof.getProfissional()));
+			}
+			if (tipo.equals("A")) {
+
+				spinnerAnestesista.setSelection(spinnerDaMeATuaPosicao(
+						adaptadorEnfermeiro, prof.getProfissional()));
+			}
+			if (tipo.equals("EI")) {
+
+				spinnerEnfermeiroinstrumentista
+						.setSelection(spinnerDaMeATuaPosicao(
+								adaptadorEnfermeiro,
+								prof.getProfissional()));
+			}
+			if (tipo.equals("EC")) {
+
+				spinnerEnfermeiroCiruculante
+						.setSelection(spinnerDaMeATuaPosicao(
+								adaptadorEnfermeiro,
+								prof.getProfissional()));
+			}
+			if (tipo.equals("EA")) {
+
+				spinnerEnfermeiroAnestesia
+						.setSelection(spinnerDaMeATuaPosicao(
+								adaptadorEnfermeiro,
+								prof.getProfissional()));
+			}
+			if (tipo.equals("AO")) {
+
+				spinnerAssistente.setSelection(spinnerDaMeATuaPosicao(
+						adaptadorEnfermeiro, prof.getProfissional()));
+			}
+
+		}
+
+	}
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
@@ -612,12 +639,16 @@ public class EquipaCirurgica extends Activity {
 							nomeEquipaFinal, idCirurgia, token);
 				}
 				idEquipa = WebServiceUtils.getEquipaID(nomeEquipaFinal, token);
+				PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putString("idEquipa",""+idEquipa).commit();
+				HomeActivity.getCirurgia().setIdEquipa(idEquipa);
 				adicionou = WebServiceUtils.adicionarJuncoes(params[0],
 						idEquipa, token);
-				if(adicionou){
-				Intent main = new Intent(getBaseContext(),
-						HomeActivity.class);
-				startActivity(main);}
+				if (adicionou) {
+//					Intent main = new Intent(getBaseContext(),
+//							HomeActivity.class);
+//					startActivity(main);
+					finish();
+				}
 			} catch (ParseException | IOException | JSONException
 					| RestClientException e) {
 				// TODO Auto-generated catch block
@@ -697,6 +728,7 @@ public class EquipaCirurgica extends Activity {
 		protected void onPostExecute(ArrayList<ProfissonalSaude> lista) {
 			if (lista != null) {
 
+				
 				populateSpinners(lista, idTipo);
 
 			} else {
@@ -710,7 +742,7 @@ public class EquipaCirurgica extends Activity {
 
 	public void populateSpinners(ArrayList<ProfissonalSaude> lista, int id) {
 		Collections.sort(lista, ProfissonalSaude.Comparators.NAME);
-
+	
 		switch (id) {
 		case 1:
 			adaptadorCirurgiao = new ArrayAdapter<ProfissonalSaude>(
@@ -764,6 +796,7 @@ public class EquipaCirurgica extends Activity {
 
 	}
 
+	
 	public void toggleMenu(View v) {
 		this.root.toggleMenu();
 	}
@@ -810,6 +843,40 @@ public class EquipaCirurgica extends Activity {
 				});
 				listaEquipas.setAdapter(adaptadorEquipa);
 				dialogoEquipas.show();
+			}
+		}
+	}
+
+	private class getEquipaByID extends
+			AsyncTask<Integer, Void, EquipaComJuncao> {
+
+		@Override
+		protected EquipaComJuncao doInBackground(Integer... params) {
+			EquipaComJuncao equipa = null;
+
+			try {
+				equipa = WebServiceUtils.getEquipaByID(params[0], token);
+
+			} catch (IOException | RestClientException | ParseException
+					| JSONException e) {
+				e.printStackTrace();
+			}
+
+			return equipa;
+		}
+
+		@Override
+		protected void onPostExecute(EquipaComJuncao equipa) {
+			if (equipa != null) {
+				Log.i("equipa",equipa.toString());
+				preencheSpinnersComEquipa(equipa);
+				editNomeEquipa.setText(equipa.getNomeEquipa());
+				
+				// adaptadorEquipa = new ArrayAdapter<EquipaComJuncao>(
+				// getBaseContext(), android.R.layout.simple_list_item_1,
+				// lista);
+				// listaEquipas.setAdapter(adaptadorEquipa);
+				// dialogoEquipas.show();
 			}
 		}
 	}

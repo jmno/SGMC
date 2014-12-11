@@ -22,6 +22,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -52,6 +53,7 @@ public class HomeActivity extends Activity {
 	public static ListView listaCirurgias;
 	public static EditText texto_cirurgia;
 	public static TextView textoCirurgiaAUsar;
+	private static Cirurgia cirurgia;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -111,11 +113,30 @@ public class HomeActivity extends Activity {
 
 			@Override
 			public void onClick(View v) {
-				Intent utentes = new Intent(getBaseContext(),
+				Intent equipa = new Intent(getBaseContext(),
 						EquipaCirurgica.class);
-				toggleMenu(findViewById(R.layout.activity_home));
-				startActivity(utentes);
+				toggleMenu(findViewById(R.layout.activity_equipa_cirurgica));
+				
+				startActivity(equipa);
 
+			}
+		});
+		Button btnDados = (Button) root.findViewById(R.id.buttonDadosCirurgia);
+		btnDados.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				if(cirurgia!=null){
+				Intent dados  = new Intent(getBaseContext(),
+						DadosCirurgia.class);
+				toggleMenu(findViewById(R.layout.activity_dados_cirurgia));
+				
+				startActivity(dados);
+				}
+				else
+				{
+					Log.i("sgmc","Não tem cirurgia escolhida");
+				}
 			}
 		});
 		Button btnUtentes = (Button) root.findViewById(R.id.buttonUtentes);
@@ -126,7 +147,7 @@ public class HomeActivity extends Activity {
 				// TODO Auto-generated method stub
 				Intent utentes = new Intent(getBaseContext(),
 						UtentesActivity.class);
-				toggleMenu(findViewById(R.layout.activity_home));
+				toggleMenu(findViewById(R.layout.activity_utentes));
 				startActivity(utentes);
 			}
 		});
@@ -169,8 +190,22 @@ public class HomeActivity extends Activity {
 										.edit()
 										.putString("idCirurgia",
 												String.valueOf(c.getId()))
-										.commit();
-
+										.commit();						
+								PreferenceManager
+								.getDefaultSharedPreferences(
+										getApplicationContext())
+								.edit()
+								.putInt("idUtente",
+										c.getIdUtente())
+								.commit();
+								PreferenceManager
+								.getDefaultSharedPreferences(
+										getApplicationContext())
+								.edit()
+								.putString("idEquipa",
+										String.valueOf(c.getIdEquipa()))
+								.commit();
+								HomeActivity.setCirurgia(c);
 								dialog.dismiss();
 							}
 						});
@@ -232,6 +267,14 @@ public class HomeActivity extends Activity {
 //		super.onBackPressed();  // optional depending on your needs
 	}
 	
+	public static Cirurgia getCirurgia() {
+		return cirurgia;
+	}
+
+	public static void setCirurgia(Cirurgia cirurgia) {
+		HomeActivity.cirurgia = cirurgia;
+	}
+
 	private class getAllCirurgias extends
 			AsyncTask<Cirurgia, Void, ArrayList<Cirurgia>> {
 
