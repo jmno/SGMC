@@ -59,10 +59,6 @@ public class DadosCirurgia extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_dados_cirurgia);
 
-		
-		
-		
-		
 		this.root = (FlyOutContainer) this.getLayoutInflater().inflate(
 				R.layout.activity_dados_cirurgia, null);
 		Display display = getWindowManager().getDefaultDisplay();
@@ -110,7 +106,7 @@ public class DadosCirurgia extends Activity {
 		tipoCirurgia = (Spinner) findViewById(R.id.spinnerTipoCirurgia);
 		sala = (Spinner) findViewById(R.id.spinnerSala);
 		lateralidade = (Spinner) findViewById(R.id.spinnerLateralidade);
-		classificacaoASA =(Spinner) findViewById(R.id.spinnerASA);
+		classificacaoASA = (Spinner) findViewById(R.id.spinnerASA);
 		horaEntradaBO = (TextView) findViewById(R.id.editTextHoraEntradaBO);
 		horaSaidaBO = (TextView) findViewById(R.id.editTextHoraSaidaBO);
 		horaEntradaSala = (TextView) findViewById(R.id.editTextHoraEntradaSala);
@@ -124,7 +120,7 @@ public class DadosCirurgia extends Activity {
 		destinoDoente = (Spinner) findViewById(R.id.spinnerDestinoDoente);
 		informacoesRelevantes = (EditText) findViewById(R.id.editTextInformacoes);
 		cirurgia = (EditText) findViewById(R.id.editTextCirurgia);
-		
+
 		carregaOsListeners();
 		preencherAtividade(HomeActivity.getCirurgia());
 
@@ -189,8 +185,9 @@ public class DadosCirurgia extends Activity {
 	}
 
 	private void preencherAtividade(Cirurgia c) {
-		
-		data.setText(c.getData().getDay()+"/"+c.getData().getMonth()+"/"+c.getData().getYear());
+
+		data.setText(c.getData().getDay() + "/" + c.getData().getMonth() + "/"
+				+ c.getData().getYear());
 		horaChamadaUtente.setText(c.getHoraChamadaUtente().toString());
 		especialidadeCirurgica.setSelection(2);
 		tipoCirurgia.setSelection(4);
@@ -208,10 +205,9 @@ public class DadosCirurgia extends Activity {
 		horaEntradaRecobro.setText(c.getHoraEntradaRecobro().toString());
 		horaSaidaRecobro.setText(c.getHoraFimRecobro().toString());
 		destinoDoente.setSelection(7);
-		informacoesRelevantes.setText(c.getInfoRelevante());	
+		informacoesRelevantes.setText(c.getInfoRelevante());
 		cirurgia.setText(c.getCirurgia().toString());
-		
-		
+
 	}
 
 	@Override

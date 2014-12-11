@@ -31,6 +31,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
     public static final class color {
         public static final int black_overlay=0x7f040000;
         public static final int fundo_app=0x7f040001;
+        public static final int texto=0x7f040002;
     }
     public static final class dimen {
         /**  Default screen margins, per the Android Design guidelines. 
@@ -44,42 +45,49 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int activity_vertical_margin=0x7f050001;
     }
     public static final class drawable {
-        public static final int add_user=0x7f020000;
-        public static final int backgroundapp=0x7f020001;
-        public static final int backgroundmenu=0x7f020002;
-        public static final int buttonlogin=0x7f020003;
-        public static final int ic_action_attach=0x7f020004;
-        public static final int ic_action_call=0x7f020005;
-        public static final int ic_action_copy=0x7f020006;
-        public static final int ic_action_cut=0x7f020007;
-        public static final int ic_action_delete=0x7f020008;
-        public static final int ic_action_done=0x7f020009;
-        public static final int ic_action_edit=0x7f02000a;
-        public static final int ic_action_locate=0x7f02000b;
-        public static final int ic_action_mail=0x7f02000c;
-        public static final int ic_action_mail_add=0x7f02000d;
-        public static final int ic_action_microphone=0x7f02000e;
-        public static final int ic_action_overflow=0x7f02000f;
-        public static final int ic_action_paste=0x7f020010;
-        public static final int ic_action_photo=0x7f020011;
-        public static final int ic_action_refresh=0x7f020012;
-        public static final int ic_action_search=0x7f020013;
-        public static final int ic_action_select_all=0x7f020014;
-        public static final int ic_action_send=0x7f020015;
-        public static final int ic_action_share=0x7f020016;
-        public static final int ic_action_star=0x7f020017;
-        public static final int ic_action_user=0x7f020018;
-        public static final int ic_action_user_add=0x7f020019;
-        public static final int ic_action_video=0x7f02001a;
-        public static final int ic_icon=0x7f02001b;
-        public static final int ic_launcher=0x7f02001c;
-        public static final int icon1=0x7f02001d;
-        public static final int save=0x7f02001e;
-        public static final int search=0x7f02001f;
+        public static final int add_group=0x7f020000;
+        public static final int add_user=0x7f020001;
+        public static final int backgroundapp=0x7f020002;
+        public static final int backgroundmenu=0x7f020003;
+        public static final int buttonlogin=0x7f020004;
+        public static final int doctor=0x7f020005;
+        public static final int exit=0x7f020006;
+        public static final int group=0x7f020007;
+        public static final int ic_action_attach=0x7f020008;
+        public static final int ic_action_call=0x7f020009;
+        public static final int ic_action_copy=0x7f02000a;
+        public static final int ic_action_cut=0x7f02000b;
+        public static final int ic_action_delete=0x7f02000c;
+        public static final int ic_action_done=0x7f02000d;
+        public static final int ic_action_edit=0x7f02000e;
+        public static final int ic_action_locate=0x7f02000f;
+        public static final int ic_action_mail=0x7f020010;
+        public static final int ic_action_mail_add=0x7f020011;
+        public static final int ic_action_microphone=0x7f020012;
+        public static final int ic_action_overflow=0x7f020013;
+        public static final int ic_action_paste=0x7f020014;
+        public static final int ic_action_photo=0x7f020015;
+        public static final int ic_action_refresh=0x7f020016;
+        public static final int ic_action_search=0x7f020017;
+        public static final int ic_action_select_all=0x7f020018;
+        public static final int ic_action_send=0x7f020019;
+        public static final int ic_action_share=0x7f02001a;
+        public static final int ic_action_star=0x7f02001b;
+        public static final int ic_action_user=0x7f02001c;
+        public static final int ic_action_user_add=0x7f02001d;
+        public static final int ic_action_video=0x7f02001e;
+        public static final int ic_icon=0x7f02001f;
+        public static final int ic_launcher=0x7f020020;
+        public static final int icon1=0x7f020021;
+        public static final int nurse=0x7f020022;
+        public static final int save=0x7f020023;
+        public static final int search=0x7f020024;
+        public static final int surgery=0x7f020025;
+        public static final int wheelchair=0x7f020026;
     }
     public static final class id {
         public static final int TextViewData=0x7f090009;
-        public static final int action_settings=0x7f090085;
+        public static final int action_settings=0x7f090091;
         public static final int btnEscolhaCirurgia=0x7f09005a;
         public static final int btnLogOff=0x7f09003f;
         public static final int btn_AdicionarProfissional=0x7f090054;
@@ -90,7 +98,6 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int btn_PesquisarEquipas=0x7f090055;
         public static final int button2=0x7f09003a;
         public static final int button3=0x7f09003b;
-        public static final int buttonDadosCirurgia=0x7f090084;
         public static final int buttonEquipa=0x7f09003d;
         public static final int buttonUtentes=0x7f09003e;
         public static final int editTextCirurgia=0x7f090006;
@@ -115,12 +122,20 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int editText_findUtente=0x7f090076;
         public static final int edit_text_NomeEquipa=0x7f090041;
         public static final int imageView1=0x7f09005b;
+        public static final int imageViewMenuDadosCirurgia=0x7f09008c;
+        public static final int imageViewMenuEquipa=0x7f090086;
+        public static final int imageViewMenuSair=0x7f09008f;
+        public static final int imageViewMenuUtentes=0x7f090089;
         public static final int imgHomeActivity=0x7f090057;
         public static final int linearLayout1=0x7f090061;
         public static final int linearLayout2=0x7f090064;
         public static final int linearLayout3=0x7f090067;
         public static final int linearLayout4=0x7f09006a;
         public static final int linearLayout5=0x7f09006d;
+        public static final int linearLayoutMenuDadosCirurgia=0x7f09008b;
+        public static final int linearLayoutMenuEquipaCirurgica=0x7f090085;
+        public static final int linearLayoutMenuSair=0x7f09008e;
+        public static final int linearLayoutMenuUtentes=0x7f090088;
         public static final int linearLayout_antecedentes=0x7f090073;
         public static final int linearLayout_patologias=0x7f090070;
         public static final int listViewUtentes=0x7f090060;
@@ -128,6 +143,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int listView_equipas=0x7f090082;
         public static final int menuText=0x7f09003c;
         public static final int scrollDadosCirurgia=0x7f090000;
+        public static final int scrollView1=0x7f090083;
         public static final int spinnerASA=0x7f090015;
         public static final int spinnerDestinoDoente=0x7f090034;
         public static final int spinnerEspecialidade=0x7f090003;
@@ -169,6 +185,11 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int textViewDataNascimento=0x7f090068;
         public static final int textViewDataNascimentoUtente=0x7f090069;
         public static final int textViewEspecialidade=0x7f09005c;
+        public static final int textViewMenu=0x7f090084;
+        public static final int textViewMenuDadosCirurgia=0x7f09008d;
+        public static final int textViewMenuEquipaCirurgica=0x7f090087;
+        public static final int textViewMenuSair=0x7f090090;
+        public static final int textViewMenuUtentes=0x7f09008a;
         public static final int textViewNome=0x7f090062;
         public static final int textViewNomeUtente=0x7f090063;
         public static final int textViewNumProc=0x7f090065;
@@ -211,7 +232,6 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int txtview_especialidade=0x7f090002;
         public static final int txtview_lateralidade=0x7f090011;
         public static final int txtview_tipoCirurgia=0x7f09000b;
-        public static final int view1=0x7f090083;
     }
     public static final class layout {
         public static final int activity_dados_cirurgia=0x7f030000;
@@ -265,6 +285,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int hello_world=0x7f060004;
         public static final int introduza_o_nome_do_novo_profissional_=0x7f060009;
         public static final int login=0x7f06001e;
+        public static final int menu=0x7f06002a;
         public static final int password_=0x7f06001d;
         public static final int sair=0x7f060021;
         public static final int text_equipa_cirurgia=0x7f060008;

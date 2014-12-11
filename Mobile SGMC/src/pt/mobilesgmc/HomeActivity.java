@@ -39,6 +39,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.mobilegsmc.R;
+import com.example.mobilegsmc.R.menu;
 
 public class HomeActivity extends Activity {
 	// IMPLEMENTAR ONBACKPRESSED N√ÉO IR PARA O ECRA DE LOGIN,SAIR APENAS DA
@@ -108,7 +109,7 @@ public class HomeActivity extends Activity {
 		texto_cirurgia = (EditText) root
 				.findViewById(R.id.editText_escolhaCirurgia);
 
-		Button btnEquipa = (Button) root.findViewById(R.id.buttonEquipa);
+		TextView btnEquipa = (TextView) root.findViewById(R.id.textViewMenuEquipaCirurgica);
 		btnEquipa.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -116,30 +117,29 @@ public class HomeActivity extends Activity {
 				Intent equipa = new Intent(getBaseContext(),
 						EquipaCirurgica.class);
 				toggleMenu(findViewById(R.layout.activity_equipa_cirurgica));
-				
+
 				startActivity(equipa);
 
 			}
 		});
-		Button btnDados = (Button) root.findViewById(R.id.buttonDadosCirurgia);
+		TextView btnDados = (TextView) root.findViewById(R.id.textViewMenuDadosCirurgia);
 		btnDados.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
-				if(cirurgia!=null){
-				Intent dados  = new Intent(getBaseContext(),
-						DadosCirurgia.class);
-				toggleMenu(findViewById(R.layout.activity_dados_cirurgia));
-				
-				startActivity(dados);
-				}
-				else
-				{
-					Log.i("sgmc","N„o tem cirurgia escolhida");
+				if (cirurgia != null) {
+					Intent dados = new Intent(getBaseContext(),
+							DadosCirurgia.class);
+					toggleMenu(findViewById(R.layout.activity_dados_cirurgia));
+
+					startActivity(dados);
+				} else {
+					Log.i("sgmc", "N„o tem cirurgia escolhida");
+					root.toggleMenu();
 				}
 			}
 		});
-		Button btnUtentes = (Button) root.findViewById(R.id.buttonUtentes);
+		TextView btnUtentes = (TextView) root.findViewById(R.id.textViewMenuUtentes);
 		btnUtentes.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -151,9 +151,10 @@ public class HomeActivity extends Activity {
 				startActivity(utentes);
 			}
 		});
-		
-		textoCirurgiaAUsar = (TextView) root.findViewById(R.id.textViewCirurgia);
 
+		textoCirurgiaAUsar = (TextView) root
+				.findViewById(R.id.textViewCirurgia);
+		
 		Button btnAdd = (Button) findViewById(R.id.btnEscolhaCirurgia);
 		btnAdd.setOnClickListener(new OnClickListener() {
 
@@ -190,21 +191,19 @@ public class HomeActivity extends Activity {
 										.edit()
 										.putString("idCirurgia",
 												String.valueOf(c.getId()))
-										.commit();						
+										.commit();
 								PreferenceManager
-								.getDefaultSharedPreferences(
-										getApplicationContext())
-								.edit()
-								.putInt("idUtente",
-										c.getIdUtente())
-								.commit();
+										.getDefaultSharedPreferences(
+												getApplicationContext()).edit()
+										.putInt("idUtente", c.getIdUtente())
+										.commit();
 								PreferenceManager
-								.getDefaultSharedPreferences(
-										getApplicationContext())
-								.edit()
-								.putString("idEquipa",
-										String.valueOf(c.getIdEquipa()))
-								.commit();
+										.getDefaultSharedPreferences(
+												getApplicationContext())
+										.edit()
+										.putString("idEquipa",
+												String.valueOf(c.getIdEquipa()))
+										.commit();
 								HomeActivity.setCirurgia(c);
 								dialog.dismiss();
 							}
@@ -215,7 +214,8 @@ public class HomeActivity extends Activity {
 					@Override
 					public void onDismiss(DialogInterface dialog) {
 						String cirurgia = PreferenceManager
-								.getDefaultSharedPreferences(getApplicationContext()).getString(
+								.getDefaultSharedPreferences(
+										getApplicationContext()).getString(
 										"idCirurgia",
 										"defaultStringIfNothingFound");
 						textoCirurgiaAUsar.setText(cirurgia);
@@ -229,7 +229,6 @@ public class HomeActivity extends Activity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.home, menu);
 		return true;
 	}
 
@@ -258,15 +257,14 @@ public class HomeActivity extends Activity {
 	}
 
 	@Override
-	public void onBackPressed()
-	{
+	public void onBackPressed() {
 		Intent startMain = new Intent(Intent.ACTION_MAIN);
 		startMain.addCategory(Intent.CATEGORY_HOME);
 		startMain.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 		startActivity(startMain);
-//		super.onBackPressed();  // optional depending on your needs
+		// super.onBackPressed(); // optional depending on your needs
 	}
-	
+
 	public static Cirurgia getCirurgia() {
 		return cirurgia;
 	}

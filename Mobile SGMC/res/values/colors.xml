@@ -2,5 +2,5 @@
 
     <color name="black_overlay">#66000000</color>
     <color name="fundo_app">#405C78</color>
-
+	<color name="texto">#1F303A</color>
 </resources>

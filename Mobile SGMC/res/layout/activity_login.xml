@@ -29,7 +29,7 @@
             android:layout_centerHorizontal="true"
             android:text="Mobile SGMC"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/texto"
             android:textSize="40dip" />
 
         <EditText
@@ -43,7 +43,7 @@
             android:ems="10"
             android:hint="@string/username_"
             android:text="admin"
-            android:textColor="#FFFFFF" >
+            android:textColor="@color/texto" >
         </EditText>
 
         <EditText
@@ -57,7 +57,7 @@
             android:hint="@string/password_"
             android:inputType="textPassword"
             android:text="admin"
-            android:textColor="#FFFFFF" />
+            android:textColor="@color/texto" />
 
         <Button
             android:id="@+id/btn_Login"
@@ -69,7 +69,7 @@
             android:layout_marginTop="26dp"
             android:background="@drawable/buttonlogin"
             android:text="@string/login"
-            android:textColor="#FFFFFF" />
+            android:textColor="@color/texto" />
     </RelativeLayout>
 
 </RelativeLayout>
