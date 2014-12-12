@@ -34,7 +34,7 @@
                     android:gravity="center"
                     android:text="Especialidade Cirurgica: "
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:textColor="#FFFFFF"
+                    android:textColor="#000000"
                     android:textStyle="italic" />
 
                 <Spinner
@@ -63,7 +63,7 @@
                     android:text="Cirurgia: "
                     android:textAlignment="center"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:textColor="#FFFFFF"
+                    android:textColor="#000000"
                     android:textStyle="italic" />
 
                 <EditText
@@ -88,7 +88,7 @@
                     android:text="Data: "
                     android:textAlignment="center"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:textColor="#FFFFFF"
+                    android:textColor="#000000"
                     android:textStyle="italic" />
 
                 <TextView
@@ -113,7 +113,7 @@
                     android:gravity="center"
                     android:text="Tipo Cirurgia: "
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:textColor="#FFFFFF"
+                    android:textColor="#000000"
                     android:textStyle="italic" />
 
                 <Spinner
@@ -139,7 +139,7 @@
                     android:gravity="center"
                     android:text="Sala: "
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:textColor="#FFFFFF"
+                    android:textColor="#000000"
                     android:textStyle="italic" />
 
                 <Spinner
@@ -147,8 +147,27 @@
                     android:layout_width="wrap_content"
                     android:layout_height="fill_parent"
                     android:layout_span="2"
-                    android:layout_weight="0.5"
+                    android:layout_weight="0"
                     android:entries="@array/arraySalas" />
+                
+                <TextView
+                    android:id="@+id/txtview_BlocoOperatorio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="5dp"
+                    android:gravity="center"
+                    android:text="Bloco Operatório: "
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#000000"
+                    android:textStyle="italic" />
+
+                <Spinner
+                    android:id="@+id/spinnerBloco"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_span="2"
+                    android:layout_weight="0.5"
+                     />
             </TableRow>
 
             <TableRow
@@ -165,7 +184,7 @@
                     android:gravity="center"
                     android:text="Lateralidade:"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:textColor="#FFFFFF"
+                    android:textColor="#000000"
                     android:textStyle="italic" />
 
                 <Spinner
@@ -191,7 +210,7 @@
                     android:gravity="center"
                     android:text="Classificação ASA:"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:textColor="#FFFFFF"
+                    android:textColor="#000000"
                     android:textStyle="italic" />
 
                 <Spinner
@@ -222,7 +241,7 @@
                     android:text="Hora Chamada do Utente: "
                     android:textAlignment="center"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:textColor="#FFFFFF"
+                    android:textColor="#000000"
                     android:textStyle="italic" />
 
                 <TextView
@@ -248,7 +267,7 @@
                     android:text="Hora Entrada BO: "
                     android:textAlignment="center"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:textColor="#FFFFFF"
+                    android:textColor="#000000"
                     android:textStyle="italic" />
 
                 <TextView
@@ -267,7 +286,7 @@
                     android:text="Hora Saida BO: "
                     android:textAlignment="center"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:textColor="#FFFFFF"
+                    android:textColor="#000000"
                     android:textStyle="italic" />
 
                 <TextView
@@ -293,7 +312,7 @@
                     android:text="Hora Entrada Sala: "
                     android:textAlignment="center"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:textColor="#FFFFFF"
+                    android:textColor="#000000"
                     android:textStyle="italic" />
 
                 <TextView
@@ -312,7 +331,7 @@
                     android:text="Hora Saida Sala: "
                     android:textAlignment="center"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:textColor="#FFFFFF"
+                    android:textColor="#000000"
                     android:textStyle="italic" />
 
                 <TextView
@@ -338,7 +357,7 @@
                     android:text="Hora Inicio Anestesia: "
                     android:textAlignment="center"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:textColor="#FFFFFF"
+                    android:textColor="#000000"
                     android:textStyle="italic" />
 
                 <TextView
@@ -357,7 +376,7 @@
                     android:text="Hora Fim Anestesia: "
                     android:textAlignment="center"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:textColor="#FFFFFF"
+                    android:textColor="#000000"
                     android:textStyle="italic" />
 
                 <TextView
@@ -383,7 +402,7 @@
                     android:text="Hora Inicio Cirurgia: "
                     android:textAlignment="center"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:textColor="#FFFFFF"
+                    android:textColor="#000000"
                     android:textStyle="italic" />
 
                 <TextView
@@ -402,7 +421,7 @@
                     android:text="Hora Fim Cirurgia: "
                     android:textAlignment="center"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:textColor="#FFFFFF"
+                    android:textColor="#000000"
                     android:textStyle="italic" />
 
                 <TextView
@@ -428,7 +447,7 @@
                     android:text="Hora Entrada Recobro: "
                     android:textAlignment="center"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:textColor="#FFFFFF"
+                    android:textColor="#000000"
                     android:textStyle="italic" />
 
                 <TextView
@@ -447,7 +466,7 @@
                     android:text="Hora Saida Recobro: "
                     android:textAlignment="center"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:textColor="#FFFFFF"
+                    android:textColor="#000000"
                     android:textStyle="italic" />
 
                 <TextView
@@ -476,7 +495,7 @@
                     android:gravity="center"
                     android:text="Destino Doente: "
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:textColor="#FFFFFF"
+                    android:textColor="#000000"
                     android:textStyle="italic" />
 
                 <Spinner
@@ -511,7 +530,7 @@
                     android:text="Informacoes Relevantes "
                     android:textAlignment="center"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:textColor="#FFFFFF"
+                    android:textColor="#000000"
                     android:textStyle="italic" />
 
                 <EditText
