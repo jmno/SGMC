@@ -1586,7 +1586,353 @@
                 android:id="@+id/tableRow21"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" >
-                
+
+                <TextView
+                    android:id="@+id/txtview_posicaoOperatoria"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_span="0"
+                    android:gravity="center"
+                    android:text="Posição Operatória: "
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#000000"
+                    android:textStyle="italic" />
+
+                <Spinner
+                    android:id="@+id/spinnerPosicaoOperatoria"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_span="2"
+                    android:layout_weight="0.5" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow22"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/txtview_LocalalivioZonasPressao"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_span="0"
+                    android:gravity="center"
+                    android:text="Local: "
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#000000"
+                    android:textStyle="italic" />
+
+                <EditText
+                    android:id="@+id/editTextaliviosZonaPressao"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_span="0"
+                    android:gravity="center"
+                    android:text="             " />
+
+                <TextView
+                    android:id="@+id/txtview_alivioZonasPressao"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_span="0"
+                    android:gravity="center"
+                    android:text="Alívio Zonas Pressão: "
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#000000"
+                    android:textStyle="italic" />
+
+                <EditText
+                    android:id="@+id/editTextLocalaliviosZonaPressao"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_span="0"
+                    android:gravity="center"
+                    android:text="             " />
+            </TableRow>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dip"
+                android:background="#7EC0EE" />
+
+            <TableRow
+                android:id="@+id/tableRow23"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/txtview_MantaTermicaProtecao"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_span="0"
+                    android:gravity="center"
+                    android:text="Manta Térmica de Proteção: "
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#000000"
+                    android:textStyle="italic" />
+
+                <Spinner
+                    android:id="@+id/spinnerMantaTermicaProtecao"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_span="0"
+                    android:layout_weight="0" />
+
+                <TextView
+                    android:id="@+id/txtview_LocalMantaTermicaProtecao"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_span="0"
+                    android:gravity="center"
+                    android:text="Local: "
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#000000"
+                    android:textStyle="italic" />
+
+                <EditText
+                    android:id="@+id/editTextLocalMantaTermicaProtecao"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_span="0"
+                    android:gravity="center"
+                    android:text="             " />
+            </TableRow>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dip"
+                android:background="#7EC0EE" />
+
+            <TableRow
+                android:id="@+id/tableRow24"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/txtview_garrotePneumatico"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_span="0"
+                    android:gravity="center"
+                    android:text="Garrote Pneumático:  Pressão "
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#000000"
+                    android:textStyle="italic" />
+
+                <EditText
+                    android:id="@+id/editTextPressao"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_span="0"
+                    android:gravity="center"
+                    android:text="             " />
+
+                <TextView
+                    android:id="@+id/txtview_LocalGarrote"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_span="0"
+                    android:gravity="center"
+                    android:text="mmHg  Localização: "
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#000000"
+                    android:textStyle="italic" />
+
+                <Spinner
+                    android:id="@+id/spinnerLocalizacao"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_span="0"
+                    android:layout_weight="0" />
+            </TableRow>
+
+            <TableRow>
+            </TableRow>
+
+          
+            <TableRow
+                android:id="@+id/tableRow25"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/txtview_inicio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_span="0"
+                    android:gravity="center"
+                    android:text="Início: "
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#000000"
+                    android:textStyle="italic" />
+
+                <EditText
+                    android:id="@+id/editTextFim"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_span="0"
+                    android:gravity="center"
+                    android:text="   :   :   " />
+
+                <TextView
+                    android:id="@+id/txtview_Fim"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_span="0"
+                    android:gravity="center"
+                    android:text="Fim: "
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#000000"
+                    android:textStyle="italic" />
+
+                <EditText
+                    android:id="@+id/editTextInicio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_span="0"
+                    android:gravity="center"
+                    android:text="   :   :   " />
+            </TableRow>
+            
+              <View
+                android:layout_width="match_parent"
+                android:layout_height="2dip"
+                android:background="#7EC0EE" />
+              
+                <TableRow
+                android:id="@+id/tableRow26"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/txtview_PlacaEletrodoNeutro"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_span="0"
+                    android:gravity="center"
+                    android:text="Placa Eletrodo Neutro: "
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#000000"
+                    android:textStyle="italic" />
+
+                <Spinner
+                    android:id="@+id/spinnerPlacaEletrodoNeutro"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_span="0"
+                    android:layout_weight="0" />
+
+                <TextView
+                    android:id="@+id/txtview_LocalPlacaEletrodoNeutro"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_span="0"
+                    android:gravity="center"
+                    android:text="Localização: "
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#000000"
+                    android:textStyle="italic" />
+
+                <Spinner
+                    android:id="@+id/spinnerLocalPlacaEletrodoNeutro"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_span="0"
+                    android:layout_weight="0" />
+            </TableRow>
+                <View
+                android:layout_width="match_parent"
+                android:layout_height="2dip"
+                android:background="#7EC0EE" />
+             <TableRow
+                android:id="@+id/tableRow28"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/txtview_pecaBiopsia"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_span="0"
+                    android:gravity="center"
+                    android:text="Peça para Biopsia: "
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#000000"
+                    android:textStyle="italic" />
+                </TableRow>
+               <TableRow
+                android:id="@+id/tableRow27"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/txtview_descricao"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_span="0"
+                    android:gravity="center"
+                    android:text="Descrição: "
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#000000"
+                    android:textStyle="italic" />
+
+                <EditText
+                    android:id="@+id/editTextDescricao"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_span="0"
+                    android:gravity="center"
+                    android:text="            " />
+
+                <TextView
+                    android:id="@+id/txtview_laboratorio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_span="0"
+                    android:gravity="center"
+                    android:text="Laboratório: "
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#000000"
+                    android:textStyle="italic" />
+
+                <EditText
+                    android:id="@+id/editTextLaboratorio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_span="0"
+                    android:gravity="center"
+                    android:text="          " />
+            </TableRow>
+            
+                 
+                <View
+                android:layout_width="match_parent"
+                android:layout_height="2dip"
+                android:background="#7EC0EE" />
+            
+               <TableRow
+                android:id="@+id/tableRow29"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <Button
+                    android:id="@+id/buttonGuardar"
+                    android:text="Guardar"
+                        android:layout_span="6" />
             </TableRow>
         </TableLayout>
     </ScrollView>
