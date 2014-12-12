@@ -38,6 +38,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.mobilegsmc.DadosINtraOperatorioActivity;
 import com.example.mobilegsmc.R;
 import com.example.mobilegsmc.R.menu;
 
@@ -149,6 +150,17 @@ public class HomeActivity extends Activity {
 						UtentesActivity.class);
 				toggleMenu(findViewById(R.layout.activity_utentes));
 				startActivity(utentes);
+			}
+		});
+		
+		Button button = (Button) findViewById(R.id.button1);
+		button.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+			Intent i = new Intent(getApplicationContext(), DadosINtraOperatorioActivity.class);
+			startActivity(i);
 			}
 		});
 

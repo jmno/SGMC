@@ -48,8 +48,7 @@
         <item>Sala 14</item>
         <item>Sala 15</item>
     </string-array>
-    
-      <string-array name="arrayEspecialidade">
+    <string-array name="arrayEspecialidade">
         <item>Anatomia Patológica</item>
         <item>Anestesiologia</item>
         <item>Cardiologia</item>
@@ -63,8 +62,7 @@
         <item>Psiquiatria</item>
         <item>Urologia</item>
     </string-array>
-
-       <string-array name="arrayTipoCirurgia">
+    <string-array name="arrayTipoCirurgia">
         <item>Cirurgia bucomaxilofacial</item>
         <item>Cirurgia oftalmológica</item>
         <item>Cirurgia otorrinolaringológica</item>
@@ -78,7 +76,6 @@
         <item>Cirurgia estética</item>
         <item>Cirurgia robótica</item>
     </string-array>
-      
     <string-array name="arrayDestino">
         <item>Bloco 1</item>
         <item>Bloco 2</item>
@@ -95,8 +92,8 @@
         <item>Bloco 13</item>
         <item>Bloco 14</item>
         <item>Bloco 15</item>
-    </string-array>   
-       
+    </string-array>
+
     <string name="text_equipa_cirurgia">Equipa Cirurgia</string>
     <string name="introduza_o_nome_do_novo_profissional_">Introduza o nome do novo profissional...</string>
     <string name="texto_cirurgiao">Cirurgião:</string>
@@ -132,5 +129,6 @@
     <string name="_Lateralidade_">Lateralidade:</string>
     <string name="_ClassifASA_">Classificação ASA</string>
     <string name="menu">MENU</string>
+    <string name="title_activity_dados_intra_operatorio">DadosINtraOperatorioActivity</string>
 
 </resources>

@@ -1,0 +1,1594 @@
+<pt.mobilesgmc.view.viewgroup.FlyOutContainer xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <include
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        layout="@layout/layout_menu" />
+
+    <ScrollView
+        android:id="@+id/scrollIntraOperatotrio"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/backgroundapp"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin" >
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <TableRow
+                android:id="@+id/tableRow1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/txtview_tipoAnestesia"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_span="0"
+                    android:gravity="center"
+                    android:text="Tipo Anestesia: "
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#000000"
+                    android:textStyle="italic" />
+
+                <Spinner
+                    android:id="@+id/spinnerTipoAnestesia"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_span="2"
+                    android:layout_weight="0.5" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/txtView_TET"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="5dp"
+                    android:gravity="center"
+                    android:text="TET nº "
+                    android:textAlignment="center"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#000000"
+                    android:textStyle="italic" />
+
+                <EditText
+                    android:id="@+id/editTextTET"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_span="1"
+                    android:gravity="center" />
+
+                <TextView
+                    android:id="@+id/txtView_ML"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="5dp"
+                    android:gravity="center"
+                    android:text="ML nº "
+                    android:textAlignment="center"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#000000"
+                    android:textStyle="italic" />
+
+                <EditText
+                    android:id="@+id/editTextML"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_span="0"
+                    android:gravity="center" />
+
+                <TextView
+                    android:id="@+id/txtView_AgulhaOlCalibre"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="5dp"
+                    android:gravity="center"
+                    android:text="Agulha PL Calibre "
+                    android:textAlignment="center"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#000000"
+                    android:textStyle="italic" />
+
+                <EditText
+                    android:id="@+id/editTextAgulhaPLCalibre"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_span="0"
+                    android:gravity="center" />
+            </TableRow>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dip"
+                android:background="#7EC0EE" />
+
+            <TableRow
+                android:id="@+id/tableRow3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/txtview_acessoVenoso"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_span="6"
+                    android:gravity="center"
+                    android:text="Acesso Venoso"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#000000"
+                    android:textStyle="italic" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/txtView_tipo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="5dp"
+                    android:gravity="center"
+                    android:text="Tipo: "
+                    android:textAlignment="center"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#000000"
+                    android:textStyle="italic" />
+
+                <EditText
+                    android:id="@+id/editTextTipo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_span="1"
+                    android:gravity="center" />
+
+                <TextView
+                    android:id="@+id/txtView_Calibre"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="5dp"
+                    android:gravity="center"
+                    android:text="Calibre: "
+                    android:textAlignment="center"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#000000"
+                    android:textStyle="italic" />
+
+                <EditText
+                    android:id="@+id/editTextCalibre"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_span="0"
+                    android:gravity="center" />
+
+                <TextView
+                    android:id="@+id/txtView_Localizacao"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="5dp"
+                    android:gravity="center"
+                    android:text="Localização: "
+                    android:textAlignment="center"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#000000"
+                    android:textStyle="italic" />
+
+                <EditText
+                    android:id="@+id/editTextLocalizacao"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_span="0"
+                    android:gravity="center" />
+            </TableRow>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dip"
+                android:background="#7EC0EE" />
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" >
+
+                    <TableRow
+                        android:id="@+id/tableRow00"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:id="@+id/txtview_sinaisVitais"
+                            android:layout_width="wrap_content"
+                            android:layout_height="fill_parent"
+                            android:layout_marginLeft="5dp"
+                            android:layout_span="5"
+                            android:gravity="center"
+                            android:text="Sinais Vitais: "
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textColor="#000000"
+                            android:textStyle="italic" />
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/tableRow01"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:id="@+id/txtview_hora"
+                            android:layout_width="wrap_content"
+                            android:layout_height="fill_parent"
+                            android:layout_marginLeft="5dp"
+                            android:gravity="center"
+                            android:text="Hora: "
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textColor="#000000"
+                            android:textStyle="italic" />
+
+                        <TextView
+                            android:id="@+id/txtview_ta"
+                            android:layout_width="wrap_content"
+                            android:layout_height="fill_parent"
+                            android:layout_marginLeft="5dp"
+                            android:gravity="center"
+                            android:text="TA(mmHG): "
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textColor="#000000"
+                            android:textStyle="italic" />
+
+                        <TextView
+                            android:id="@+id/txtview_fc"
+                            android:layout_width="wrap_content"
+                            android:layout_height="fill_parent"
+                            android:layout_marginLeft="5dp"
+                            android:gravity="center"
+                            android:text="FC(bpm): "
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textColor="#000000"
+                            android:textStyle="italic" />
+
+                        <TextView
+                            android:id="@+id/txtview_spo2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="fill_parent"
+                            android:layout_marginLeft="5dp"
+                            android:gravity="center"
+                            android:text="SpO2(%): "
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textColor="#000000"
+                            android:textStyle="italic" />
+
+                        <TextView
+                            android:id="@+id/txtview_temp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="fill_parent"
+                            android:layout_marginLeft="5dp"
+                            android:gravity="center"
+                            android:text="Temp.(ºC): "
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textColor="#000000"
+                            android:textStyle="italic" />
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/tableRow02"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <EditText
+                            android:id="@+id/editTextHora1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_span="0"
+                            android:gravity="center"
+                            android:text="   :   :   " />
+
+                        <EditText
+                            android:id="@+id/editTextTa"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_span="0"
+                            android:gravity="center" />
+
+                        <EditText
+                            android:id="@+id/editTextFc"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_span="0"
+                            android:gravity="center" />
+
+                        <EditText
+                            android:id="@+id/editTextSpo2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_span="0"
+                            android:gravity="center" />
+
+                        <EditText
+                            android:id="@+id/editTexttemp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_span="0"
+                            android:gravity="center" />
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/tableRow03"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <EditText
+                            android:id="@+id/editTextHora2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_span="0"
+                            android:gravity="center"
+                            android:text="   :   :   " />
+
+                        <EditText
+                            android:id="@+id/editTextTa2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_span="0"
+                            android:gravity="center" />
+
+                        <EditText
+                            android:id="@+id/editTextFc2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_span="0"
+                            android:gravity="center" />
+
+                        <EditText
+                            android:id="@+id/editTextSpo22"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_span="0"
+                            android:gravity="center" />
+
+                        <EditText
+                            android:id="@+id/editTexttemp2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_span="0"
+                            android:gravity="center" />
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/tableRow04"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <EditText
+                            android:id="@+id/editTextHora3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_span="0"
+                            android:gravity="center"
+                            android:text="   :   :   " />
+
+                        <EditText
+                            android:id="@+id/editTextTa3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_span="0"
+                            android:gravity="center" />
+
+                        <EditText
+                            android:id="@+id/editTextFc3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_span="0"
+                            android:gravity="center" />
+
+                        <EditText
+                            android:id="@+id/editTextSpo23"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_span="0"
+                            android:gravity="center" />
+
+                        <EditText
+                            android:id="@+id/editTexttemp3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_span="0"
+                            android:gravity="center" />
+                    </TableRow>
+                </TableLayout>
+            </TableRow>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dip"
+                android:background="#7EC0EE" />
+
+            <TableRow
+                android:id="@+id/tableRow6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" >
+
+                    <TableRow
+                        android:id="@+id/tableRow05"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:id="@+id/txtview_MedicacaoAdministrada"
+                            android:layout_width="wrap_content"
+                            android:layout_height="fill_parent"
+                            android:layout_marginLeft="5dp"
+                            android:layout_span="5"
+                            android:gravity="center"
+                            android:text="Medicação Administrada: "
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textColor="#000000"
+                            android:textStyle="italic" />
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/tableRow06"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:id="@+id/txtview_farmaco"
+                            android:layout_width="wrap_content"
+                            android:layout_height="fill_parent"
+                            android:layout_marginLeft="5dp"
+                            android:layout_span="0"
+                            android:gravity="center"
+                            android:text="Fármaco: "
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textColor="#000000"
+                            android:textStyle="italic" />
+
+                        <EditText
+                            android:id="@+id/editTextHoraFaramaco1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_span="0"
+                            android:gravity="center"
+                            android:text="   :   :   " />
+
+                        <EditText
+                            android:id="@+id/editTextHoraFaramaco2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_span="0"
+                            android:gravity="center"
+                            android:text="   :   :   " />
+
+                        <EditText
+                            android:id="@+id/editTextHoraFaramaco3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_span="0"
+                            android:gravity="center"
+                            android:text="   :   :   " />
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/tableRow08"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <EditText
+                            android:id="@+id/editTextFaramaco1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_span="0"
+                            android:gravity="center"
+                            android:text="             " />
+
+                        <EditText
+                            android:id="@+id/editTextFaramaco2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_span="0"
+                            android:gravity="center"
+                            android:text="             " />
+
+                        <EditText
+                            android:id="@+id/editTextFaramaco3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_span="0"
+                            android:gravity="center"
+                            android:text="             " />
+
+                        <EditText
+                            android:id="@+id/editTextFaramaco4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_span="0"
+                            android:gravity="center"
+                            android:text="             " />
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/tableRow09"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <EditText
+                            android:id="@+id/editTextFaramaco5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_span="0"
+                            android:gravity="center"
+                            android:text="             " />
+
+                        <EditText
+                            android:id="@+id/editTextFaramaco6"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_span="0"
+                            android:gravity="center"
+                            android:text="             " />
+
+                        <EditText
+                            android:id="@+id/editTextFaramaco7"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_span="0"
+                            android:gravity="center"
+                            android:text="             " />
+
+                        <EditText
+                            android:id="@+id/editTextFaramaco8"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_span="0"
+                            android:gravity="center"
+                            android:text="             " />
+                    </TableRow>
+                </TableLayout>
+            </TableRow>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dip"
+                android:background="#7EC0EE" />
+
+            <TableRow
+                android:id="@+id/tableRow7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/txtview_AdministracaoSangue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_span="0"
+                    android:gravity="center"
+                    android:text="Administração de Sangue "
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#000000"
+                    android:textStyle="italic" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/txtview_InicioTransfusao"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_span="0"
+                    android:gravity="center"
+                    android:text="Início Transfusão:  "
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#000000"
+                    android:textStyle="italic" />
+
+                <EditText
+                    android:id="@+id/editTextInicioTransfusao"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_span="0"
+                    android:gravity="center"
+                    android:text="   :   :   " />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/txtview_taInicioTransfusao"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_span="0"
+                    android:gravity="center"
+                    android:text="TA:  "
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#000000"
+                    android:textStyle="italic" />
+
+                <EditText
+                    android:id="@+id/editTexttaInicioTransfusao"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_span="0"
+                    android:gravity="center"
+                    android:text="     /     " />
+
+                <TextView
+                    android:id="@+id/txtview_mmHG"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_span="0"
+                    android:gravity="center"
+                    android:text="mmHG FC:"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#000000"
+                    android:textStyle="italic" />
+
+                <EditText
+                    android:id="@+id/editTextfcInicioTransfusao"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_span="0"
+                    android:gravity="center"
+                    android:text="           " >
+                </EditText>
+
+                <TextView
+                    android:id="@+id/txtview_bpm"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_span="0"
+                    android:gravity="center"
+                    android:text="bpm SpO2:"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#000000"
+                    android:textStyle="italic" />
+
+                <EditText
+                    android:id="@+id/editTextspo2InicioTransfusao"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_span="0"
+                    android:gravity="center"
+                    android:text="           " />
+
+                <TextView
+                    android:id="@+id/txtview_percent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_span="0"
+                    android:gravity="center"
+                    android:text="%"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#000000"
+                    android:textStyle="italic" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/txtview_15MinAposTransfusao"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_span="0"
+                    android:gravity="center"
+                    android:text="15 minutos após:  "
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#000000"
+                    android:textStyle="italic" />
+
+                <EditText
+                    android:id="@+id/editText15MinAposTransfusao"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_span="0"
+                    android:gravity="center"
+                    android:text="   :   :   " />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/txtview_ta15MinAposTransfusao"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_span="0"
+                    android:gravity="center"
+                    android:text="TA:  "
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#000000"
+                    android:textStyle="italic" />
+
+                <EditText
+                    android:id="@+id/editTextta15MinAposTransfusao"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_span="0"
+                    android:gravity="center"
+                    android:text="     /     " />
+
+                <TextView
+                    android:id="@+id/txtview_mmHG1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_span="0"
+                    android:gravity="center"
+                    android:text="mmHG FC:"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#000000"
+                    android:textStyle="italic" />
+
+                <EditText
+                    android:id="@+id/editTextfc15MinAposTransfusao"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_span="0"
+                    android:gravity="center"
+                    android:text="           " >
+                </EditText>
+
+                <TextView
+                    android:id="@+id/txtview_bpm1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_span="0"
+                    android:gravity="center"
+                    android:text="bpm SpO2:"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#000000"
+                    android:textStyle="italic" />
+
+                <EditText
+                    android:id="@+id/editTextspo215MinAposTransfusao"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_span="0"
+                    android:gravity="center"
+                    android:text="           " />
+
+                <TextView
+                    android:id="@+id/txtview_percent1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_span="0"
+                    android:gravity="center"
+                    android:text="%"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#000000"
+                    android:textStyle="italic" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/txtview_FimMinAposTransfusao"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_span="0"
+                    android:gravity="center"
+                    android:text="Fim da Transfusão:  "
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#000000"
+                    android:textStyle="italic" />
+
+                <EditText
+                    android:id="@+id/editTextFimMinAposTransfusao"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_span="0"
+                    android:gravity="center"
+                    android:text="   :   :   " />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/txtview_taFimMinAposTransfusao"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_span="0"
+                    android:gravity="center"
+                    android:text="TA:  "
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#000000"
+                    android:textStyle="italic" />
+
+                <EditText
+                    android:id="@+id/editTexttaFimMinAposTransfusao"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_span="0"
+                    android:gravity="center"
+                    android:text="     /     " />
+
+                <TextView
+                    android:id="@+id/txtview_mmHG2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_span="0"
+                    android:gravity="center"
+                    android:text="mmHG FC:"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#000000"
+                    android:textStyle="italic" />
+
+                <EditText
+                    android:id="@+id/editTextfcFimMinAposTransfusao"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_span="0"
+                    android:gravity="center"
+                    android:text="           " >
+                </EditText>
+
+                <TextView
+                    android:id="@+id/txtview_bpm2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_span="0"
+                    android:gravity="center"
+                    android:text="bpm SpO2:"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#000000"
+                    android:textStyle="italic" />
+
+                <EditText
+                    android:id="@+id/editTextspo2FimMinAposTransfusao"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_span="0"
+                    android:gravity="center"
+                    android:text="           " />
+
+                <TextView
+                    android:id="@+id/txtview_percent2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_span="0"
+                    android:gravity="center"
+                    android:text="%"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#000000"
+                    android:textStyle="italic" />
+            </TableRow>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dip"
+                android:background="#7EC0EE" />
+
+            <TableRow
+                android:id="@+id/tableRow14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" >
+
+                    <TableRow
+                        android:id="@+id/tableRow001"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:id="@+id/txtview_BalancoHidrico"
+                            android:layout_width="wrap_content"
+                            android:layout_height="fill_parent"
+                            android:layout_marginLeft="5dp"
+                            android:layout_span="5"
+                            android:gravity="center"
+                            android:text="Balanço Hídrico: "
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textColor="#000000"
+                            android:textStyle="italic" />
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/tableRow002"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:id="@+id/txtview_soroterapia"
+                            android:layout_width="wrap_content"
+                            android:layout_height="fill_parent"
+                            android:layout_marginLeft="5dp"
+                            android:layout_span="0"
+                            android:gravity="center"
+                            android:text="Soroterapia: "
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textColor="#000000"
+                            android:textStyle="italic" />
+
+                        <EditText
+                            android:id="@+id/editTextHorasoroterapia1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_span="0"
+                            android:gravity="center"
+                            android:text="   :   :   " />
+
+                        <EditText
+                            android:id="@+id/editTextHorasoroterapia2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_span="0"
+                            android:gravity="center"
+                            android:text="   :   :   " />
+
+                        <EditText
+                            android:id="@+id/editTextHorasoroterapia3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_span="0"
+                            android:gravity="center"
+                            android:text="   :   :   " />
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/tableRow004"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <EditText
+                            android:id="@+id/editTextsoroterapia1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_span="0"
+                            android:gravity="center"
+                            android:text="             " />
+
+                        <EditText
+                            android:id="@+id/editTextsoroterapia2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_span="0"
+                            android:gravity="center"
+                            android:text="             " />
+
+                        <EditText
+                            android:id="@+id/editTextsoroterapia3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_span="0"
+                            android:gravity="center"
+                            android:text="             " />
+
+                        <EditText
+                            android:id="@+id/editTextsoroterapia4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_span="0"
+                            android:gravity="center"
+                            android:text="             " />
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/tableRow003"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <EditText
+                            android:id="@+id/editTextsoroterapia5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_span="0"
+                            android:gravity="center"
+                            android:text="             " />
+
+                        <EditText
+                            android:id="@+id/editTextsoroterapia6"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_span="0"
+                            android:gravity="center"
+                            android:text="             " />
+
+                        <EditText
+                            android:id="@+id/editTextsoroterapia7"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_span="0"
+                            android:gravity="center"
+                            android:text="             " />
+
+                        <EditText
+                            android:id="@+id/editTextsoroterapia8"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_span="0"
+                            android:gravity="center"
+                            android:text="             " />
+                    </TableRow>
+                </TableLayout>
+            </TableRow>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dip"
+                android:background="#7EC0EE" />
+
+            <TableRow
+                android:id="@+id/tableRow15"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/txtview_eliminacao"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_span="10"
+                    android:gravity="center"
+                    android:text="Eliminação: "
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#000000"
+                    android:textStyle="italic" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow16"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/txtview_cataterismoVesical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_span="2"
+                    android:gravity="center"
+                    android:text="Cataterismo Vesical: "
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#000000"
+                    android:textStyle="italic" />
+
+                <TextView
+                    android:id="@+id/txtview_sondaNasogastrica"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_span="4"
+                    android:gravity="center"
+                    android:text="Sonda Nasogástrica: "
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#000000"
+                    android:textStyle="italic" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow17"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/txtview_tipoSondacataterismoVesical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_span="0"
+                    android:gravity="center"
+                    android:text="Tipo Sonda: "
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#000000"
+                    android:textStyle="italic" />
+
+                <Spinner
+                    android:id="@+id/spinnertipoSondacataterismoVesical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_span="2"
+                    android:layout_weight="0" />
+
+                <TextView
+                    android:id="@+id/txtview_tipoSondaNasogastrica"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_span="4"
+                    android:gravity="center"
+                    android:text="Tipo Sonda: "
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#000000"
+                    android:textStyle="italic" />
+
+                <Spinner
+                    android:id="@+id/spinnertipoSondaNasogastrica"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_span="0"
+                    android:layout_weight="0" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow18"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/txtview_calibrecateterismo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_span="0"
+                    android:gravity="center"
+                    android:text="Calibre: "
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#000000"
+                    android:textStyle="italic" />
+
+                <EditText
+                    android:id="@+id/editTextcalibrecateterismo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_span="0"
+                    android:gravity="center" />
+
+                <TextView
+                    android:id="@+id/txtview_calibreNasogastrica"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_span="0"
+                    android:gravity="center"
+                    android:text="Calibre: "
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#000000"
+                    android:textStyle="italic" />
+
+                <EditText
+                    android:id="@+id/editTextcalibreNasogastrica"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_span="0"
+                    android:gravity="center" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow20"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/txtview_drenagemcataterismo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="0dp"
+                    android:layout_span="1"
+                    android:gravity="center"
+                    android:text="Drenagem: "
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#000000"
+                    android:textStyle="italic" />
+
+                <TextView
+                    android:id="@+id/txtview_drenagemnasogastrica"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_span="1"
+                    android:gravity="center"
+                    android:text="Drenagem: "
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#000000"
+                    android:textStyle="italic" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow19"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" >
+
+                    <TableRow
+                        android:id="@+id/tableRow0001"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:id="@+id/txtview_horaCataterismo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="fill_parent"
+                            android:layout_marginLeft="5dp"
+                            android:layout_span="0"
+                            android:gravity="center"
+                            android:text="Hora: "
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textColor="#000000"
+                            android:textStyle="italic" />
+
+                        <TextView
+                            android:id="@+id/txtview_drenagemCataterismo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="fill_parent"
+                            android:layout_marginLeft="5dp"
+                            android:layout_span="0"
+                            android:gravity="center"
+                            android:text="Drenagem: "
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textColor="#000000"
+                            android:textStyle="italic" />
+
+                        <TextView
+                            android:id="@+id/txtview_caracteristicasCataterismo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="fill_parent"
+                            android:layout_marginLeft="5dp"
+                            android:layout_span="0"
+                            android:gravity="center"
+                            android:text="Características: "
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textColor="#000000"
+                            android:textStyle="italic" />
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/tableRow0002"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <EditText
+                            android:id="@+id/editTexthoraCataterismo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_span="0"
+                            android:gravity="center"
+                            android:text="   :   :   " />
+
+                        <EditText
+                            android:id="@+id/editTextdrenagem"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_span="0"
+                            android:gravity="center"
+                            android:text="             " />
+
+                        <EditText
+                            android:id="@+id/editTextcaracteristicas"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_span="0"
+                            android:gravity="center"
+                            android:text="             " />
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/tableRow0003"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <EditText
+                            android:id="@+id/editTexthoraCataterismo1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_span="0"
+                            android:gravity="center"
+                            android:text="   :   :   " />
+
+                        <EditText
+                            android:id="@+id/editTextdrenagem1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_span="0"
+                            android:gravity="center"
+                            android:text="             " />
+
+                        <EditText
+                            android:id="@+id/editTextcaracteristicas1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_span="0"
+                            android:gravity="center"
+                            android:text="             " />
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/tableRow0004"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <EditText
+                            android:id="@+id/editTexthoraCataterismo2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_span="0"
+                            android:gravity="center"
+                            android:text="   :   :   " />
+
+                        <EditText
+                            android:id="@+id/editTextdrenagem2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_span="0"
+                            android:gravity="center"
+                            android:text="             " />
+
+                        <EditText
+                            android:id="@+id/editTextcaracteristicas2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_span="0"
+                            android:gravity="center"
+                            android:text="             " />
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/tableRow0005"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <EditText
+                            android:id="@+id/editTexthoraCataterismo3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_span="0"
+                            android:gravity="center"
+                            android:text="   :   :   " />
+
+                        <EditText
+                            android:id="@+id/editTextdrenagem3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_span="0"
+                            android:gravity="center"
+                            android:text="             " />
+
+                        <EditText
+                            android:id="@+id/editTextcaracteristicas3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_span="0"
+                            android:gravity="center"
+                            android:text="             " />
+                    </TableRow>
+                </TableLayout>
+
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" >
+
+                    <TableRow
+                        android:id="@+id/tableRow00001"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:id="@+id/txtview_horanasogastrica"
+                            android:layout_width="wrap_content"
+                            android:layout_height="fill_parent"
+                            android:layout_marginLeft="5dp"
+                            android:layout_span="0"
+                            android:gravity="center"
+                            android:text="Hora: "
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textColor="#000000"
+                            android:textStyle="italic" />
+
+                        <TextView
+                            android:id="@+id/txtview_drenagemasogastrica"
+                            android:layout_width="wrap_content"
+                            android:layout_height="fill_parent"
+                            android:layout_marginLeft="5dp"
+                            android:layout_span="0"
+                            android:gravity="center"
+                            android:text="Drenagem: "
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textColor="#000000"
+                            android:textStyle="italic" />
+
+                        <TextView
+                            android:id="@+id/txtview_caracteristicasasogastrica"
+                            android:layout_width="wrap_content"
+                            android:layout_height="fill_parent"
+                            android:layout_marginLeft="5dp"
+                            android:layout_span="0"
+                            android:gravity="center"
+                            android:text="Características: "
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textColor="#000000"
+                            android:textStyle="italic" />
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/tableRow00002"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <EditText
+                            android:id="@+id/editTexthoraasogastrica"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_span="0"
+                            android:gravity="center"
+                            android:text="   :   :   " />
+
+                        <EditText
+                            android:id="@+id/editTextdrenagemasogastrica"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_span="0"
+                            android:gravity="center"
+                            android:text="             " />
+
+                        <EditText
+                            android:id="@+id/editTextcaracteristicasasogastrica"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_span="0"
+                            android:gravity="center"
+                            android:text="             " />
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/tableRow00003"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <EditText
+                            android:id="@+id/editTexthoraasogastrica1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_span="0"
+                            android:gravity="center"
+                            android:text="   :   :   " />
+
+                        <EditText
+                            android:id="@+id/editTextdrenagemasogastrica1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_span="0"
+                            android:gravity="center"
+                            android:text="             " />
+
+                        <EditText
+                            android:id="@+id/editTextcaracteristicasasogastrica1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_span="0"
+                            android:gravity="center"
+                            android:text="             " />
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/tableRow00004"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <EditText
+                            android:id="@+id/editTexthoraasogastrica2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_span="0"
+                            android:gravity="center"
+                            android:text="   :   :   " />
+
+                        <EditText
+                            android:id="@+id/editTextdrenagemasogastrica2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_span="0"
+                            android:gravity="center"
+                            android:text="             " />
+
+                        <EditText
+                            android:id="@+id/editTextcaracteristicasasogastrica2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_span="0"
+                            android:gravity="center"
+                            android:text="             " />
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/tableRow00005"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <EditText
+                            android:id="@+id/editTexthoraasogastrica3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_span="0"
+                            android:gravity="center"
+                            android:text="   :   :   " />
+
+                        <EditText
+                            android:id="@+id/editTextdrenagemasogastrica3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_span="0"
+                            android:gravity="center"
+                            android:text="             " />
+
+                        <EditText
+                            android:id="@+id/editTextcaracteristicasasogastrica3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_span="0"
+                            android:gravity="center"
+                            android:text="             " />
+                    </TableRow>
+                </TableLayout>
+            </TableRow>
+
+            <TableRow>
+            </TableRow>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dip"
+                android:background="#7EC0EE" />
+
+            <TableRow
+                android:id="@+id/tableRow21"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+                
+            </TableRow>
+        </TableLayout>
+    </ScrollView>
+
+</pt.mobilesgmc.view.viewgroup.FlyOutContainer>
