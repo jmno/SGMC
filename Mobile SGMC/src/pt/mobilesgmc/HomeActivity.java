@@ -135,7 +135,7 @@ public class HomeActivity extends Activity {
 
 					startActivity(dados);
 				} else {
-					Log.i("sgmc", "Não tem cirurgia escolhida");
+					Log.i("sgmc", "NÃ£o tem cirurgia escolhida");
 					root.toggleMenu();
 				}
 			}

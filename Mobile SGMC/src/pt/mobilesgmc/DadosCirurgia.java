@@ -26,6 +26,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.text.format.Time;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -121,7 +122,7 @@ public class DadosCirurgia extends Activity {
 
 		});
 
-	//	new getBlocoOperatorios().execute();
+		// new getBlocoOperatorios().execute();
 		token = PreferenceManager.getDefaultSharedPreferences(this).getString(
 				"token", "defaultStringIfNothingFound");
 		idCirurgia = Integer.parseInt(PreferenceManager
@@ -151,26 +152,29 @@ public class DadosCirurgia extends Activity {
 		bloco = (Spinner) findViewById(R.id.spinnerBloco);
 		carregaOsListeners();
 		preencherAtividade(HomeActivity.getCirurgia());
-		
+
 		final Cirurgia p = HomeActivity.getCirurgia();
 		btnGuardar = (Button) findViewById(R.id.button3);
 		btnGuardar.setOnClickListener(new OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
 				Cirurgia ci = new Cirurgia();
 				ci.setHora(p.getHora());
-				ci.setEspecialidade(especialidadeCirurgica.getSelectedItem().toString());
+				ci.setEspecialidade(especialidadeCirurgica.getSelectedItem()
+						.toString());
 				ci.setTipoCirurgia(tipoCirurgia.getSelectedItem().toString());
 				ci.setIdSala(p.getIdSala());
 				ci.setIdUtente(p.getIdUtente());
 				ci.setIdEquipa(p.getIdEquipa());
 				ci.setLateralidade(lateralidade.getSelectedItem().toString());
-				ci.setClassificacaoASA(classificacaoASA.getSelectedItem().toString());
-				ci.setHoraEntradaBlocoOperatorio(p.getHoraEntradaBlocoOperatorio());
+				ci.setClassificacaoASA(classificacaoASA.getSelectedItem()
+						.toString());
+				ci.setHoraEntradaBlocoOperatorio(p
+						.getHoraEntradaBlocoOperatorio());
 				ci.setHoraSaideBlocoOperatorio(p.getHoraSaideBlocoOperatorio());
 				ci.setHoraSaidaSala(p.getHoraSaidaSala());
-			    ci.setHoraEntradaSala(p.getHoraEntradaSala());
+				ci.setHoraEntradaSala(p.getHoraEntradaSala());
 				ci.setHoraInicioAnestesia(p.getHoraInicioAnestesia());
 				ci.setHoraFimAnestesia(p.getHoraFimAnestesia());
 				ci.setHoraFimRecobro(p.getHoraFimRecobro());
@@ -183,114 +187,101 @@ public class DadosCirurgia extends Activity {
 				ci.setDestinoDoente(destinoDoente.getSelectedItem().toString());
 				ci.setCirurgia(cirurgia.getText().toString());
 				ci.setInfoRelevante(informacoesRelevantes.getText().toString());
-//				String datad= (String) data.getText();
-//				String[] dataF = datad.split("/");
-//				int dia = Integer.parseInt(dataF[0]);
-//				int mes = Integer.parseInt(dataF[1]);
-//				int ano = Integer.parseInt(dataF[2]);
-//				int hora ;
-//				int minuto;
-//				int segundo;
-//				java.sql.Time horas = null ;
-//				
-//				Date dataFinal = new Date(dia, mes, ano);
-//				ci.setData(dataFinal);
-//				
-//				String horaChamU = (String)horaChamadaUtente.getText();
-//				String[] horaChamada = horaChamU.split(":");
-//				if(horaChamada.length==2)
-//				{
-//					 hora = Integer.parseInt(horaChamada[0]);
-//					 minuto = Integer.parseInt(horaChamada[1]);
-//					 horas = new java.sql.Time(hora, minuto, 00) ;
-//				}
-//				else if(horaChamada.length==3)
-//				{
-//					hora = Integer.parseInt(horaChamada[0]);
-//					 minuto = Integer.parseInt(horaChamada[1]);
-//					 segundo = Integer.parseInt(horaChamada[2]);
-//					 horas = new java.sql.Time(hora, minuto, segundo) ;
-//				}
-//				
-//				ci.setHoraChamadaUtente(horas);
-//				
-//				String horaEntB = (String)horaEntradaBO.getText();
-//				String[] horaEntBo = horaEntB.split(":");
-//				if(horaEntBo.length==2)
-//				{
-//					 hora = Integer.parseInt(horaEntBo[0]);
-//					 minuto = Integer.parseInt(horaEntBo[1]);
-//					 horas = new java.sql.Time(hora, minuto, 00) ;
-//				}
-//				else if(horaEntBo.length==3)
-//				{
-//					hora = Integer.parseInt(horaEntBo[0]);
-//					 minuto = Integer.parseInt(horaEntBo[1]);
-//					 segundo = Integer.parseInt(horaEntBo[2]);
-//					 horas = new java.sql.Time(hora, minuto, segundo) ;
-//				}
-//				
-//				ci.setHoraEntradaBlocoOperatorio(horas);
-//				
-//				String horaSaidaB = (String)horaSaidaBO.getText();
-//				String[] horaSaidaBo = horaSaidaB.split(":");
-//				if(horaSaidaBo.length==2)
-//				{
-//					 hora = Integer.parseInt(horaSaidaBo[0]);
-//					 minuto = Integer.parseInt(horaSaidaBo[1]);
-//					 horas = new java.sql.Time(hora, minuto, 00) ;
-//				}
-//				else if(horaSaidaBo.length==3)
-//				{
-//					hora = Integer.parseInt(horaSaidaBo[0]);
-//					 minuto = Integer.parseInt(horaSaidaBo[1]);
-//					 segundo = Integer.parseInt(horaSaidaBo[2]);
-//					 horas = new java.sql.Time(hora, minuto, segundo) ;
-//				}
-//				
-//				ci.setHoraSaideBlocoOperatorio(horas);
-//				
-//				
-//				String horaEntSala = (String)horaEntradaSala.getText();
-//				String[] horaEntSa = horaEntSala.split(":");
-//				if(horaEntSa.length==2)
-//				{
-//					 hora = Integer.parseInt(horaEntSa[0]);
-//					 minuto = Integer.parseInt(horaEntSa[1]);
-//					 horas = new java.sql.Time(hora, minuto, 00) ;
-//				}
-//				else if(horaEntSa.length==3)
-//				{
-//					hora = Integer.parseInt(horaEntSa[0]);
-//					 minuto = Integer.parseInt(horaEntSa[1]);
-//					 segundo = Integer.parseInt(horaEntSa[2]);
-//					 horas = new java.sql.Time(hora, minuto, segundo) ;
-//				}
-//				
-//				ci.setHoraSaidaSala(horas);
+				String datad = (String) data.getText();
+				String[] dataF = datad.split("/");
+				int dia = Integer.parseInt(dataF[0]);
+				int mes = Integer.parseInt(dataF[1]);
+				int ano = Integer.parseInt(dataF[2]);
+				int hora;
+				int minuto;
+				int segundo;
+				java.sql.Time horas = null;
+
+				Date dataFinal = new Date(dia, mes, ano);
+				ci.setData(dataFinal);
+
+				String horaChamU = (String) horaChamadaUtente.getText();
+				String[] horaChamada = horaChamU.split(":");
+				if (horaChamada.length == 2) {
+					hora = Integer.parseInt(horaChamada[0]);
+					minuto = Integer.parseInt(horaChamada[1]);
+					horas = new java.sql.Time(hora, minuto, 00);
+				} else if (horaChamada.length == 3) {
+					hora = Integer.parseInt(horaChamada[0]);
+					minuto = Integer.parseInt(horaChamada[1]);
+					segundo = Integer.parseInt(horaChamada[2]);
+					horas = new java.sql.Time(hora, minuto, segundo);
+				}
+
+				ci.setHoraChamadaUtente(horas);
+
+				String horaEntB = (String) horaEntradaBO.getText();
+				String[] horaEntBo = horaEntB.split(":");
+				if (horaEntBo.length == 2) {
+					hora = Integer.parseInt(horaEntBo[0]);
+					minuto = Integer.parseInt(horaEntBo[1]);
+					horas = new java.sql.Time(hora, minuto, 00);
+				} else if (horaEntBo.length == 3) {
+					hora = Integer.parseInt(horaEntBo[0]);
+					minuto = Integer.parseInt(horaEntBo[1]);
+					segundo = Integer.parseInt(horaEntBo[2]);
+					horas = new java.sql.Time(hora, minuto, segundo);
+				}
+
+				ci.setHoraEntradaBlocoOperatorio(horas);
+
+				String horaSaidaB = (String) horaSaidaBO.getText();
+				String[] horaSaidaBo = horaSaidaB.split(":");
+				if (horaSaidaBo.length == 2) {
+					hora = Integer.parseInt(horaSaidaBo[0]);
+					minuto = Integer.parseInt(horaSaidaBo[1]);
+					horas = new java.sql.Time(hora, minuto, 00);
+				} else if (horaSaidaBo.length == 3) {
+					hora = Integer.parseInt(horaSaidaBo[0]);
+					minuto = Integer.parseInt(horaSaidaBo[1]);
+					segundo = Integer.parseInt(horaSaidaBo[2]);
+					horas = new java.sql.Time(hora, minuto, segundo);
+				}
+
+				ci.setHoraSaideBlocoOperatorio(horas);
+
+				String horaEntSala = (String) horaEntradaSala.getText();
+				String[] horaEntSa = horaEntSala.split(":");
+				if (horaEntSa.length == 2) {
+					hora = Integer.parseInt(horaEntSa[0]);
+					minuto = Integer.parseInt(horaEntSa[1]);
+					horas = new java.sql.Time(hora, minuto, 00);
+				} else if (horaEntSa.length == 3) {
+					hora = Integer.parseInt(horaEntSa[0]);
+					minuto = Integer.parseInt(horaEntSa[1]);
+					segundo = Integer.parseInt(horaEntSa[2]);
+					horas = new java.sql.Time(hora, minuto, segundo);
+				}
+
+				ci.setHoraEntradaSala(horas);
+
+				String horaSaiSala = (String) horaSaidaSala.getText();
+				String[] horaSaiSa = horaSaiSala.split(":");
+				if (horaEntSa.length == 2) {
+					hora = Integer.parseInt(horaEntSa[0]);
+					minuto = Integer.parseInt(horaEntSa[1]);
+					horas = new java.sql.Time(hora, minuto, 00);
+				} else if (horaEntSa.length == 3) {
+					hora = Integer.parseInt(horaEntSa[0]);
+					minuto = Integer.parseInt(horaEntSa[1]);
+					segundo = Integer.parseInt(horaEntSa[2]);
+					horas = new java.sql.Time(hora, minuto, segundo);
+				}
+
+				ci.setHoraSaidaSala(horas);
 				
-//				String horaSaidaSala = (String)horaSaidaSala.getText();
-//				String[] horaEntSa = horaSaidaSala.split(":");
-//				if(horaEntSa.length==2)
-//				{
-//					 hora = Integer.parseInt(horaEntSa[0]);
-//					 minuto = Integer.parseInt(horaEntSa[1]);
-//					 horas = new java.sql.Time(hora, minuto, 00) ;
-//				}
-//				else if(horaEntSa.length==3)
-//				{
-//					hora = Integer.parseInt(horaEntSa[0]);
-//					 minuto = Integer.parseInt(horaEntSa[1]);
-//					 segundo = Integer.parseInt(horaEntSa[2]);
-//					 horas = new java.sql.Time(hora, minuto, segundo) ;
-//				}
-//				
-//				c.setHoraSaidaSala(horas);
-				
-				
-				try{
-				new atualizarCirurgia().execute(ci);
-			}catch(Exception rn){}}
+				ci.setId(idCirurgia);
+				try {
+					new atualizarCirurgia().execute(ci);
+				} catch (Exception rn) {
+					Log.i("webservice", rn.getMessage());
+				}
+			}
 		});
 
 	}
@@ -341,18 +332,17 @@ public class DadosCirurgia extends Activity {
 							public void onTimeSet(TimePicker view,
 									int hourOfDay, int minute) {
 								horaChamadaUtente.setText(hourOfDay + ":"
-										+ minute );
+										+ minute);
 
 							}
 
-							
 						}, mHour, mMinute, true);
 
 				dpd.show();
 
 			}
 		});
-		
+
 		horaEntradaBO.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -369,8 +359,7 @@ public class DadosCirurgia extends Activity {
 							@Override
 							public void onTimeSet(TimePicker view,
 									int hourOfDay, int minute) {
-								horaEntradaBO.setText(hourOfDay + ":"
-										+ minute);
+								horaEntradaBO.setText(hourOfDay + ":" + minute);
 
 							}
 						}, mHour, mMinute, true);
@@ -395,8 +384,7 @@ public class DadosCirurgia extends Activity {
 							@Override
 							public void onTimeSet(TimePicker view,
 									int hourOfDay, int minute) {
-								horaSaidaBO.setText(hourOfDay + ":"
-										+ minute);
+								horaSaidaBO.setText(hourOfDay + ":" + minute);
 
 							}
 						}, mHour, mMinute, true);
@@ -447,8 +435,7 @@ public class DadosCirurgia extends Activity {
 							@Override
 							public void onTimeSet(TimePicker view,
 									int hourOfDay, int minute) {
-								horaSaidaSala.setText(hourOfDay + ":"
-										+ minute);
+								horaSaidaSala.setText(hourOfDay + ":" + minute);
 
 							}
 						}, mHour, mMinute, true);
@@ -457,7 +444,7 @@ public class DadosCirurgia extends Activity {
 
 			}
 		});
-		
+
 		horaInicioAnestesia.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -536,7 +523,7 @@ public class DadosCirurgia extends Activity {
 
 			}
 		});
-		
+
 		horaFimCirurgia.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -589,7 +576,7 @@ public class DadosCirurgia extends Activity {
 
 			}
 		});
-		
+
 		horaSaidaRecobro.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -608,10 +595,10 @@ public class DadosCirurgia extends Activity {
 							public void onTimeSet(TimePicker view,
 									int hourOfDay, int minute) {
 								horaSaidaRecobro.setText(hourOfDay + ":"
-										+ minute  );
+										+ minute);
 
 							}
-						}, mHour, mMinute,  true);
+						}, mHour, mMinute, true);
 
 				dpd.show();
 
@@ -683,67 +670,67 @@ public class DadosCirurgia extends Activity {
 
 	}
 
-//	private class getBlocoOperatorios extends
-//			AsyncTask<String, Void, ArrayList<BlocoOperatorio>> {
-//
-//		@Override
-//		protected ArrayList<BlocoOperatorio> doInBackground(String... params) {
-//			ArrayList<BlocoOperatorio> lista = null;
-//
-//			try {
-//				lista = WebServiceUtils.getAllBloco(token);
-//
-//			} catch (IOException | RestClientException | ParseException
-//					| JSONException e) {
-//				e.printStackTrace();
-//			}
-//
-//			return lista;
-//		}
-//
-//		@Override
-//		protected void onPostExecute(ArrayList<BlocoOperatorio> lista) {
-//			if (lista != null) {
-//				adaptadorBloco = new ArrayAdapter<>(getBaseContext(),
-//						android.R.layout.simple_list_item_1, lista);
-//				bloco.setAdapter(adaptadorBloco);
-//			} else {
-//				Toast.makeText(getApplicationContext(),
-//						"Get Bloco unsuccessful...", Toast.LENGTH_LONG).show();
-//
-//			}
-//		}
-//	}
-	
-	private class atualizarCirurgia extends
-	AsyncTask<Cirurgia, Void, Boolean> {
+	private class getBlocoOperatorios extends
+			AsyncTask<String, Void, ArrayList<BlocoOperatorio>> {
 
-@Override
-protected Boolean doInBackground(Cirurgia... params) {
-	Boolean adicionou = false;
+		@Override
+		protected ArrayList<BlocoOperatorio> doInBackground(String... params) {
+			ArrayList<BlocoOperatorio> lista = null;
 
-	try {
-		adicionou = WebServiceUtils.updateCirurgia(params[0], idCirurgia, token);
-			
-	} catch (ParseException | IOException | JSONException
-			| RestClientException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
+			try {
+				lista = WebServiceUtils.getAllBloco(token);
+
+			} catch (IOException | RestClientException | ParseException
+					| JSONException e) {
+				e.printStackTrace();
+			}
+
+			return lista;
+		}
+
+		@Override
+		protected void onPostExecute(ArrayList<BlocoOperatorio> lista) {
+			if (lista != null) {
+				adaptadorBloco = new ArrayAdapter<>(getBaseContext(),
+						android.R.layout.simple_list_item_1, lista);
+				bloco.setAdapter(adaptadorBloco);
+			} else {
+				Toast.makeText(getApplicationContext(),
+						"Get Bloco unsuccessful...", Toast.LENGTH_LONG).show();
+
+			}
+		}
 	}
 
-	return adicionou;
-}
+	private class atualizarCirurgia extends AsyncTask<Cirurgia, Void, Boolean> {
 
-@Override
-protected void onPostExecute(Boolean result) {
-	String a = (result ? "Cirurgia Alterada com Sucesso!"
-			: "Cirurgoa Não Alterada!");
+		@Override
+		protected Boolean doInBackground(Cirurgia... params) {
+			Boolean adicionou = false;
 
-	Toast.makeText(getApplicationContext(), a, Toast.LENGTH_LONG)
-			.show();
+			try {
+				adicionou = WebServiceUtils.updateCirurgia(params[0],
+						idCirurgia, token);
 
-	super.onPostExecute(result);
-}
+			} catch (ParseException | IOException | JSONException
+					| RestClientException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 
-}
+			return adicionou;
+		}
+
+		@Override
+		protected void onPostExecute(Boolean result) {
+			String a = (result ? "Cirurgia Alterada com Sucesso!"
+					: "Cirurgoa NÃ£o Alterada!");
+
+			Toast.makeText(getApplicationContext(), a, Toast.LENGTH_LONG)
+					.show();
+
+			super.onPostExecute(result);
+		}
+
+	}
 }

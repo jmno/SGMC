@@ -34,6 +34,7 @@ import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
+import android.view.TextureView;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.WindowManager;
@@ -43,6 +44,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
@@ -149,19 +151,10 @@ public class EquipaCirurgica extends Activity implements Serializable {
 		});
 		editNomeEquipa = (EditText) findViewById(R.id.edit_text_NomeEquipa);
 
-		Button btnEquipa = (Button) root.findViewById(R.id.buttonEquipa);
-		btnEquipa.setOnClickListener(new OnClickListener() {
+		TextView btnEquipa = (TextView) root.findViewById(R.id.textViewMenuEquipaCirurgica);
 
-			@Override
-			public void onClick(View v) {
-				Intent utentes = new Intent(getBaseContext(),
-						EquipaCirurgica.class);
-				toggleMenu(findViewById(R.layout.activity_equipa_cirurgica));
-				startActivity(utentes);
-
-			}
-		});
-		Button btnUtentes = (Button) root.findViewById(R.id.buttonUtentes);
+		//VOLTAR AQUI !!!!!!!
+		TextView btnUtentes = (TextView) root.findViewById(R.id.textViewMenuUtentes);
 		btnUtentes.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -169,10 +162,29 @@ public class EquipaCirurgica extends Activity implements Serializable {
 				// TODO Auto-generated method stub
 				Intent utentes = new Intent(getBaseContext(),
 						UtentesActivity.class);
-				toggleMenu(findViewById(R.layout.activity_equipa_cirurgica));
+				toggleMenu(findViewById(R.layout.activity_utentes));
 				startActivity(utentes);
 			}
 		});
+		
+		TextView btnDadosCirurgia = (TextView) root.findViewById(R.id.textViewMenuDadosCirurgia);
+		btnUtentes.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				if (HomeActivity.getCirurgia() != null) {
+					Intent dados = new Intent(getBaseContext(),
+							DadosCirurgia.class);
+					toggleMenu(findViewById(R.layout.activity_dados_cirurgia));
+
+					startActivity(dados);
+				} else {
+					Log.i("sgmc", "NÃ£o tem cirurgia escolhida");
+					root.toggleMenu();
+				}
+			}
+		});
+		
 
 		Button btnAdd = (Button) findViewById(R.id.btn_AdicionarProfissional);
 		btnAdd.setOnClickListener(new OnClickListener() {
@@ -415,7 +427,7 @@ public class EquipaCirurgica extends Activity implements Serializable {
 		}
 		else{
 			
-			Log.i("equipa","Não foi encontrada Equipa");}
+			Log.i("equipa","Nï¿½o foi encontrada Equipa");}
 	}
 
 	private int spinnerDaMeATuaPosicao(ArrayAdapter<ProfissonalSaude> adapter,
@@ -661,7 +673,7 @@ public class EquipaCirurgica extends Activity implements Serializable {
 		@Override
 		protected void onPostExecute(Boolean result) {
 			String a = (result ? "Equipa Adicionado com Sucesso!"
-					: "Equipa Não Adicionado!");
+					: "Equipa NÃ£o Adicionado!");
 			Toast.makeText(getApplicationContext(), a, Toast.LENGTH_LONG)
 					.show();
 			super.onPostExecute(result);
