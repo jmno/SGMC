@@ -1,4 +1,9 @@
-package com.example.mobilegsmc;
+package pt.mobilesgmc;
+
+import com.example.mobilegsmc.R;
+import com.example.mobilegsmc.R.id;
+import com.example.mobilegsmc.R.layout;
+import com.example.mobilegsmc.R.menu;
 
 import android.app.Activity;
 import android.os.Bundle;

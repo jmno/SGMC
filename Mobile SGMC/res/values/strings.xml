@@ -14,16 +14,19 @@
         <item></item>
     </string-array>
     <string-array name="menuDrawer">
+       
         <item>Equipa Cirurgica</item>
         <item>Utentes</item>
     </string-array>
     <string-array name="lateralidadeArray">
+        <item></item>
         <item>Direita</item>
         <item>Esquerda</item>
         <item>Bi Lateral</item>
         <item>Não Aplicável</item>
     </string-array>
     <string-array name="arrayClassificacaoASA">
+        <item></item>
         <item>ASA I</item>
         <item>ASA II</item>
         <item>ASA III</item>
@@ -31,30 +34,15 @@
         <item>ASA V</item>
         <item>ASA VI</item>
     </string-array>
-    <string-array name="arraySalas">
-        <item>Sala 1</item>
-        <item>Sala 2</item>
-        <item>Sala 3</item>
-        <item>Sala 4</item>
-        <item>Sala 5</item>
-        <item>Sala 6</item>
-        <item>Sala 7</item>
-        <item>Sala 8</item>
-        <item>Sala 9</item>
-        <item>Sala 10</item>
-        <item>Sala 11</item>
-        <item>Sala 12</item>
-        <item>Sala 13</item>
-        <item>Sala 14</item>
-        <item>Sala 15</item>
-    </string-array>
+    
     <string-array name="arrayEspecialidade">
-        <item>Anatomia Patológica</item>
+        <item></item>
+        <item>Anatomia Patologica</item>
         <item>Anestesiologia</item>
         <item>Cardiologia</item>
-        <item>Cirurgia Cardiotoráxica</item>
+        <item>Cirurgia Cardiotoraxica</item>
         <item>Estomatologia</item>
-        <item>Farmacologia Clínica</item>
+        <item>Farmacologia Clinica</item>
         <item>Medicina Interna</item>
         <item>Nefrologia</item>
         <item>Neurologia</item>
@@ -63,18 +51,19 @@
         <item>Urologia</item>
     </string-array>
     <string-array name="arrayTipoCirurgia">
+        <item></item>
         <item>Cirurgia bucomaxilofacial</item>
-        <item>Cirurgia oftalmológica</item>
-        <item>Cirurgia otorrinolaringológica</item>
-        <item>Cirurgia Cardiotoráxica</item>
-        <item>Cirurgia de cabeça e pescoço</item>
-        <item>Cirurgia cardíaca</item>
-        <item>Cirurgia urológica</item>
-        <item>Cirurgia oncológica</item>
-        <item>Cirurgia plástica</item>
+        <item>Cirurgia oftalmologica</item>
+        <item>Cirurgia otorrinolaringologica</item>
+        <item>Cirurgia Cardiotoraxica</item>
+        <item>Cirurgia de cabeca e pescoco</item>
+        <item>Cirurgia cardiaca</item>
+        <item>Cirurgia urologica</item>
+        <item>Cirurgia oncologica</item>
+        <item>Cirurgia plastica</item>
         <item>Cirurgia reconstrutiva</item>
-        <item>Cirurgia estética</item>
-        <item>Cirurgia robótica</item>
+        <item>Cirurgia estetica</item>
+        <item>Cirurgia robotica</item>
     </string-array>
     <string-array name="arrayDestino">
         <item>Bloco 1</item>

@@ -9,7 +9,7 @@ public class Utente {
 	private int id;
 	private String nome;
 	private int numProcesso;
-	private Date dataNascimento;
+	private String dataNascimento;
 	private String subsistema;
 	private String alergias;
 	private String patologias;
@@ -32,10 +32,10 @@ public class Utente {
 	public void setNumProcesso(int numProcesso) {
 		this.numProcesso = numProcesso;
 	}
-	public Date getDataNascimento() {
+	public String getDataNascimento() {
 		return dataNascimento;
 	}
-	public void setDataNascimento(Date dataNascimento) {
+	public void setDataNascimento(String dataNascimento) {
 		this.dataNascimento = dataNascimento;
 	}
 	public String getSubsistema() {
@@ -65,7 +65,7 @@ public class Utente {
 	
 	public Utente (){}
 	
-	public Utente (int id, String nome, int numProc, Date dataNasc, 
+	public Utente (int id, String nome, int numProc, String dataNasc, 
 			String subsistema, String alergias, String patologias, 
 			String antecedentesCirurgicos)
 	{

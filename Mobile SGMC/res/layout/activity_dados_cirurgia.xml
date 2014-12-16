@@ -69,7 +69,7 @@
                 <EditText
                     android:id="@+id/editTextCirurgia"
                     android:layout_width="wrap_content"
-                    android:layout_span="2"
+                    android:layout_span="6"
                     android:gravity="center" />
             </TableRow>
 
@@ -97,6 +97,25 @@
                     android:layout_span="2"
                     android:gravity="center"
                     android:text="   /        /     " />
+
+                <TextView
+                    android:id="@+id/TextView_hora"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="5dp"
+                    android:gravity="center"
+                    android:text="Hora:"
+                    android:textAlignment="center"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#000000"
+                    android:textStyle="italic" />
+
+                <TextView
+                    android:id="@+id/TextViewHoraCirurgia"
+                    android:layout_width="wrap_content"
+                    android:layout_span="2"
+                    android:gravity="center"
+                    android:text="   :        :     " />
             </TableRow>
 
             <TableRow
@@ -146,27 +165,8 @@
                     android:id="@+id/spinnerSala"
                     android:layout_width="wrap_content"
                     android:layout_height="fill_parent"
-                    android:layout_span="2"
+                    android:layout_span="6"
                     android:layout_weight="0"
-                    android:entries="@array/arraySalas" />
-                
-                <TextView
-                    android:id="@+id/txtview_BlocoOperatorio"
-                    android:layout_width="wrap_content"
-                    android:layout_height="fill_parent"
-                    android:layout_marginLeft="5dp"
-                    android:gravity="center"
-                    android:text="Bloco Operatório: "
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:textColor="#000000"
-                    android:textStyle="italic" />
-
-                <Spinner
-                    android:id="@+id/spinnerBloco"
-                    android:layout_width="wrap_content"
-                    android:layout_height="fill_parent"
-                    android:layout_span="2"
-                    android:layout_weight="0.5"
                      />
             </TableRow>
 
@@ -224,7 +224,7 @@
 
             <View
                 android:layout_height="2dip"
-                android:background="#FF0000" />
+                android:background="#7EC0EE" />
 
             <TableRow
                 android:id="@+id/tableRow8"
@@ -479,7 +479,7 @@
 
             <View
                 android:layout_height="2dip"
-                android:background="#FF0000" />
+                android:background="#7EC0EE" />
 
             <TableRow
                 android:id="@+id/tableRow14"
@@ -513,7 +513,7 @@
 
             <View
                 android:layout_height="2dip"
-                android:background="#FF0000" />
+                android:background="#7EC0EE" />
 
             <TableRow
                 android:id="@+id/tableRow15"
