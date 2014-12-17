@@ -25,7 +25,50 @@
         <item>Bi Lateral</item>
         <item>Não Aplicável</item>
     </string-array>
-    <string-array name="arrayClassificacaoASA">
+    <string-array name="arrayTipoAnestesia">
+        <item></item>
+        <item>Anestesia geral</item>
+        <item>Anestesia peridural</item>
+        <item>Anestesia raquidiana</item>
+        <item>Anestesia local</item>
+    </string-array>
+    
+     
+          <string-array name="arrayPlacaEletrodoNeutro">
+        <item></item>
+        <item>Sim</item>
+        <item>Nao</item>
+      
+    </string-array>
+    
+           <string-array name="arrayPosicaoOperatoria">
+        <item></item>
+        <item>Decubito dorsal</item>
+        <item>Decubito ventral</item>
+        <item>Decubito lateral</item>
+        <item>Posicao de litotomia</item>
+        <item>Posiçao trendelenburg</item>
+        <item>Posiçao trendelenburg Reverso</item>
+        <item>Posicao fowler </item>
+        <item>Posicao de canivete </item>
+       
+        
+      
+    </string-array>
+    
+           
+           <string-array name="arrayLocalizacao">
+        <item></item>
+        <item>Ante-Braco</item>
+        <item>Braco</item>
+        <item>Peito</item>
+        <item>Mao</item>
+        <item>Perna</item>
+        <item>Coxa</item>     
+      
+    </string-array>
+    
+     <string-array name="arrayClassificacaoASA">
         <item></item>
         <item>ASA I</item>
         <item>ASA II</item>
