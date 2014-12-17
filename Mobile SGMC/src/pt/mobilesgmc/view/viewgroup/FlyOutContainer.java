@@ -26,6 +26,7 @@ public class FlyOutContainer extends LinearLayout {
 		CLOSED, OPEN, CLOSING, OPENING
 	};
 
+	// Set Menu Margin
 	public void setMargin(int a){
 		menuMargin = a;
 	}
