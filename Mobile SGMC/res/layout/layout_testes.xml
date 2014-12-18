@@ -1,6 +1,13 @@
-<?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<pt.mobilesgmc.view.viewgroup.FlyOutContainer xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+   <include
+        layout="@layout/layout_menu" />
+   
+<ScrollView 
+    
     android:layout_width="fill_parent"
     android:layout_height="match_parent"
     android:fillViewport="true" >
@@ -9,7 +16,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="500dp"
+        android:layout_marginTop="400dp"
         android:orientation="vertical" >
 
         <View
@@ -39,7 +46,8 @@
                     android:id="@+id/spinner_TipoAnestesia"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1" />
+                    tools:listitem="@android:layout/simple_spinner_dropdown_item" />
+
             </TableRow>
         </TableLayout>
 
@@ -170,18 +178,12 @@
             android:layout_marginTop="15dp"
             android:background="#7EC0EE" />
 
-        <LinearLayout
+        <TextView
+            android:id="@+id/TextView02"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="vertical" >
-
-            <TextView
-                android:id="@+id/TextView02"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Sinais Vitais" />
-        </LinearLayout>
+            android:gravity="center_horizontal"
+            android:text="Sinais Vitais" />
 
         <View
             android:layout_width="match_parent"
@@ -298,18 +300,12 @@
             android:layout_marginTop="15dp"
             android:background="#7EC0EE" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/TextView03"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="vertical" >
-
-            <TextView
-                android:id="@+id/TextView03"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Medicação Administrada:" />
-        </LinearLayout>
+            android:gravity="center_horizontal"
+            android:text="Medicação Administrada:" />
 
         <View
             android:layout_width="match_parent"
@@ -411,18 +407,12 @@
             android:layout_marginTop="15dp"
             android:background="#7EC0EE" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/TextView031"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="vertical" >
-
-            <TextView
-                android:id="@+id/TextView031"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Administração de Sangue:" />
-        </LinearLayout>
+            android:gravity="center_horizontal"
+            android:text="Administração de Sangue:" />
 
         <View
             android:layout_width="match_parent"
@@ -431,30 +421,26 @@
             android:layout_marginTop="15dp"
             android:background="#7EC0EE" />
 
-        <TableLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal" >
 
-            <TableRow
-                android:id="@+id/tableRow6"
+            <TextView
+                android:id="@+id/textView4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center" >
+                android:text="Inicio de Transfusão:" />
 
-                <TextView
-                    android:id="@+id/textView4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Inicio de Transfusão:" />
+            <TextView
+                android:id="@+id/txtViewHoraInicioTransfusao"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dip"
+                android:text="  :  " />
 
-                <TextView
-                    android:id="@+id/txtViewHoraInicioTransfusao"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dip"
-                    android:text="  :  " />
-            </TableRow>
-        </TableLayout>
+        </LinearLayout>
 
         <TableLayout
             android:layout_width="match_parent"
@@ -526,31 +512,24 @@
             </TableRow>
         </TableLayout>
 
-        <TableLayout
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp" >
+            android:gravity="center_horizontal" >
 
-            <TableRow
-                android:id="@+id/tableRow1324"
+            <TextView
+                android:id="@+id/textView1234"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center" >
+                android:text="15 Minutos após:" />
 
-                <TextView
-                    android:id="@+id/textView1234"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="15 Minutos após:" />
-
-                <TextView
-                    android:id="@+id/txtViewHora15MInicioTransfusao"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dip"
-                    android:text="  :  " />
-            </TableRow>
-        </TableLayout>
+            <TextView
+                android:id="@+id/txtViewHora15MInicioTransfusao"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dip"
+                android:text="  :  " />
+        </LinearLayout>
 
         <TableLayout
             android:layout_width="match_parent"
@@ -560,7 +539,7 @@
                 android:id="@+id/tableRow81"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center" >
+                android:gravity="center|center_horizontal" >
 
                 <TextView
                     android:id="@+id/textView51"
@@ -625,13 +604,14 @@
         <TableLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:layout_marginTop="15dip" >
 
             <TableRow
                 android:id="@+id/tableRow14"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center" >
+                android:gravity="center_horizontal" >
 
                 <TextView
                     android:id="@+id/textView124"
@@ -725,18 +705,12 @@
             android:layout_marginTop="15dp"
             android:background="#7EC0EE" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/TextView0319"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="vertical" >
-
-            <TextView
-                android:id="@+id/TextView0319"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Balanço Hídrico:" />
-        </LinearLayout>
+            android:gravity="center_horizontal"
+            android:text="Balanço Hídrico:" />
 
         <View
             android:layout_width="match_parent"
@@ -838,18 +812,12 @@
             android:layout_marginTop="15dp"
             android:background="#7EC0EE" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/TextView0231"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="vertical" >
-
-            <TextView
-                android:id="@+id/TextView0231"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Eliminação:" />
-        </LinearLayout>
+            android:gravity="center_horizontal"
+            android:text="Eliminação:" />
 
         <View
             android:layout_width="match_parent"
@@ -867,7 +835,7 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
+                android:layout_gravity="center_horizontal"
                 android:layout_weight="1"
                 android:gravity="center"
                 android:orientation="vertical" >
@@ -1034,6 +1002,7 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
                 android:layout_marginLeft="75dip"
                 android:layout_weight="1"
                 android:gravity="center"
@@ -1207,6 +1176,7 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:gravity="center"
             android:orientation="horizontal" >
 
@@ -1226,6 +1196,7 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:gravity="center"
             android:orientation="horizontal" >
 
@@ -1260,6 +1231,7 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:layout_marginTop="15dip"
             android:gravity="center"
             android:orientation="horizontal" >
@@ -1281,7 +1253,7 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:layout_gravity="center_horizontal"
             android:layout_marginTop="15dip"
             android:gravity="center"
             android:orientation="horizontal" >
@@ -1324,7 +1296,7 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:layout_gravity="center_horizontal"
             android:gravity="center"
             android:orientation="horizontal" >
 
@@ -1357,10 +1329,10 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dip"
-            android:gravity="center"
+            android:gravity="center_horizontal"
             android:orientation="horizontal" >
 
             <TextView
@@ -1387,14 +1359,16 @@
                 android:id="@+id/spinnerPlacaElectrodoLocalizacao"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:entries="@array/arrayLocalizacao" />
+                android:entries="@array/arrayLocalizacao"
+                tools:listitem="@android:layout/simple_spinner_dropdown_item" />
+
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dip"
-            android:gravity="center"
+            android:gravity="center_horizontal"
             android:orientation="horizontal" >
 
             <TextView
@@ -1405,9 +1379,9 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
+            android:gravity="center_horizontal"
             android:orientation="horizontal" >
 
             <TextView
@@ -1440,3 +1414,4 @@
     </LinearLayout>
 
 </ScrollView>
+</pt.mobilesgmc.view.viewgroup.FlyOutContainer>
