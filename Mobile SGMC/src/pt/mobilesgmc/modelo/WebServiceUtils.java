@@ -164,9 +164,10 @@ public class WebServiceUtils {
 
 		HttpPost httpPost = new HttpPost(URL + "addProfissionalSaude?token="
 				+ token);
-		StringEntity se = new StringEntity(jsonObject.toString());
-
+		StringEntity se = new StringEntity(jsonObject.toString(),"UTF-8");
 		se.setContentType("text/json");
+		se.setContentType("application/json;charset=UTF-8");
+
 		httpPost.setEntity(se);
 		BasicHttpResponse httpResponse = (BasicHttpResponse) client
 				.execute(httpPost);

@@ -1,38 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TableRow xmlns:android="http://schemas.android.com/apk/res/android"
-                        android:id="@+id/tableRow003"
+                        android:id="@+id/tableRowBalancoHidrico"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" >
 
-                        <EditText
-                            android:id="@+id/editTextsoroterapia5"
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:layout_span="0"
-                            android:gravity="center"
-                            android:text="             " />
+                    
+                            <EditText
+                                android:id="@+id/editTextSoroterapiaBalancoHidrico"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_column="0" />
 
-                        <EditText
-                            android:id="@+id/editTextsoroterapia6"
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:layout_span="0"
-                            android:gravity="center"
-                            android:text="             " />
+                            <CheckBox
+                                android:id="@+id/checkBoxBalancoHidrico1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_column="1"
+                                android:layout_marginLeft="23dp" />
 
-                        <EditText
-                            android:id="@+id/editTextsoroterapia7"
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:layout_span="0"
-                            android:gravity="center"
-                            android:text="             " />
+                            <CheckBox
+                                android:id="@+id/checkBoxBalancoHidrico2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_column="2"
+                                android:layout_marginLeft="23dp" />
 
-                        <EditText
-                            android:id="@+id/editTextsoroterapia8"
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:layout_span="0"
-                            android:gravity="center"
-                            android:text="             " />
-                    </TableRow>
+                            <CheckBox
+                                android:id="@+id/checkBoxBalancoHidrico3"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_column="3"
+                                android:layout_marginLeft="23dp" />
+                        </TableRow>

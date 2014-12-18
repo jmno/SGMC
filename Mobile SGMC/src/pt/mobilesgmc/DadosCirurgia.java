@@ -105,7 +105,7 @@ public class DadosCirurgia extends Activity {
 
 		// idEquipa = Integer.parseInt(PreferenceManager
 		// .getDefaultSharedPreferences(getApplicationContext())
-		// .getString("idEquipa", "-1"));
+		// .getString("icdEquipa", "-1"));
 
 		scrollDadosCirurgia = (ScrollView) root
 				.findViewById(R.id.scrollDadosCirurgia);
@@ -928,7 +928,7 @@ public class DadosCirurgia extends Activity {
 		@Override
 		protected void onPostExecute(Boolean result) {
 			String a = (result ? "Cirurgia Alterada com Sucesso!"
-					: "Cirurgoa Não Alterada!");
+					: "Cirurgoa Nï¿½o Alterada!");
 			if (result) {
 				HomeActivity.setCirurgia(cir);
 

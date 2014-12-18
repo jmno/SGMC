@@ -67,6 +67,7 @@ public class HomeActivity extends Activity {
 
 		this.root = (FlyOutContainer) this.getLayoutInflater().inflate(
 				R.layout.activity_home, null);
+		
 		Display display = getWindowManager().getDefaultDisplay();
 		DisplayMetrics outMetrics = new DisplayMetrics();
 		display.getMetrics(outMetrics);
@@ -224,7 +225,7 @@ public class HomeActivity extends Activity {
 
 					startActivity(dados);
 				} else {
-					Log.i("sgmc", "Não tem cirurgia escolhida");
+					Log.i("sgmc", "Nï¿½o tem cirurgia escolhida");
 					root.toggleMenu();
 				}
 			}
@@ -255,7 +256,7 @@ public class HomeActivity extends Activity {
 					startActivity(dados);
 					
 				} else {
-					Log.i("sgmc", "Não tem cirurgia escolhida");
+					Log.i("sgmc", "Nï¿½o tem cirurgia escolhida");
 					root.toggleMenu();
 				}
 				

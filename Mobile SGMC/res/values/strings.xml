@@ -38,6 +38,19 @@
         <item></item>
         <item>Sim</item>
         <item>Nao</item>
+        </string-array>
+        <string-array name="arrayCateterismovisical">
+        <item></item>
+        <item>Sonda de Nelaton</item>
+        <item>Sonda de Foley</item>
+        <item>Sonda de Owen</item>
+      
+    </string-array>
+    
+          <string-array name="arrayNasogastrica">
+        <item></item>
+        <item>Sonda Nasogástrica</item>
+        
       
     </string-array>
     

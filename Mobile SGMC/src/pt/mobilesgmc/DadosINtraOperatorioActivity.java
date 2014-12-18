@@ -2,15 +2,28 @@ package pt.mobilesgmc;
 
 import java.util.Calendar;
 
+import pt.mobilesgmc.modelo.OnSwipeTouchListener;
+import pt.mobilesgmc.view.viewgroup.FlyOutContainer;
+
 import android.app.Activity;
 import android.app.TimePickerDialog;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
+import android.provider.Telephony.Sms.Conversations;
+import android.util.DisplayMetrics;
+import android.util.Log;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -39,7 +52,7 @@ public class DadosINtraOperatorioActivity extends Activity {
 	private EditText editTextAgulhaPlCalibre;
 	private EditText editTextTipo;
 	private EditText editTextCalibre;
-	private EditText editTextLocalizacao;
+	private EditText editTextLocalizacaoAcessoVenoso;
 	private TextView textViewHoraSinais1;
 	private EditText editTextTa1;
 	private EditText editTextFc1;
@@ -90,116 +103,320 @@ public class DadosINtraOperatorioActivity extends Activity {
 	private Spinner spinnerPlacaEletrodo;
 	private EditText editTextPecaBiopsiaDescricao;
 	private EditText editTextPecaBiopsiaLaboratorio;
+	private Spinner spinnerLocalizacaoEletrodo;
 	private TextView textoHora;
-
+	private int tamanhoPadding;
+	private LinearLayout layoutIntra;
+	FlyOutContainer root;
+	String token;
+	private ScrollView scrollLayoutDados;
+	private Button buttonGuardarDadosIntraOperatorio;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.layout_testes);
-		
-//		setContentView(R.layout.aa);
-//		setContentView(R.layout.activity_dados_intra_operatorio);
-		
-//		spinnerTipoAnestesia = (Spinner) findViewById(R.id.spinnerTipoAnestesia);
-//		editTextTET = (EditText) findViewById(R.id.editTextTET);
-//		editTextML = (EditText) findViewById(R.id.editTextML);
-//		editTextAgulhaPlCalibre = (EditText) findViewById(R.id.editTextAgulhaPLCalibre);
-//		editTextTipo = (EditText) findViewById(R.id.editTextTipo);
-//		editTextCalibre = (EditText) findViewById(R.id.editTextCalibre);
-//		editTextLocalizacao = (EditText) findViewById(R.id.editTextLocalizacao);
-//		textViewHoraSinais1 = (TextView) findViewById(R.id.textViewHora1);
-//		editTextTa1 = (EditText) findViewById(R.id.editTextTa);
-//		editTextFc1 = (EditText) findViewById(R.id.editTextFc);
-//		editTextSpo2_1 = (EditText) findViewById(R.id.editTextSpo2);
-//		editTextTemp1 = (EditText) findViewById(R.id.editTexttemp);
-//		editTextTa3 = (EditText) findViewById(R.id.editTextTa3);
-//		editTextFc3 = (EditText) findViewById(R.id.editTextFc3);
-//		editTextSpo2_3 = (EditText) findViewById(R.id.editTextSpo23);
-//		editTextTemp3 = (EditText) findViewById(R.id.editTexttemp3);
-//		textViewHoraFarmaco1 = (TextView) findViewById(R.id.textViewHoraFaramaco1);
-//		textViewHoraFarmaco2 = (TextView) findViewById(R.id.textViewHoraFaramaco2);
-//		textViewHoraFarmaco3 = (TextView) findViewById(R.id.textViewHoraFaramaco3);
-//		editTextFarmaco1 = (EditText) findViewById(R.id.editTextFaramaco1);
-//		editTextFarmaco2 = (EditText) findViewById(R.id.editTextFaramaco2);
-//		editTextFarmaco3 = (EditText) findViewById(R.id.editTextFaramaco3);
-//		editTextFarmaco4 = (EditText) findViewById(R.id.editTextFaramaco4);
-//		editTextFarmaco5 = (EditText) findViewById(R.id.editTextFaramaco5);
-//		editTextFarmaco6 = (EditText) findViewById(R.id.editTextFaramaco6);
-//		editTextFarmaco7 = (EditText) findViewById(R.id.editTextFaramaco7);
-//		editTextFarmaco8 = (EditText) findViewById(R.id.editTextFaramaco8);
-//		textViewHoraInicioTransfusao= (TextView) findViewById(R.id.textViewInicioTransfusao);
-//		editTextTaInicioTransfusao = (EditText) findViewById(R.id.editTexttaInicioTransfusao);
-//		editTexfcInicioTransfusao = (EditText) findViewById(R.id.editTextfcInicioTransfusao);
-//		editTextspo2InicioTransfusao =  (EditText) findViewById(R.id.editTextspo2InicioTransfusao);
-//		textViewHora15MinAposTransfusao= (TextView) findViewById(R.id.textView15MinAposTransfusao);
-//		editTextTa15MinTransfusao = (EditText) findViewById(R.id.editTextta15MinAposTransfusao);
-//		editTexfc15MinTransfusao= (EditText) findViewById(R.id.editTextfc15MinAposTransfusao);
-//		editTextspo215MinTransfusao =  (EditText) findViewById(R.id.editTextspo215MinAposTransfusao);
-//		textViewHoraFimTransfusao= (TextView) findViewById(R.id.textViewFimMinAposTransfusao);
-//		editTextTaFimTransfusao = (EditText) findViewById(R.id.editTexttaFimMinAposTransfusao);
-//		editTexfcFimTransfusao= (EditText) findViewById(R.id.editTextfcFimMinAposTransfusao);
-//		editTextspo2FimTransfusao =  (EditText) findViewById(R.id.editTextspo2FimMinAposTransfusao);
-//		spinnerPosicaoOperatoria = (Spinner) findViewById(R.id.spinnerPosicaoOperatoria);
-//		editTextAlivioZonaPressao= (EditText) findViewById(R.id.editTextaliviosZonaPressao);
-//		editTextLocalAlivioZonaPressao = (EditText) findViewById(R.id.editTextLocalaliviosZonaPressao);
-//		spinnerMantaTermica = (Spinner) findViewById(R.id.spinnerMantaTermicaProtecao);
-//		editTextLocalMantaTermica = (EditText) findViewById(R.id.editTextLocalMantaTermicaProtecao);
-//		spinnerLocalizacaoGarrote = (Spinner) findViewById(R.id.spinnerLocalizacao);
-//		textViewHoraInicioGarrote = (TextView) findViewById(R.id.textViewInicio);
-//		textViewHoraFimGarrote = (TextView) findViewById(R.id.textViewFim);
-//		editTextPressaoGarrote = (EditText) findViewById(R.id.editTextPressao);
-//		spinnerPlacaEletrodo = (Spinner) findViewById(R.id.spinnerPlacaEletrodoNeutro);
-//		editTextPecaBiopsiaDescricao = (EditText) findViewById(R.id.editTextDescricao);
-//		editTextPecaBiopsiaLaboratorio =(EditText) findViewById(R.id.editTextLaboratorio);
-//		
-//		
-//	//	carregarTimes();
-//		
-//		tableSinaisVitais = (TableLayout) findViewById(R.id.table_layout_sinais_vitais);
-//		tableMedicacaoAdministrada = (TableLayout) findViewById(R.id.table_layout_medicacao_administrada);
-//		tableBalancoHidrico = (TableLayout) findViewById(R.id.tablelayout_balanco_hidrico);
-//		tableDrenagemVesical = (TableLayout) findViewById(R.id.tablelayout_drenagem_vesical);
-//		tableDrenagemNasogastrica = (TableLayout) findViewById(R.id.tablelayout_drenagem_nasogastrica);
-//		texto = (TextView) findViewById(R.id.txtview_sinaisVitais);
-//		texto.setOnClickListener(new OnClickListener() {
-//
-//			@Override
-//			public void onClick(View v) {
-//				addTableRowSinaisVitais();
-//				addTableRowMedicacaoAdministrada();
-//				addTableRowBalancoHidrico();
-//				addTableRowDrenagemVesical();
-//				addTableRowDrenagemNasogastrica();
-//			}
-//		});
+		setContentView(R.layout.activity_dados_intra_operatorio);
+
+		token = PreferenceManager.getDefaultSharedPreferences(this).getString(
+				"token", "defaultStringIfNothingFound");
+
+		this.root = (FlyOutContainer) this.getLayoutInflater().inflate(
+				R.layout.activity_dados_intra_operatorio, null);
+
+		Display display = getWindowManager().getDefaultDisplay();
+		DisplayMetrics outMetrics = new DisplayMetrics();
+		display.getMetrics(outMetrics);
+
+		float density = getResources().getDisplayMetrics().density;
+		float dpWidth = outMetrics.widthPixels / density;
+		int margin = (80 * (int) dpWidth) / 100;
+		root.setMargin(margin);
+		this.setContentView(root);
+
+		scrollLayoutDados = (ScrollView) root
+				.findViewById(R.id.scrollViewDadosIntraOperatorio);
+
+		scrollLayoutDados.setOnTouchListener(new OnSwipeTouchListener(
+				getApplicationContext()) {
+			public void onSwipeRight() {
+				String estado = root.getState().toString();
+				if (estado.equals("CLOSED"))
+					toggleMenu(findViewById(R.layout.activity_equipa_cirurgica));
+				// Toast.makeText(SampleActivity.this, "right",
+				// Toast.LENGTH_SHORT).show();
+			}
+
+			public void onSwipeLeft() {
+				String estado = root.getState().toString();
+				if (estado.equals("OPEN"))
+					toggleMenu(findViewById(R.layout.activity_equipa_cirurgica));
+			}
+
+			public boolean onTouch(View v, MotionEvent event) {
+				return gestureDetector.onTouchEvent(event);
+			}
+
+		});
+
+		spinnerTipoAnestesia = (Spinner) findViewById(R.id.spinner_TipoAnestesia);
+		editTextTET = (EditText) findViewById(R.id.editText_TETn);
+		editTextML = (EditText) findViewById(R.id.editText_ML_n);
+		editTextAgulhaPlCalibre = (EditText) findViewById(R.id.editText_Agulha_PL_Calibre);
+		editTextTipo = (EditText) findViewById(R.id.editText_Tipo);
+		editTextCalibre = (EditText) findViewById(R.id.editText_Calibre);
+		editTextLocalizacaoAcessoVenoso = (EditText) findViewById(R.id.editText_Localizacao);
+
+		textViewHoraInicioTransfusao = (TextView) findViewById(R.id.txtViewHoraInicioTransfusao);
+		editTextTaInicioTransfusao = (EditText) findViewById(R.id.editTextTAAdministracaoSangue);
+		editTexfcInicioTransfusao = (EditText) findViewById(R.id.editTextFCAdministracaoSangue);
+		editTextspo2InicioTransfusao = (EditText) findViewById(R.id.editTextSPAdministracaoSangue);
+		textViewHora15MinAposTransfusao = (TextView) findViewById(R.id.txtViewHora15MInicioTransfusao);
+		editTextTa15MinTransfusao = (EditText) findViewById(R.id.editTextTA15MAdministracaoSangue);
+		editTexfc15MinTransfusao = (EditText) findViewById(R.id.editTextFC15MAdministracaoSangue);
+		editTextspo215MinTransfusao = (EditText) findViewById(R.id.editTextSP15MAdministracaoSangue);
+		textViewHoraFimTransfusao = (TextView) findViewById(R.id.txtViewHora15MInicioTransfusao);
+		editTextTaFimTransfusao = (EditText) findViewById(R.id.editTextTAFMAdministracaoSangue);
+		editTexfcFimTransfusao = (EditText) findViewById(R.id.editTextFCFMAdministracaoSangue);
+		editTextspo2FimTransfusao = (EditText) findViewById(R.id.editTextSPFMAdministracaoSangue);
+		spinnerPosicaoOperatoria = (Spinner) findViewById(R.id.spinnerPosicOperatoria);
+		editTextAlivioZonaPressao = (EditText) findViewById(R.id.editTextZonasdePressao);
+		editTextLocalAlivioZonaPressao = (EditText) findViewById(R.id.editTextLocal);
+		spinnerMantaTermica = (Spinner) findViewById(R.id.spinnerMantaTermica);
+		editTextLocalMantaTermica = (EditText) findViewById(R.id.editTextLocalMantaTermica);
+		spinnerLocalizacaoGarrote = (Spinner) findViewById(R.id.spinnerLocalGarrote);
+		textViewHoraInicioGarrote = (TextView) findViewById(R.id.txtViewHoraInicioGarrote);
+		textViewHoraFimGarrote = (TextView) findViewById(R.id.txtViewHoraFimGarrote);
+		editTextPressaoGarrote = (EditText) findViewById(R.id.editTextPressaoGarrote);
+		spinnerPlacaEletrodo = (Spinner) findViewById(R.id.spinnerPlacaElectrodo);
+		spinnerLocalizacaoEletrodo = (Spinner) findViewById(R.id.spinnerLocalGarrote);
+		editTextPecaBiopsiaDescricao = (EditText) findViewById(R.id.editTextDescricaoBiopsia);
+		editTextPecaBiopsiaLaboratorio = (EditText) findViewById(R.id.editTextLaboratorioBiopsia);
+		layoutIntra = (LinearLayout) findViewById(R.id.layoutIntra);
+		tamanhoPadding = layoutIntra.getPaddingTop();
+
+		// carregarTimes();
+
+		tableSinaisVitais = (TableLayout) findViewById(R.id.tableLayout_SinaisVitais);
+		tableMedicacaoAdministrada = (TableLayout) findViewById(R.id.tableLayout_MedicacaoAdministrada);
+		tableBalancoHidrico = (TableLayout) findViewById(R.id.tableLayout_BalancoHidrico);
+		tableDrenagemVesical = (TableLayout) findViewById(R.id.tableLayout_DrenagemCataterismo);
+		tableDrenagemNasogastrica = (TableLayout) findViewById(R.id.tableLayout_DrenagemNasogastrica);
+		// texto = (TextView) findViewById(R.id.txtview_sinaisVitais);
+		// texto.setOnClickListener(new OnClickListener() {
+		//
+		// @Override
+		// public void onClick(View v) {
+		// addTableRowSinaisVitais();
+		// addTableRowMedicacaoAdministrada();
+		// addTableRowBalancoHidrico();
+		// addTableRowDrenagemVesical();
+		// addTableRowDrenagemNasogastrica();
+		// }
+		// });
+
+		buttonGuardarDadosIntraOperatorio = (Button) findViewById(R.id.buttonGuardarDadosIntraOperatorio);
+		buttonGuardarDadosIntraOperatorio
+				.setOnClickListener(new OnClickListener() {
+
+					@Override
+					public void onClick(View v) {
+						// TODO Auto-generated method stub
+						String a = "";
+						// a +=
+						// spinnerTipoAnestesia.getSelectedItem().toString();
+						// a += editTextTET.getText().toString();
+						// a += editTextML.getText().toString();
+						// a += editTextAgulhaPlCalibre.getText();
+						// a += editTextTipo.getText().toString();
+						// a += editTextCalibre.getText().toString();
+						// a +=
+						// editTextLocalizacaoAcessoVenoso.getText().toString();
+						// a +=
+						// textViewHoraInicioTransfusao.getText().toString();
+						
+						a += getSinaisVitais();
+						a += getMedicacaoAdministrada();
+						a += getBalancoHidrico();
+						a += getDrenagemVesical();
+						a += getDrenagemNasoastrica();
+						
+						Log.i("IntraOperatorio", a);
+					}
+				});
 	}
 
-//	public void setTimeHoraSinalVital(View v)
-//	{
-//		final Calendar c = Calendar.getInstance();
-//		mHour = c.get(Calendar.HOUR_OF_DAY);
-//		mMinute = c.get(Calendar.MINUTE);
-//		mSecond = c.get(Calendar.SECOND);
-//		textoHora = (TextView) v;
-//		
-//
-//		// Launch Date Picker Dialog
-//		TimePickerDialog dpd = new TimePickerDialog(
-//				DadosINtraOperatorioActivity.this,
-//				new TimePickerDialog.OnTimeSetListener() {
-//
-//					@Override
-//					public void onTimeSet(TimePicker view,
-//							int hourOfDay, int minute) {
-//						textoHora.setText(hourOfDay + ":"
-//								+ minute + ":00");
-//
-//					}
-//				}, mHour, mMinute, true);
-//
-//		dpd.show();
-//	}
+	public String getSinaisVitais() {
+		String a = "";
+		for (int i = 1, j = tableSinaisVitais.getChildCount(); i < j; i++) {
+			TableRow row = (TableRow) tableSinaisVitais.getChildAt(i);
+
+			TextView texto = (TextView) row.getChildAt(0);
+			EditText texto1 = (EditText) row.getChildAt(1);
+			EditText texto2 = (EditText) row.getChildAt(2);
+			EditText texto3 = (EditText) row.getChildAt(3);
+			EditText texto4 = (EditText) row.getChildAt(4);
+			a += "\n";
+			a += texto.getText();
+			a += "\n";
+			a += texto1.getText();
+			a += "\n";
+			a += texto2.getText();
+			a += "\n";
+			a += texto3.getText();
+			a += "\n";
+			a += texto4.getText();
+			a += "\n";
+
+		}
+		return a;
+	}
+
+	public String getMedicacaoAdministrada() {
+		String a = "";
+		for (int i = 0, j = tableMedicacaoAdministrada.getChildCount(); i < j; i++) {
+			TableRow row = (TableRow) tableMedicacaoAdministrada.getChildAt(i);
+
+			if (i == 0) {
+				TextView hora1 = (TextView) row.getChildAt(1);
+				TextView hora2 = (TextView) row.getChildAt(2);
+				TextView hora3 = (TextView) row.getChildAt(3);
+				a += "\n";
+				a += hora1.getText();
+				a += "\n";
+				a += hora2.getText();
+				a += "\n";
+				a += hora3.getText();
+			}
+
+			else {
+				EditText texto = (EditText) row.getChildAt(0);
+				CheckBox check1 = (CheckBox) row.getChildAt(1);
+				CheckBox check2 = (CheckBox) row.getChildAt(2);
+				CheckBox check3 = (CheckBox) row.getChildAt(3);
+				a += "\n";
+				a += texto.getText();
+				a += "\n";
+				a += String.valueOf(check1.isChecked());
+				a += "\n";
+				a += String.valueOf(check2.isChecked());
+				a += "\n";
+				a += String.valueOf(check3.isChecked());
+				a += "\n";
+			}
+
+		}
+		return a;
+	}
+	
+	public String getBalancoHidrico() {
+		String a = "";
+		for (int i = 0, j = tableBalancoHidrico.getChildCount(); i < j; i++) {
+			TableRow row = (TableRow) tableBalancoHidrico.getChildAt(i);
+
+			if (i == 0) {
+				TextView hora1 = (TextView) row.getChildAt(1);
+				TextView hora2 = (TextView) row.getChildAt(2);
+				TextView hora3 = (TextView) row.getChildAt(3);
+				a += "\n";
+				a += hora1.getText();
+				a += "\n";
+				a += hora2.getText();
+				a += "\n";
+				a += hora3.getText();
+			}
+
+			else {
+				EditText texto = (EditText) row.getChildAt(0);
+				CheckBox check1 = (CheckBox) row.getChildAt(1);
+				CheckBox check2 = (CheckBox) row.getChildAt(2);
+				CheckBox check3 = (CheckBox) row.getChildAt(3);
+				a += "\n";
+				a += texto.getText();
+				a += "\n";
+				a += String.valueOf(check1.isChecked());
+				a += "\n";
+				a += String.valueOf(check2.isChecked());
+				a += "\n";
+				a += String.valueOf(check3.isChecked());
+				a += "\n";
+			}
+
+		}
+		return a;
+	}
+	public String getDrenagemVesical() {
+		String a = "";
+		for (int i = 1, j = tableDrenagemVesical.getChildCount(); i < j; i++) {
+			TableRow row = (TableRow) tableDrenagemVesical.getChildAt(i);
+
+			TextView texto = (TextView) row.getChildAt(0);
+			EditText texto1 = (EditText) row.getChildAt(1);
+			EditText texto2 = (EditText) row.getChildAt(2);
+			
+			a += "\n";
+			a += texto.getText();
+			a += "\n";
+			a += texto1.getText();
+			a += "\n";
+			a += texto2.getText();
+			a += "\n";
+			
+
+		}
+		return a;
+	}
+	
+	public String getDrenagemNasoastrica() {
+		String a = "";
+		for (int i = 1, j = tableDrenagemNasogastrica.getChildCount(); i < j; i++) {
+			TableRow row = (TableRow) tableDrenagemNasogastrica.getChildAt(i);
+
+			TextView texto = (TextView) row.getChildAt(0);
+			EditText texto1 = (EditText) row.getChildAt(1);
+			EditText texto2 = (EditText) row.getChildAt(2);
+			
+			a += "\n";
+			a += texto.getText();
+			a += "\n";
+			a += texto1.getText();
+			a += "\n";
+			a += texto2.getText();
+			a += "\n";
+			
+
+		}
+		return a;
+	}
+	
+	
+
+	public void toggleMenu(View v) {
+		this.root.toggleMenu();
+	}
+
+	public void setTimeHoraSinalVital(View v) {
+		final Calendar c = Calendar.getInstance();
+		mHour = c.get(Calendar.HOUR_OF_DAY);
+		mMinute = c.get(Calendar.MINUTE);
+		mSecond = c.get(Calendar.SECOND);
+		textoHora = (TextView) v;
+
+		// Launch Date Picker Dialog
+		TimePickerDialog dpd = new TimePickerDialog(
+				DadosINtraOperatorioActivity.this,
+				new TimePickerDialog.OnTimeSetListener() {
+
+					@Override
+					public void onTimeSet(TimePicker view, int hourOfDay,
+							int minute) {
+						textoHora.setText(hourOfDay + ":" + minute + ":00");
+
+					}
+				}, mHour, mMinute, true);
+
+		dpd.show();
+	}
+
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
@@ -215,235 +432,91 @@ public class DadosINtraOperatorioActivity extends Activity {
 		return super.onOptionsItemSelected(item);
 	}
 
-//	public void addTableRowSinaisVitais() {
-//		tableRowSinaisVitais = new TableRow(DadosINtraOperatorioActivity.this);
-//		tableRowSinaisVitais = (TableRow) LayoutInflater.from(
-//				DadosINtraOperatorioActivity.this).inflate(
-//				R.layout.layout_row_sinais_vitais, null);
-//
-//		tableSinaisVitais.addView(tableRowSinaisVitais);
-//	}
-//
-//	public void addTableRowMedicacaoAdministrada() {
-//		tableRowMedicacaoAdministrada = new TableRow(
-//				DadosINtraOperatorioActivity.this);
-//		tableRowMedicacaoAdministrada = (TableRow) LayoutInflater.from(
-//				DadosINtraOperatorioActivity.this).inflate(
-//				R.layout.layout_row_medicacao_administrada, null);
-//
-//		tableMedicacaoAdministrada.addView(tableRowMedicacaoAdministrada);
-//	}
-//
-//	public void addTableRowBalancoHidrico() {
-//		tableRowBalancoHidrico = new TableRow(DadosINtraOperatorioActivity.this);
-//		tableRowBalancoHidrico = (TableRow) LayoutInflater.from(
-//				DadosINtraOperatorioActivity.this).inflate(
-//				R.layout.layout_row_balanco_hidrico, null);
-//
-//		tableBalancoHidrico.addView(tableRowBalancoHidrico);
-//	}
-//
-//	public void addTableRowDrenagemVesical() {
-//		tableRowDrenagemVesical = new TableRow(
-//				DadosINtraOperatorioActivity.this);
-//		tableRowDrenagemVesical = (TableRow) LayoutInflater.from(
-//				DadosINtraOperatorioActivity.this).inflate(
-//				R.layout.layout_row_drenagem_vesical, null);
-//
-//		tableDrenagemVesical.addView(tableRowDrenagemVesical);
-//	}
-//
-//	public void addTableRowDrenagemNasogastrica() {
-//		tableRowDrenagemNasogastrica = new TableRow(
-//				DadosINtraOperatorioActivity.this);
-//		tableRowDrenagemNasogastrica = (TableRow) LayoutInflater.from(
-//				DadosINtraOperatorioActivity.this).inflate(
-//				R.layout.layout_row_drenagem_nasogastrica, null);
-//
-//		tableDrenagemNasogastrica.addView(tableRowDrenagemNasogastrica);
-//
-//	}
-//
-//	public void carregarTimes() {
-//
-//		textViewHoraFarmaco1.setOnClickListener(new OnClickListener() {
-//
-//			@Override
-//			public void onClick(View v) {
-//				// TODO Auto-generated method stub
-//				final Calendar c = Calendar.getInstance();
-//				mHour = c.get(Calendar.HOUR_OF_DAY);
-//				mMinute = c.get(Calendar.MINUTE);
-//				mSecond = c.get(Calendar.SECOND);
-//
-//				// Launch Date Picker Dialog
-//				TimePickerDialog dpd = new TimePickerDialog(
-//						DadosINtraOperatorioActivity.this,
-//						new TimePickerDialog.OnTimeSetListener() {
-//
-//							@Override
-//							public void onTimeSet(TimePicker view,
-//									int hourOfDay, int minute) {
-//								textViewHoraFarmaco1.setText(hourOfDay + ":"
-//										+ minute + ":00");
-//
-//							}
-//						}, mHour, mMinute, true);
-//
-//				dpd.show();
-//
-//			}
-//		});
-//		
-//		textViewHoraFarmaco2.setOnClickListener(new OnClickListener() {
-//
-//			@Override
-//			public void onClick(View v) {
-//				// TODO Auto-generated method stub
-//				final Calendar c = Calendar.getInstance();
-//				mHour = c.get(Calendar.HOUR_OF_DAY);
-//				mMinute = c.get(Calendar.MINUTE);
-//				mSecond = c.get(Calendar.SECOND);
-//
-//				// Launch Date Picker Dialog
-//				TimePickerDialog dpd = new TimePickerDialog(
-//						DadosINtraOperatorioActivity.this,
-//						new TimePickerDialog.OnTimeSetListener() {
-//
-//							@Override
-//							public void onTimeSet(TimePicker view,
-//									int hourOfDay, int minute) {
-//								textViewHoraFarmaco2.setText(hourOfDay + ":"
-//										+ minute + ":00");
-//
-//							}
-//						}, mHour, mMinute, true);
-//
-//				dpd.show();
-//
-//			}
-//		});
-//		textViewHoraFarmaco3.setOnClickListener(new OnClickListener() {
-//
-//			@Override
-//			public void onClick(View v) {
-//				// TODO Auto-generated method stub
-//				final Calendar c = Calendar.getInstance();
-//				mHour = c.get(Calendar.HOUR_OF_DAY);
-//				mMinute = c.get(Calendar.MINUTE);
-//				mSecond = c.get(Calendar.SECOND);
-//
-//				// Launch Date Picker Dialog
-//				TimePickerDialog dpd = new TimePickerDialog(
-//						DadosINtraOperatorioActivity.this,
-//						new TimePickerDialog.OnTimeSetListener() {
-//
-//							@Override
-//							public void onTimeSet(TimePicker view,
-//									int hourOfDay, int minute) {
-//								textViewHoraFarmaco3.setText(hourOfDay + ":"
-//										+ minute + ":00");
-//
-//							}
-//						}, mHour, mMinute, true);
-//
-//				dpd.show();
-//
-//			}
-//		});
-//		
-//		textViewHoraInicioTransfusao.setOnClickListener(new OnClickListener() {
-//
-//			@Override
-//			public void onClick(View v) {
-//				// TODO Auto-generated method stub
-//				final Calendar c = Calendar.getInstance();
-//				mHour = c.get(Calendar.HOUR_OF_DAY);
-//				mMinute = c.get(Calendar.MINUTE);
-//				mSecond = c.get(Calendar.SECOND);
-//
-//				// Launch Date Picker Dialog
-//				TimePickerDialog dpd = new TimePickerDialog(
-//						DadosINtraOperatorioActivity.this,
-//						new TimePickerDialog.OnTimeSetListener() {
-//
-//							@Override
-//							public void onTimeSet(TimePicker view,
-//									int hourOfDay, int minute) {
-//								textViewHoraInicioTransfusao.setText(hourOfDay + ":"
-//										+ minute + ":00");
-//
-//							}
-//						}, mHour, mMinute, true);
-//
-//				dpd.show();
-//
-//			}
-//		});
-//
-//
-//		textViewHoraInicioGarrote.setOnClickListener(new OnClickListener() {
-//
-//			@Override
-//			public void onClick(View v) {
-//				// TODO Auto-generated method stub
-//				final Calendar c = Calendar.getInstance();
-//				mHour = c.get(Calendar.HOUR_OF_DAY);
-//				mMinute = c.get(Calendar.MINUTE);
-//				mSecond = c.get(Calendar.SECOND);
-//
-//				// Launch Date Picker Dialog
-//				TimePickerDialog dpd = new TimePickerDialog(
-//						DadosINtraOperatorioActivity.this,
-//						new TimePickerDialog.OnTimeSetListener() {
-//
-//							@Override
-//							public void onTimeSet(TimePicker view,
-//									int hourOfDay, int minute) {
-//								textViewHoraInicioGarrote.setText(hourOfDay + ":"
-//										+ minute + ":00");
-//
-//							}
-//						}, mHour, mMinute, true);
-//
-//				dpd.show();
-//
-//			}
-//		});
-//		
-//
-//		textViewHoraFimGarrote.setOnClickListener(new OnClickListener() {
-//
-//			@Override
-//			public void onClick(View v) {
-//				// TODO Auto-generated method stub
-//				final Calendar c = Calendar.getInstance();
-//				mHour = c.get(Calendar.HOUR_OF_DAY);
-//				mMinute = c.get(Calendar.MINUTE);
-//				mSecond = c.get(Calendar.SECOND);
-//
-//				// Launch Date Picker Dialog
-//				TimePickerDialog dpd = new TimePickerDialog(
-//						DadosINtraOperatorioActivity.this,
-//						new TimePickerDialog.OnTimeSetListener() {
-//
-//							@Override
-//							public void onTimeSet(TimePicker view,
-//									int hourOfDay, int minute) {
-//								textViewHoraFimGarrote.setText(hourOfDay + ":"
-//										+ minute + ":00");
-//
-//							}
-//						}, mHour, mMinute, true);
-//
-//				dpd.show();
-//
-//			}
-//		});
+	public void addTableRowSinaisVitais(View v) {
+		tableRowSinaisVitais = new TableRow(DadosINtraOperatorioActivity.this);
+		tableRowSinaisVitais = (TableRow) LayoutInflater.from(
+				DadosINtraOperatorioActivity.this).inflate(
+				R.layout.layout_row_sinais_vitais, null);
 
+		tableSinaisVitais.addView(tableRowSinaisVitais);
 
+		tamanhoPadding += 39;
+		layoutIntra.setPadding(0, tamanhoPadding, 0, 0);
+	}
 
-//	}
+	public void addTableRowMedicacaoAdministrada(View v) {
+		tableRowMedicacaoAdministrada = new TableRow(
+				DadosINtraOperatorioActivity.this);
+		tableRowMedicacaoAdministrada = (TableRow) LayoutInflater.from(
+				DadosINtraOperatorioActivity.this).inflate(
+				R.layout.layout_row_medicacao_administrada, null);
 
+		tableMedicacaoAdministrada.addView(tableRowMedicacaoAdministrada);
+
+		tamanhoPadding += 39;
+		layoutIntra.setPadding(0, tamanhoPadding, 0, 0);
+	}
+
+	public void addTableRowBalancoHidrico(View v) {
+		tableRowBalancoHidrico = new TableRow(DadosINtraOperatorioActivity.this);
+		tableRowBalancoHidrico = (TableRow) LayoutInflater.from(
+				DadosINtraOperatorioActivity.this).inflate(
+				R.layout.layout_row_balanco_hidrico, null);
+
+		tableBalancoHidrico.addView(tableRowBalancoHidrico);
+
+		tamanhoPadding += 39;
+		layoutIntra.setPadding(0, tamanhoPadding, 0, 0);
+	}
+
+	public void addTableRowDrenagemVesical(View v) {
+		tableRowDrenagemVesical = new TableRow(
+				DadosINtraOperatorioActivity.this);
+		tableRowDrenagemVesical = (TableRow) LayoutInflater.from(
+				DadosINtraOperatorioActivity.this).inflate(
+				R.layout.layout_row_drenagem_vesical, null);
+
+		tableDrenagemVesical.addView(tableRowDrenagemVesical);
+
+		tamanhoPadding += 39;
+		layoutIntra.setPadding(0, tamanhoPadding, 0, 0);
+	}
+
+	public void addTableRowDrenagemNasogastrica(View v) {
+		tableRowDrenagemNasogastrica = new TableRow(
+				DadosINtraOperatorioActivity.this);
+		tableRowDrenagemNasogastrica = (TableRow) LayoutInflater.from(
+				DadosINtraOperatorioActivity.this).inflate(
+				R.layout.layout_row_drenagem_nasogastrica, null);
+
+		tableDrenagemNasogastrica.addView(tableRowDrenagemNasogastrica);
+
+		tamanhoPadding += 39;
+		layoutIntra.setPadding(0, tamanhoPadding, 0, 0);
+
+	}
+
+	public void setOnClickTimer(View v) {
+		// TODO Auto-generated method stub
+		final Calendar c = Calendar.getInstance();
+		mHour = c.get(Calendar.HOUR_OF_DAY);
+		mMinute = c.get(Calendar.MINUTE);
+		mSecond = c.get(Calendar.SECOND);
+		textoHora = (TextView) v;
+		// Launch Date Picker Dialog
+		TimePickerDialog dpd = new TimePickerDialog(
+				DadosINtraOperatorioActivity.this,
+				new TimePickerDialog.OnTimeSetListener() {
+
+					@Override
+					public void onTimeSet(TimePicker view, int hourOfDay,
+							int minute) {
+						textoHora.setText(hourOfDay + ":" + minute + ":00");
+
+					}
+				}, mHour, mMinute, true);
+
+		dpd.show();
+	}
 
 }
