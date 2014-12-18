@@ -98,6 +98,7 @@ public class DadosINtraOperatorioActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.layout_testes);
 		
+//		setContentView(R.layout.aa);
 //		setContentView(R.layout.activity_dados_intra_operatorio);
 		
 //		spinnerTipoAnestesia = (Spinner) findViewById(R.id.spinnerTipoAnestesia);
