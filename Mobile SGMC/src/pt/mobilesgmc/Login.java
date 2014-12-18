@@ -38,6 +38,9 @@ public class Login extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login);
 		
+	//	startActivity(new Intent(this, DadosINtraOperatorioActivity.class));
+	//-W800
+		
 		
 		txtUser = (EditText) findViewById(R.id.editTextUsername);
 		txtPass = (EditText) findViewById(R.id.editTextPassword);
@@ -177,7 +180,7 @@ public class Login extends Activity {
 							HomeActivity.class);
 					startActivity(equipa);
 			} else {
-				Toast.makeText(getApplicationContext(), "Sessão expirada!", Toast.LENGTH_SHORT).show();
+				Toast.makeText(getApplicationContext(), "Sessï¿½o expirada!", Toast.LENGTH_SHORT).show();
 				PreferenceManager
 				.getDefaultSharedPreferences(
 						getApplicationContext())
