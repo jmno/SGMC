@@ -85,13 +85,12 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int ic_action_video=0x7f020020;
         public static final int ic_icon=0x7f020021;
         public static final int ic_launcher=0x7f020022;
-        public static final int icon1=0x7f020023;
-        public static final int medical_heart=0x7f020024;
-        public static final int nurse=0x7f020025;
-        public static final int save=0x7f020026;
-        public static final int search=0x7f020027;
-        public static final int surgery=0x7f020028;
-        public static final int wheelchair=0x7f020029;
+        public static final int medical_heart=0x7f020023;
+        public static final int nurse=0x7f020024;
+        public static final int save=0x7f020025;
+        public static final int search=0x7f020026;
+        public static final int surgery=0x7f020027;
+        public static final int wheelchair=0x7f020028;
     }
     public static final class id {
         public static final int TextView01=0x7f090063;

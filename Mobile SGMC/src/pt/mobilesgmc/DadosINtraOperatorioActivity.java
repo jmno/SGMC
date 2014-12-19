@@ -1,12 +1,25 @@
 package pt.mobilesgmc;
 
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Comparator;
 
+import org.apache.http.ParseException;
+import org.json.JSONException;
+
+import pt.mobilesgmc.modelo.DadosIntraoperatorioFinal;
+import pt.mobilesgmc.modelo.EquipaComJuncao;
 import pt.mobilesgmc.modelo.OnSwipeTouchListener;
+import pt.mobilesgmc.modelo.ProfissonalSaude;
+import pt.mobilesgmc.modelo.RestClientException;
+import pt.mobilesgmc.modelo.WebServiceUtils;
 import pt.mobilesgmc.view.viewgroup.FlyOutContainer;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.provider.Telephony.Sms.Conversations;
@@ -19,6 +32,7 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -29,6 +43,7 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import com.example.mobilegsmc.R;
 
@@ -111,6 +126,7 @@ public class DadosINtraOperatorioActivity extends Activity {
 	String token;
 	private ScrollView scrollLayoutDados;
 	private Button buttonGuardarDadosIntraOperatorio;
+	ProgressDialog ringProgressDialog = null;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -233,16 +249,19 @@ public class DadosINtraOperatorioActivity extends Activity {
 						// editTextLocalizacaoAcessoVenoso.getText().toString();
 						// a +=
 						// textViewHoraInicioTransfusao.getText().toString();
-						
+
 						a += getSinaisVitais();
 						a += getMedicacaoAdministrada();
 						a += getBalancoHidrico();
 						a += getDrenagemVesical();
 						a += getDrenagemNasoastrica();
-						
+
 						Log.i("IntraOperatorio", a);
 					}
 				});
+
+		new verificaIntraOperatorio().execute();
+
 	}
 
 	public String getSinaisVitais() {
@@ -307,7 +326,7 @@ public class DadosINtraOperatorioActivity extends Activity {
 		}
 		return a;
 	}
-	
+
 	public String getBalancoHidrico() {
 		String a = "";
 		for (int i = 0, j = tableBalancoHidrico.getChildCount(); i < j; i++) {
@@ -344,6 +363,7 @@ public class DadosINtraOperatorioActivity extends Activity {
 		}
 		return a;
 	}
+
 	public String getDrenagemVesical() {
 		String a = "";
 		for (int i = 1, j = tableDrenagemVesical.getChildCount(); i < j; i++) {
@@ -352,7 +372,7 @@ public class DadosINtraOperatorioActivity extends Activity {
 			TextView texto = (TextView) row.getChildAt(0);
 			EditText texto1 = (EditText) row.getChildAt(1);
 			EditText texto2 = (EditText) row.getChildAt(2);
-			
+
 			a += "\n";
 			a += texto.getText();
 			a += "\n";
@@ -360,12 +380,11 @@ public class DadosINtraOperatorioActivity extends Activity {
 			a += "\n";
 			a += texto2.getText();
 			a += "\n";
-			
 
 		}
 		return a;
 	}
-	
+
 	public String getDrenagemNasoastrica() {
 		String a = "";
 		for (int i = 1, j = tableDrenagemNasogastrica.getChildCount(); i < j; i++) {
@@ -374,7 +393,7 @@ public class DadosINtraOperatorioActivity extends Activity {
 			TextView texto = (TextView) row.getChildAt(0);
 			EditText texto1 = (EditText) row.getChildAt(1);
 			EditText texto2 = (EditText) row.getChildAt(2);
-			
+
 			a += "\n";
 			a += texto.getText();
 			a += "\n";
@@ -382,13 +401,10 @@ public class DadosINtraOperatorioActivity extends Activity {
 			a += "\n";
 			a += texto2.getText();
 			a += "\n";
-			
 
 		}
 		return a;
 	}
-	
-	
 
 	public void toggleMenu(View v) {
 		this.root.toggleMenu();
@@ -517,6 +533,160 @@ public class DadosINtraOperatorioActivity extends Activity {
 				}, mHour, mMinute, true);
 
 		dpd.show();
+	}
+
+	public void preencherAtividade(DadosIntraoperatorioFinal dados) {
+		try {
+			// if(dados.getDados().getTipoAnestesia()!=null)
+			spinnerTipoAnestesia.setSelection(getIndex(spinnerTipoAnestesia,
+					dados.getDados().getTipoAnestesia()));
+
+			// if(dados.getDados().getTet()!=0)
+			editTextTET.setText(dados.getDados().getTet());
+
+			// if(dados.getDados().getMl()!=0)
+			editTextML.setText(dados.getDados().getMl());
+
+			// if(dados.getDados().getCalibreAgulha()!=0)
+			editTextAgulhaPlCalibre.setText(dados.getDados().getCalibreAgulha()
+					+ "");
+
+			// if(dados.getDados().getTipoAcessovenoso()!=null)
+			editTextTipo.setText(dados.getDados().getTipoAnestesia());
+
+			// if(dados.getDados().getCalibreAcessoVenoso()!=0)
+			editTextCalibre.setText(dados.getDados().getCalibreAcessoVenoso()
+					+ "");
+
+			// if(dados.getDados().getLocalizacaoAcessoVenoso()!=null)
+			editTextLocalizacaoAcessoVenoso.setText(dados.getDados()
+					.getLocalizacaoAcessoVenoso());
+
+			for (int k = 0; k < dados.getListaSinais().size(); k++) {
+
+				if (k == 0) {
+					TableRow row = (TableRow) tableSinaisVitais.getChildAt(0);
+					TextView texto = (TextView) row.getChildAt(0);
+					EditText texto1 = (EditText) row.getChildAt(1);
+					EditText texto2 = (EditText) row.getChildAt(2);
+					EditText texto3 = (EditText) row.getChildAt(3);
+					EditText texto4 = (EditText) row.getChildAt(4);
+					texto.setText(dados.getListaSinais().get(k).getHora());
+					texto1.setText(dados.getListaSinais().get(k).getTa());
+					texto2.setText(dados.getListaSinais().get(k).getFc());
+					texto3.setText(dados.getListaSinais().get(k).getSpo2() + "");
+					texto4.setText(dados.getListaSinais().get(k).getTemp() + "");
+				} else {
+					for (int in = 1, j = tableSinaisVitais.getChildCount(); in < j; in++) {
+						tableRowSinaisVitais = new TableRow(
+								DadosINtraOperatorioActivity.this);
+						tableRowSinaisVitais = (TableRow) LayoutInflater.from(
+								DadosINtraOperatorioActivity.this).inflate(
+								R.layout.layout_row_sinais_vitais, null);
+
+						tableSinaisVitais.addView(tableRowSinaisVitais);
+
+						tamanhoPadding += 39;
+						layoutIntra.setPadding(0, tamanhoPadding, 0, 0);
+						tableSinaisVitais.addView(tableRowSinaisVitais);
+
+						TableRow row = (TableRow) tableSinaisVitais
+								.getChildAt(in);
+
+						TextView texto = (TextView) row.getChildAt(0);
+						EditText texto1 = (EditText) row.getChildAt(1);
+						EditText texto2 = (EditText) row.getChildAt(2);
+						EditText texto3 = (EditText) row.getChildAt(3);
+						EditText texto4 = (EditText) row.getChildAt(4);
+						texto.setText(dados.getListaSinais().get(k).getHora());
+						texto1.setText(dados.getListaSinais().get(k).getTa());
+						texto2.setText(dados.getListaSinais().get(k).getFc());
+						texto3.setText(dados.getListaSinais().get(k).getSpo2()
+								+ "");
+						texto4.setText(dados.getListaSinais().get(k).getTemp()
+								+ "");
+					}
+				}
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+
+	}
+
+	private int getIndex(Spinner spinner, String myString) {
+
+		int index = 0;
+
+		for (int i = 0; i < spinner.getCount(); i++) {
+			if (spinner.getItemAtPosition(i).toString().toLowerCase()
+					.equals(myString.toLowerCase())) {
+				index = i;
+			}
+		}
+		return index;
+	}
+
+	private class verificaIntraOperatorio extends
+			AsyncTask<String, Void, DadosIntraoperatorioFinal> {
+
+		@Override
+		protected void onPreExecute() {
+			ringProgressDialog = new ProgressDialog(
+					DadosINtraOperatorioActivity.this);
+			ringProgressDialog.setIcon(R.drawable.ic_launcher);
+			ringProgressDialog.setTitle("Please wait...");
+			ringProgressDialog
+					.setMessage("A verificar Dados Intra Operatórios...");
+
+			// ringProgressDialog = ProgressDialog.show(Login.this,
+			// "Please wait ...", "Loging in...", true);
+			ringProgressDialog.setCancelable(true);
+			ringProgressDialog.show();
+		};
+
+		@Override
+		protected DadosIntraoperatorioFinal doInBackground(String... params) {
+			DadosIntraoperatorioFinal dados = new DadosIntraoperatorioFinal();
+
+			try {
+				dados = WebServiceUtils.verificaIntraOperatorioID(token,
+						HomeActivity.getCirurgia().getId());
+
+			} catch (IOException | RestClientException | ParseException
+					| JSONException e) {
+				e.printStackTrace();
+			}
+
+			return dados;
+		}
+
+		@Override
+		protected void onPostExecute(DadosIntraoperatorioFinal dados) {
+			if (dados != null) {
+
+				ringProgressDialog.dismiss();
+				preencherAtividade(dados);
+
+				// Log.i("Dados",
+				// dados.getAdministracao().getFc15minAposTransfusao()+"");
+				// adaptadorEquipa = new ArrayAdapter<EquipaComJuncao>(
+				// getBaseContext(), android.R.layout.simple_list_item_1,
+				// lista);
+				// adaptadorEquipa.sort(new Comparator<EquipaComJuncao>() {
+				//
+				// @Override
+				// public int compare(EquipaComJuncao lhs, EquipaComJuncao rhs)
+				// {
+				// return lhs.getNomeEquipa().toLowerCase()
+				// .compareTo(rhs.getNomeEquipa().toLowerCase());
+				// }
+				// });
+				// listaEquipas.setAdapter(adaptadorEquipa);
+				// dialogoEquipas.show();
+			}
+
+		}
 	}
 
 }

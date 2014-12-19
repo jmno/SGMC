@@ -101,34 +101,24 @@ public class WebServiceUtils {
 				c.setId(Integer.parseInt(o.getString("id")));
 				c.setEspecialidade(o.getString("especialidade"));
 				c.setCirurgia(o.getString("cirurgia"));
-//				data = JsonDateToDate(o.getString("data"));
+				// data = JsonDateToDate(o.getString("data"));
 				c.setData(o.getString("data"));
 
 				c.setHora(o.getString("hora"));
 				c.setTipoCirurgia(o.getString("tipoCirurgia"));
 				c.setLateralidade(o.getString("lateralidade"));
 				c.setClassificacaoASA(o.getString("classifASA"));
-				c.setHoraChamadaUtente(o
-						.getString("horaChamadaUtente"));
-				c.setHoraEntradaBlocoOperatorio((o
-						.getString("horaEntradaBO")));
-				c.setHoraSaideBlocoOperatorio((o
-						.getString("horaSaidaBO")));
-				c.setHoraEntradaSala((o
-						.getString("horaEntradaSala")));
+				c.setHoraChamadaUtente(o.getString("horaChamadaUtente"));
+				c.setHoraEntradaBlocoOperatorio((o.getString("horaEntradaBO")));
+				c.setHoraSaideBlocoOperatorio((o.getString("horaSaidaBO")));
+				c.setHoraEntradaSala((o.getString("horaEntradaSala")));
 				c.setHoraSaidaSala((o.getString("horaSaidaSala")));
-				c.setHoraInicioAnestesia((o
-						.getString("horaInicioAnestesia")));
-				c.setHoraFimAnestesia((o
-						.getString("horaFimAnestesia")));
-				c.setHoraInicioCirurgia((o
-						.getString("horaInicioCirurgia")));
-				c.setHoraFimCirurgia((o
-						.getString("horaFimCirurgia")));
-				c.setHoraEntradaRecobro((o
-						.getString("horaEntradaRecobro")));
-				c.setHoraFimRecobro((o
-						.getString("horaSaidaRecobro")));
+				c.setHoraInicioAnestesia((o.getString("horaInicioAnestesia")));
+				c.setHoraFimAnestesia((o.getString("horaFimAnestesia")));
+				c.setHoraInicioCirurgia((o.getString("horaInicioCirurgia")));
+				c.setHoraFimCirurgia((o.getString("horaFimCirurgia")));
+				c.setHoraEntradaRecobro((o.getString("horaEntradaRecobro")));
+				c.setHoraFimRecobro((o.getString("horaSaidaRecobro")));
 				c.setDestinoDoente(o.getString("destinoDoente"));
 				c.setIdEquipa(Integer.parseInt(o.getString("idEquipa")));
 				c.setInfoRelevante(o.getString("infoRelevante"));
@@ -164,7 +154,7 @@ public class WebServiceUtils {
 
 		HttpPost httpPost = new HttpPost(URL + "addProfissionalSaude?token="
 				+ token);
-		StringEntity se = new StringEntity(jsonObject.toString(),"UTF-8");
+		StringEntity se = new StringEntity(jsonObject.toString(), "UTF-8");
 		se.setContentType("text/json");
 		se.setContentType("application/json;charset=UTF-8");
 
@@ -281,7 +271,6 @@ public class WebServiceUtils {
 				u.setNome(o.getString("nomeUtente"));
 				u.setNumProcesso(Integer.parseInt(o.getString("numProcesso")));
 				String dataNas = o.getString("dataNascimento");
-				
 
 				u.setDataNascimento(dataNas);
 				// u.setDataNascimento(Date.parse(o.getString("dataNascimento")));
@@ -304,63 +293,62 @@ public class WebServiceUtils {
 
 	}
 
-//	public static Date JsonDateToDate(String jsonDate) {
-//		// "/Date(1321867151710+0100)/"
-//		int idx1 = jsonDate.indexOf("(");
-//		int idx2 = jsonDate.indexOf(")") - 5;
-//		String s = jsonDate.substring(idx1 + 1, idx2);
-//		long l = Long.valueOf(s);
-//		return new Date(l);
-//	}
+	// public static Date JsonDateToDate(String jsonDate) {
+	// // "/Date(1321867151710+0100)/"
+	// int idx1 = jsonDate.indexOf("(");
+	// int idx2 = jsonDate.indexOf(")") - 5;
+	// String s = jsonDate.substring(idx1 + 1, idx2);
+	// long l = Long.valueOf(s);
+	// return new Date(l);
+	// }
 
-//	public static java.sql.Time JsonTimeToTime(String jsonTime) {
-//		int horas = 0;
-//		int minutos = 0;
-//		int segundos = 0;
-//		try {
-//			horas = Integer.valueOf(jsonTime.substring(2, 4));
-//			minutos = Integer.valueOf(jsonTime.substring(5, 7));
-//			segundos = Integer.valueOf(jsonTime.substring(8, 10));
-//		} catch (Exception e) {
-//
-//		}
-//		java.sql.Time t = new java.sql.Time(horas, minutos, segundos);
-//
-//		return t;
-//	}
-	
+	// public static java.sql.Time JsonTimeToTime(String jsonTime) {
+	// int horas = 0;
+	// int minutos = 0;
+	// int segundos = 0;
+	// try {
+	// horas = Integer.valueOf(jsonTime.substring(2, 4));
+	// minutos = Integer.valueOf(jsonTime.substring(5, 7));
+	// segundos = Integer.valueOf(jsonTime.substring(8, 10));
+	// } catch (Exception e) {
+	//
+	// }
+	// java.sql.Time t = new java.sql.Time(horas, minutos, segundos);
+	//
+	// return t;
+	// }
 
-//	public static String dataParaJson(java.util.Date date2)
-//	{
-//		
-//		String x = date2.toString();
-//		long date = date2.getTime();
-//		String senddate = "/Date("+date+")/";
-//		Log.i("data",x);
-//		devolveDada(senddate);
-//		return senddate;
-//		
-//	}
-//	
-//	public static java.util.Date devolveDada(String date)
-//	{
-//		Calendar calendar = Calendar.getInstance();
-//		String datereip = date.replace("/Date(", "").replace("+0000)/", "");
-//		Long timeInMillis = Long.valueOf(datereip);
-//		calendar.setTimeInMillis(timeInMillis);
-//		Log.i("data", calendar.getTime().toString());
-//		java.util.Date data = new java.util.Date(1);
-//		try
-//		{
-//			data =  calendar.getTime();
-//		}
-//		catch(Exception e)
-//		{
-//			Log.i("exceccao",e.getMessage());
-//		}
-//		return data;
-//		
-//	}
+	// public static String dataParaJson(java.util.Date date2)
+	// {
+	//
+	// String x = date2.toString();
+	// long date = date2.getTime();
+	// String senddate = "/Date("+date+")/";
+	// Log.i("data",x);
+	// devolveDada(senddate);
+	// return senddate;
+	//
+	// }
+	//
+	// public static java.util.Date devolveDada(String date)
+	// {
+	// Calendar calendar = Calendar.getInstance();
+	// String datereip = date.replace("/Date(", "").replace("+0000)/", "");
+	// Long timeInMillis = Long.valueOf(datereip);
+	// calendar.setTimeInMillis(timeInMillis);
+	// Log.i("data", calendar.getTime().toString());
+	// java.util.Date data = new java.util.Date(1);
+	// try
+	// {
+	// data = calendar.getTime();
+	// }
+	// catch(Exception e)
+	// {
+	// Log.i("exceccao",e.getMessage());
+	// }
+	// return data;
+	//
+	// }
 
 	public static String logIn(String username, String password)
 			throws ClientProtocolException, IOException, RestClientException,
@@ -714,8 +702,8 @@ public class WebServiceUtils {
 		jsonObject.put("especialidade", cirurgia.getEspecialidade());
 		jsonObject.put("hora", cirurgia.getHora());
 		jsonObject.put("horaChamadaUtente", cirurgia.getHoraChamadaUtente());
-		jsonObject.put("horaEntradaBO",
-				cirurgia.getHoraEntradaBlocoOperatorio().toString());
+		jsonObject.put("horaEntradaBO", cirurgia
+				.getHoraEntradaBlocoOperatorio().toString());
 		jsonObject.put("horaEntradaRecobro", cirurgia.getHoraEntradaRecobro());
 		jsonObject.put("horaEntradaSala", cirurgia.getHoraEntradaSala());
 		jsonObject.put("horaFimAnestesia", cirurgia.getHoraFimAnestesia());
@@ -734,18 +722,17 @@ public class WebServiceUtils {
 		jsonObject.put("infoRelevante", cirurgia.getInfoRelevante());
 		jsonObject.put("lateralidade", cirurgia.getLateralidade());
 		jsonObject.put("tipoCirurgia", cirurgia.getTipoCirurgia());
-Log.i("webserv", jsonObject.toString());
+		Log.i("webserv", jsonObject.toString());
 		HttpPost httpPost = new HttpPost(URL + "updateCirurgiaTotal?token="
 				+ token + "&id=" + idCirurgia);
 		StringEntity se = new StringEntity(jsonObject.toString());
 
 		se.setContentType("text/json");
-		
+
 		httpPost.setEntity(se);
 		BasicHttpResponse httpResponse = (BasicHttpResponse) client
 				.execute(httpPost);
-		
-		
+
 		if (httpResponse.getStatusLine().getStatusCode() == 200) {
 			HttpEntity entity = httpResponse.getEntity();
 			String string = EntityUtils.toString(entity);
@@ -761,7 +748,6 @@ Log.i("webserv", jsonObject.toString());
 		return adicionou;
 	}
 
-	
 	public static ArrayList<BlocoComSala> getAllBlocosComSala(String token)
 			throws ClientProtocolException, IOException, RestClientException,
 			ParseException, JSONException {
@@ -781,10 +767,9 @@ Log.i("webserv", jsonObject.toString());
 			for (int i = 0; i < array.length(); i++) {
 				JSONObject o = array.getJSONObject(i);
 				BlocoComSala bloco = new BlocoComSala();
-				
+
 				bloco.setNomeBlocoOperatorio(o.getString("nomeBlocoOperatorio"));
-				JSONObject o2 = o
-						.getJSONObject("sala");
+				JSONObject o2 = o.getJSONObject("sala");
 				Sala sala = new Sala();
 				sala.setId(o2.getInt("id"));
 				sala.setIdBloco(o2.getInt("idBloco"));
@@ -802,4 +787,310 @@ Log.i("webserv", jsonObject.toString());
 		return listaBlocosComSala;
 
 	}
+
+	public static DadosIntraoperatorioFinal verificaIntraOperatorioID(
+			String token, int idCirurgia) throws ClientProtocolException,
+			IOException, RestClientException, ParseException, JSONException {
+		DadosIntraoperatorio dadosIntraOperatorio = new DadosIntraoperatorio();
+		LinkedList<SinaisVitais> listaSinaisVitais = new LinkedList<SinaisVitais>();
+		LinkedList<MedicacaoAdministrada> listaMedicacaoAdministrada = new LinkedList<MedicacaoAdministrada>();
+		LinkedList<BalancoHidrico> listaBalancoHidrico = new LinkedList<BalancoHidrico>();
+		LinkedList<Eliminacao> listaEliminacao = new LinkedList<Eliminacao>();
+		LinkedList<Drenagem> listaDrenagemVesical = new LinkedList<Drenagem>();
+		LinkedList<Drenagem> listaDrenagemNasogastrica = new LinkedList<Drenagem>();
+		AdministracaoSangue administracaoSangue = new AdministracaoSangue();
+
+		DadosIntraoperatorioFinal dadosFinal = new DadosIntraoperatorioFinal();
+
+		HttpPost request = new HttpPost(URL + "verificaIntraOperatorio?token="
+				+ token + "&idCirurgia=" + idCirurgia);
+
+		request.setHeader("Accept", "Application/JSON");
+
+		BasicHttpResponse basicHttpResponse = (BasicHttpResponse) client
+				.execute(request);
+
+		if (isOk(basicHttpResponse.getStatusLine().getStatusCode())) {
+
+			JSONObject o = new JSONObject(
+					EntityUtils.toString(basicHttpResponse.getEntity()));
+			Log.i("dados",o.toString(1));
+			if (!o.get("adminSangue").equals(JSONObject.NULL)) {
+
+				JSONObject adminJSON = o.getJSONObject("adminSangue");
+				Log.i("dados_adminSangue", adminJSON.toString(1));
+				administracaoSangue.setFc15minAposTransfusao(adminJSON
+						.getDouble("fc15MinAposTransfusao"));
+				administracaoSangue.setFcFimTransfusao(adminJSON
+						.getDouble("fcFimTransfusao"));
+				administracaoSangue.setFcInicioTransfusao(adminJSON
+						.getDouble("fcInicioTransfusao"));
+				administracaoSangue.setHora15minAposTransf(adminJSON
+						.getString("hora15MinAposTransfusao"));
+				administracaoSangue.setHoraFimTransf(adminJSON
+						.getString("horaFimTransfusao"));
+				administracaoSangue.setHoraInicioTransf(adminJSON
+						.getString("horaInicioTransfusao"));
+				administracaoSangue.setId(adminJSON.getInt("id"));
+				administracaoSangue.setIdIntraOperatorio(adminJSON
+						.getInt("idIntraOperatorio"));
+				administracaoSangue.setSpo215minAposTransfusao(adminJSON
+						.getDouble("spo215MinAposTransfusao"));
+				administracaoSangue.setSpo2FimTransfusao(adminJSON
+						.getDouble("spo2FimTransfusao"));
+				administracaoSangue.setSpo2InicioTransfusao(adminJSON
+						.getDouble("spo2InicioTransfusao"));
+				administracaoSangue.setTa15minAposTransfusao(adminJSON
+						.getInt("ta15MinAposTransfusao"));
+				administracaoSangue.setTaFimTransfusao(adminJSON
+						.getInt("taFimTransfusao"));
+				administracaoSangue.setTaInicioTransfusao(adminJSON
+						.getDouble("taInicioTransfusao"));
+				dadosFinal.setAdministracao(administracaoSangue);
+			} else {
+				dadosFinal.setAdministracao(administracaoSangue);
+			}
+
+			if (!o.get("dados").equals(JSONObject.NULL)) {
+				JSONObject dadosJSON = o.getJSONObject("dados");
+				Log.i("dados_dados", dadosJSON.toString(1));
+
+				dadosIntraOperatorio.setAlivioZonaPressao(dadosJSON
+						.getString("alivioZonapressao"));
+				dadosIntraOperatorio.setCalibreAcessoVenoso(dadosJSON
+						.getDouble("calibreAcessoVenoso"));
+				dadosIntraOperatorio.setCalibreAgulha(dadosJSON
+						.getDouble("calibreAgulha"));
+				dadosIntraOperatorio.setDescricaoPecaBiopsia(dadosJSON
+						.getString("descricaoPecaBiopsia"));
+				dadosIntraOperatorio.setHoraFimGarrotePneum(dadosJSON
+						.getString("horaFimGarrotePneum"));
+				dadosIntraOperatorio.setHoraInicioGarrotePneum(dadosJSON
+						.getString("horaInicioGarrotePneum"));
+				dadosIntraOperatorio.setId(dadosJSON.getInt("id"));
+				dadosIntraOperatorio.setIdCirurgia(dadosJSON
+						.getInt("idCirurgia"));
+				dadosIntraOperatorio.setLabPecaBiopsia(dadosJSON
+						.getString("labPecaBiopsia"));
+				dadosIntraOperatorio.setLocalAlivioZonaPressao(dadosJSON
+						.getString("localAlivioZonaPressao"));
+				dadosIntraOperatorio.setLocalMantaTermica(dadosJSON
+						.getString("localMantaTermica"));
+				dadosIntraOperatorio.setLocalizacaoAcessoVenoso(dadosJSON
+						.getString("localizacaoAcessoVenoso"));
+				dadosIntraOperatorio.setLocalizacaoGarrotePneum(dadosJSON
+						.getString("localizacaoGarrotePneumatico"));
+				dadosIntraOperatorio.setLocalizacaoPlacaEletrodo(dadosJSON
+						.getString("localizacaoPlacaEletrodo"));
+				dadosIntraOperatorio.setMantatermica(dadosJSON
+						.getString("mantaTermica"));
+				dadosIntraOperatorio.setMl(dadosJSON.getInt("ml"));
+				dadosIntraOperatorio.setPlacaEletrodo(dadosJSON
+						.getString("placaEletrodo"));
+				dadosIntraOperatorio.setPosicaoOperatoria(dadosJSON
+						.getString("posicaoOperatoria"));
+				dadosIntraOperatorio.setPressaoGarrotePneumatico(dadosJSON
+						.getDouble("pressaoGarrotePneumatico"));
+				dadosIntraOperatorio.setTet(dadosJSON.getInt("tet"));
+				dadosIntraOperatorio.setTipoAcessovenoso(dadosJSON
+						.getString("tipoAcessoVenoso"));
+				dadosIntraOperatorio.setTipoAnestesia(dadosJSON
+						.getString("tipoAnestesia"));
+
+				dadosFinal.setDados(dadosIntraOperatorio);
+			} else {
+				dadosFinal.setDados(dadosIntraOperatorio);
+			}
+			if (!(o.get("listaBalancos").equals(JSONObject.NULL))) {
+				JSONArray arrayListaBalanco = o.getJSONArray("listaBalancos");
+				Log.i("dados_listaBalancos", arrayListaBalanco.toString(1));
+
+				for (int j = 0; j < arrayListaBalanco.length(); j++) {
+					JSONObject balanco = arrayListaBalanco.getJSONObject(j);
+					BalancoHidrico balancohi = new BalancoHidrico();
+
+					balancohi.setHora(balanco.getString("hora"));
+					balancohi.setId(balanco.getInt("id"));
+					balancohi.setIdIntraOperatorio(balanco
+							.getInt("idIntraOperatorio"));
+					balancohi.setSoroterapia(balanco.getString("soroterapia"));
+					listaBalancoHidrico.add(balancohi);
+				}
+
+				dadosFinal.setListaBalanco(listaBalancoHidrico);
+
+			} else {
+				dadosFinal.setListaBalanco(listaBalancoHidrico);
+			}
+
+			if (!(o.get("listaEliminacao").equals(JSONObject.NULL))) {
+				JSONArray arrayListaEliminacao = o
+						.getJSONArray("listaEliminacao");
+				Log.i("dados_listaEliminacao", arrayListaEliminacao.toString(1));
+
+				for (int j = 0; j < arrayListaEliminacao.length(); j++) {
+					JSONObject eliminacao = arrayListaEliminacao
+							.getJSONObject(j);
+					Eliminacao elimina = new Eliminacao();
+
+					elimina.setCalibre(eliminacao.getDouble("calibre"));
+					elimina.setId(eliminacao.getInt("id"));
+					elimina.setIdIntraOperatorio(eliminacao
+							.getInt("idEnfermagemIntra"));
+					elimina.setTipo(eliminacao.getString("tipo"));
+					elimina.setTipoSonda(eliminacao.getString("tipoSonda"));
+
+					listaEliminacao.add(elimina);
+				}
+
+				dadosFinal.setListaEliminacao(listaEliminacao);
+			} else {
+				dadosFinal.setListaEliminacao(listaEliminacao);
+			}
+			if (!(o.get("listaDrenagemVesical").equals(JSONObject.NULL))) {
+				JSONArray arrayListaDrenagemVesical = o
+						.getJSONArray("listaDrenagemVesical");
+				Log.i("dados_listaDrenagemVesical",
+						arrayListaDrenagemVesical.toString(1));
+
+				for (int j = 0; j < arrayListaDrenagemVesical.length(); j++) {
+					JSONObject drenagemVesicalJSON = arrayListaDrenagemVesical
+							.getJSONObject(j);
+					Drenagem dreVesical = new Drenagem();
+
+					dreVesical.setCaracteristicas(drenagemVesicalJSON
+							.getString("caracteristicas"));
+					dreVesical.setDrenagem(drenagemVesicalJSON
+							.getString("hora"));
+					dreVesical.setId(drenagemVesicalJSON.getInt("id"));
+					dreVesical.setIdEliminacao(drenagemVesicalJSON
+							.getInt("idEliminacao"));
+					dreVesical.setHora(drenagemVesicalJSON.getString("hora"));
+
+					listaDrenagemVesical.add(dreVesical);
+				}
+
+				dadosFinal.setListaDrenagemVesical(listaDrenagemVesical);
+			} else {
+				dadosFinal.setListaDrenagemVesical(listaDrenagemVesical);
+			}
+
+			if (!(o.get("listaDrenagemNasogastrica").equals(JSONObject.NULL))) {
+				JSONArray arrayListaDrenagemNasogastrica = o
+						.getJSONArray("listaDrenagemNasogastrica");
+				Log.i("dados_listaDrenagemNasogastrica",
+						arrayListaDrenagemNasogastrica.toString(1));
+
+				for (int j = 0; j < arrayListaDrenagemNasogastrica.length(); j++) {
+					JSONObject drenagemNasogastricaJSON = arrayListaDrenagemNasogastrica
+							.getJSONObject(j);
+					Drenagem dreVesical = new Drenagem();
+
+					dreVesical.setCaracteristicas(drenagemNasogastricaJSON
+							.getString("caracteristicas"));
+					dreVesical.setDrenagem(drenagemNasogastricaJSON
+							.getString("hora"));
+					dreVesical.setId(drenagemNasogastricaJSON.getInt("id"));
+					dreVesical.setIdEliminacao(drenagemNasogastricaJSON
+							.getInt("idEliminacao"));
+					dreVesical.setHora(drenagemNasogastricaJSON
+							.getString("hora"));
+
+					listaDrenagemNasogastrica.add(dreVesical);
+				}
+
+				dadosFinal
+						.setListaDrenagemNasogastrica(listaDrenagemNasogastrica);
+			} else {
+				dadosFinal
+						.setListaDrenagemNasogastrica(listaDrenagemNasogastrica);
+			}
+
+			if (!(o.get("listaMedicacao").equals(JSONObject.NULL))){
+				JSONArray arrayListaMedicacao = o
+						.getJSONArray("listaMedicacao");
+				Log.i("dados_listaMedicacao", arrayListaMedicacao.toString(1));
+
+				for (int j = 0; j < arrayListaMedicacao.length(); j++) {
+					JSONObject medicacaoJSON = arrayListaMedicacao
+							.getJSONObject(j);
+					MedicacaoAdministrada medicaAdministrada = new MedicacaoAdministrada();
+
+					medicaAdministrada.setFarmaco(medicacaoJSON
+							.getString("farmaco"));
+					medicaAdministrada.setHora(medicacaoJSON.getString("hora"));
+					medicaAdministrada.setId(medicacaoJSON.getInt("id"));
+					medicaAdministrada.setIdIntraOperatorio(medicacaoJSON
+							.getInt("idIntraOperatorio"));
+
+					listaMedicacaoAdministrada.add(medicaAdministrada);
+				}
+
+				dadosFinal.setListaMedicacao(listaMedicacaoAdministrada);
+			} else {
+				dadosFinal.setListaMedicacao(listaMedicacaoAdministrada);
+			}
+			if (!(o.get("listaSinais").equals(JSONObject.NULL))) {
+
+				JSONArray arrayListaSinais = o
+						.getJSONArray("listaSinais");
+				Log.i("dados_listaSinais", arrayListaSinais.toString(1));
+
+				for (int j = 0; j < arrayListaSinais.length(); j++) {
+					JSONObject sinalJSON = arrayListaSinais
+							.getJSONObject(j);
+					SinaisVitais sinal = new SinaisVitais();
+					
+					sinal.setFc(sinalJSON.getInt("fc"));
+					sinal.setHora(sinalJSON.getString("hora"));
+					sinal.setId(sinalJSON.getInt("id"));
+					sinal.setIdintraOperatorio(sinalJSON.getInt("idIntraOperatorio"));
+					sinal.setSpo2(sinalJSON.getDouble("spo2"));
+					sinal.setTa(sinalJSON.getInt("ta"));
+					sinal.setTemp(sinalJSON.getDouble("temp"));
+					
+					listaSinaisVitais.add(sinal);
+				}
+
+				dadosFinal.setListaSinais(listaSinaisVitais);
+			} else {
+				dadosFinal.setListaSinais(listaSinaisVitais);
+			}
+
+		}
+
+		else {
+			throw new RestClientException(
+					"HTTP Response with invalid status code "
+							+ basicHttpResponse.getStatusLine().getStatusCode()
+							+ ".");
+		}
+
+		return dadosFinal;
+
+	}
+
+	public static Boolean isOk(int statusCode) {
+		Boolean resultado = false;
+
+		switch (statusCode) {
+		case 200:
+			resultado = true;
+			break;
+		case 201:
+			resultado = true;
+			break;
+		case 202:
+			resultado = true;
+			break;
+		case 203:
+			resultado = true;
+			break;
+		default:
+			break;
+		}
+
+		return resultado;
+	}
+
 }
