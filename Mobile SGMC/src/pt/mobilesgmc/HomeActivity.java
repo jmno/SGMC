@@ -17,11 +17,14 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.content.DialogInterface.OnCancelListener;
 import android.content.DialogInterface.OnDismissListener;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Display;
@@ -31,6 +34,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.WindowManager;
+import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
@@ -38,6 +42,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import com.example.mobilegsmc.R;
@@ -145,6 +150,28 @@ public class HomeActivity extends Activity {
 								WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 				final EditText nomeEditText = (EditText) dialog
 						.findViewById(R.id.editText_escolhaCirurgia);
+				
+				nomeEditText.addTextChangedListener(new TextWatcher() {
+					
+					@Override
+					public void onTextChanged(CharSequence s, int start, int before, int count) {
+						// TODO Auto-generated method stub
+						adaptadorCirurgias.getFilter().filter(s);
+					}
+					
+					@Override
+					public void beforeTextChanged(CharSequence s, int start, int count,
+							int after) {
+						// TODO Auto-generated method stub
+						
+					}
+					
+					@Override
+					public void afterTextChanged(Editable s) {
+						// TODO Auto-generated method stub
+						
+					}
+				});
 				listaCirurgias = (ListView) dialog
 						.findViewById(R.id.listView_cirurgias);
 
@@ -225,7 +252,7 @@ public class HomeActivity extends Activity {
 
 					startActivity(dados);
 				} else {
-					Log.i("sgmc", "N�o tem cirurgia escolhida");
+					Log.i("sgmc", "Não tem cirurgia escolhida");
 					root.toggleMenu();
 				}
 			}
@@ -334,10 +361,14 @@ public class HomeActivity extends Activity {
 			ringProgressDialog.setTitle("Aguarde...");
 			ringProgressDialog.setMessage("A carregar Dados...");
 
-			// ringProgressDialog = ProgressDialog.show(Login.this,
-			// "Please wait ...", "Loging in...", true);
-			ringProgressDialog.setCancelable(false);
-
+			ringProgressDialog.setCancelable(true);
+ringProgressDialog.setOnCancelListener(new OnCancelListener() {
+	
+	@Override
+	public void onCancel(DialogInterface dialog) {
+		
+	}
+});
 			ringProgressDialog.show();
 		};
 		@Override
@@ -353,6 +384,8 @@ public class HomeActivity extends Activity {
 
 			return lista;
 		}
+		
+		
 
 		@Override
 		protected void onPostExecute(ArrayList<Cirurgia> lista) {
@@ -371,6 +404,11 @@ public class HomeActivity extends Activity {
 				listaCirurgias.setAdapter(adaptadorCirurgias);
 				ringProgressDialog.dismiss();
 				dialog.show();
+			}
+			else
+			{
+				ringProgressDialog.dismiss();
+				Toast.makeText(getApplicationContext(), "Erro Get Cirurgias - Verifique a Internet e repita o Processo", Toast.LENGTH_SHORT).show();
 			}
 		}
 

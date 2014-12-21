@@ -928,13 +928,17 @@ public class DadosCirurgia extends Activity {
 		@Override
 		protected void onPostExecute(Boolean result) {
 			String a = (result ? "Cirurgia Alterada com Sucesso!"
-					: "Cirurgoa N�o Alterada!");
+					: "Cirurgoa Não Alterada!");
 			if (result) {
 				HomeActivity.setCirurgia(cir);
 
 				Toast.makeText(getApplicationContext(), a, Toast.LENGTH_LONG)
 						.show();
 				finish();
+			}
+			else
+			{
+				Toast.makeText(getApplicationContext(), "Erro Atualizar Cirurgia - Verifique a Internet e repita o Processo", Toast.LENGTH_SHORT).show();
 			}
 			ringProgressDialog.dismiss();
 			super.onPostExecute(result);
@@ -999,6 +1003,10 @@ public class DadosCirurgia extends Activity {
 
 				ringProgressDialog.dismiss();
 
+			}
+			else
+			{
+				Toast.makeText(getApplicationContext(), "Erro Get Blocos Com Sala - Verifique a Internet e repita o Processo", Toast.LENGTH_SHORT).show();
 			}
 		}
 	}

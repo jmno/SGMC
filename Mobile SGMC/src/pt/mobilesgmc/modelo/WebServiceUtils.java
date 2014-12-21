@@ -443,11 +443,13 @@ public class WebServiceUtils {
 
 		HttpPost httpPost = new HttpPost(URL + "addEquipaCirurgica?token="
 				+ token);
-		StringEntity se = new StringEntity(jsonObject.toString());
+		StringEntity se = new StringEntity(jsonObject.toString(), "UTF-8");
 
 		se.setContentType("application/json;charset=UTF-8");// text/plain;charset=UTF-8
 		se.setContentEncoding(new BasicHeader(HTTP.CONTENT_TYPE,
 				"application/json;charset=UTF-8"));
+		
+
 		httpPost.setEntity(se);
 		BasicHttpResponse httpResponse = (BasicHttpResponse) client
 				.execute(httpPost);
@@ -504,7 +506,7 @@ public class WebServiceUtils {
 			jsonObject
 					.put("tipoProfissional", profissionalDaCirurgia.getTipo());
 
-			StringEntity se = new StringEntity(jsonObject.toString());
+			StringEntity se = new StringEntity(jsonObject.toString(),"UTF-8");
 			se.setContentType("application/json;charset=UTF-8");// text/plain;charset=UTF-8
 			se.setContentEncoding(new BasicHeader(HTTP.CONTENT_TYPE,
 					"application/json;charset=UTF-8"));
@@ -725,17 +727,21 @@ public class WebServiceUtils {
 		Log.i("webserv", jsonObject.toString());
 		HttpPost httpPost = new HttpPost(URL + "updateCirurgiaTotal?token="
 				+ token + "&id=" + idCirurgia);
-		StringEntity se = new StringEntity(jsonObject.toString());
+		StringEntity se = new StringEntity(jsonObject.toString(), "UTF-8");
 
+		se.setContentType("application/json;charset=UTF-8");// text/plain;charset=UTF-8
+		
 		se.setContentType("text/json");
 
 		httpPost.setEntity(se);
 		BasicHttpResponse httpResponse = (BasicHttpResponse) client
 				.execute(httpPost);
-
 		if (httpResponse.getStatusLine().getStatusCode() == 200) {
 			HttpEntity entity = httpResponse.getEntity();
+
 			String string = EntityUtils.toString(entity);
+			Log.i("error",string);
+
 			adicionou = Boolean.valueOf(string);
 		} else {
 			throw new RestClientException(

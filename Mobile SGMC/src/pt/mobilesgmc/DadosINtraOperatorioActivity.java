@@ -685,6 +685,10 @@ public class DadosINtraOperatorioActivity extends Activity {
 				// listaEquipas.setAdapter(adaptadorEquipa);
 				// dialogoEquipas.show();
 			}
+			else
+			{
+				Toast.makeText(getApplicationContext(), "Erro Verificar IntraOperatorio - Verifique a Internet e repita o Processo", Toast.LENGTH_SHORT).show();
+			}
 
 		}
 	}

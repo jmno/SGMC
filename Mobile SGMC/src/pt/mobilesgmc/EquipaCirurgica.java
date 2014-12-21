@@ -29,6 +29,8 @@ import android.content.DialogInterface.OnDismissListener;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Display;
@@ -182,7 +184,7 @@ public class EquipaCirurgica extends Activity implements Serializable {
 					startActivity(dados);
 					finish();
 				} else {
-					Log.i("sgmc", "N�o tem cirurgia escolhida");
+					Log.i("sgmc", "Não tem cirurgia escolhida");
 					root.toggleMenu();
 				}
 				
@@ -202,7 +204,7 @@ public class EquipaCirurgica extends Activity implements Serializable {
 					startActivity(dados);
 					finish();
 				} else {
-					Log.i("sgmc", "N�o tem cirurgia escolhida");
+					Log.i("sgmc", "Não tem cirurgia escolhida");
 					root.toggleMenu();
 				}
 				
@@ -257,14 +259,7 @@ public class EquipaCirurgica extends Activity implements Serializable {
 					}
 				});
 
-				Button cancelar = (Button) dialog
-						.findViewById(R.id.btn_DialogNovoProfissional_Cancelar);
-				cancelar.setOnClickListener(new OnClickListener() {
-					@Override
-					public void onClick(View v) {
-						dialog.dismiss();
-					}
-				});
+				
 
 			}
 		});
@@ -361,6 +356,7 @@ public class EquipaCirurgica extends Activity implements Serializable {
 			}
 		});
 
+		
 		Button btnProcurarCirurgias = (Button) root
 				.findViewById(R.id.btn_PesquisarEquipas);
 		btnProcurarCirurgias.setOnClickListener(new OnClickListener() {
@@ -408,6 +404,27 @@ public class EquipaCirurgica extends Activity implements Serializable {
 					}
 				});
 
+				nomeEditText.addTextChangedListener(new TextWatcher() {
+					
+					@Override
+					public void onTextChanged(CharSequence s, int start, int before, int count) {
+						// TODO Auto-generated method stub
+						adaptadorEquipa.getFilter().filter(s);
+					}
+					
+					@Override
+					public void beforeTextChanged(CharSequence s, int start, int count,
+							int after) {
+						// TODO Auto-generated method stub
+						
+					}
+					
+					@Override
+					public void afterTextChanged(Editable s) {
+						// TODO Auto-generated method stub
+						
+					}
+				});
 				/****************/
 
 				// spinnerEquipa.setOnItemSelectedListener(new
@@ -452,11 +469,11 @@ public class EquipaCirurgica extends Activity implements Serializable {
 		}
 		else{
 			
-			Log.i("equipa","N�o foi encontrada Equipa");}
+			Log.i("equipa","Não foi encontrada Equipa");}
 		}
 		catch (Exception e)
 		{
-			Log.i("erro", "Equipa N�o Selecionada");
+			Log.i("erro", "Equipa Não Selecionada");
 		}
 	}
 
@@ -692,7 +709,7 @@ public class EquipaCirurgica extends Activity implements Serializable {
 					finish();
 				}
 			} catch (ParseException | IOException | JSONException
-					| RestClientException e) {
+					| RestClientException | UnknownError e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
@@ -703,7 +720,7 @@ public class EquipaCirurgica extends Activity implements Serializable {
 		@Override
 		protected void onPostExecute(Boolean result) {
 			String a = (result ? "Equipa Adicionado com Sucesso!"
-					: "Equipa N�o Adicionado!");
+					: "Equipa Não Adicionada! Verifique Ligação");
 			Toast.makeText(getApplicationContext(), a, Toast.LENGTH_LONG)
 					.show();
 			super.onPostExecute(result);
@@ -735,13 +752,10 @@ public class EquipaCirurgica extends Activity implements Serializable {
 				spinnerTipo.setAdapter(adaptadorTipo);
 				// new Notifications(getApplicationContext(),
 				// "Connexão Efetuada com Sucesso!");
-				Toast.makeText(getApplicationContext(), "Get Tipo successful!",
-						Toast.LENGTH_LONG).show();
 				dialog.show();
-			} else {
-				Toast.makeText(getApplicationContext(),
-						"Get Tipo unsuccessful...", Toast.LENGTH_LONG).show();
-
+			} else
+			{
+				Toast.makeText(getApplicationContext(), "Erro Get Tipos - Verifique a Internet e repita o Processo", Toast.LENGTH_SHORT).show();
 			}
 		}
 
@@ -774,11 +788,9 @@ public class EquipaCirurgica extends Activity implements Serializable {
 				
 				populateSpinners(lista, idTipo);
 
-			} else {
-				Toast.makeText(getApplicationContext(),
-						"Get ProfissionaisSaude unsuccessful...",
-						Toast.LENGTH_LONG).show();
-
+			} else
+			{
+				Toast.makeText(getApplicationContext(), "Erro Get Profissionais- Verifique a Internet e repita o Processo", Toast.LENGTH_SHORT).show();
 			}
 			
 		}
@@ -888,6 +900,10 @@ public class EquipaCirurgica extends Activity implements Serializable {
 				listaEquipas.setAdapter(adaptadorEquipa);
 				dialogoEquipas.show();
 			}
+			else
+			{
+				Toast.makeText(getApplicationContext(), "Erro Get Equipas - Verifique a Internet e repita o Processo", Toast.LENGTH_SHORT).show();
+			}
 
 		}
 	}
@@ -922,6 +938,10 @@ public class EquipaCirurgica extends Activity implements Serializable {
 				// lista);
 				// listaEquipas.setAdapter(adaptadorEquipa);
 				// dialogoEquipas.show();
+			}
+			else
+			{
+				Toast.makeText(getApplicationContext(), "Erro Get Equipa Com Junção - Verifique a Internet e repita o Processo", Toast.LENGTH_SHORT).show();
 			}
 		}
 	}

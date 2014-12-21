@@ -32,7 +32,7 @@ public class Login extends Activity {
 	EditText txtPass;
 	ProgressDialog ringProgressDialog = null;
 	
-	@Override
+	@Override 
 	protected void onCreate(Bundle savedInstanceState) {
 
 		super.onCreate(savedInstanceState);
@@ -180,7 +180,7 @@ public class Login extends Activity {
 							HomeActivity.class);
 					startActivity(equipa);
 			} else {
-				Toast.makeText(getApplicationContext(), "Sess�o expirada!", Toast.LENGTH_SHORT).show();
+				Toast.makeText(getApplicationContext(), "Sessão expirada!", Toast.LENGTH_SHORT).show();
 				PreferenceManager
 				.getDefaultSharedPreferences(
 						getApplicationContext())
