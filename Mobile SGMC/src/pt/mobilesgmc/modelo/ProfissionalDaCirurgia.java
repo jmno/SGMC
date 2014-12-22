@@ -30,4 +30,9 @@ public class ProfissionalDaCirurgia {
 		this.profissional = p;  
 		this.tipo = tipo;
 	}
+	
+	@Override
+	public String toString() {
+		return profissional.toString() + " " + tipo ;
+	}
 }

@@ -7,16 +7,16 @@ public class DadosIntraoperatorio {
 	private int tet;
 	private int ml;
 	private double calibreAgulha;
-	private String tipoAcessovenoso;
+	private String tipoAcessoVenoso;
 	private double calibreAcessoVenoso;
 	private String localizacaoAcessoVenoso;
 	private String posicaoOperatoria;
 	private String alivioZonaPressao;
 	private String localAlivioZonaPressao;
-	private String mantatermica;
+	private String mantaTermica;
 	private String localMantaTermica;
 	private double pressaoGarrotePneumatico;
-	private String localizacaoGarrotePneum;
+	private String localizacaoGarrotePneumatico;
 	private String horaInicioGarrotePneum;
 	private String horaFimGarrotePneum;
 	private String placaEletrodo;
@@ -55,10 +55,10 @@ public class DadosIntraoperatorio {
 		this.calibreAgulha = calibreAgulha;
 	}
 	public String getTipoAcessovenoso() {
-		return tipoAcessovenoso;
+		return tipoAcessoVenoso;
 	}
 	public void setTipoAcessovenoso(String tipoAcessovenoso) {
-		this.tipoAcessovenoso = tipoAcessovenoso;
+		this.tipoAcessoVenoso = tipoAcessovenoso;
 	}
 	public double getCalibreAcessoVenoso() {
 		return calibreAcessoVenoso;
@@ -91,10 +91,10 @@ public class DadosIntraoperatorio {
 		this.localAlivioZonaPressao = localAlivioZonaPressao;
 	}
 	public String getMantatermica() {
-		return mantatermica;
+		return mantaTermica;
 	}
 	public void setMantatermica(String mantatermica) {
-		this.mantatermica = mantatermica;
+		this.mantaTermica = mantatermica;
 	}
 	public String getLocalMantaTermica() {
 		return localMantaTermica;
@@ -109,10 +109,10 @@ public class DadosIntraoperatorio {
 		this.pressaoGarrotePneumatico = pressaoGarrotePneumatico;
 	}
 	public String getLocalizacaoGarrotePneum() {
-		return localizacaoGarrotePneum;
+		return localizacaoGarrotePneumatico;
 	}
 	public void setLocalizacaoGarrotePneum(String localizacaoGarrotePneum) {
-		this.localizacaoGarrotePneum = localizacaoGarrotePneum;
+		this.localizacaoGarrotePneumatico = localizacaoGarrotePneum;
 	}
 	public String getHoraInicioGarrotePneum() {
 		return horaInicioGarrotePneum;
@@ -158,5 +158,29 @@ public class DadosIntraoperatorio {
 	}
 	
 	public DadosIntraoperatorio(){}
+	
+	@Override
+	public String toString() {
+		return "DadosIntraoperatorio [id=" + id + ", tipoAnestesia="
+				+ tipoAnestesia + ", tet=" + tet + ", ml=" + ml
+				+ ", calibreAgulha=" + calibreAgulha + ", tipoAcessovenoso="
+				+ tipoAcessoVenoso + ", calibreAcessoVenoso="
+				+ calibreAcessoVenoso + ", localizacaoAcessoVenoso="
+				+ localizacaoAcessoVenoso + ", posicaoOperatoria="
+				+ posicaoOperatoria + ", alivioZonaPressao="
+				+ alivioZonaPressao + ", localAlivioZonaPressao="
+				+ localAlivioZonaPressao + ", mantatermica=" + mantaTermica
+				+ ", localMantaTermica=" + localMantaTermica
+				+ ", pressaoGarrotePneumatico=" + pressaoGarrotePneumatico
+				+ ", localizacaoGarrotePneum=" + localizacaoGarrotePneumatico
+				+ ", horaInicioGarrotePneum=" + horaInicioGarrotePneum
+				+ ", horaFimGarrotePneum=" + horaFimGarrotePneum
+				+ ", placaEletrodo=" + placaEletrodo
+				+ ", localizacaoPlacaEletrodo=" + localizacaoPlacaEletrodo
+				+ ", labPecaBiopsia=" + labPecaBiopsia
+				+ ", descricaoPecaBiopsia=" + descricaoPecaBiopsia
+				+ ", idCirurgia=" + idCirurgia + "]";
+	}
+
 
 }

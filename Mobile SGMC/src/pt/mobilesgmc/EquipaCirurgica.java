@@ -685,7 +685,7 @@ public class EquipaCirurgica extends Activity implements Serializable {
 		@Override
 		protected Boolean doInBackground(List<ProfissionalDaCirurgia>... params) {
 			Boolean adicionou = false;
-			String nomeEquipaFinal = nomeEquipa;
+			String nomeEquipaFinal = nomeEquipa.trim();
 			try {
 				int idEquipa = WebServiceUtils.getEquipaID(nomeEquipaFinal,
 						token);

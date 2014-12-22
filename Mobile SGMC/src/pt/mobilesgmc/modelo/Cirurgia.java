@@ -13,10 +13,10 @@ public class Cirurgia {
 	private String hora;
 	private String tipoCirurgia;
 	private String lateralidade;
-	private String classificacaoASA;
+	private String classifASA;
 	private String horaChamadaUtente;
-	private String horaEntradaBlocoOperatorio;
-	private String horaSaideBlocoOperatorio;
+	private String horaEntradaBO;
+	private String horaSaidaBO;
 	private String horaEntradaSala;
 	private String horaSaidaSala;
 	private String horaInicioAnestesia;
@@ -24,7 +24,7 @@ public class Cirurgia {
 	private String horaInicioCirurgia;
 	private String horaFimCirurgia;
 	private String horaEntradaRecobro;
-	private String horaFimRecobro;
+	private String horaSaidaRecobro;
 	private String destinoDoente;
 	private String infoRelevante;
 	private int idSala;
@@ -80,12 +80,12 @@ public class Cirurgia {
 		this.lateralidade = lateralidade;
 	}
 
-	public String getClassificacaoASA() {
-		return classificacaoASA;
+	public String getClassifASA() {
+		return classifASA;
 	}
 
-	public void setClassificacaoASA(String classificacaoASA) {
-		this.classificacaoASA = classificacaoASA;
+	public void setClassifASA(String classificacaoASA) {
+		this.classifASA = classificacaoASA;
 	}
 
 	public String getHoraChamadaUtente() {
@@ -97,19 +97,19 @@ public class Cirurgia {
 	}
 
 	public String getHoraEntradaBlocoOperatorio() {
-		return horaEntradaBlocoOperatorio;
+		return horaEntradaBO;
 	}
 
 	public void setHoraEntradaBlocoOperatorio(String horaEntradaBlocoOperatorio) {
-		this.horaEntradaBlocoOperatorio = horaEntradaBlocoOperatorio;
+		this.horaEntradaBO = horaEntradaBlocoOperatorio;
 	}
 
 	public String getHoraSaideBlocoOperatorio() {
-		return horaSaideBlocoOperatorio;
+		return horaSaidaBO;
 	}
 
 	public void setHoraSaideBlocoOperatorio(String horaSaideBlocoOperatorio) {
-		this.horaSaideBlocoOperatorio = horaSaideBlocoOperatorio;
+		this.horaSaidaBO = horaSaideBlocoOperatorio;
 	}
 
 	public String getHoraEntradaSala() {
@@ -169,11 +169,11 @@ public class Cirurgia {
 	}
 
 	public String getHoraFimRecobro() {
-		return horaFimRecobro;
+		return horaSaidaRecobro;
 	}
 
 	public void setHoraFimRecobro(String horaFimRecobro) {
-		this.horaFimRecobro = horaFimRecobro;
+		this.horaSaidaRecobro = horaFimRecobro;
 	}
 
 	public String getDestinoDoente() {
@@ -216,7 +216,7 @@ public class Cirurgia {
 
 	@Override
 	public String toString() {
-		return "Id:" + id +  " Cirurgia: " + getCirurgia() + " Data: " + data.toString();
+		return "Id:" + id +  " Cirurgia: " + getCirurgia() + " Data: " + data.toString() +"   " +horaEntradaBO;
 	}
 
 	public int getIdEquipa() {

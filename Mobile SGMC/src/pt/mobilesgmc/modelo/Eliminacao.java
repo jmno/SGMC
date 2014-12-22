@@ -2,11 +2,19 @@ package pt.mobilesgmc.modelo;
 
 public class Eliminacao {
 
+	@Override
+	public String toString() {
+		return "Eliminacao [id=" + id + ", tipo=" + tipo + ", tipoSonda="
+				+ tipoSonda + ", calibre=" + calibre + ", idIntraOperatorio="
+				+ idEnfermagemIntra + "]";
+	}
+
+
 	private int id;
 	private String tipo;
 	private String tipoSonda;
 	private double calibre;
-	private int idIntraOperatorio;
+	private int idEnfermagemIntra;
 	public int getId() {
 		return id;
 	}
@@ -32,10 +40,10 @@ public class Eliminacao {
 		this.calibre = calibre;
 	}
 	public int getIdIntraOperatorio() {
-		return idIntraOperatorio;
+		return idEnfermagemIntra;
 	}
 	public void setIdIntraOperatorio(int idIntraOperatorio) {
-		this.idIntraOperatorio = idIntraOperatorio;
+		this.idEnfermagemIntra = idIntraOperatorio;
 	}
 	
 	

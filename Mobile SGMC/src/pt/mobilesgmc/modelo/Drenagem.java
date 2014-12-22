@@ -39,4 +39,10 @@ public class Drenagem {
 	}
 	
 	public Drenagem(){}
+	@Override
+	public String toString() {
+		return "Drenagem [id=" + id + ", hora=" + hora + ", drenagem="
+				+ drenagem + ", caracteristicas=" + caracteristicas
+				+ ", idEliminacao=" + idEliminacao + "]";
+	}
 }

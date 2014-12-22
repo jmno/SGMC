@@ -7,13 +7,13 @@ import android.text.method.DateTimeKeyListener;
 public class Utente {
 	
 	private int id;
-	private String nome;
+	private String nomeUtente;
 	private int numProcesso;
 	private String dataNascimento;
 	private String subsistema;
 	private String alergias;
 	private String patologias;
-	private String antecedentesCirurgicos;
+	private String antecendentesCirurgicos;
 	public int getId() {
 		return id;
 	}
@@ -21,10 +21,10 @@ public class Utente {
 		this.id = id;
 	}
 	public String getNome() {
-		return nome;
+		return nomeUtente;
 	}
 	public void setNome(String nome) {
-		this.nome = nome;
+		this.nomeUtente = nome;
 	}
 	public int getNumProcesso() {
 		return numProcesso;
@@ -57,10 +57,10 @@ public class Utente {
 		this.patologias = patologias;
 	}
 	public String getAntecedentesCirurgicos() {
-		return antecedentesCirurgicos;
+		return antecendentesCirurgicos;
 	}
 	public void setAntecedentesCirurgicos(String antecedentesCirurgicos) {
-		this.antecedentesCirurgicos = antecedentesCirurgicos;
+		this.antecendentesCirurgicos = antecedentesCirurgicos;
 	}
 	
 	public Utente (){}
@@ -70,17 +70,17 @@ public class Utente {
 			String antecedentesCirurgicos)
 	{
 		this.id=id;
-		this.nome= nome;
+		this.nomeUtente= nome;
 		this.numProcesso = numProc;
 		this.dataNascimento=dataNasc;
 		this.subsistema = subsistema;
 		this.alergias = alergias;
 		this.patologias = patologias;
-		this.antecedentesCirurgicos = antecedentesCirurgicos;
+		this.antecendentesCirurgicos = antecedentesCirurgicos;
 	}
 	@Override
 	public String toString() {
-		return nome ;
+		return  nomeUtente;
 	}
 	
 	

@@ -3,7 +3,7 @@ package pt.mobilesgmc.modelo;
 public class BlocoOperatorio {
 	
 	private int id;
-	private String nome;
+	private String nomeBlocoOperatorio;
 	
 	public int getId() {
 		return id;
@@ -12,14 +12,14 @@ public class BlocoOperatorio {
 		this.id = id;
 	}
 	public String getNome() {
-		return nome;
+		return nomeBlocoOperatorio;
 	}
 	public void setNome(String nome) {
-		this.nome = nome;
+		this.nomeBlocoOperatorio = nome;
 	}
 	@Override
 	public String toString() {
-		return   nome ;
+		return   nomeBlocoOperatorio ;
 	}
 	
 	

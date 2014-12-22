@@ -81,21 +81,34 @@ public class UtentesActivity extends Activity {
 				txt_dataNascimentoUtente.setText(a.getDataNascimento()
 						.toString());
 				txt_subSistemaUtente.setText(a.getSubsistema().toString());
-				if (a.getAlergias().equals("null")
+				if(a.getAlergias()==null){
+					
+					txt_alergiasUtente.setText("N/A");
+				
+				}
+				else if(a.getAlergias().equals("null") || a.getAlergias().trim().isEmpty() 
 						|| a.getAlergias().equals("NULL")
 						|| a.getAlergias().equals(""))
 					txt_alergiasUtente.setText("N/A");
 				else
 					txt_alergiasUtente.setText(a.getAlergias().toString());
+				
+				if(a.getPatologias()==null){
+					txt_patologiasUtente.setText("N/A");
 
-				if (a.getPatologias().equals("null")
+				}
+				else if (a.getPatologias().equals("null") || a.getPatologias().trim().isEmpty()
 						|| a.getPatologias().equals("NULL")
 						|| a.getPatologias().equals(""))
 					txt_patologiasUtente.setText("N/A");
 				else
 					txt_patologiasUtente.setText(a.getPatologias().toString());
 
-				if (a.getAntecedentesCirurgicos().equals("null")
+				if(a.getAntecedentesCirurgicos()==null){
+					txt_antecedentesUtente.setText("N/A");
+
+				}
+				else if (a.getAntecedentesCirurgicos().equals("null") || a.getAntecedentesCirurgicos().trim().isEmpty()
 						|| a.getAntecedentesCirurgicos().equals("NULL")
 						|| a.getAntecedentesCirurgicos().equals(""))
 					txt_antecedentesUtente.setText("N/A");
@@ -178,7 +191,6 @@ public class UtentesActivity extends Activity {
 					| JSONException e) {
 				e.printStackTrace();
 			}
-
 			return lista;
 		}
 
@@ -198,7 +210,7 @@ public class UtentesActivity extends Activity {
 				if(idUtente!=0)
 				populateList(idUtente);
 				// new Notifications(getApplicationContext(),
-				// "Connexão Efetuada com Sucesso!");
+				// "Connexï¿½o Efetuada com Sucesso!");
 				Toast.makeText(getApplicationContext(),
 						"Get Utentes successful!", Toast.LENGTH_LONG).show();
 			} else {

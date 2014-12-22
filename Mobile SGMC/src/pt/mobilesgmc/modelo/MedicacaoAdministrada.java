@@ -2,6 +2,13 @@ package pt.mobilesgmc.modelo;
 
 public class MedicacaoAdministrada {
 	
+	@Override
+	public String toString() {
+		return "MedicacaoAdministrada [id=" + id + ", hora=" + hora
+				+ ", farmaco=" + farmaco + ", idIntraOperatorio="
+				+ idIntraOperatorio + "]";
+	}
+
 	private int id;
 	private String hora;
 	private String farmaco;

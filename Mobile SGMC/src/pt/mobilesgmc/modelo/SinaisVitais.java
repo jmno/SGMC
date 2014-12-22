@@ -2,13 +2,20 @@ package pt.mobilesgmc.modelo;
 
 public class SinaisVitais {
 
+	@Override
+	public String toString() {
+		return "SinaisVitais [id=" + id + ", hora=" + hora + ", ta=" + ta
+				+ ", fc=" + fc + ", spo2=" + spo2 + ", temp=" + temp
+				+ ", idintraOperatorio=" + idIntraOperatorio + "]";
+	}
+
 	private int id;
 	private String hora;
 	private int ta;
 	private int fc;
 	private double spo2;
 	private double temp;
-	public int idintraOperatorio;
+	public int idIntraOperatorio;
 	
 	public int getId() {
 		return id;
@@ -47,10 +54,10 @@ public class SinaisVitais {
 		this.temp = temp;
 	}
 	public int getIdintraOperatorio() {
-		return idintraOperatorio;
+		return idIntraOperatorio;
 	}
 	public void setIdintraOperatorio(int idintraOperatorio) {
-		this.idintraOperatorio = idintraOperatorio;
+		this.idIntraOperatorio = idintraOperatorio;
 	}
 	
 	public SinaisVitais(){}

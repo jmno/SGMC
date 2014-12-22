@@ -77,7 +77,7 @@
                 android:id="@+id/tableRow3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="5dip" >
+                android:padding="15dp" >
 
                 <TextView
                     android:id="@+id/txtView_data"
@@ -122,6 +122,7 @@
                 android:id="@+id/tableRow4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:padding="5dip" >
 
                 <TextView
@@ -230,7 +231,7 @@
                 android:id="@+id/tableRow8"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="5dip" >
+                android:padding="15dp" >
 
                 <TextView
                     android:id="@+id/txtView_horaChamadaUtente"
@@ -256,7 +257,7 @@
                 android:id="@+id/tableRow9"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="5dip" >
+                android:padding="15dp" >
 
                 <TextView
                     android:id="@+id/txtView_horaEntradaBO"
@@ -301,7 +302,7 @@
                 android:id="@+id/tableRow10"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="5dip" >
+                android:padding="15dp" >
 
                 <TextView
                     android:id="@+id/txtView_horaEntradaSala"
@@ -346,7 +347,7 @@
                 android:id="@+id/tableRow11"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="5dip" >
+                android:padding="15dp" >
 
                 <TextView
                     android:id="@+id/txtView_horaInicioAnestesia"
@@ -391,7 +392,7 @@
                 android:id="@+id/tableRow12"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="5dip" >
+                android:padding="15dp" >
 
                 <TextView
                     android:id="@+id/txtView_horaInicioCirurgia"
@@ -436,7 +437,7 @@
                 android:id="@+id/tableRow13"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="5dip" >
+                android:padding="15dp" >
 
                 <TextView
                     android:id="@+id/txtView_horaEntradaRecobro"
@@ -479,6 +480,7 @@
 
             <View
                 android:layout_height="2dip"
+                android:layout_marginTop="10dp"
                 android:background="#7EC0EE" />
 
             <TableRow

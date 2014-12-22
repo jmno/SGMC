@@ -119,6 +119,8 @@ public class DadosINtraOperatorioActivity extends Activity {
 	private EditText editTextPecaBiopsiaDescricao;
 	private EditText editTextPecaBiopsiaLaboratorio;
 	private Spinner spinnerLocalizacaoEletrodo;
+	private Spinner spinnerTipoSondaVesical;
+	private Spinner spinnerTipoSondaNasogastrica;
 	private TextView textoHora;
 	private int tamanhoPadding;
 	private LinearLayout layoutIntra;
@@ -190,7 +192,7 @@ public class DadosINtraOperatorioActivity extends Activity {
 		editTextTa15MinTransfusao = (EditText) findViewById(R.id.editTextTA15MAdministracaoSangue);
 		editTexfc15MinTransfusao = (EditText) findViewById(R.id.editTextFC15MAdministracaoSangue);
 		editTextspo215MinTransfusao = (EditText) findViewById(R.id.editTextSP15MAdministracaoSangue);
-		textViewHoraFimTransfusao = (TextView) findViewById(R.id.txtViewHora15MInicioTransfusao);
+		textViewHoraFimTransfusao = (TextView) findViewById(R.id.txtViewHoraFMInicioTransfusao);
 		editTextTaFimTransfusao = (EditText) findViewById(R.id.editTextTAFMAdministracaoSangue);
 		editTexfcFimTransfusao = (EditText) findViewById(R.id.editTextFCFMAdministracaoSangue);
 		editTextspo2FimTransfusao = (EditText) findViewById(R.id.editTextSPFMAdministracaoSangue);
@@ -207,6 +209,8 @@ public class DadosINtraOperatorioActivity extends Activity {
 		spinnerLocalizacaoEletrodo = (Spinner) findViewById(R.id.spinnerLocalGarrote);
 		editTextPecaBiopsiaDescricao = (EditText) findViewById(R.id.editTextDescricaoBiopsia);
 		editTextPecaBiopsiaLaboratorio = (EditText) findViewById(R.id.editTextLaboratorioBiopsia);
+		spinnerTipoSondaVesical  = (Spinner) findViewById(R.id.spinnerSondaCataterismo);
+		spinnerTipoSondaNasogastrica = (Spinner) findViewById(R.id.spinnerSondaNasogastrica);
 		layoutIntra = (LinearLayout) findViewById(R.id.layoutIntra);
 		tamanhoPadding = layoutIntra.getPaddingTop();
 
@@ -536,23 +540,24 @@ public class DadosINtraOperatorioActivity extends Activity {
 	}
 
 	public void preencherAtividade(DadosIntraoperatorioFinal dados) {
+		Toast.makeText(getApplicationContext(), dados.toString(), Toast.LENGTH_LONG).show();
 		try {
 			// if(dados.getDados().getTipoAnestesia()!=null)
 			spinnerTipoAnestesia.setSelection(getIndex(spinnerTipoAnestesia,
 					dados.getDados().getTipoAnestesia()));
 
 			// if(dados.getDados().getTet()!=0)
-			editTextTET.setText(dados.getDados().getTet());
+			editTextTET.setText(dados.getDados().getTet()+"");
 
 			// if(dados.getDados().getMl()!=0)
-			editTextML.setText(dados.getDados().getMl());
+			editTextML.setText(dados.getDados().getMl()+"");
 
 			// if(dados.getDados().getCalibreAgulha()!=0)
 			editTextAgulhaPlCalibre.setText(dados.getDados().getCalibreAgulha()
 					+ "");
 
 			// if(dados.getDados().getTipoAcessovenoso()!=null)
-			editTextTipo.setText(dados.getDados().getTipoAnestesia());
+			editTextTipo.setText(dados.getDados().getTipoAcessovenoso()+"");
 
 			// if(dados.getDados().getCalibreAcessoVenoso()!=0)
 			editTextCalibre.setText(dados.getDados().getCalibreAcessoVenoso()
@@ -562,52 +567,75 @@ public class DadosINtraOperatorioActivity extends Activity {
 			editTextLocalizacaoAcessoVenoso.setText(dados.getDados()
 					.getLocalizacaoAcessoVenoso());
 
+			
+			/* INICIO SINAIS VITAIS*/
 			for (int k = 0; k < dados.getListaSinais().size(); k++) {
 
 				if (k == 0) {
-					TableRow row = (TableRow) tableSinaisVitais.getChildAt(0);
+					TableRow row = (TableRow) tableSinaisVitais.getChildAt(1);
 					TextView texto = (TextView) row.getChildAt(0);
 					EditText texto1 = (EditText) row.getChildAt(1);
 					EditText texto2 = (EditText) row.getChildAt(2);
 					EditText texto3 = (EditText) row.getChildAt(3);
 					EditText texto4 = (EditText) row.getChildAt(4);
 					texto.setText(dados.getListaSinais().get(k).getHora());
-					texto1.setText(dados.getListaSinais().get(k).getTa());
-					texto2.setText(dados.getListaSinais().get(k).getFc());
+					texto1.setText(dados.getListaSinais().get(k).getTa()+"");
+					texto2.setText(dados.getListaSinais().get(k).getFc()+"");
 					texto3.setText(dados.getListaSinais().get(k).getSpo2() + "");
 					texto4.setText(dados.getListaSinais().get(k).getTemp() + "");
 				} else {
-					for (int in = 1, j = tableSinaisVitais.getChildCount(); in < j; in++) {
+					
 						tableRowSinaisVitais = new TableRow(
 								DadosINtraOperatorioActivity.this);
 						tableRowSinaisVitais = (TableRow) LayoutInflater.from(
 								DadosINtraOperatorioActivity.this).inflate(
 								R.layout.layout_row_sinais_vitais, null);
-
-						tableSinaisVitais.addView(tableRowSinaisVitais);
-
 						tamanhoPadding += 39;
 						layoutIntra.setPadding(0, tamanhoPadding, 0, 0);
-						tableSinaisVitais.addView(tableRowSinaisVitais);
 
-						TableRow row = (TableRow) tableSinaisVitais
-								.getChildAt(in);
 
-						TextView texto = (TextView) row.getChildAt(0);
-						EditText texto1 = (EditText) row.getChildAt(1);
-						EditText texto2 = (EditText) row.getChildAt(2);
-						EditText texto3 = (EditText) row.getChildAt(3);
-						EditText texto4 = (EditText) row.getChildAt(4);
+						TextView texto = (TextView) tableRowSinaisVitais.getChildAt(0);
+						EditText texto1 = (EditText) tableRowSinaisVitais.getChildAt(1);
+						EditText texto2 = (EditText) tableRowSinaisVitais.getChildAt(2);
+						EditText texto3 = (EditText) tableRowSinaisVitais.getChildAt(3);
+						EditText texto4 = (EditText) tableRowSinaisVitais.getChildAt(4);
 						texto.setText(dados.getListaSinais().get(k).getHora());
-						texto1.setText(dados.getListaSinais().get(k).getTa());
-						texto2.setText(dados.getListaSinais().get(k).getFc());
+						texto1.setText(dados.getListaSinais().get(k).getTa()+"");
+						texto2.setText(dados.getListaSinais().get(k).getFc()+"");
 						texto3.setText(dados.getListaSinais().get(k).getSpo2()
 								+ "");
 						texto4.setText(dados.getListaSinais().get(k).getTemp()
 								+ "");
-					}
+						tableSinaisVitais.addView(tableRowSinaisVitais);
 				}
 			}
+				/* FIM SINAIS VITAIS*/
+
+				/* INICIO ADMINISTRACAO DE SANGUE*/
+			
+				textViewHoraInicioTransfusao.setText(dados.getAdministracao().getHoraInicioTransf()+"");
+				editTextTaInicioTransfusao.setText(dados.getAdministracao().getTaInicioTransfusao()+"");
+				editTexfcInicioTransfusao.setText(dados.getAdministracao().getFcInicioTransfusao()+"");
+				editTextspo2InicioTransfusao.setText(dados.getAdministracao().getSpo2InicioTransfusao()+"");
+				textViewHora15MinAposTransfusao.setText(dados.getAdministracao().getHora15minAposTransf()+"");
+				editTextTa15MinTransfusao.setText(dados.getAdministracao().getTa15minAposTransfusao()+"");
+				editTexfc15MinTransfusao.setText(dados.getAdministracao().getFc15minAposTransfusao()+"");
+				editTextspo215MinTransfusao.setText(dados.getAdministracao().getSpo215minAposTransfusao()+"");
+				textViewHoraFimTransfusao.setText(dados.getAdministracao().getHoraFimTransf()+"");
+				editTextTaFimTransfusao.setText(dados.getAdministracao().getTaFimTransfusao()+"");
+				editTexfcFimTransfusao.setText(dados.getAdministracao().getFcFimTransfusao()+"");
+				editTextspo2FimTransfusao.setText(dados.getAdministracao().getSpo2FimTransfusao()+"");
+
+				/* FIM ADMINISTRACAO DE SANGUE*/
+				
+				/* INICIO ELIMINACAO */
+				spinnerTipoSondaVesical.setSelection(getIndex(spinnerTipoSondaVesical,
+					dados.getListaEliminacao().get(0).getTipoSonda().toString()));
+				
+				
+				/* FIM ELIMINACAO */
+
+			
 		} catch (Exception e) {
 			// TODO: handle exception
 		}

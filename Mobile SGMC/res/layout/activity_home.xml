@@ -60,7 +60,8 @@
             android:layout_alignLeft="@+id/textView_HomeActivity"
             android:layout_below="@+id/btnEscolhaCirurgia"
             android:layout_marginTop="42dp"
-            android:text="Button" />
+            android:text="Button"
+            android:visibility="invisible" />
 
     </RelativeLayout>
 

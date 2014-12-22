@@ -178,7 +178,7 @@ public class DadosCirurgia extends Activity {
 				ci.setIdUtente(p.getIdUtente());
 				ci.setIdEquipa(p.getIdEquipa());
 				ci.setLateralidade(lateralidade.getSelectedItem().toString());
-				ci.setClassificacaoASA(classificacaoASA.getSelectedItem()
+				ci.setClassifASA(classificacaoASA.getSelectedItem()
 						.toString());
 
 				ci.setDestinoDoente(destinoDoente.getSelectedItem().toString());
@@ -804,7 +804,7 @@ public class DadosCirurgia extends Activity {
 		lateralidade.setSelection(a);
 
 		a = spinnerDaMeATuaPosicao(classificacaoASA.getAdapter(),
-				c.getClassificacaoASA());
+				c.getClassifASA());
 		classificacaoASA.setSelection(a);
 
 		a = spinnerDaMeATuaPosicao(destinoDoente.getAdapter(),

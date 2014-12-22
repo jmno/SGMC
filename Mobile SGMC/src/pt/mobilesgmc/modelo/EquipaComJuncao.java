@@ -4,16 +4,16 @@ import java.util.LinkedList;
 
 public class EquipaComJuncao {
 	
-	private LinkedList<ProfissionalDaCirurgia> listaProfissionais;
+	private LinkedList<ProfissionalDaCirurgia> profissional;
 	private String nomeEquipa;
 	private int idEquipa;
 	
 	
 	public LinkedList<ProfissionalDaCirurgia> getListaProfissionais() {
-		return listaProfissionais;
+		return profissional;
 	}
 	public void setListaProfissionais(LinkedList<ProfissionalDaCirurgia> listaProfissionais) {
-		this.listaProfissionais = listaProfissionais;
+		this.profissional = listaProfissionais;
 	}
 	public String getNomeEquipa() {
 		return nomeEquipa;

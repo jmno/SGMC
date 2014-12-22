@@ -2,16 +2,33 @@ package pt.mobilesgmc.modelo;
 
 public class AdministracaoSangue {
 
+	@Override
+	public String toString() {
+		return "AdministracaoSangue [id=" + id + ", horaInicioTransf="
+				+ horaInicioTransfusao + ", taInicioTransfusao="
+				+ taInicioTransfusao + ", fcInicioTransfusao="
+				+ fcInicioTransfusao + ", spo2InicioTransfusao="
+				+ spo2InicioTransfusao + ", hora15minAposTransf="
+				+ hora15MinAposTransfusao + ", ta15minAposTransfusao="
+				+ ta15MinAposTransfusao + ", fc15minAposTransfusao="
+				+ fc15MinAposTransfusao + ", spo215minAposTransfusao="
+				+ spo215MinAposTransfusao + ", horaFimTransf=" + horaFimTransfusao
+				+ ", taFimTransfusao=" + taFimTransfusao + ", fcFimTransfusao="
+				+ fcFimTransfusao + ", spo2FimTransfusao=" + spo2FimTransfusao
+				+ ", idIntraOperatorio=" + idIntraOperatorio + "]";
+	}
+
+
 	private int id;
-	private String horaInicioTransf;
+	private String horaInicioTransfusao;
 	private double taInicioTransfusao;
 	private double fcInicioTransfusao;
 	private double spo2InicioTransfusao;
-	private String hora15minAposTransf;
-	private double ta15minAposTransfusao;
-	private double fc15minAposTransfusao;
-	private double spo215minAposTransfusao;
-	private String horaFimTransf;
+	private String hora15MinAposTransfusao;
+	private double ta15MinAposTransfusao;
+	private double fc15MinAposTransfusao;
+	private double spo215MinAposTransfusao;
+	private String horaFimTransfusao;
 	private double taFimTransfusao;
 	private double fcFimTransfusao;
 	private double spo2FimTransfusao;
@@ -23,10 +40,10 @@ public class AdministracaoSangue {
 		this.id = id;
 	}
 	public String getHoraInicioTransf() {
-		return horaInicioTransf;
+		return horaInicioTransfusao;
 	}
 	public void setHoraInicioTransf(String horaInicioTransf) {
-		this.horaInicioTransf = horaInicioTransf;
+		this.horaInicioTransfusao = horaInicioTransf;
 	}
 	public double getTaInicioTransfusao() {
 		return taInicioTransfusao;
@@ -47,34 +64,34 @@ public class AdministracaoSangue {
 		this.spo2InicioTransfusao = spo2InicioTransfusao;
 	}
 	public String getHora15minAposTransf() {
-		return hora15minAposTransf;
+		return hora15MinAposTransfusao;
 	}
 	public void setHora15minAposTransf(String hora15minAposTransf) {
-		this.hora15minAposTransf = hora15minAposTransf;
+		this.hora15MinAposTransfusao = hora15minAposTransf;
 	}
 	public double getTa15minAposTransfusao() {
-		return ta15minAposTransfusao;
+		return ta15MinAposTransfusao;
 	}
 	public void setTa15minAposTransfusao(double ta15minAposTransfusao) {
-		this.ta15minAposTransfusao = ta15minAposTransfusao;
+		this.ta15MinAposTransfusao = ta15minAposTransfusao;
 	}
 	public double getFc15minAposTransfusao() {
-		return fc15minAposTransfusao;
+		return fc15MinAposTransfusao;
 	}
 	public void setFc15minAposTransfusao(double fc15minAposTransfusao) {
-		this.fc15minAposTransfusao = fc15minAposTransfusao;
+		this.fc15MinAposTransfusao = fc15minAposTransfusao;
 	}
 	public double getSpo215minAposTransfusao() {
-		return spo215minAposTransfusao;
+		return spo215MinAposTransfusao;
 	}
 	public void setSpo215minAposTransfusao(double spo215minAposTransfusao) {
-		this.spo215minAposTransfusao = spo215minAposTransfusao;
+		this.spo215MinAposTransfusao = spo215minAposTransfusao;
 	}
 	public String getHoraFimTransf() {
-		return horaFimTransf;
+		return horaFimTransfusao;
 	}
 	public void setHoraFimTransf(String horaFimTransf) {
-		this.horaFimTransf = horaFimTransf;
+		this.horaFimTransfusao = horaFimTransf;
 	}
 	public double getTaFimTransfusao() {
 		return taFimTransfusao;

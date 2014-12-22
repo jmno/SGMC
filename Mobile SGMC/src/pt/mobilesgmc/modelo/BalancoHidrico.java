@@ -2,6 +2,13 @@ package pt.mobilesgmc.modelo;
 
 public class BalancoHidrico {
 	
+	@Override
+	public String toString() {
+		return "BalancoHidrico [id=" + id + ", hora=" + hora + ", soroterapia="
+				+ soroterapia + ", idIntraOperatorio=" + idIntraOperatorio
+				+ "]";
+	}
+
 	private int id;
 	private String hora;
 	private String soroterapia;
