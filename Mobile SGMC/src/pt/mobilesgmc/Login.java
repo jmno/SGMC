@@ -37,7 +37,7 @@ public class Login extends Activity {
 
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login);
-		
+		setTitle("Login");
 //		startActivity(new Intent(this, DadosINtraOperatorioActivity.class));
 	//-W800
 		
@@ -67,7 +67,7 @@ public class Login extends Activity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.login, menu);
+		//getMenuInflater().inflate(R.menu.login, menu);
 		return true;
 	}
 

@@ -44,12 +44,10 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
 import com.example.mobilegsmc.R;
 import com.example.mobilegsmc.R.menu;
 
 public class HomeActivity extends Activity {
-
 
 	FlyOutContainer root;
 	String token;
@@ -61,25 +59,24 @@ public class HomeActivity extends Activity {
 	private static Cirurgia cirurgia;
 	ProgressDialog ringProgressDialog = null;
 
-	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_home);
-
+		setTitle("Ecrã Principal");
 		token = PreferenceManager.getDefaultSharedPreferences(this).getString(
 				"token", "defaultStringIfNothingFound");
 
 		this.root = (FlyOutContainer) this.getLayoutInflater().inflate(
 				R.layout.activity_home, null);
-		
+
 		Display display = getWindowManager().getDefaultDisplay();
 		DisplayMetrics outMetrics = new DisplayMetrics();
 		display.getMetrics(outMetrics);
 
 		float density = getResources().getDisplayMetrics().density;
 		float dpWidth = outMetrics.widthPixels / density;
-		int margin = (80 * (int) dpWidth) / 100;
+		int margin = ((80 * (int) dpWidth) / 100)-50;
 		root.setMargin(margin);
 		this.setContentView(root);
 
@@ -117,21 +114,22 @@ public class HomeActivity extends Activity {
 				.findViewById(R.id.editText_escolhaCirurgia);
 
 		setListenersMenus();
-		
+
 		Button button = (Button) findViewById(R.id.button1);
 		button.setOnClickListener(new OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-			Intent i = new Intent(getApplicationContext(), DadosINtraOperatorioActivity.class);
-			startActivity(i);
+				Intent i = new Intent(getApplicationContext(),
+						DadosINtraOperatorioActivity.class);
+				startActivity(i);
 			}
 		});
 
 		textoCirurgiaAUsar = (TextView) root
 				.findViewById(R.id.textViewCirurgia);
-		
+
 		Button btnAdd = (Button) findViewById(R.id.btnEscolhaCirurgia);
 		btnAdd.setOnClickListener(new OnClickListener() {
 
@@ -150,26 +148,27 @@ public class HomeActivity extends Activity {
 								WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 				final EditText nomeEditText = (EditText) dialog
 						.findViewById(R.id.editText_escolhaCirurgia);
-				
+
 				nomeEditText.addTextChangedListener(new TextWatcher() {
-					
+
 					@Override
-					public void onTextChanged(CharSequence s, int start, int before, int count) {
+					public void onTextChanged(CharSequence s, int start,
+							int before, int count) {
 						// TODO Auto-generated method stub
 						adaptadorCirurgias.getFilter().filter(s);
 					}
-					
+
 					@Override
-					public void beforeTextChanged(CharSequence s, int start, int count,
-							int after) {
+					public void beforeTextChanged(CharSequence s, int start,
+							int count, int after) {
 						// TODO Auto-generated method stub
-						
+
 					}
-					
+
 					@Override
 					public void afterTextChanged(Editable s) {
 						// TODO Auto-generated method stub
-						
+
 					}
 				});
 				listaCirurgias = (ListView) dialog
@@ -224,23 +223,31 @@ public class HomeActivity extends Activity {
 		});
 
 	}
-	
-	public void setListenersMenus(){
-		
-		TextView btnEquipa = (TextView) root.findViewById(R.id.textViewMenuEquipaCirurgica);
+
+	public void setListenersMenus() {
+
+		TextView btnEquipa = (TextView) root
+				.findViewById(R.id.textViewMenuEquipaCirurgica);
 		btnEquipa.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
+				if (cirurgia != null) {
 				Intent equipa = new Intent(getBaseContext(),
 						EquipaCirurgica.class);
 				toggleMenu(findViewById(R.layout.activity_equipa_cirurgica));
 
 				startActivity(equipa);
+				} else {
+					Toast.makeText(getApplicationContext(), "Tem de selecionar uma cirurgia primeiro", Toast.LENGTH_SHORT).show();
+					Log.i("sgmc", "Não tem cirurgia escolhida");
+					root.toggleMenu();
+				}
 
 			}
 		});
-		TextView btnDados = (TextView) root.findViewById(R.id.textViewMenuDadosCirurgia);
+		TextView btnDados = (TextView) root
+				.findViewById(R.id.textViewMenuDadosCirurgia);
 		btnDados.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -252,12 +259,14 @@ public class HomeActivity extends Activity {
 
 					startActivity(dados);
 				} else {
+					Toast.makeText(getApplicationContext(), "Tem de selecionar uma cirurgia primeiro", Toast.LENGTH_SHORT).show();
 					Log.i("sgmc", "Não tem cirurgia escolhida");
 					root.toggleMenu();
 				}
 			}
 		});
-		TextView btnUtentes = (TextView) root.findViewById(R.id.textViewMenuUtentes);
+		TextView btnUtentes = (TextView) root
+				.findViewById(R.id.textViewMenuUtentes);
 		btnUtentes.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -269,7 +278,7 @@ public class HomeActivity extends Activity {
 				startActivity(utentes);
 			}
 		});
-		
+
 		TextView btnDadosIntraOperatorio = (TextView) findViewById(R.id.textViewMenuDadosIntraOperatorio);
 		btnDadosIntraOperatorio.setOnClickListener(new OnClickListener() {
 
@@ -281,12 +290,13 @@ public class HomeActivity extends Activity {
 							DadosINtraOperatorioActivity.class);
 					toggleMenu(findViewById(R.layout.activity_dados_intra_operatorio));
 					startActivity(dados);
-					
+
 				} else {
-					Log.i("sgmc", "N�o tem cirurgia escolhida");
+					Toast.makeText(getApplicationContext(), "Tem de selecionar uma cirurgia primeiro", Toast.LENGTH_SHORT).show();
+					Log.i("sgmc", "Não tem cirurgia escolhida");
 					root.toggleMenu();
 				}
-				
+
 			}
 		});
 		TextView btnSair = (TextView) findViewById(R.id.textViewMenuSair);
@@ -295,12 +305,15 @@ public class HomeActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-			PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().clear().commit();
-			Intent intent = new Intent(Intent.ACTION_MAIN);
-			intent.addCategory(Intent.CATEGORY_HOME);
-			intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-			startActivity(intent);
-			finish();}
+				PreferenceManager
+						.getDefaultSharedPreferences(getApplicationContext())
+						.edit().clear().commit();
+				Intent intent = new Intent(Intent.ACTION_MAIN);
+				intent.addCategory(Intent.CATEGORY_HOME);
+				intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+				startActivity(intent);
+				finish();
+			}
 		});
 	}
 
@@ -362,15 +375,16 @@ public class HomeActivity extends Activity {
 			ringProgressDialog.setMessage("A carregar Dados...");
 
 			ringProgressDialog.setCancelable(true);
-ringProgressDialog.setOnCancelListener(new OnCancelListener() {
-	
-	@Override
-	public void onCancel(DialogInterface dialog) {
-		
-	}
-});
+			ringProgressDialog.setOnCancelListener(new OnCancelListener() {
+
+				@Override
+				public void onCancel(DialogInterface dialog) {
+
+				}
+			});
 			ringProgressDialog.show();
 		};
+
 		@Override
 		protected ArrayList<Cirurgia> doInBackground(Cirurgia... params) {
 			ArrayList<Cirurgia> lista = null;
@@ -384,8 +398,6 @@ ringProgressDialog.setOnCancelListener(new OnCancelListener() {
 
 			return lista;
 		}
-		
-		
 
 		@Override
 		protected void onPostExecute(ArrayList<Cirurgia> lista) {
@@ -397,18 +409,18 @@ ringProgressDialog.setOnCancelListener(new OnCancelListener() {
 
 					@Override
 					public int compare(Cirurgia lhs, Cirurgia rhs) {
-						return (""+lhs.getId())
-								.compareTo((""+rhs.getId()));
+						return ("" + lhs.getId()).compareTo(("" + rhs.getId()));
 					}
 				});
 				listaCirurgias.setAdapter(adaptadorCirurgias);
 				ringProgressDialog.dismiss();
 				dialog.show();
-			}
-			else
-			{
+			} else {
 				ringProgressDialog.dismiss();
-				Toast.makeText(getApplicationContext(), "Erro Get Cirurgias - Verifique a Internet e repita o Processo", Toast.LENGTH_SHORT).show();
+				Toast.makeText(
+						getApplicationContext(),
+						"Erro Get Cirurgias - Verifique a Internet e repita o Processo",
+						Toast.LENGTH_SHORT).show();
 			}
 		}
 

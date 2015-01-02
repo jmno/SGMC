@@ -330,9 +330,8 @@ public class WebServiceUtils {
 	public static int getEquipaID(String nomeEquipa, String token)
 			throws ParseException, IOException, RestClientException {
 		int resultado = 0;
-
 		HttpGet request = new HttpGet(URL + "getIdEquipaByNome?token=" + token
-				+ "&nome=" + nomeEquipa);
+				+ "&nome=" + nomeEquipa.replaceAll("\\s","+"));
 		request.setHeader("Accept", "Application/JSON");
 
 		BasicHttpResponse basicHttpResponse = (BasicHttpResponse) client
