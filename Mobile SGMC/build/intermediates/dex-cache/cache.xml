@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="/Users/Nicolau/Dropbox/Leiria/4Ano/1Semestre/SGMC/NEW/Mobile SGMC/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/21.0.0/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="efeda77c808750cb670ee9c48d8a1835d89dbcb2">
+        <dex dex="/Users/Nicolau/Dropbox/Leiria/4Ano/1Semestre/SGMC/NEW/Mobile SGMC/app/build/intermediates/pre-dexed/debug/classes-80cd14c15be326234964fe1f94c52241ca80682e.jar" />
+    </item>
+    <item
+        jar="/Users/Nicolau/Desktop/adt-bundle-mac-x86_64-20140702/sdk/extras/android/m2repository/com/android/support/support-annotations/21.0.3/support-annotations-21.0.3.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="4b74cefe1f0c1b819e7260c8627a14674e37fd35">
+        <dex dex="/Users/Nicolau/Dropbox/Leiria/4Ano/1Semestre/SGMC/NEW/Mobile SGMC/app/build/intermediates/pre-dexed/debug/support-annotations-21.0.3-7adaad4fce9c4a95143bb29ea5b3510041c2c306.jar" />
+    </item>
+    <item
+        jar="/Users/Nicolau/Dropbox/Leiria/4Ano/1Semestre/SGMC/NEW/Mobile SGMC/app/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.3/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="2c91c949a45a21cdecf26e03951e46c7beec9ad8">
+        <dex dex="/Users/Nicolau/Dropbox/Leiria/4Ano/1Semestre/SGMC/NEW/Mobile SGMC/app/build/intermediates/pre-dexed/debug/classes-e864eb43bed07d28bbcb4294ab1922bb3fdfe26b.jar" />
+    </item>
+    <item
+        jar="/Users/Nicolau/.gradle/caches/modules-2/files-2.1/com.nineoldandroids/library/2.4.0/e9b63380f3a242dbdbf103a2355ad7e43bad17cb/library-2.4.0.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="e9b63380f3a242dbdbf103a2355ad7e43bad17cb">
+        <dex dex="/Users/Nicolau/Dropbox/Leiria/4Ano/1Semestre/SGMC/NEW/Mobile SGMC/app/build/intermediates/pre-dexed/debug/library-2.4.0-10ed26038d12cd2523b2c2a1574affba1e59978b.jar" />
+    </item>
+    <item
+        jar="/Users/Nicolau/Dropbox/Leiria/4Ano/1Semestre/SGMC/NEW/Mobile SGMC/app/build/intermediates/exploded-aar/com.melnykov/floatingactionbutton/1.1.0/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="ee9ae2b87d57a33a7381c75d54db12bdf2995656">
+        <dex dex="/Users/Nicolau/Dropbox/Leiria/4Ano/1Semestre/SGMC/NEW/Mobile SGMC/app/build/intermediates/pre-dexed/debug/classes-62c63cbe45cf4fe1e88ec2a5d9d9424a783c215c.jar" />
+    </item>
+    <item
+        jar="/Users/Nicolau/Dropbox/Leiria/4Ano/1Semestre/SGMC/NEW/Mobile SGMC/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.3/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="81d42bf983a8741f4888a6e333e454e4a5e0eeb7">
+        <dex dex="/Users/Nicolau/Dropbox/Leiria/4Ano/1Semestre/SGMC/NEW/Mobile SGMC/app/build/intermediates/pre-dexed/debug/classes-48f493afbaf744dd9d5985cc59acb45e910f8ff5.jar" />
+    </item>
+    <item
+        jar="/Users/Nicolau/Dropbox/Leiria/4Ano/1Semestre/SGMC/NEW/Mobile SGMC/app/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.3/libs/internal_impl-21.0.3.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="01ec05bfbafcc07646ba813000bf2ef11742dd03">
+        <dex dex="/Users/Nicolau/Dropbox/Leiria/4Ano/1Semestre/SGMC/NEW/Mobile SGMC/app/build/intermediates/pre-dexed/debug/internal_impl-21.0.3-938b16d06b931e5a7417e1f8c250cd7925c36050.jar" />
+    </item>
+    <item
+        jar="/Users/Nicolau/Dropbox/Leiria/4Ano/1Semestre/SGMC/NEW/Mobile SGMC/app/build/intermediates/exploded-aar/com.getbase/floatingactionbutton/1.5.1/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="3b465c76432a5bc9292608ab6522b41b5ef292d6">
+        <dex dex="/Users/Nicolau/Dropbox/Leiria/4Ano/1Semestre/SGMC/NEW/Mobile SGMC/app/build/intermediates/pre-dexed/debug/classes-24801c300b98b3150e5ad9142dc18a8489d1839c.jar" />
+    </item>
+    <item
+        jar="/Users/Nicolau/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.3.1/ecb6e1f8e4b0e84c4b886c2f14a1500caf309757/gson-2.3.1.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="ecb6e1f8e4b0e84c4b886c2f14a1500caf309757">
+        <dex dex="/Users/Nicolau/Dropbox/Leiria/4Ano/1Semestre/SGMC/NEW/Mobile SGMC/app/build/intermediates/pre-dexed/debug/gson-2.3.1-469b79f15211b430dd3674b649b49a532ff63cbe.jar" />
+    </item>
+
+</items>

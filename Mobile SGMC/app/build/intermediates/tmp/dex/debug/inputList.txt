@@ -1,0 +1,10 @@
+/Users/Nicolau/Dropbox/Leiria/4Ano/1Semestre/SGMC/NEW/Mobile SGMC/app/build/intermediates/classes/debug
+/Users/Nicolau/Dropbox/Leiria/4Ano/1Semestre/SGMC/NEW/Mobile SGMC/app/build/intermediates/pre-dexed/debug/support-annotations-21.0.3-7adaad4fce9c4a95143bb29ea5b3510041c2c306.jar
+/Users/Nicolau/Dropbox/Leiria/4Ano/1Semestre/SGMC/NEW/Mobile SGMC/app/build/intermediates/pre-dexed/debug/classes-62c63cbe45cf4fe1e88ec2a5d9d9424a783c215c.jar
+/Users/Nicolau/Dropbox/Leiria/4Ano/1Semestre/SGMC/NEW/Mobile SGMC/app/build/intermediates/pre-dexed/debug/classes-24801c300b98b3150e5ad9142dc18a8489d1839c.jar
+/Users/Nicolau/Dropbox/Leiria/4Ano/1Semestre/SGMC/NEW/Mobile SGMC/app/build/intermediates/pre-dexed/debug/library-2.4.0-10ed26038d12cd2523b2c2a1574affba1e59978b.jar
+/Users/Nicolau/Dropbox/Leiria/4Ano/1Semestre/SGMC/NEW/Mobile SGMC/app/build/intermediates/pre-dexed/debug/internal_impl-21.0.3-938b16d06b931e5a7417e1f8c250cd7925c36050.jar
+/Users/Nicolau/Dropbox/Leiria/4Ano/1Semestre/SGMC/NEW/Mobile SGMC/app/build/intermediates/pre-dexed/debug/gson-2.3.1-469b79f15211b430dd3674b649b49a532ff63cbe.jar
+/Users/Nicolau/Dropbox/Leiria/4Ano/1Semestre/SGMC/NEW/Mobile SGMC/app/build/intermediates/pre-dexed/debug/classes-80cd14c15be326234964fe1f94c52241ca80682e.jar
+/Users/Nicolau/Dropbox/Leiria/4Ano/1Semestre/SGMC/NEW/Mobile SGMC/app/build/intermediates/pre-dexed/debug/classes-48f493afbaf744dd9d5985cc59acb45e910f8ff5.jar
+/Users/Nicolau/Dropbox/Leiria/4Ano/1Semestre/SGMC/NEW/Mobile SGMC/app/build/intermediates/pre-dexed/debug/classes-e864eb43bed07d28bbcb4294ab1922bb3fdfe26b.jar

@@ -1,0 +1,1481 @@
+<pt.mobilesgmc.view.viewgroup.FlyOutContainer xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <include layout="@layout/layout_menu" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical" 
+        android:background="@drawable/backgroundapp">
+
+        <ScrollView
+            android:id="@+id/scrollViewDadosIntraOperatorio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:fillViewport="true" >
+
+            <LinearLayout
+                android:id="@+id/layoutIntra"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="450dp"
+                android:orientation="vertical" >
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dip"
+                    android:layout_marginBottom="15dp"
+                    android:layout_marginTop="15dp"
+                    android:background="#7EC0EE" />
+
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+
+                    <TableRow
+                        android:id="@+id/tableRow1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center" >
+
+                        <TextView
+                            android:id="@+id/txtView_tipoAnestesia"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Tipo Anestesia:" />
+
+                        <Spinner
+                            android:id="@+id/spinner_TipoAnestesia"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:entries="@array/arrayTipoAnestesia"
+                            tools:listitem="@android:layout/simple_spinner_dropdown_item" />
+
+                    </TableRow>
+                </TableLayout>
+
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+
+                    <TableRow
+                        android:id="@+id/tableRow2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center" >
+
+                        <TextView
+                            android:id="@+id/txtView_tetn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="TET nº" />
+
+                        <EditText
+                            android:id="@+id/editText_TETn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:ems="10" >
+
+                            <requestFocus />
+                        </EditText>
+
+                        <TextView
+                            android:id="@+id/txtView_MLn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="ML nº" />
+
+                        <EditText
+                            android:id="@+id/editText_ML_n"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:ems="10" />
+
+                        <TextView
+                            android:id="@+id/txtView_Agulha_PL_Calibre"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Agulha PL Calibre" />
+
+                        <EditText
+                            android:id="@+id/editText_Agulha_PL_Calibre"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:ems="10" />
+                    </TableRow>
+                </TableLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dip"
+                    android:layout_marginBottom="15dp"
+                    android:layout_marginTop="15dp"
+                    android:background="#7EC0EE" />
+
+                <TextView
+                    android:id="@+id/TextView01"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:text="Acesso Venoso" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dip"
+                    android:layout_marginBottom="15dp"
+                    android:layout_marginTop="15dp"
+                    android:background="#7EC0EE" />
+
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+
+                    <TableRow
+                        android:id="@+id/tableRow3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center" >
+
+                        <TextView
+                            android:id="@+id/txtView_Tipo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Tipo: " />
+
+                        <EditText
+                            android:id="@+id/editText_Tipo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:ems="10" />
+
+                        <TextView
+                            android:id="@+id/txtView_calibre"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Calibre:" />
+
+                        <EditText
+                            android:id="@+id/editText_Calibre"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:ems="10" />
+
+                        <TextView
+                            android:id="@+id/txtViewLocalizacao"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Localização:" />
+
+                        <EditText
+                            android:id="@+id/editText_Localizacao"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:ems="10" />
+                    </TableRow>
+                </TableLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dip"
+                    android:layout_marginBottom="15dp"
+                    android:layout_marginTop="15dp"
+                    android:background="#7EC0EE" />
+
+                <TextView
+                    android:id="@+id/TextView02"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:text="Sinais Vitais" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dip"
+                    android:layout_marginBottom="15dp"
+                    android:layout_marginTop="15dp"
+                    android:background="#7EC0EE" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical" >
+
+                    <TableLayout
+                        android:id="@+id/tableLayout_SinaisVitais"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <TableRow
+                            android:id="@+id/tableRow4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" >
+
+                            <TextView
+                                android:id="@+id/txtView_HoraSinaisVitais"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Hora:" />
+
+                            <TextView
+                                android:id="@+id/txtView_TASinaisVitais"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="25dp"
+                                android:text="TA (mmHG):" />
+
+                            <TextView
+                                android:id="@+id/textView1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="25dp"
+                                android:text="FC (bpm):" />
+
+                            <TextView
+                                android:id="@+id/textView2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="25dp"
+                                android:text="SpO2(%):" />
+
+                            <TextView
+                                android:id="@+id/textView3"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="25dp"
+                                android:text="Temp. (ºC):" />
+
+                            <Button
+                                android:id="@+id/button1"
+                                android:layout_width="30dip"
+                                android:layout_height="30dip"
+                                android:layout_marginLeft="25dp"
+                                android:background="@drawable/add_row"
+                                android:onClick="addTableRowSinaisVitais"
+                                android:clickable="true" />
+                        </TableRow>
+
+                        <TableRow
+                            android:id="@+id/tableRow5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" >
+
+                            <TextView
+                                android:id="@+id/txtViewHoraSinaisVitais"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_column="0"
+                                android:text="   :   "
+                                android:onClick="setOnClickTimer"
+                        android:clickable="true" />
+
+                            <EditText
+                                android:id="@+id/editTextTASinaisVitais"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_column="1"
+                                android:layout_marginLeft="25dp" />
+
+                            <EditText
+                                android:id="@+id/editTextFCSinaisVitais"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_column="2"
+                                android:layout_marginLeft="25dp" />
+
+                            <EditText
+                                android:id="@+id/editTextSPSinaisVitais"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_column="3"
+                                android:layout_marginLeft="25dp" />
+
+                            <EditText
+                                android:id="@+id/editTextTempSinaisVitais"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_column="4"
+                                android:layout_marginLeft="25dp" />
+                        </TableRow>
+                    </TableLayout>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dip"
+                    android:layout_marginBottom="15dp"
+                    android:layout_marginTop="15dp"
+                    android:background="#7EC0EE" />
+
+                <TextView
+                    android:id="@+id/TextView03"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:text="Medicação Administrada:" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dip"
+                    android:layout_marginBottom="15dp"
+                    android:layout_marginTop="15dp"
+                    android:background="#7EC0EE" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical" >
+
+                    <TableLayout
+                        android:id="@+id/tableLayout_MedicacaoAdministrada"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <TableRow
+                            android:id="@+id/tableRow41"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" >
+
+                            <TextView
+                                android:id="@+id/txtView_FarmacoMedicacaoAdministrada"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Fármaco:" />
+
+                            <TextView
+                                android:id="@+id/txtView_hora1MedicacaoAdministrada"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="25dp"
+                                android:text="  :  "
+                                android:onClick="setOnClickTimer"
+                        android:clickable="true" />
+
+                            <TextView
+                                android:id="@+id/txtView_hora2MedicacaoAdministrada"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="25dp"
+                                android:text="  :  "
+                                android:onClick="setOnClickTimer"
+                        android:clickable="true" />
+
+                            <TextView
+                                android:id="@+id/txtView_hora3MedicacaoAdministrada"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="25dp"
+                                android:text="  :  "
+                                android:onClick="setOnClickTimer"
+                        android:clickable="true" />
+
+                            <Button
+                                android:id="@+id/button2"
+                                android:layout_width="30dip"
+                                android:layout_height="30dip"
+                                android:layout_marginLeft="25dp"
+                                android:background="@drawable/add_row"
+                                android:onClick="addTableRowMedicacaoAdministrada"
+                                android:clickable="true" />
+                        </TableRow>
+
+                        <TableRow
+                            android:id="@+id/tableRow51"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" >
+
+                            <EditText
+                                android:id="@+id/editTextFarmacoMedicacaoAdministrada"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_column="0" />
+
+                            <CheckBox
+                                android:id="@+id/checkBox1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_column="1"
+                                android:layout_marginLeft="23dp" />
+
+                            <CheckBox
+                                android:id="@+id/checkBox2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_column="2"
+                                android:layout_marginLeft="23dp" />
+
+                            <CheckBox
+                                android:id="@+id/checkBox3"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_column="3"
+                                android:layout_marginLeft="23dp" />
+                        </TableRow>
+                    </TableLayout>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dip"
+                    android:layout_marginBottom="15dp"
+                    android:layout_marginTop="15dp"
+                    android:background="#7EC0EE" />
+
+                <TextView
+                    android:id="@+id/TextView031"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:text="Administração de Sangue:" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dip"
+                    android:layout_marginBottom="15dp"
+                    android:layout_marginTop="15dp"
+                    android:background="#7EC0EE" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/textView4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Inicio de Transfusão:" />
+
+                    <TextView
+                        android:id="@+id/txtViewHoraInicioTransfusao"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dip"
+                        android:text="  :  "
+                        android:onClick="setOnClickTimer"
+                        android:clickable="true" />
+                </LinearLayout>
+
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+
+                    <TableRow
+                        android:id="@+id/tableRow8"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center" >
+
+                        <TextView
+                            android:id="@+id/textView5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="TA :" />
+
+                        <EditText
+                            android:id="@+id/editTextTAAdministracaoSangue"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:ems="4"
+                            android:hint="   /   "
+                            android:maxLength="10" />
+
+                        <TextView
+                            android:id="@+id/textView6"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="mmHg" />
+
+                        <TextView
+                            android:id="@+id/textView7"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="35dip"
+                            android:text="FC :" />
+
+                        <EditText
+                            android:id="@+id/editTextFCAdministracaoSangue"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:ems="4" />
+
+                        <TextView
+                            android:id="@+id/textView8"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="bpm" />
+
+                        <TextView
+                            android:id="@+id/textView9"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="35dip"
+                            android:text="SpO2 :" />
+
+                        <EditText
+                            android:id="@+id/editTextSPAdministracaoSangue"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:ems="4" />
+
+                        <TextView
+                            android:id="@+id/textView10"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="%" />
+                    </TableRow>
+                </TableLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal" >
+
+                    <TextView
+                        android:id="@+id/textView1234"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="15 Minutos após:" />
+
+                    <TextView
+                        android:id="@+id/txtViewHora15MInicioTransfusao"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dip"
+                        android:text="  :  "
+                        android:onClick="setOnClickTimer"
+                        android:clickable="true" />
+                </LinearLayout>
+
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+
+                    <TableRow
+                        android:id="@+id/tableRow81"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center|center_horizontal" >
+
+                        <TextView
+                            android:id="@+id/textView51"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="TA :" />
+
+                        <EditText
+                            android:id="@+id/editTextTA15MAdministracaoSangue"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:ems="4"
+                            android:hint="   /   "
+                            android:maxLength="10" />
+
+                        <TextView
+                            android:id="@+id/textView61"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="mmHg" />
+
+                        <TextView
+                            android:id="@+id/textView71"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="35dip"
+                            android:text="FC :" />
+
+                        <EditText
+                            android:id="@+id/editTextFC15MAdministracaoSangue"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:ems="4" />
+
+                        <TextView
+                            android:id="@+id/textView81"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="bpm" />
+
+                        <TextView
+                            android:id="@+id/textView91"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="35dip"
+                            android:text="SpO2 :" />
+
+                        <EditText
+                            android:id="@+id/editTextSP15MAdministracaoSangue"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:ems="4" />
+
+                        <TextView
+                            android:id="@+id/textView101"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="%" />
+                    </TableRow>
+                </TableLayout>
+
+                <TableLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="15dip" >
+
+                    <TableRow
+                        android:id="@+id/tableRow14"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal" >
+
+                        <TextView
+                            android:id="@+id/textView124"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Fim da Transfusão:" />
+
+                        <TextView
+                            android:id="@+id/txtViewHoraFMInicioTransfusao"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="15dip"
+                            android:text="  :  "
+                            android:onClick="setOnClickTimer"
+                        android:clickable="true" />
+                    </TableRow>
+                </TableLayout>
+
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+
+                    <TableRow
+                        android:id="@+id/tableRow281"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center" >
+
+                        <TextView
+                            android:id="@+id/textView521"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="TA :" />
+
+                        <EditText
+                            android:id="@+id/editTextTAFMAdministracaoSangue"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:ems="4"
+                            android:hint="   /   "
+                            android:maxLength="10" />
+
+                        <TextView
+                            android:id="@+id/textView621"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="mmHg" />
+
+                        <TextView
+                            android:id="@+id/textView731"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="35dip"
+                            android:text="FC :" />
+
+                        <EditText
+                            android:id="@+id/editTextFCFMAdministracaoSangue"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:ems="4" />
+
+                        <TextView
+                            android:id="@+id/textView831"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="bpm" />
+
+                        <TextView
+                            android:id="@+id/textView941"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="35dip"
+                            android:text="SpO2 :" />
+
+                        <EditText
+                            android:id="@+id/editTextSPFMAdministracaoSangue"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:ems="4" />
+
+                        <TextView
+                            android:id="@+id/textView1201"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="%" />
+                    </TableRow>
+                </TableLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dip"
+                    android:layout_marginBottom="15dp"
+                    android:layout_marginTop="15dp"
+                    android:background="#7EC0EE" />
+
+                <TextView
+                    android:id="@+id/TextView0319"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:text="Balanço Hídrico:" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dip"
+                    android:layout_marginBottom="15dp"
+                    android:layout_marginTop="15dp"
+                    android:background="#7EC0EE" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical" >
+
+                    <TableLayout
+                        android:id="@+id/tableLayout_BalancoHidrico"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <TableRow
+                            android:id="@+id/tableRow411"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" >
+
+                            <TextView
+                                android:id="@+id/txtView_SoroterapitaBalancoHidrico"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Soroterapia:" />
+
+                            <TextView
+                                android:id="@+id/txtView_hora1BalancoHidrico"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="25dp"
+                                android:text="  :  "
+                                android:onClick="setOnClickTimer"
+                        android:clickable="true" />
+
+                            <TextView
+                                android:id="@+id/txtView_hora2BalancoHidrico"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="25dp"
+                                android:text="  :  "
+                                android:onClick="setOnClickTimer"
+                        android:clickable="true" />
+
+                            <TextView
+                                android:id="@+id/txtView_hora3BalancoHidrico"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="25dp"
+                                android:text="  :  " 
+                                android:onClick="setOnClickTimer"
+                        android:clickable="true"/>
+
+                            <Button
+                                android:id="@+id/button232"
+                                android:layout_width="30dip"
+                                android:layout_height="30dip"
+                                android:layout_marginLeft="25dp"
+                                android:background="@drawable/add_row" 
+                                android:clickable="true"
+                                android:onClick="addTableRowBalancoHidrico"/>
+                        </TableRow>
+
+                        <TableRow
+                            android:id="@+id/tableRow511"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" >
+
+                            <EditText
+                                android:id="@+id/editTextSoroterapiaBalancoHidrico"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_column="0" />
+
+                            <CheckBox
+                                android:id="@+id/checkBoxBalancoHidrico1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_column="1"
+                                android:layout_marginLeft="23dp" />
+
+                            <CheckBox
+                                android:id="@+id/checkBoxBalancoHidrico2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_column="2"
+                                android:layout_marginLeft="23dp" />
+
+                            <CheckBox
+                                android:id="@+id/checkBoxBalancoHidrico3"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_column="3"
+                                android:layout_marginLeft="23dp" />
+                        </TableRow>
+                    </TableLayout>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dip"
+                    android:layout_marginBottom="15dp"
+                    android:layout_marginTop="15dp"
+                    android:background="#7EC0EE" />
+
+                <TextView
+                    android:id="@+id/TextView0231"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:text="Eliminação:" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dip"
+                    android:layout_marginBottom="15dp"
+                    android:layout_marginTop="15dp"
+                    android:background="#7EC0EE" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal" >
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical" >
+
+                        <TableLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" >
+
+                            <TableRow
+                                android:id="@+id/tableRow123"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center" >
+
+                                <TextView
+                                    android:id="@+id/textView4123"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Cataterismo Vesical:" />
+                            </TableRow>
+                        </TableLayout>
+
+                        <TableLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" >
+
+                            <TableRow
+                                android:id="@+id/tableRow1236"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center" >
+
+                                <TextView
+                                    android:id="@+id/textView4173"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Tipo de sonda:" />
+
+                                <Spinner
+                                    android:id="@+id/spinnerSondaCataterismo"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:entries="@array/arrayCateterismovisical" />
+                            </TableRow>
+                        </TableLayout>
+
+                        <TableLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" >
+
+                            <TableRow
+                                android:id="@+id/tableRow128"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center" >
+
+                                <TextView
+                                    android:id="@+id/textView5576"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Calibre :" />
+
+                                <EditText
+                                    android:id="@+id/editTextCalibreCataterismo"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:ems="5"
+                                    android:hint="   "
+                                    android:maxLength="10" />
+                            </TableRow>
+                        </TableLayout>
+
+                        <!-- asdasdas -->
+
+                        <TableLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="15dip" >
+
+                            <TableRow
+                                android:id="@+id/tableRow19474"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center" >
+
+                                <TextView
+                                    android:id="@+id/textView4567"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Drenagem:" />
+                            </TableRow>
+                        </TableLayout>
+
+                        <TableLayout
+                            android:id="@+id/tableLayout_DrenagemCataterismo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" >
+
+                            <TableRow
+                                android:id="@+id/tableRow478"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" >
+
+                                <TextView
+                                    android:id="@+id/txtView_HoraDrenagemCataterismo"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Hora:" />
+
+                                <TextView
+                                    android:id="@+id/txtView_DrenagemCataterismo"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="25dp"
+                                    android:text="Drenagem:" />
+
+                                <TextView
+                                    android:id="@+id/textView_CaracteristicasCataterismo"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="25dp"
+                                    android:text="Caracteristicas:" />
+
+                                <Button
+                                    android:id="@+id/button123893484"
+                                    android:layout_width="30dip"
+                                    android:layout_height="30dip"
+                                    android:layout_marginLeft="25dp"
+                                    android:background="@drawable/add_row" 
+                                    android:onClick="addTableRowDrenagemVesical"
+                                    android:clickable="true"/>
+                            </TableRow>
+
+                            <TableRow
+                                android:id="@+id/tableRow7456"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" >
+
+                                <TextView
+                                    android:id="@+id/txtViewHoraDrenagemCataterismo"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_column="0"
+                                    android:text="   :   "
+                                    android:onClick="setOnClickTimer"
+                        android:clickable="true" />
+
+                                <EditText
+                                    android:id="@+id/editTextDrenagemCataterismo"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_column="1"
+                                    android:layout_marginLeft="25dp" />
+
+                                <EditText
+                                    android:id="@+id/editTextCaracteristicasCataterismo"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_column="2"
+                                    android:layout_marginLeft="25dp" />
+                            </TableRow>
+                        </TableLayout>
+
+                        <!-- asdasdas -->
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginLeft="75dip"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical" >
+
+                        <TableLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" >
+
+                            <TableRow
+                                android:id="@+id/tableRow896"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center" >
+
+                                <TextView
+                                    android:id="@+id/textView4879"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Sonda Nasogástrica" />
+                            </TableRow>
+                        </TableLayout>
+
+                        <TableLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" >
+
+                            <TableRow
+                                android:id="@+id/tableRow6123"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center" >
+
+                                <TextView
+                                    android:id="@+id/textView563"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Tipo de Sonda:" />
+
+                                <Spinner
+                                    android:id="@+id/spinnerSondaNasogastrica"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:entries="@array/arrayNasogastrica" />
+                            </TableRow>
+                        </TableLayout>
+
+                        <TableLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" >
+
+                            <TableRow
+                                android:id="@+id/tableRow11238"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center" >
+
+                                <TextView
+                                    android:id="@+id/textView512"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Calibre :" />
+
+                                <EditText
+                                    android:id="@+id/editTextCalibreNasogastrica"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:ems="4"
+                                    android:hint="   "
+                                    android:maxLength="10" />
+                            </TableRow>
+                        </TableLayout>
+
+                        <!-- INICIO -->
+
+                        <TableLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="15dip" >
+
+                            <TableRow
+                                android:id="@+id/tableRow474"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center" >
+
+                                <TextView
+                                    android:id="@+id/textView4597"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Drenagem:" />
+                            </TableRow>
+                        </TableLayout>
+
+                        <TableLayout
+                            android:id="@+id/tableLayout_DrenagemNasogastrica"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" >
+
+                            <TableRow
+                                android:id="@+id/tableRow498"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" >
+
+                                <TextView
+                                    android:id="@+id/txtView_HoraDrenagemNasogastrica"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Hora:" />
+
+                                <TextView
+                                    android:id="@+id/txtView_DrenagemNasogastrica"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="25dp"
+                                    android:text="Drenagem:" />
+
+                                <TextView
+                                    android:id="@+id/textView_CaracteristicasNasogastrica"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="25dp"
+                                    android:text="Caracteristicas:" />
+
+                                <Button
+                                    android:id="@+id/button12383484"
+                                    android:layout_width="30dip"
+                                    android:layout_height="30dip"
+                                    android:layout_marginLeft="25dp"
+                                    android:background="@drawable/add_row"
+                                    android:clickable="true"
+                                    android:onClick="addTableRowDrenagemNasogastrica" />
+                            </TableRow>
+
+                            <TableRow
+                                android:id="@+id/tableRow7496"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" >
+
+                                <TextView
+                                    android:id="@+id/txtViewHoraDrenagemNasogastrica"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_column="0"
+                                    android:text="   :   " 
+                                    android:onClick="setOnClickTimer"
+                        android:clickable="true"/>
+
+                                <EditText
+                                    android:id="@+id/editTextDrenagemNasogastrica"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_column="1"
+                                    android:layout_marginLeft="25dp" />
+
+                                <EditText
+                                    android:id="@+id/editTextCaracteristicasNasogastrica"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_column="2"
+                                    android:layout_marginLeft="25dp" />
+                            </TableRow>
+                        </TableLayout>
+                        <!-- FIM -->
+                    </LinearLayout>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dip"
+                    android:layout_marginBottom="15dp"
+                    android:layout_marginTop="15dp"
+                    android:background="#7EC0EE" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:gravity="center"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/textView3243"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Posição Operatória:" />
+
+                    <Spinner
+                        android:id="@+id/spinnerPosicOperatoria"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:entries="@array/arrayPosicaoOperatoria" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:gravity="center"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/textView24324"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Alivio zonas de pressão:" />
+
+                    <EditText
+                        android:id="@+id/editTextZonasdePressao"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="7" />
+
+                    <TextView
+                        android:id="@+id/textView212"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="25dip"
+                        android:text="Local" />
+
+                    <EditText
+                        android:id="@+id/editTextLocal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="7" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="15dip"
+                    android:gravity="center"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/textView2876"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Manta térmica de protecção:" />
+                    
+                     <Spinner
+                        android:id="@+id/spinnerMantaTermica"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:entries="@array/arrayPlacaEletrodoNeutro"
+                        tools:listitem="@android:layout/simple_spinner_item" />
+
+                      <TextView
+                        android:id="@+id/textView28276"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Local:"
+                        android:layout_marginLeft="25dip" />
+                    
+                    <EditText
+                        android:id="@+id/editTextLocalMantaTermica"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="7" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="15dip"
+                    android:gravity="center"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/textView1654"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Garrote pneumático: Pressão" />
+
+                    <EditText
+                        android:id="@+id/editTextPressaoGarrote"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="7" />
+
+                    <TextView
+                        android:id="@+id/textView1874"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="mmHg" />
+
+                    <TextView
+                        android:id="@+id/textView1974"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dip"
+                        android:text="Localização:" />
+
+                    <Spinner
+                        android:id="@+id/spinnerLocalGarrote"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:entries="@array/arrayLocalizacao"
+                        tools:listitem="@android:layout/simple_spinner_dropdown_item" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:gravity="center"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/textView12574"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Início:" />
+
+                    <TextView
+                        android:id="@+id/txtViewHoraInicioGarrote"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dip"
+                        android:text="  :  " 
+                        android:onClick="setOnClickTimer"
+                        android:clickable="true"/>
+
+                    <TextView
+                        android:id="@+id/textView6124"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="35dip"
+                        android:text="Fim:" />
+
+                    <TextView
+                        android:id="@+id/txtViewHoraFimGarrote"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dip"
+                        android:text="  :  " 
+                        android:onClick="setOnClickTimer"
+                        android:clickable="true"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dip"
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/textView186"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Placa electrodo neutro:" />
+
+                    <Spinner
+                        android:id="@+id/spinnerPlacaElectrodo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:entries="@array/arrayPlacaEletrodoNeutro"
+                        tools:listitem="@android:layout/simple_spinner_item" />
+
+                    <TextView
+                        android:id="@+id/textView1896"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="35dip"
+                        android:text="Localização:" />
+
+                    <Spinner
+                        android:id="@+id/spinnerPlacaElectrodoLocalizacao"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:entries="@array/arrayLocalizacao"
+                        tools:listitem="@android:layout/simple_spinner_dropdown_item" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dip"
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/textView18876"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Peça para Biópsia:" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/textView1876"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Descrição:" />
+
+                    <EditText
+                        android:id="@+id/editTextDescricaoBiopsia"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="7" />
+
+                    <TextView
+                        android:id="@+id/textView1976"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dip"
+                        android:text="Laboratório:" />
+
+                    <EditText
+                        android:id="@+id/editTextLaboratorioBiopsia"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="7" />
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
+
+        <Button
+            android:id="@+id/buttonGuardarDadosIntraOperatorio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Guardar" />
+    </LinearLayout>
+
+</pt.mobilesgmc.view.viewgroup.FlyOutContainer><!-- From: file:/Users/Nicolau/Dropbox/Leiria/4Ano/1Semestre/SGMC/NEW/Mobile%20SGMC/app/src/main/res/layout/activity_dados_intra_operatorio.xml -->

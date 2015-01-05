@@ -1,0 +1,20 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools" tools:context="pt.mobilesgmc.EquipaCirurgica">
+
+<item android:id="@+id/action_search"
+        android:icon="@drawable/ic_action_search"
+        android:title="@string/search"
+        android:showAsAction="always" />
+    <item android:id="@+id/action_addProfissional"
+        android:icon="@drawable/ic_action_user_add"
+        android:title="@string/add_Profissional"
+        android:showAsAction="always" />
+     <item android:id="@+id/action_saveEquipa"
+        android:icon="@drawable/ic_save"
+        android:title="@string/save_Equipa"
+        android:showAsAction="always" />
+
+
+</menu>
+<!-- From: file:/Users/Nicolau/Dropbox/Leiria/4Ano/1Semestre/SGMC/NEW/Mobile%20SGMC/app/src/main/res/menu/equipa_cirurgica.xml -->

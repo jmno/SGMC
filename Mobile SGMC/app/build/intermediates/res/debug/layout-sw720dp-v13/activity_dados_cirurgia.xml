@@ -1,0 +1,565 @@
+
+    <ScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/scrollDadosCirurgia"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/backgroundapp"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin" >
+
+        <TableLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <!-- 2 columns -->
+
+            <TableRow
+                android:id="@+id/tableRow1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dip" >
+
+                <TextView
+                    android:id="@+id/txtview_especialidade"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="5dp"
+                    android:gravity="center"
+                    android:text="Especialidade Cirurgica: "
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#000000"
+                    android:textStyle="italic" />
+
+                <Spinner
+                    android:id="@+id/spinnerEspecialidade"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_span="2"
+                    android:layout_weight="0.5"
+                    android:entries="@array/arrayEspecialidade" />
+            </TableRow>
+
+            <!-- just draw a red line -->
+
+            <TableRow
+                android:id="@+id/tableRow2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dip" >
+
+                <TextView
+                    android:id="@+id/txtView_cirurgia"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="5dp"
+                    android:gravity="center"
+                    android:text="Cirurgia: "
+                    android:textAlignment="center"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#000000"
+                    android:textStyle="italic" />
+
+                <EditText
+                    android:id="@+id/editTextCirurgia"
+                    android:layout_width="wrap_content"
+                    android:layout_span="6"
+                    android:gravity="center" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="15dp" >
+
+                <TextView
+                    android:id="@+id/txtView_data"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="5dp"
+                    android:gravity="center"
+                    android:text="Data: "
+                    android:textAlignment="center"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#000000"
+                    android:textStyle="italic" />
+
+                <TextView
+                    android:id="@+id/TextViewData"
+                    android:layout_width="wrap_content"
+                    android:layout_span="2"
+                    android:gravity="center"
+                    android:text="   /        /     " />
+
+                <TextView
+                    android:id="@+id/TextView_hora"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="5dp"
+                    android:gravity="center"
+                    android:text="Hora:"
+                    android:textAlignment="center"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#000000"
+                    android:textStyle="italic" />
+
+                <TextView
+                    android:id="@+id/TextViewHoraCirurgia"
+                    android:layout_width="wrap_content"
+                    android:layout_span="2"
+                    android:gravity="center"
+                    android:text="   :        :     " />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:padding="5dip" >
+
+                <TextView
+                    android:id="@+id/txtview_tipoCirurgia"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="5dp"
+                    android:gravity="center"
+                    android:text="Tipo Cirurgia: "
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#000000"
+                    android:textStyle="italic" />
+
+                <Spinner
+                    android:id="@+id/spinnerTipoCirurgia"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_span="2"
+                    android:layout_weight="0.5"
+                    android:entries="@array/arrayTipoCirurgia" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dip" >
+
+                <TextView
+                    android:id="@+id/txtview_Sala"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="5dp"
+                    android:gravity="center"
+                    android:text="Sala: "
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#000000"
+                    android:textStyle="italic" />
+
+                <Spinner
+                    android:id="@+id/spinnerSala"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_span="6"
+                    android:layout_weight="0"
+                     />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dip" >
+
+                <TextView
+                    android:id="@+id/txtview_lateralidade"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="5dp"
+                    android:gravity="center"
+                    android:text="Lateralidade:"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#000000"
+                    android:textStyle="italic" />
+
+                <Spinner
+                    android:id="@+id/spinnerLateralidade"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_span="2"
+                    android:layout_weight="0.5"
+                    android:entries="@array/lateralidadeArray" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dip" >
+
+                <TextView
+                    android:id="@+id/txtview_asa"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="5dp"
+                    android:gravity="center"
+                    android:text="Classificação ASA:"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#000000"
+                    android:textStyle="italic" />
+
+                <Spinner
+                    android:id="@+id/spinnerASA"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_span="2"
+                    android:layout_weight="0.5"
+                    android:entries="@array/arrayClassificacaoASA" />
+            </TableRow>
+
+            <View
+                android:layout_height="2dip"
+                android:background="#7EC0EE" />
+
+            <TableRow
+                android:id="@+id/tableRow8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="15dp" >
+
+                <TextView
+                    android:id="@+id/txtView_horaChamadaUtente"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="5dp"
+                    android:gravity="center"
+                    android:text="Hora Chamada do Utente: "
+                    android:textAlignment="center"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#000000"
+                    android:textStyle="italic" />
+
+                <TextView
+                    android:id="@+id/editTextHoraChamadaUtente"
+                    android:layout_width="wrap_content"
+                    android:layout_span="2"
+                    android:gravity="center"
+                    android:text="   :        :     " />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="15dp" >
+
+                <TextView
+                    android:id="@+id/txtView_horaEntradaBO"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="5dp"
+                    android:gravity="center"
+                    android:text="Hora Entrada BO: "
+                    android:textAlignment="center"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#000000"
+                    android:textStyle="italic" />
+
+                <TextView
+                    android:id="@+id/editTextHoraEntradaBO"
+                    android:layout_width="wrap_content"
+                    android:layout_span="2"
+                    android:gravity="center"
+                    android:text="   :        :     " />
+
+                <TextView
+                    android:id="@+id/txtView_horaSaidaBO"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="5dp"
+                    android:gravity="center"
+                    android:text="Hora Saida BO: "
+                    android:textAlignment="center"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#000000"
+                    android:textStyle="italic" />
+
+                <TextView
+                    android:id="@+id/editTextHoraSaidaBO"
+                    android:layout_width="wrap_content"
+                    android:layout_span="1"
+                    android:gravity="center"
+                    android:text="   :        :     " />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="15dp" >
+
+                <TextView
+                    android:id="@+id/txtView_horaEntradaSala"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="5dp"
+                    android:gravity="center"
+                    android:text="Hora Entrada Sala: "
+                    android:textAlignment="center"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#000000"
+                    android:textStyle="italic" />
+
+                <TextView
+                    android:id="@+id/editTextHoraEntradaSala"
+                    android:layout_width="wrap_content"
+                    android:layout_span="2"
+                    android:gravity="center"
+                    android:text="   :        :     " />
+
+                <TextView
+                    android:id="@+id/txtView_horaSaidaSala"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="5dp"
+                    android:gravity="center"
+                    android:text="Hora Saida Sala: "
+                    android:textAlignment="center"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#000000"
+                    android:textStyle="italic" />
+
+                <TextView
+                    android:id="@+id/editTextHoraSaidaSala"
+                    android:layout_width="wrap_content"
+                    android:layout_span="1"
+                    android:gravity="center"
+                    android:text="   :        :     " />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="15dp" >
+
+                <TextView
+                    android:id="@+id/txtView_horaInicioAnestesia"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="5dp"
+                    android:gravity="center"
+                    android:text="Hora Inicio Anestesia: "
+                    android:textAlignment="center"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#000000"
+                    android:textStyle="italic" />
+
+                <TextView
+                    android:id="@+id/editTextHoraInicioAnestesia"
+                    android:layout_width="wrap_content"
+                    android:layout_span="2"
+                    android:gravity="center"
+                    android:text="   :        :     " />
+
+                <TextView
+                    android:id="@+id/txtView_horaFimAnestesia"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="5dp"
+                    android:gravity="center"
+                    android:text="Hora Fim Anestesia: "
+                    android:textAlignment="center"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#000000"
+                    android:textStyle="italic" />
+
+                <TextView
+                    android:id="@+id/editTextHoraFimAnestesia"
+                    android:layout_width="wrap_content"
+                    android:layout_span="1"
+                    android:gravity="center"
+                    android:text="   :        :     " />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="15dp" >
+
+                <TextView
+                    android:id="@+id/txtView_horaInicioCirurgia"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="5dp"
+                    android:gravity="center"
+                    android:text="Hora Inicio Cirurgia: "
+                    android:textAlignment="center"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#000000"
+                    android:textStyle="italic" />
+
+                <TextView
+                    android:id="@+id/editTextHoraInicioCirurgia"
+                    android:layout_width="wrap_content"
+                    android:layout_span="2"
+                    android:gravity="center"
+                    android:text="   :        :     " />
+
+                <TextView
+                    android:id="@+id/txtView_horaFimCirurgia"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="5dp"
+                    android:gravity="center"
+                    android:text="Hora Fim Cirurgia: "
+                    android:textAlignment="center"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#000000"
+                    android:textStyle="italic" />
+
+                <TextView
+                    android:id="@+id/editTextHoraFimCirurgia"
+                    android:layout_width="wrap_content"
+                    android:layout_span="1"
+                    android:gravity="center"
+                    android:text="   :        :     " />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="15dp" >
+
+                <TextView
+                    android:id="@+id/txtView_horaEntradaRecobro"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="5dp"
+                    android:gravity="center"
+                    android:text="Hora Entrada Recobro: "
+                    android:textAlignment="center"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#000000"
+                    android:textStyle="italic" />
+
+                <TextView
+                    android:id="@+id/editTextHoraEntradaRecobro"
+                    android:layout_width="wrap_content"
+                    android:layout_span="2"
+                    android:gravity="center"
+                    android:text="   :        :     " />
+
+                <TextView
+                    android:id="@+id/txtView_horaSaidaRecobro"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="5dp"
+                    android:gravity="center"
+                    android:text="Hora Saida Recobro: "
+                    android:textAlignment="center"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#000000"
+                    android:textStyle="italic" />
+
+                <TextView
+                    android:id="@+id/editTextHoraSaidaRecobro"
+                    android:layout_width="wrap_content"
+                    android:layout_span="1"
+                    android:gravity="center"
+                    android:text="   :        :     " />
+            </TableRow>
+
+            <View
+                android:layout_height="2dip"
+                android:layout_marginTop="10dp"
+                android:background="#7EC0EE" />
+
+            <TableRow
+                android:id="@+id/tableRow14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dip" >
+
+                <TextView
+                    android:id="@+id/txtview_destinoDoente"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="5dp"
+                    android:gravity="center"
+                    android:text="Destino Doente: "
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#000000"
+                    android:textStyle="italic" />
+
+                <Spinner
+                    android:id="@+id/spinnerDestinoDoente"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_span="2"
+                    android:layout_weight="0.5"
+                    android:entries="@array/arrayDestino" />
+            </TableRow>
+            <!-- asdasdasdasdasdasdas -->
+
+
+            <!-- asdasdasdasdasdasdasdasd -->
+
+            <View
+                android:layout_height="2dip"
+                android:background="#7EC0EE" />
+
+            <TableRow
+                android:id="@+id/tableRow15"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dip" >
+
+                <TextView
+                    android:id="@+id/txtView_informacoes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="5dp"
+                    android:gravity="center"
+                    android:text="Informacoes Relevantes "
+                    android:textAlignment="center"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#000000"
+                    android:textStyle="italic" />
+
+                <EditText
+                    android:id="@+id/editTextInformacoes"
+                    android:layout_width="wrap_content"
+                    android:layout_span="4"
+                    android:inputType="textMultiLine"
+                    android:scrollbars="vertical"
+                    android:text="  " />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow3123"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dip" >
+
+                <TextView
+                    android:id="@+id/textView2"
+                    android:text=""
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                <Button
+                    android:id="@+id/button2"
+                    android:text="Column 2"
+                    android:visibility="gone" />
+
+                <Button
+                    android:id="@+id/button3"
+                    android:text="Guardar" />
+            </TableRow>
+        </TableLayout>
+    </ScrollView>
+<!-- From: file:/Users/Nicolau/Dropbox/Leiria/4Ano/1Semestre/SGMC/NEW/Mobile%20SGMC/app/src/main/res/layout-sw720dp/activity_dados_cirurgia.xml -->
