@@ -57,9 +57,6 @@
             android:label="@string/title_activity_dados_intra_operatorio"
             android:windowSoftInputMode="stateHidden" >
         </activity>
-        <activity
-            android:name="android.support.v7.widget.TestActivity"
-            android:label="RecyclerViewTestActivity" />
     </application>
 
 </manifest>

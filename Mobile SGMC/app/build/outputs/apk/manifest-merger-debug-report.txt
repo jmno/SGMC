@@ -19,10 +19,8 @@ uses-sdk
 ADDED from AndroidManifest.xml:7:5
 MERGED from com.android.support:appcompat-v7:21.0.3:15:5
 MERGED from com.android.support:support-v4:21.0.3:15:5
-MERGED from com.getbase:floatingactionbutton:1.5.1:8:5
-MERGED from com.melnykov:floatingactionbutton:1.1.0:8:5
-MERGED from com.android.support:recyclerview-v7:21.0.0:15:5
-MERGED from com.android.support:support-v4:21.0.3:15:5
+MERGED from com.shamanland:fab:0.0.6:8:5
+MERGED from com.github.markushi:circlebutton:1.1:7:5
 	android:targetSdkVersion
 		ADDED from AndroidManifest.xml:9:9
 		INJECTED from AndroidManifest.xml:0:0
@@ -43,10 +41,8 @@ application
 ADDED from AndroidManifest.xml:14:5
 MERGED from com.android.support:appcompat-v7:21.0.3:16:5
 MERGED from com.android.support:support-v4:21.0.3:16:5
-MERGED from com.getbase:floatingactionbutton:1.5.1:12:5
-MERGED from com.melnykov:floatingactionbutton:1.1.0:12:5
-MERGED from com.android.support:recyclerview-v7:21.0.0:17:5
-MERGED from com.android.support:support-v4:21.0.3:16:5
+MERGED from com.shamanland:fab:0.0.6:12:5
+MERGED from com.github.markushi:circlebutton:1.1:9:5
 	android:label
 		ADDED from AndroidManifest.xml:17:9
 	android:allowBackup
@@ -125,9 +121,3 @@ ADDED from AndroidManifest.xml:53:9
 		ADDED from AndroidManifest.xml:57:14
 	android:name
 		ADDED from AndroidManifest.xml:54:13
-activity#android.support.v7.widget.TestActivity
-ADDED from com.android.support:recyclerview-v7:21.0.0:18:9
-	android:label
-		ADDED from com.android.support:recyclerview-v7:21.0.0:18:19
-	android:name
-		ADDED from com.android.support:recyclerview-v7:21.0.0:18:60

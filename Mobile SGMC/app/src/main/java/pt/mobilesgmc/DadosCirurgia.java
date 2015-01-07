@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -26,6 +27,7 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.example.mobilegsmc.R;
+import com.shamanland.fab.ShowHideOnScroll;
 
 import org.apache.http.ParseException;
 import org.json.JSONException;
@@ -35,13 +37,14 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Comparator;
 
+import pt.mobilesgmc.modelo.AdaptadorHoras;
 import pt.mobilesgmc.modelo.BlocoComSala;
 import pt.mobilesgmc.modelo.BlocoOperatorio;
 import pt.mobilesgmc.modelo.Cirurgia;
+import pt.mobilesgmc.modelo.Horas;
 import pt.mobilesgmc.modelo.RestClientException;
 import pt.mobilesgmc.modelo.WebServiceUtils;
 import pt.mobilesgmc.view.viewgroup.FlyOutContainer;
-import com.melnykov.fab.*;
 
 public class DadosCirurgia extends Activity {
 
@@ -76,7 +79,7 @@ public class DadosCirurgia extends Activity {
 	private Cirurgia cir;
 	private ArrayAdapter<BlocoComSala> adaptadorBlococomSala;
 	ProgressDialog ringProgressDialog = null;
-
+    private TextView texto;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -90,12 +93,9 @@ public class DadosCirurgia extends Activity {
         /*
         ///* FAB BUTTON */
 
-        ScrollView scr = (ScrollView) findViewById(R.id.scrollDadosCirurgia);
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.atta(scr);
 
 
-
+/* FAB But*/
 
 		// new getBlocoOperatorios().execute();
 		token = PreferenceManager.getDefaultSharedPreferences(this).getString(
@@ -130,8 +130,102 @@ public class DadosCirurgia extends Activity {
 		new getBlocosComSala().execute(token);
 
 
+        // 1. pass context and data to the custom adapter
+        AdaptadorHoras adapter = new AdaptadorHoras(this, generateHoras());
 
+        // 2. Get ListView from activity_main.xml
+        ListView listView = (ListView) findViewById(R.id.listView_DadosCirurgia_horas);
+
+        // 3. setListAdapter
+        listView.setAdapter(adapter);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                texto = (TextView) view.findViewById(R.id.value);
+                Toast.makeText(getApplicationContext(), texto.getText().toString(), Toast.LENGTH_SHORT).show();
+
+                final Calendar c = Calendar.getInstance();
+                mHour = c.get(Calendar.HOUR_OF_DAY);
+                mMinute = c.get(Calendar.MINUTE);
+
+                // Launch Date Picker Dialog
+                TimePickerDialog dpd = new TimePickerDialog(DadosCirurgia.this,
+                        new TimePickerDialog.OnTimeSetListener() {
+
+                            @Override
+                            public void onTimeSet(TimePicker view,
+                                                  int hourOfDay, int minute) {
+                                texto.setText(hourOfDay + ":"
+                                        + minute + ":00");
+
+                            }
+
+                        }, mHour, mMinute, true);
+
+                dpd.show();
+
+            }
+        });
+
+        View fab = (View) findViewById(R.id.fab);
+// NOTE invoke this method after setting new values!
+// NOTE standard method of ImageView
+//        listView.setOnTouchListener(new ShowHideOnScroll(fab));
+        listView.setOnTouchListener(new ShowHideOnScroll(fab, R.anim.shake, R.anim.shake));
+
+        fab.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+                        getApplicationContext());
+
+                // set title
+                alertDialogBuilder.setTitle("Adicionar Hora:");
+
+                // set dialog message
+                alertDialogBuilder
+                        .setMessage("Click yes to exit!")
+                        .setCancelable(false)
+                        .setPositiveButton("Yes",new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog,int id) {
+                                // if this button is clicked, close
+                                // current activity
+                            }
+                        })
+                        .setNegativeButton("No",new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog,int id) {
+                                // if this button is clicked, just close
+                                // the dialog box and do nothing
+                                dialog.cancel();
+                            }
+                        });
+
+                // create alert dialog
+                AlertDialog alertDialog = alertDialogBuilder.create();
+
+                // show it
+                alertDialog.show();
+
+        });
 	}
+    private ArrayList<Horas> generateHoras(){
+        ArrayList<Horas> items = new ArrayList<Horas>();
+        items.add(new Horas("Hora Chamada do Utente",":"));
+        items.add(new Horas("Hora Entrada BO",":"));
+        items.add(new Horas("Hora Saida BO",":"));
+        items.add(new Horas("Hora Entrada Sala",":"));
+        items.add(new Horas("Hora Saida Sala",":"));
+        items.add(new Horas("Hora Inicio Anestesia",":"));
+        items.add(new Horas("Hora Fim Anestesia",":"));
+        items.add(new Horas("Hora Inicio Cirurgia",":"));
+        items.add(new Horas("Hora Fim Cirurgia",":"));
+        items.add(new Horas("Hora Entrada Recobro",":"));
+        items.add(new Horas("Hora Saida Recobro",":"));
+
+
+        return items;
+    }
 
 	private void carregaOsListeners() {
 

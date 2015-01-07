@@ -1,5 +1,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:fab="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="it.sephiroth.android.library.floatingmenu.app.MainActivity"
     android:id="@+id/scrollDadosCirurgia"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -7,7 +9,8 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:background="#EEEEEE">
+    android:background="#EEEEEE"
+    >
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -263,6 +266,31 @@
             android:id="@+id/linearLayout_DadosCirurgia_Horas">
 
             <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="5dp">
+
+
+                <ListView
+                    android:layout_width="wrap_content"
+                    android:layout_height="150dp"
+                    android:id="@+id/listView_DadosCirurgia_horas" />
+
+                <com.shamanland.fab.FloatingActionButton
+                    android:id="@+id/fab"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:floatingActionButtonSize="mini"
+                    app:floatingActionButtonColor="#00BAE6"
+                    android:src="@drawable/ic_action_attach"
+                    android:layout_gravity="right"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
@@ -509,6 +537,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="   :        :     " />
+
             </LinearLayout>
 
             <RelativeLayout
@@ -601,16 +630,7 @@
             </TableRow>
 
         </TableLayout>
-        <com.melnykov.fab.FloatingActionButton
-            android:id="@+id/fab"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|right"
-            android:layout_margin="16dp"
-            android:src="@drawable/ic_action_copy"
-            fab:fab_colorNormal="@color/primary"
-            fab:fab_colorPressed="@color/primary_pressed"
-            fab:fab_colorRipple="@color/ripple" />
+
     </LinearLayout>
 
 
