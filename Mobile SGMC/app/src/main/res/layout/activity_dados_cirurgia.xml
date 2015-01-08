@@ -10,7 +10,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:background="#EEEEEE"
-    >
+    android:fillViewport="false">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -256,304 +256,6 @@
  <!-- INICIO HORAS  -->
 
 
-
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_marginTop="15dp"
-            android:background="#FFFFFF"
-            android:id="@+id/linearLayout_DadosCirurgia_Horas">
-
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="5dp">
-
-
-                <ListView
-                    android:layout_width="wrap_content"
-                    android:layout_height="150dp"
-                    android:id="@+id/listView_DadosCirurgia_horas" />
-
-                <com.shamanland.fab.FloatingActionButton
-                    android:id="@+id/fab"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:floatingActionButtonSize="mini"
-                    app:floatingActionButtonColor="#00BAE6"
-                    android:src="@drawable/ic_action_attach"
-                    android:layout_gravity="right"
-                    />
-            </LinearLayout>
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:layout_marginLeft="5dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="5dp">
-
-                <TextView
-                    android:id="@+id/txtView_horaChamadaUtente"
-                    android:layout_width="wrap_content"
-                    android:layout_height="fill_parent"
-                    android:gravity="center"
-                    android:text="Hora Chamada do Utente: "
-                    android:textAlignment="center"
-                    android:textColor="#000000"
-                    android:textStyle="italic" />
-
-                <TextView
-                    android:id="@+id/editTextHoraChamadaUtente"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:text="   :        :     "
-                    android:gravity="end"
-                    android:layout_marginLeft="5dp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:layout_marginLeft="5dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="5dp">
-
-                <TextView
-                    android:id="@+id/txtView_horaEntradaBO"
-                    android:layout_width="wrap_content"
-                    android:layout_height="fill_parent"
-                    android:gravity="center"
-                    android:text="Hora Entrada BO: "
-                    android:textAlignment="center"
-                    android:textColor="#000000"
-                    android:textStyle="italic" />
-
-                <TextView
-                    android:id="@+id/editTextHoraEntradaBO"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="   :        :     " />
-
-                <TextView
-                    android:id="@+id/txtView_horaSaidaBO"
-                    android:layout_width="wrap_content"
-                    android:layout_height="fill_parent"
-                    android:layout_marginLeft="5dp"
-                    android:gravity="center"
-                    android:text="Hora Saida BO: "
-                    android:textAlignment="center"
-                    android:textColor="#000000"
-                    android:textStyle="italic" />
-
-                <TextView
-                    android:id="@+id/editTextHoraSaidaBO"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="   :        :     " />
-            </LinearLayout>
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:layout_marginLeft="5dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="5dp">
-
-                <TextView
-                    android:id="@+id/txtView_horaEntradaSala"
-                    android:layout_width="wrap_content"
-                    android:layout_height="fill_parent"
-                    android:gravity="center"
-                    android:text="Hora Entrada Sala: "
-                    android:textAlignment="center"
-                    android:textColor="#000000"
-                    android:textStyle="italic" />
-
-                <TextView
-                    android:id="@+id/editTextHoraEntradaSala"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="   :        :     " />
-
-                <TextView
-                    android:id="@+id/txtView_horaSaidaSala"
-                    android:layout_width="wrap_content"
-                    android:layout_height="fill_parent"
-                    android:layout_marginLeft="5dp"
-                    android:gravity="center"
-                    android:text="Hora Saida Sala: "
-                    android:textAlignment="center"
-                    android:textColor="#000000"
-                    android:textStyle="italic" />
-
-                <TextView
-                    android:id="@+id/editTextHoraSaidaSala"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="   :        :     " />
-            </LinearLayout>
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:layout_marginLeft="5dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="5dp">
-
-                <TextView
-                    android:id="@+id/txtView_horaInicioAnestesia"
-                    android:layout_width="wrap_content"
-                    android:layout_height="fill_parent"
-                    android:layout_marginLeft="5dp"
-                    android:gravity="center"
-                    android:text="Hora Inicio Anestesia: "
-                    android:textAlignment="center"
-                    android:textColor="#000000"
-                    android:textStyle="italic" />
-
-                <TextView
-                    android:id="@+id/editTextHoraInicioAnestesia"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="   :        :     " />
-
-                <TextView
-                    android:id="@+id/txtView_horaFimAnestesia"
-                    android:layout_width="wrap_content"
-                    android:layout_height="fill_parent"
-                    android:layout_marginLeft="5dp"
-                    android:gravity="center"
-                    android:text="Hora Fim Anestesia: "
-                    android:textAlignment="center"
-                    android:textColor="#000000"
-                    android:textStyle="italic" />
-
-                <TextView
-                    android:id="@+id/editTextHoraFimAnestesia"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="   :        :     " />
-            </LinearLayout>
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:layout_marginLeft="5dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="5dp">
-
-                <TextView
-                    android:id="@+id/txtView_horaInicioCirurgia"
-                    android:layout_width="wrap_content"
-                    android:layout_height="fill_parent"
-                    android:layout_marginLeft="5dp"
-                    android:gravity="center"
-                    android:text="Hora Inicio Cirurgia: "
-                    android:textAlignment="center"
-                    android:textColor="#000000"
-                    android:textStyle="italic" />
-
-                <TextView
-                    android:id="@+id/editTextHoraInicioCirurgia"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="   :        :     " />
-
-                <TextView
-                    android:id="@+id/txtView_horaFimCirurgia"
-                    android:layout_width="wrap_content"
-                    android:layout_height="fill_parent"
-                    android:layout_marginLeft="5dp"
-                    android:gravity="center"
-                    android:text="Hora Fim Cirurgia: "
-                    android:textAlignment="center"
-                    android:textColor="#000000"
-                    android:textStyle="italic" />
-
-                <TextView
-                    android:id="@+id/editTextHoraFimCirurgia"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="   :        :     " />
-            </LinearLayout>
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:layout_marginLeft="5dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="5dp">
-
-                <TextView
-                    android:id="@+id/txtView_horaEntradaRecobro"
-                    android:layout_width="wrap_content"
-                    android:layout_height="fill_parent"
-                    android:layout_marginLeft="5dp"
-                    android:gravity="center"
-                    android:text="Hora Entrada Recobro: "
-                    android:textAlignment="center"
-                    android:textColor="#000000"
-                    android:textStyle="italic" />
-
-                <TextView
-                    android:id="@+id/editTextHoraEntradaRecobro"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="   :        :     " />
-
-                <TextView
-                    android:id="@+id/txtView_horaSaidaRecobro"
-                    android:layout_width="wrap_content"
-                    android:layout_height="fill_parent"
-                    android:layout_marginLeft="5dp"
-                    android:gravity="center"
-                    android:text="Hora Saida Recobro: "
-                    android:textAlignment="center"
-                    android:textColor="#000000"
-                    android:textStyle="italic" />
-
-                <TextView
-                    android:id="@+id/editTextHoraSaidaRecobro"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="   :        :     " />
-
-            </LinearLayout>
-
-            <RelativeLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/relativeLayout_DadosCirurgia_Horas">
-
-
-            </RelativeLayout>
-
-        </LinearLayout>
-
-
-        <!-- FIM HORAS  -->
-
-
         <TableLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -630,6 +332,37 @@
             </TableRow>
 
         </TableLayout>
+
+
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:background="#FFFFFF"
+            android:id="@+id/linearLayout_DadosCirurgia_Horas">
+
+            <ListView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/listView_DadosCirurgia_horas" />
+
+            <com.shamanland.fab.FloatingActionButton
+                android:id="@+id/fab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:floatingActionButtonSize="mini"
+                app:floatingActionButtonColor="#00BAE6"
+                android:src="@drawable/ic_action_attach"
+                android:layout_gravity="right"
+                />
+
+        </LinearLayout>
+
+
+        <!-- FIM HORAS  -->
+
 
     </LinearLayout>
 
