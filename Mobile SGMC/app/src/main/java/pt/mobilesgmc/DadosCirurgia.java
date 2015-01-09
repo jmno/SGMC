@@ -11,6 +11,7 @@ import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -22,6 +23,9 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.ScrollView;
 import android.widget.Spinner;
@@ -31,7 +35,6 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.example.mobilegsmc.R;
-import com.shamanland.fab.ShowHideOnScroll;
 
 import org.apache.http.ParseException;
 import org.json.JSONException;
@@ -74,7 +77,6 @@ public class DadosCirurgia extends Activity {
     private Spinner destinoDoente;
     private EditText informacoesRelevantes;
     FlyOutContainer root;
-    private ScrollView scrollDadosCirurgia;
     private int mYear, mMonth, mDay, mHour, mMinute, mSecond;
     private Spinner bloco;
     private ArrayAdapter<BlocoOperatorio> adaptadorBloco;
@@ -92,17 +94,24 @@ public class DadosCirurgia extends Activity {
     public String h;
     ArrayList<String> itemsHora;
     ArrayAdapter<String> adaptador;
+    private ScrollView scrollView;
+    private LinearLayout linearLayout;
+    private ImageView btn_AddHoras;
+    private ListView listView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dados_cirurgia);
-        setTitle("Editar: '" + HomeActivity.getCirurgia().getCirurgia() + "'");
+        if(HomeActivity.getCirurgia().getCirurgia()!=null){
+            setTitle("Editar: '" + HomeActivity.getCirurgia().getCirurgia() + "'");
+        }
+        else
+        setTitle("Editar Cirurgia:");
 
 
         // idEquipa = Integer.parseInt(PreferenceManager
         // .getDefaultSharedPreferences(getApplicationContext())
         // .getString("icdEquipa", "-1"));
-
 
         /*
         ///* FAB BUTTON */
@@ -118,6 +127,8 @@ public class DadosCirurgia extends Activity {
                 .getDefaultSharedPreferences(getApplicationContext())
                 .getString("idCirurgia", "0"));
         dialog = new Dialog(DadosCirurgia.this);
+        scrollView = (ScrollView) findViewById(R.id.scrollDadosCirurgia);
+        //   linearLayout = (LinearLayout) findViewById(R.id.linearLayout_DadosCirurgia_Horas);
 
         data = (TextView) findViewById(R.id.TextViewData);
         horaChamadaUtente = (TextView) findViewById(R.id.editTextHoraChamadaUtente);
@@ -140,7 +151,7 @@ public class DadosCirurgia extends Activity {
         destinoDoente = (Spinner) findViewById(R.id.spinnerDestinoDoente);
         informacoesRelevantes = (EditText) findViewById(R.id.editTextInformacoes);
         cirurgia = (EditText) findViewById(R.id.editTextCirurgia);
-        itemsHora= new ArrayList<String>();
+        itemsHora = new ArrayList<String>();
         itemsHora.add("Hora Chamada do Utente");
         itemsHora.add("Hora Entrada BO");
         itemsHora.add("Hora Saida BO");
@@ -153,12 +164,12 @@ public class DadosCirurgia extends Activity {
         itemsHora.add("Hora Entrada Recobro");
         itemsHora.add("Hora Saida Recobro");
 
-        adaptador = new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_list_item_1,itemsHora){
+        adaptador = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, itemsHora) {
             @Override
             public View getView(int position, View convertView,
                                 ViewGroup parent) {
-                View view =super.getView(position, convertView, parent);
-                TextView textView=(TextView) view.findViewById(android.R.id.text1);
+                View view = super.getView(position, convertView, parent);
+                TextView textView = (TextView) view.findViewById(android.R.id.text1);
             /*YOUR CHOICE OF COLOR*/
                 textView.setTextColor(Color.BLACK);
                 return view;
@@ -166,18 +177,16 @@ public class DadosCirurgia extends Activity {
         };
         items = new ArrayList<Horas>();
         adapter = new AdaptadorHoras(this, items);
+        listView = (ListView) findViewById(R.id.listView_DadosCirurgia_horas);
 
-        //carregaOsListeners();
+        carregaOsListeners();
         preencherAtividade(HomeActivity.getCirurgia());
         new getBlocosComSala().execute(token);
-
-
 
 
         // 1. pass context and data to the custom adapter
 
         // 2. Get ListView from activity_main.xml
-        ListView listView = (ListView) findViewById(R.id.listView_DadosCirurgia_horas);
 
         // 3. setListAdapter
         listView.setAdapter(adapter);
@@ -211,24 +220,23 @@ public class DadosCirurgia extends Activity {
             }
         });
 
-        View fab = (View) findViewById(R.id.fab);
-// NOTE invoke this method after setting new values!
-// NOTE standard method of ImageView
-//        listView.setOnTouchListener(new ShowHideOnScroll(fab));
-        listView.setOnTouchListener(new ShowHideOnScroll(fab, R.anim.shake, R.anim.shake));
+        btn_AddHoras = (ImageView) findViewById(R.id.imageView_DadosCirurgia_AddHora);
+        btn_AddHoras.setClickable(true);
+        btn_AddHoras.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listenerButtonAddHora();
+            }
+        });
 
-        fab.setOnClickListener(new OnClickListener() {
-                                   @Override
-                                   public void onClick(View v) {
 
-                                       listenerFAB();
-                                   }
-                               }
-        );
+        setListViewHeightBasedOnChildren(listView);
+        scrollView.requestLayout();
+        scrollView.invalidate();
     }
 
-    public void listenerFAB()
-    {
+
+    public void listenerButtonAddHora() {
 
         // tell the Dialog to use the dialog.xml as it's layout
         // description
@@ -240,8 +248,7 @@ public class DadosCirurgia extends Activity {
         lista = (ListView) dialog.findViewById(R.id.listView_Dialog_EscolhaHoras);
 
 
-
-           lista.setAdapter(adaptador);
+        lista.setAdapter(adaptador);
         lista = (ListView) dialog
                 .findViewById(R.id.listView_Dialog_EscolhaHoras);
 
@@ -262,17 +269,12 @@ public class DadosCirurgia extends Activity {
                 });
 
 
-
-
         dialog.show();
 
     }
 
 
-
-
-    public void novoTimePicker()
-    {
+    public void novoTimePicker() {
         final Calendar c = Calendar.getInstance();
         mHour = c.get(Calendar.HOUR_OF_DAY);
         mMinute = c.get(Calendar.MINUTE);
@@ -284,11 +286,20 @@ public class DadosCirurgia extends Activity {
                     @Override
                     public void onTimeSet(TimePicker view,
                                           int hourOfDay, int minute) {
-                        horaAdicionada=(hourOfDay + ":" + minute
+                        horaAdicionada = (hourOfDay + ":" + minute
                                 + ":00");
-                        Horas hor = new Horas(h,horaAdicionada);
+                        Horas hor = new Horas(h, horaAdicionada);
                         adapter.add(hor);
+                        Log.i("Adapter horas", "Adatpter com " + adapter.getCount() + " horas");
                         itemsHora.remove(h);
+                        setListViewHeightBasedOnChildren(listView);
+                       // ViewGroup.LayoutParams params = listView.getLayoutParams();
+                      //  params.height =
+                      //  listView.setLayoutParams(new ViewGroup.LayoutParams().height=1);
+                        scrollView.requestLayout();
+                        scrollView.invalidate();
+
+                        //scrollView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.MATCH_PARENT));
 
                     }
 
@@ -298,6 +309,25 @@ public class DadosCirurgia extends Activity {
 
     }
 
+    public static void setListViewHeightBasedOnChildren(ListView listView) {
+        ListAdapter listAdapter = listView.getAdapter();
+        if (listAdapter == null) {
+            // pre-condition
+            return;
+        }
+
+        int totalHeight = 0;
+        for (int i = 0; i < listAdapter.getCount(); i++) {
+            View listItem = listAdapter.getView(i, null, listView);
+            listItem.measure(0, 0);
+            totalHeight += listItem.getMeasuredHeight();
+        }
+
+        ViewGroup.LayoutParams params = listView.getLayoutParams();
+        params.height = totalHeight + (listView.getDividerHeight() * (listAdapter.getCount() - 1));
+        listView.setLayoutParams(params);
+        listView.requestLayout();
+    }
 
 
     public ArrayList<Horas> generateHoras() {
@@ -372,369 +402,91 @@ public class DadosCirurgia extends Activity {
 
             }
         });
-        horaChamadaUtente.setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                // Process to get Current Date
-                final Calendar c = Calendar.getInstance();
-                mHour = c.get(Calendar.HOUR_OF_DAY);
-                mMinute = c.get(Calendar.MINUTE);
-
-                // Launch Date Picker Dialog
-                TimePickerDialog dpd = new TimePickerDialog(DadosCirurgia.this,
-                        new TimePickerDialog.OnTimeSetListener() {
-
-                            @Override
-                            public void onTimeSet(TimePicker view,
-                                                  int hourOfDay, int minute) {
-                                horaChamadaUtente.setText(hourOfDay + ":"
-                                        + minute + ":00");
-
-                            }
-
-                        }, mHour, mMinute, true);
-
-                dpd.show();
-
-            }
-        });
-
-        horaEntradaBO.setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                // Process to get Current Date
-                final Calendar c = Calendar.getInstance();
-                mHour = c.get(Calendar.HOUR_OF_DAY);
-                mMinute = c.get(Calendar.MINUTE);
-
-                // Launch Date Picker Dialog
-                TimePickerDialog dpd = new TimePickerDialog(DadosCirurgia.this,
-                        new TimePickerDialog.OnTimeSetListener() {
-
-                            @Override
-                            public void onTimeSet(TimePicker view,
-                                                  int hourOfDay, int minute) {
-                                horaEntradaBO.setText(hourOfDay + ":" + minute
-                                        + ":00");
-
-                            }
-                        }, mHour, mMinute, true);
-
-                dpd.show();
-
-            }
-        });
-        horaSaidaBO.setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                // Process to get Current Date
-                final Calendar c = Calendar.getInstance();
-                mHour = c.get(Calendar.HOUR_OF_DAY);
-                mMinute = c.get(Calendar.MINUTE);
-
-                // Launch Date Picker Dialog
-                TimePickerDialog dpd = new TimePickerDialog(DadosCirurgia.this,
-                        new TimePickerDialog.OnTimeSetListener() {
-
-                            @Override
-                            public void onTimeSet(TimePicker view,
-                                                  int hourOfDay, int minute) {
-                                horaSaidaBO.setText(hourOfDay + ":" + minute
-                                        + ":00");
-
-                            }
-                        }, mHour, mMinute, true);
-
-                dpd.show();
-
-            }
-        });
-        horaEntradaSala.setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                // Process to get Current Date
-                final Calendar c = Calendar.getInstance();
-                mHour = c.get(Calendar.HOUR_OF_DAY);
-                mMinute = c.get(Calendar.MINUTE);
-
-                // Launch Date Picker Dialog
-                TimePickerDialog dpd = new TimePickerDialog(DadosCirurgia.this,
-                        new TimePickerDialog.OnTimeSetListener() {
-
-                            @Override
-                            public void onTimeSet(TimePicker view,
-                                                  int hourOfDay, int minute) {
-                                horaEntradaSala.setText(hourOfDay + ":"
-                                        + minute + ":00");
-
-                            }
-                        }, mHour, mMinute, true);
-
-                dpd.show();
-
-            }
-        });
-        horaSaidaSala.setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                // Process to get Current Date
-                final Calendar c = Calendar.getInstance();
-                mHour = c.get(Calendar.HOUR_OF_DAY);
-                mMinute = c.get(Calendar.MINUTE);
-
-                // Launch Date Picker Dialog
-                TimePickerDialog dpd = new TimePickerDialog(DadosCirurgia.this,
-                        new TimePickerDialog.OnTimeSetListener() {
-
-                            @Override
-                            public void onTimeSet(TimePicker view,
-                                                  int hourOfDay, int minute) {
-                                horaSaidaSala.setText(hourOfDay + ":" + minute
-                                        + ":00");
-
-                            }
-                        }, mHour, mMinute, true);
-
-                dpd.show();
-
-            }
-        });
-
-        horaInicioAnestesia.setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                // Process to get Current Date
-                final Calendar c = Calendar.getInstance();
-                mHour = c.get(Calendar.HOUR_OF_DAY);
-                mMinute = c.get(Calendar.MINUTE);
-
-                // Launch Date Picker Dialog
-                TimePickerDialog dpd = new TimePickerDialog(DadosCirurgia.this,
-                        new TimePickerDialog.OnTimeSetListener() {
-
-                            @Override
-                            public void onTimeSet(TimePicker view,
-                                                  int hourOfDay, int minute) {
-                                horaInicioAnestesia.setText(hourOfDay + ":"
-                                        + minute + ":00");
-
-                            }
-                        }, mHour, mMinute, true);
-
-                dpd.show();
-
-            }
-        });
-        horaFimAnestesia.setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                // Process to get Current Date
-                final Calendar c = Calendar.getInstance();
-                mHour = c.get(Calendar.HOUR_OF_DAY);
-                mMinute = c.get(Calendar.MINUTE);
-
-                // Launch Date Picker Dialog
-                TimePickerDialog dpd = new TimePickerDialog(DadosCirurgia.this,
-                        new TimePickerDialog.OnTimeSetListener() {
-
-                            @Override
-                            public void onTimeSet(TimePicker view,
-                                                  int hourOfDay, int minute) {
-                                horaFimAnestesia.setText(hourOfDay + ":"
-                                        + minute + ":00");
-
-                            }
-                        }, mHour, mMinute, true);
-
-                dpd.show();
-
-            }
-        });
-        horaInicioCirurgia.setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                // Process to get Current Date
-                final Calendar c = Calendar.getInstance();
-                mHour = c.get(Calendar.HOUR_OF_DAY);
-                mMinute = c.get(Calendar.MINUTE);
-
-                // Launch Date Picker Dialog
-                TimePickerDialog dpd = new TimePickerDialog(DadosCirurgia.this,
-                        new TimePickerDialog.OnTimeSetListener() {
-
-                            @Override
-                            public void onTimeSet(TimePicker view,
-                                                  int hourOfDay, int minute) {
-                                horaInicioCirurgia.setText(hourOfDay + ":"
-                                        + minute + ":00");
-
-                            }
-                        }, mHour, mMinute, true);
-
-                dpd.show();
-
-            }
-        });
-
-        horaFimCirurgia.setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                // Process to get Current Date
-                final Calendar c = Calendar.getInstance();
-                mHour = c.get(Calendar.HOUR_OF_DAY);
-                mMinute = c.get(Calendar.MINUTE);
-
-                // Launch Date Picker Dialog
-                TimePickerDialog dpd = new TimePickerDialog(DadosCirurgia.this,
-                        new TimePickerDialog.OnTimeSetListener() {
-
-                            @Override
-                            public void onTimeSet(TimePicker view,
-                                                  int hourOfDay, int minute) {
-                                horaFimCirurgia.setText(hourOfDay + ":"
-                                        + minute + ":00");
-
-                            }
-                        }, mHour, mMinute, true);
-
-                dpd.show();
-
-            }
-        });
-        horaEntradaRecobro.setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                // Process to get Current Date
-                final Calendar c = Calendar.getInstance();
-                mHour = c.get(Calendar.HOUR_OF_DAY);
-                mMinute = c.get(Calendar.MINUTE);
-
-                // Launch Date Picker Dialog
-                TimePickerDialog dpd = new TimePickerDialog(DadosCirurgia.this,
-                        new TimePickerDialog.OnTimeSetListener() {
-
-                            @Override
-                            public void onTimeSet(TimePicker view,
-                                                  int hourOfDay, int minute) {
-                                horaEntradaRecobro.setText(hourOfDay + ":"
-                                        + minute + ":00");
-
-                            }
-                        }, mHour, mMinute, true);
-
-                dpd.show();
-
-            }
-        });
-
-        horaSaidaRecobro.setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                // Process to get Current Date
-                final Calendar c = Calendar.getInstance();
-                mHour = c.get(Calendar.HOUR_OF_DAY);
-                mMinute = c.get(Calendar.MINUTE);
-                mSecond = c.get(Calendar.SECOND);
-
-                // Launch Date Picker Dialog
-                TimePickerDialog dpd = new TimePickerDialog(DadosCirurgia.this,
-                        new TimePickerDialog.OnTimeSetListener() {
-
-                            @Override
-                            public void onTimeSet(TimePicker view,
-                                                  int hourOfDay, int minute) {
-                                horaSaidaRecobro.setText(hourOfDay + ":"
-                                        + minute + ":00");
-
-                            }
-                        }, mHour, mMinute, true);
-
-                dpd.show();
-
-            }
-        });
 
     }
 
-    private void insereHoras(Cirurgia c)
-    {
-        if(c.getHoraChamadaUtente()!=null){
-            Horas h = new Horas("Hora Chamada do Utente",c.getHoraChamadaUtente());
+    private void insereHoras(Cirurgia c) {
+        if (c.getHoraChamadaUtente() != null) {
+            Horas h = new Horas("Hora Chamada do Utente", c.getHoraChamadaUtente());
             adapter.add(h);
             itemsHora.remove(h.getTitle());
+
         }
 
-        if(c.getHoraEntradaBlocoOperatorio()!=null){
-            Horas h = new Horas("Hora Entrada BO",c.getHoraEntradaBlocoOperatorio());
+        if (c.getHoraEntradaBlocoOperatorio() != null) {
+            Horas h = new Horas("Hora Entrada BO", c.getHoraEntradaBlocoOperatorio());
             adapter.add(h);
             itemsHora.remove(h.getTitle());
+
         }
 
-        if(c.getHoraSaideBlocoOperatorio()!=null){
-            Horas h = new Horas("Hora Saida BO",c.getHoraSaideBlocoOperatorio());
+        if (c.getHoraSaideBlocoOperatorio() != null) {
+            Horas h = new Horas("Hora Saida BO", c.getHoraSaideBlocoOperatorio());
             adapter.add(h);
             itemsHora.remove(h.getTitle());
+
+
         }
 
-        if(c.getHoraEntradaSala()!=null){
-            Horas h = new Horas("Hora Entrada Sala",c.getHoraEntradaSala());
+        if (c.getHoraEntradaSala() != null) {
+            Horas h = new Horas("Hora Entrada Sala", c.getHoraEntradaSala());
             adapter.add(h);
             itemsHora.remove(h.getTitle());
+
         }
 
-        if(c.getHoraSaidaSala()!=null){
-            Horas h = new Horas("Hora Saida Sala",c.getHoraSaidaSala());
+        if (c.getHoraSaidaSala() != null) {
+            Horas h = new Horas("Hora Saida Sala", c.getHoraSaidaSala());
             adapter.add(h);
             itemsHora.remove(h.getTitle());
+
         }
 
-        if(c.getHoraInicioAnestesia()!=null){
-            Horas h = new Horas("Hora Inicio Anestesia",c.getHoraInicioAnestesia());
+        if (c.getHoraInicioAnestesia() != null) {
+            Horas h = new Horas("Hora Inicio Anestesia", c.getHoraInicioAnestesia());
             adapter.add(h);
             itemsHora.remove(h.getTitle());
+
         }
 
-        if(c.getHoraFimAnestesia()!=null){
-            Horas h = new Horas("Hora Fim Anestesia",c.getHoraFimAnestesia());
+        if (c.getHoraFimAnestesia() != null) {
+            Horas h = new Horas("Hora Fim Anestesia", c.getHoraFimAnestesia());
             adapter.add(h);
             itemsHora.remove(h.getTitle());
+
         }
 
-        if(c.getHoraInicioCirurgia()!=null){
-            Horas h = new Horas("Hora Inicio Cirurgia",c.getHoraInicioCirurgia());
+        if (c.getHoraInicioCirurgia() != null) {
+            Horas h = new Horas("Hora Inicio Cirurgia", c.getHoraInicioCirurgia());
             adapter.add(h);
             itemsHora.remove(h.getTitle());
+
         }
 
-        if(c.getHoraFimCirurgia()!=null){
-            Horas h = new Horas("Hora Fim Cirurgia",c.getHoraFimCirurgia());
+        if (c.getHoraFimCirurgia() != null) {
+            Horas h = new Horas("Hora Fim Cirurgia", c.getHoraFimCirurgia());
             adapter.add(h);
             itemsHora.remove(h.getTitle());
+
         }
 
-        if(c.getHoraEntradaRecobro()!=null){
-            Horas h = new Horas("Hora Entrada Recobro",c.getHoraEntradaRecobro());
+        if (c.getHoraEntradaRecobro() != null) {
+            Horas h = new Horas("Hora Entrada Recobro", c.getHoraEntradaRecobro());
             adapter.add(h);
             itemsHora.remove(h.getTitle());
+
         }
 
 
-        if(c.getHoraFimRecobro()!=null){
-            Horas h = new Horas("Hora Saida Recobro",c.getHoraFimRecobro());
+        if (c.getHoraFimRecobro() != null) {
+            Horas h = new Horas("Hora Saida Recobro", c.getHoraFimRecobro());
             adapter.add(h);
             itemsHora.remove(h.getTitle());
+
         }
+        setListViewHeightBasedOnChildren(listView);
+        scrollView.requestLayout();
+        scrollView.invalidate();
 
     }
 
@@ -791,33 +543,43 @@ public class DadosCirurgia extends Activity {
 //        if(!(c.getHoraFimRecobro()==null))
 //        horaSaidaRecobro.setText(c.getHoraFimRecobro().toString());
 
+        if(c.getInfoRelevante()!=null)
         informacoesRelevantes.setText(c.getInfoRelevante());
+
+        if(c.getCirurgia()!=null)
         cirurgia.setText(c.getCirurgia().toString());
 
         // Spinner
         // int gh = spinnerDaMeATuaPosicaoBloco(adaptadorBlococomSala,
         // c.getIdSala());
         sala.setSelection(5);
-
-        int a = spinnerDaMeATuaPosicao(tipoCirurgia.getAdapter(),
+        int a =0;
+        if(c.getTipoCirurgia()!=null){
+        a = spinnerDaMeATuaPosicao(tipoCirurgia.getAdapter(),
                 c.getTipoCirurgia());
-        tipoCirurgia.setSelection(a);
+        tipoCirurgia.setSelection(a);}
 
+        if(c.getEspecialidade()!=null){
         a = spinnerDaMeATuaPosicao(especialidadeCirurgica.getAdapter(),
                 c.getEspecialidade());
-        especialidadeCirurgica.setSelection(a);
+        especialidadeCirurgica.setSelection(a);}
 
-        a = spinnerDaMeATuaPosicao(lateralidade.getAdapter(),
-                c.getLateralidade());
-        lateralidade.setSelection(a);
+        if(c.getLateralidade()!=null) {
+            a = spinnerDaMeATuaPosicao(lateralidade.getAdapter(),
+                    c.getLateralidade());
+            lateralidade.setSelection(a);
+        }
 
+        if(c.getClassifASA()!=null){
         a = spinnerDaMeATuaPosicao(classificacaoASA.getAdapter(),
                 c.getClassifASA());
-        classificacaoASA.setSelection(a);
+        classificacaoASA.setSelection(a);}
 
-        a = spinnerDaMeATuaPosicao(destinoDoente.getAdapter(),
-                c.getDestinoDoente());
-        destinoDoente.setSelection(a);
+        if(c.getDestinoDoente()!=null) {
+            a = spinnerDaMeATuaPosicao(destinoDoente.getAdapter(),
+                    c.getDestinoDoente());
+            destinoDoente.setSelection(a);
+        }
 
     }
 
@@ -833,6 +595,7 @@ public class DadosCirurgia extends Activity {
 
     public void guardarDadosCirurgia() {
 
+        try {
         final Cirurgia p = HomeActivity.getCirurgia();
         Cirurgia ci = new Cirurgia();
         ci.setEspecialidade(especialidadeCirurgica.getSelectedItem()
@@ -848,219 +611,60 @@ public class DadosCirurgia extends Activity {
         ci.setDestinoDoente(destinoDoente.getSelectedItem().toString());
         ci.setCirurgia(cirurgia.getText().toString());
         ci.setInfoRelevante(informacoesRelevantes.getText().toString());
-        // String datad = (String) data.getText();
-        // // String[] dataF = datad.split("-");
-        // // int dia = Integer.parseInt(dataF[0]);
-        // // int mes = Integer.parseInt(dataF[1]);
-        // // int ano = Integer.parseInt(dataF[2]);
-        // int hora;
-        // int minuto;
-        // int segundo;
-        // java.sql.Time horas = null;
-        // //
-        // // java.util.Date dataFinal = new Date(dia, mes, ano);
-        // DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        // Date inputDate = null;
-        // try {
-        // inputDate = dateFormat.parse(datad);
-        // } catch (java.text.ParseException e) {
-        // e.printStackTrace();
-        // }
+
         ci.setData(data.getText().toString());
 
-        // String hor = (String) horaCirurgia.getText();
-        // String[] horCirurgia = hor.split(":");
-        // if (horCirurgia.length == 2) {
-        // hora = Integer.parseInt(horCirurgia[0]);
-        // minuto = Integer.parseInt(horCirurgia[1]);
-        // horas = new java.sql.Time(hora, minuto, 00);
-        // } else if (horCirurgia.length == 3) {
-        // hora = Integer.parseInt(horCirurgia[0]);
-        // minuto = Integer.parseInt(horCirurgia[1]);
-        // segundo = Integer.parseInt(horCirurgia[2]);
-        // horas = new java.sql.Time(hora, minuto, segundo);
-        // }
 
         ci.setHora(horaCirurgia.getText().toString());
 
-        // String horaChamU = (String) horaChamadaUtente.getText();
-        // String[] horaChamada = horaChamU.split(":");
-        // if (horaChamada.length == 2) {
-        // hora = Integer.parseInt(horaChamada[0]);
-        // minuto = Integer.parseInt(horaChamada[1]);
-        // horas = new java.sql.Time(hora, minuto, 00);
-        // } else if (horaChamada.length == 3) {
-        // hora = Integer.parseInt(horaChamada[0]);
-        // minuto = Integer.parseInt(horaChamada[1]);
-        // segundo = Integer.parseInt(horaChamada[2]);
-        // horas = new java.sql.Time(hora, minuto, segundo);
-        // }
 
-        ci.setHoraChamadaUtente(horaChamadaUtente.getText().toString());
 
-        // String horaEntB = (String) horaEntradaBO.getText();
-        // String[] horaEntBo = horaEntB.split(":");
-        // if (horaEntBo.length == 2) {
-        // hora = Integer.parseInt(horaEntBo[0]);
-        // minuto = Integer.parseInt(horaEntBo[1]);
-        // horas = new java.sql.Time(hora, minuto, 00);
-        // } else if (horaEntBo.length == 3) {
-        // hora = Integer.parseInt(horaEntBo[0]);
-        // minuto = Integer.parseInt(horaEntBo[1]);
-        // segundo = Integer.parseInt(horaEntBo[2]);
-        // horas = new java.sql.Time(hora, minuto, segundo);
-        // }
 
-        ci.setHoraEntradaBlocoOperatorio(horaEntradaBO.getText()
-                .toString());
+        preencherCirurgiaComHorasParaGuardar(adapter, ci);
 
-        // String horaSaidaB = (String) horaSaidaBO.getText();
-        // String[] horaSaidaBo = horaSaidaB.split(":");
-        // if (horaSaidaBo.length == 2) {
-        // hora = Integer.parseInt(horaSaidaBo[0]);
-        // minuto = Integer.parseInt(horaSaidaBo[1]);
-        // horas = new java.sql.Time(hora, minuto, 00);
-        // } else if (horaSaidaBo.length == 3) {
-        // hora = Integer.parseInt(horaSaidaBo[0]);
-        // minuto = Integer.parseInt(horaSaidaBo[1]);
-        // segundo = Integer.parseInt(horaSaidaBo[2]);
-        // horas = new java.sql.Time(hora, minuto, segundo);
-        // }
-
-        ci.setHoraSaideBlocoOperatorio(horaSaidaBO.getText().toString());
-        //
-        // String horaEntSala = (String) horaEntradaSala.getText();
-        // String[] horaEntSa = horaEntSala.split(":");
-        // if (horaEntSa.length == 2) {
-        // hora = Integer.parseInt(horaEntSa[0]);
-        // minuto = Integer.parseInt(horaEntSa[1]);
-        // horas = new java.sql.Time(hora, minuto, 00);
-        // } else if (horaEntSa.length == 3) {
-        // hora = Integer.parseInt(horaEntSa[0]);
-        // minuto = Integer.parseInt(horaEntSa[1]);
-        // segundo = Integer.parseInt(horaEntSa[2]);
-        // horas = new java.sql.Time(hora, minuto, segundo);
-        // }
-
-        ci.setHoraEntradaSala(horaEntradaSala.getText().toString());
-
-        // String horaSaiaSala = (String) horaSaidaSala.getText();
-        // String[] horaSaidaSa = horaSaiaSala.split(":");
-        // if (horaSaidaSa.length == 2) {
-        // hora = Integer.parseInt(horaSaidaSa[0]);
-        // minuto = Integer.parseInt(horaSaidaSa[1]);
-        // horas = new java.sql.Time(hora, minuto, 00);
-        // } else if (horaSaidaSa.length == 3) {
-        // hora = Integer.parseInt(horaSaidaSa[0]);
-        // minuto = Integer.parseInt(horaSaidaSa[1]);
-        // segundo = Integer.parseInt(horaSaidaSa[2]);
-        // horas = new java.sql.Time(hora, minuto, segundo);
-        // }
-
-        ci.setHoraSaidaSala(horaSaidaSala.getText().toString());
-
-        // String horaIAnestesia = (String)
-        // horaInicioAnestesia.getText();
-        // String[] horaIAnest = horaIAnestesia.split(":");
-        // if (horaIAnest.length == 2) {
-        // hora = Integer.parseInt(horaIAnest[0]);
-        // minuto = Integer.parseInt(horaIAnest[1]);
-        // horas = new java.sql.Time(hora, minuto, 00);
-        // } else if (horaIAnest.length == 3) {
-        // hora = Integer.parseInt(horaIAnest[0]);
-        // minuto = Integer.parseInt(horaIAnest[1]);
-        // segundo = Integer.parseInt(horaIAnest[2]);
-        // horas = new java.sql.Time(hora, minuto, segundo);
-        // }
-
-        ci.setHoraInicioAnestesia(horaInicioAnestesia.getText()
-                .toString());
-
-        // String horaFAnestesia = (String) horaFimAnestesia.getText();
-        // String[] horaFAnest = horaFAnestesia.split(":");
-        // if (horaFAnest.length == 2) {
-        // hora = Integer.parseInt(horaFAnest[0]);
-        // minuto = Integer.parseInt(horaFAnest[1]);
-        // horas = new java.sql.Time(hora, minuto, 00);
-        // } else if (horaFAnest.length == 3) {
-        // hora = Integer.parseInt(horaFAnest[0]);
-        // minuto = Integer.parseInt(horaFAnest[1]);
-        // segundo = Integer.parseInt(horaFAnest[2]);
-        // horas = new java.sql.Time(hora, minuto, segundo);
-        // }
-
-        ci.setHoraFimAnestesia(horaFimAnestesia.getText().toString());
-        //
-        // String horaICirurgia = (String) horaInicioCirurgia.getText();
-        // String[] horaICir = horaICirurgia.split(":");
-        // if (horaICir.length == 2) {
-        // hora = Integer.parseInt(horaICir[0]);
-        // minuto = Integer.parseInt(horaICir[1]);
-        // horas = new java.sql.Time(hora, minuto, 00);
-        // } else if (horaICir.length == 3) {
-        // hora = Integer.parseInt(horaICir[0]);
-        // minuto = Integer.parseInt(horaICir[1]);
-        // segundo = Integer.parseInt(horaICir[2]);
-        // horas = new java.sql.Time(hora, minuto, segundo);
-        // }
-
-        ci.setHoraInicioCirurgia(horaInicioCirurgia.getText()
-                .toString());
-
-        // String horaFCirurgia = (String) horaFimCirurgia.getText();
-        // String[] horaFCir = horaFCirurgia.split(":");
-        // if (horaFCir.length == 2) {
-        // hora = Integer.parseInt(horaFCir[0]);
-        // minuto = Integer.parseInt(horaFCir[1]);
-        // horas = new java.sql.Time(hora, minuto, 00);
-        // } else if (horaICir.length == 3) {
-        // hora = Integer.parseInt(horaFCir[0]);
-        // minuto = Integer.parseInt(horaFCir[1]);
-        // segundo = Integer.parseInt(horaFCir[2]);
-        // horas = new java.sql.Time(hora, minuto, segundo);
-        // }
-
-        ci.setHoraFimCirurgia(horaFimCirurgia.getText().toString());
-
-        // String horaEntRecobro = (String)
-        // horaEntradaRecobro.getText();
-        // String[] horaEntRec = horaEntRecobro.split(":");
-        // if (horaEntRec.length == 2) {
-        // hora = Integer.parseInt(horaEntRec[0]);
-        // minuto = Integer.parseInt(horaEntRec[1]);
-        // horas = new java.sql.Time(hora, minuto, 00);
-        // } else if (horaEntRec.length == 3) {
-        // hora = Integer.parseInt(horaEntRec[0]);
-        // minuto = Integer.parseInt(horaEntRec[1]);
-        // segundo = Integer.parseInt(horaEntRec[2]);
-        // horas = new java.sql.Time(hora, minuto, segundo);
-        // }
-
-        ci.setHoraEntradaRecobro(horaEntradaRecobro.getText()
-                .toString());
-
-        // String horaSaidRecobro = (String) horaSaidaRecobro.getText();
-        // String[] horaSaiRec = horaSaidRecobro.split(":");
-        // if (horaSaiRec.length == 2) {
-        // hora = Integer.parseInt(horaSaiRec[0]);
-        // minuto = Integer.parseInt(horaSaiRec[1]);
-        // horas = new java.sql.Time(hora, minuto, 00);
-        // } else if (horaSaiRec.length == 3) {
-        // hora = Integer.parseInt(horaSaiRec[0]);
-        // minuto = Integer.parseInt(horaSaiRec[1]);
-        // segundo = Integer.parseInt(horaSaiRec[2]);
-        // horas = new java.sql.Time(hora, minuto, segundo);
-        // }
-
-        ci.setHoraFimRecobro(horaSaidaRecobro.getText().toString());
 
         ci.setId(idCirurgia);
         BlocoComSala blocoCS = (BlocoComSala) sala.getSelectedItem();
         ci.setIdSala(blocoCS.getSala().getId());
         cir = ci;
-        try {
+
             new atualizarCirurgia().execute(ci);
         } catch (Exception rn) {
+            Toast.makeText(getApplicationContext(),"ERRO na aplicação - A reverter!",Toast.LENGTH_SHORT).show();
+            finish();
+        }
+
+
+    }
+
+    public void preencherCirurgiaComHorasParaGuardar(ArrayAdapter<Horas> adap, Cirurgia c1){
+
+        if(adap.getCount()>0){
+            for(int i=0; i<adap.getCount(); i++){
+                Horas h = (Horas) adap.getItem(i);
+                if(h.getTitle().toLowerCase().equals("hora chamada do utente"))
+                    c1.setHoraChamadaUtente(h.getDescription());
+                else if(h.getTitle().toLowerCase().equals("hora entrada bo"))
+                    c1.setHoraEntradaBlocoOperatorio(h.getDescription());
+                else if(h.getTitle().toLowerCase().equals("hora saida bo"))
+                    c1.setHoraSaideBlocoOperatorio(h.getDescription());
+                else if(h.getTitle().toLowerCase().equals("hora entrada sala"))
+                    c1.setHoraEntradaSala(h.getDescription());
+                else if(h.getTitle().toLowerCase().equals("hora saida sala"))
+                    c1.setHoraSaidaSala(h.getDescription());
+                else if(h.getTitle().toLowerCase().equals("hora inicio anestesia"))
+                    c1.setHoraInicioAnestesia(h.getDescription());
+                else if(h.getTitle().toLowerCase().equals("hora fim anestesia"))
+                    c1.setHoraFimAnestesia(h.getDescription());
+                else if(h.getTitle().toLowerCase().equals("hora inicio cirurgia"))
+                c1.setHoraInicioCirurgia(h.getDescription());
+                else if(h.getTitle().toLowerCase().equals("hora fim cirurgia"))
+                    c1.setHoraFimCirurgia(h.getDescription());
+                else if(h.getTitle().toLowerCase().equals("hora entrada recobro"))
+                    c1.setHoraEntradaRecobro(h.getDescription());
+                else if(h.getTitle().toLowerCase().equals("hora saida recobro"))
+                    c1.setHoraFimRecobro(h.getDescription());
+            }
         }
 
 

@@ -284,10 +284,12 @@ public class HomeActivity extends Activity {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				if (HomeActivity.getCirurgia() != null) {
-					Intent dados = new Intent(getBaseContext(),
+					/*Intent dados = new Intent(getBaseContext(),
 							DadosINtraOperatorioActivity.class);
 					toggleMenu(findViewById(R.layout.activity_dados_intra_operatorio));
-					startActivity(dados);
+					startActivity(dados);*/
+                    Toast.makeText(getApplicationContext(),"Não perca a próxima versão, porque nós também não!",Toast.LENGTH_SHORT).show();
+                    root.toggleMenu();
 
 				} else {
 					Toast.makeText(getApplicationContext(), "Tem de selecionar uma cirurgia primeiro", Toast.LENGTH_SHORT).show();

@@ -1,30 +1,10 @@
 package pt.mobilesgmc;
 
-import java.io.IOException;
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.LinkedList;
-import java.util.List;
-
-import org.apache.http.ParseException;
-import org.json.JSONException;
-
-import pt.mobilesgmc.modelo.Cirurgia;
-import pt.mobilesgmc.modelo.EquipaComJuncao;
-import pt.mobilesgmc.modelo.OnSwipeTouchListener;
-import pt.mobilesgmc.modelo.ProfissionalDaCirurgia;
-import pt.mobilesgmc.modelo.ProfissonalSaude;
-import pt.mobilesgmc.modelo.RestClientException;
-import pt.mobilesgmc.modelo.Tipo;
-import pt.mobilesgmc.modelo.WebServiceUtils;
-import pt.mobilesgmc.view.viewgroup.FlyOutContainer;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.DialogInterface.OnDismissListener;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -36,27 +16,43 @@ import android.util.Log;
 import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.WindowManager;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.AdapterView.OnItemClickListener;
 
 import com.example.mobilegsmc.R;
+
+import org.apache.http.ParseException;
+import org.json.JSONException;
+
+import java.io.IOException;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.LinkedList;
+import java.util.List;
+
+import pt.mobilesgmc.modelo.EquipaComJuncao;
+import pt.mobilesgmc.modelo.ProfissionalDaCirurgia;
+import pt.mobilesgmc.modelo.ProfissonalSaude;
+import pt.mobilesgmc.modelo.RestClientException;
+import pt.mobilesgmc.modelo.Tipo;
+import pt.mobilesgmc.modelo.WebServiceUtils;
 
 //import pt.mobilesgmc.modelo.Notifications;
 
 public class EquipaCirurgica extends Activity implements Serializable {
 	/**
-	 * 
+	 *
 	 */
 
 	private static final long serialVersionUID = -8374033655851874766L;
@@ -72,7 +68,6 @@ public class EquipaCirurgica extends Activity implements Serializable {
 	private String token;
 	private Dialog dialog;
 	private Dialog dialogoEquipas;
-	FlyOutContainer root;
 	private Spinner spinnerAssistente;
 	private Spinner spinnerCirurgiao;
 	private Spinner spinnerPrimAjudante;
@@ -109,8 +104,6 @@ public class EquipaCirurgica extends Activity implements Serializable {
 				.getDefaultSharedPreferences(getApplicationContext())
 				.getString("idEquipa", "-1"));
 		
-		this.root = (FlyOutContainer) this.getLayoutInflater().inflate(
-				R.layout.activity_equipa_cirurgica, null);
 		Display display = getWindowManager().getDefaultDisplay();
 		DisplayMetrics outMetrics = new DisplayMetrics();
 		display.getMetrics(outMetrics);
@@ -118,108 +111,14 @@ public class EquipaCirurgica extends Activity implements Serializable {
 		float density = getResources().getDisplayMetrics().density;
 		float dpWidth = outMetrics.widthPixels / density;
 		int margin = ((80 * (int) dpWidth) / 100)-50;
-		root.setMargin(margin);
-		this.setContentView(root);
 
 //		idEquipa = Integer.parseInt(PreferenceManager
 //				.getDefaultSharedPreferences(getApplicationContext())
 //				.getString("idEquipa", "-1"));
 
-		root.setOnTouchListener(new OnSwipeTouchListener(this) {
-			public void onSwipeTop() {
-				// Toast.makeText(SampleActivity.this, "top",
-				// Toast.LENGTH_SHORT).show();
-			}
 
-			public void onSwipeRight() {
-				String estado = root.getState().toString();
-				if (estado.equals("CLOSED"))
-					toggleMenu(findViewById(R.layout.activity_equipa_cirurgica));
-				// Toast.makeText(SampleActivity.this, "right",
-				// Toast.LENGTH_SHORT).show();
-			}
-
-			public void onSwipeLeft() {
-				String estado = root.getState().toString();
-				if (estado.equals("OPEN"))
-					toggleMenu(findViewById(R.layout.activity_equipa_cirurgica));
-			}
-
-			public void onSwipeBottom() {
-				// Toast.makeText(SampleActivity.this, "bottom",
-				// Toast.LENGTH_SHORT).show();
-			}
-
-			public boolean onTouch(View v, MotionEvent event) {
-				return gestureDetector.onTouchEvent(event);
-			}
-
-		});
 		editNomeEquipa = (EditText) findViewById(R.id.edit_text_NomeEquipa);
 
-	
-		TextView btnUtentes = (TextView) findViewById(R.id.textViewMenuUtentes);
-		btnUtentes.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				Intent utentes = new Intent(getBaseContext(),
-						UtentesActivity.class);
-				toggleMenu(findViewById(R.layout.activity_utentes));
-				startActivity(utentes);
-				finish();
-			}
-		});
-		
-		TextView btnDadosCirurgia = (TextView) findViewById(R.id.textViewMenuDadosCirurgia);
-		btnDadosCirurgia.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				if (HomeActivity.getCirurgia() != null) {
-					Intent dados = new Intent(getBaseContext(),
-							DadosCirurgia.class);
-					toggleMenu(findViewById(R.layout.activity_dados_cirurgia));
-
-					startActivity(dados);
-					finish();
-				} else {
-					Log.i("sgmc", "Não tem cirurgia escolhida");
-					root.toggleMenu();
-				}
-				
-			}
-		});
-		
-		TextView btnDadosIntraOperatorio = (TextView) findViewById(R.id.textViewMenuDadosIntraOperatorio);
-		btnDadosIntraOperatorio.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				if (HomeActivity.getCirurgia() != null) {
-					Intent dados = new Intent(getBaseContext(),
-							DadosINtraOperatorioActivity.class);
-					toggleMenu(findViewById(R.layout.activity_dados_intra_operatorio));
-					startActivity(dados);
-					finish();
-				} else {
-					Log.i("sgmc", "Não tem cirurgia escolhida");
-					root.toggleMenu();
-				}
-				
-			}
-		});
-
-
-		
-
-		
-
-		
-		
 		try{
 		Log.i("equipa",HomeActivity.getCirurgia().toString() + " idEquipa: " + HomeActivity.getCirurgia().getIdEquipa());
 		if (HomeActivity.getCirurgia().getIdEquipa() != 0) {
@@ -586,6 +485,26 @@ public class EquipaCirurgica extends Activity implements Serializable {
 		return super.onOptionsItemSelected(item);
 	}
 
+    @Override
+    public void onBackPressed() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setIcon(R.drawable.ic_launcher);
+        builder.setMessage("Pretende Retroceder sem guardar?")
+                .setCancelable(false)
+                .setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        finish();
+                    }
+                })
+                .setNegativeButton("Não", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+        AlertDialog alert = builder.create();
+        alert.show();
+    }
+
 	// private class getProfissionaisSaude extends
 	// AsyncTask<String, Void, ArrayList<ProfissonalSaude>> {
 	//
@@ -844,17 +763,7 @@ public class EquipaCirurgica extends Activity implements Serializable {
 	}
 
 	
-	public void toggleMenu(View v) {
-		this.root.toggleMenu();
-	}
 
-	@Override
-	public boolean onTouchEvent(MotionEvent event) {
-		String estado = root.getState().toString();
-		if (estado.equals("OPEN"))
-			this.root.toggleMenu();
-		return super.onTouchEvent(event);
-	}
 
 	private class getEquipas extends
 			AsyncTask<String, Void, ArrayList<EquipaComJuncao>> {
@@ -945,6 +854,9 @@ public class EquipaCirurgica extends Activity implements Serializable {
 			if (equipa != null) {
 				Log.i("equipa",equipa.toString());
 				preencheSpinnersComEquipa(equipa);
+                if(equipa.getNomeEquipa()!=null)
+                setTitle("Equipa: '" + equipa.getNomeEquipa() + "'");
+
 				editNomeEquipa.setText(equipa.getNomeEquipa());
 				ringProgressDialog.dismiss();
 				// adaptadorEquipa = new ArrayAdapter<EquipaComJuncao>(

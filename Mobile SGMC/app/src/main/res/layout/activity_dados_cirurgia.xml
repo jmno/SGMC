@@ -10,17 +10,17 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:background="#EEEEEE"
-    android:fillViewport="false">
+    android:fillViewport="true">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
+            android:layout_height="wrap_content"
             android:background="#FFFFFF">
 
             <TextView
@@ -127,7 +127,7 @@
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
+            android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:background="#FFFFFF">
 
@@ -256,110 +256,95 @@
  <!-- INICIO HORAS  -->
 
 
-        <TableLayout
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp">
-
-            <!-- 2 columns -->
-
-            <!-- just draw a red line -->
-
-
-
-
-
-
-            <TableRow
-                android:id="@+id/tableRow14"
+            android:background="#FFFFFF"
+            android:layout_marginTop="15dp">
+            <TextView
+                android:id="@+id/txtview_destinoDoente"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="5dip"
-                android:layout_marginTop="15dp"
-                android:background="#FFFFFF">
+                android:layout_height="fill_parent"
+                android:layout_marginLeft="5dp"
+                android:gravity="center"
+                android:text="Destino Doente: "
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#000000"
+                android:textStyle="italic" />
 
-                <TextView
-                    android:id="@+id/txtview_destinoDoente"
-                    android:layout_width="wrap_content"
-                    android:layout_height="fill_parent"
-                    android:layout_marginLeft="5dp"
-                    android:gravity="center"
-                    android:text="Destino Doente: "
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:textColor="#000000"
-                    android:textStyle="italic" />
+            <Spinner
+                android:id="@+id/spinnerDestinoDoente"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_span="2"
+                android:layout_weight="0.5"
+                android:entries="@array/arrayDestino"
+                android:layout_marginRight="5dp" />
 
-                <Spinner
-                    android:id="@+id/spinnerDestinoDoente"
-                    android:layout_width="wrap_content"
-                    android:layout_height="fill_parent"
-                    android:layout_span="2"
-                    android:layout_weight="0.5"
-                    android:entries="@array/arrayDestino" />
-            </TableRow>
-            <!-- asdasdasdasdasdasdas -->
-
-
-            <!-- asdasdasdasdasdasdasdasd -->
-
-            <TableRow
-                android:id="@+id/tableRow15"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="5dip"
-                android:layout_marginTop="15dp"
-                android:background="#FFFFFF">
-
-                <TextView
-                    android:id="@+id/txtView_informacoes"
-                    android:layout_width="wrap_content"
-                    android:layout_height="fill_parent"
-                    android:layout_marginLeft="5dp"
-                    android:gravity="center"
-                    android:text="Informacoes Relevantes "
-                    android:textAlignment="center"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:textColor="#000000"
-                    android:textStyle="italic" />
-
-                <EditText
-                    android:id="@+id/editTextInformacoes"
-                    android:layout_width="wrap_content"
-                    android:layout_span="4"
-                    android:inputType="textMultiLine"
-                    android:scrollbars="vertical"
-                    android:text="  " />
-            </TableRow>
-
-        </TableLayout>
-
-
+            </LinearLayout>
 
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
             android:background="#FFFFFF"
-            android:id="@+id/linearLayout_DadosCirurgia_Horas">
+            android:layout_marginTop="15dp">
+
+            <TextView
+                android:id="@+id/txtView_informacoes"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:layout_marginLeft="5dp"
+                android:gravity="center"
+                android:text="Informacoes Relevantes "
+                android:textAlignment="center"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#000000"
+                android:textStyle="italic" />
+
+            <EditText
+                android:id="@+id/editTextInformacoes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_span="4"
+                android:inputType="textMultiLine"
+                android:scrollbars="vertical"
+                android:text="  " />
+        </LinearLayout>
+
+        <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFFFFF"
+            android:layout_marginTop="15dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Horas"
+            android:id="@+id/Horas"
+            android:textStyle="bold|italic"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:layout_marginLeft="5dp" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageView_DadosCirurgia_AddHora"
+            android:background="@drawable/ic_action_new"
+            android:layout_gravity="right|center_vertical"
+            />
+    </LinearLayout>
+
 
             <ListView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/listView_DadosCirurgia_horas" />
-
-            <com.shamanland.fab.FloatingActionButton
-                android:id="@+id/fab"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:floatingActionButtonSize="mini"
-                app:floatingActionButtonColor="#00BAE6"
-                android:src="@drawable/ic_action_attach"
-                android:layout_gravity="right"
-                />
-
-        </LinearLayout>
-
+                android:layout_height="10dp"
+                android:id="@+id/listView_DadosCirurgia_horas"
+                android:background="#FFFFFF" />
 
         <!-- FIM HORAS  -->
 
