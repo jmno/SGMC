@@ -56,6 +56,8 @@ public class HomeActivity extends Activity {
 	public static TextView textoCirurgiaAUsar;
 	private static Cirurgia cirurgia;
 	ProgressDialog ringProgressDialog = null;
+    private static final int TIME_INTERVAL = 2000; // # milliseconds, desired time passed between two back presses.
+    private long mBackPressed;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -347,14 +349,21 @@ public class HomeActivity extends Activity {
 		return super.onTouchEvent(event);
 	}
 
-	@Override
-	public void onBackPressed() {
-		Intent startMain = new Intent(Intent.ACTION_MAIN);
-		startMain.addCategory(Intent.CATEGORY_HOME);
-		startMain.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-		startActivity(startMain);
-		// super.onBackPressed(); // optional depending on your needs
-	}
+    @Override
+    public void onBackPressed()
+    {
+        if (mBackPressed + TIME_INTERVAL > System.currentTimeMillis())
+        {
+            Intent startMain = new Intent(Intent.ACTION_MAIN);
+            startMain.addCategory(Intent.CATEGORY_HOME);
+            startMain.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(startMain);
+            return;
+        }
+        else { Toast.makeText(getBaseContext(), "Pressione duas vezes para sair...", Toast.LENGTH_SHORT).show(); }
+
+        mBackPressed = System.currentTimeMillis();
+    }
 
 	public static Cirurgia getCirurgia() {
 		return cirurgia;

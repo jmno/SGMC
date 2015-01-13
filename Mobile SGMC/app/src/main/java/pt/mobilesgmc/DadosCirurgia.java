@@ -180,7 +180,6 @@ public class DadosCirurgia extends Activity {
         listView = (ListView) findViewById(R.id.listView_DadosCirurgia_horas);
 
         carregaOsListeners();
-        preencherAtividade(HomeActivity.getCirurgia());
         new getBlocosComSala().execute(token);
 
 
@@ -225,7 +224,9 @@ public class DadosCirurgia extends Activity {
         btn_AddHoras.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(itemsHora.size()>0)
                 listenerButtonAddHora();
+
             }
         });
 
@@ -288,16 +289,13 @@ public class DadosCirurgia extends Activity {
                                           int hourOfDay, int minute) {
                         horaAdicionada = (hourOfDay + ":" + minute
                                 + ":00");
-                        Horas hor = new Horas(h, horaAdicionada);
-                        adapter.add(hor);
-                        Log.i("Adapter horas", "Adatpter com " + adapter.getCount() + " horas");
-                        itemsHora.remove(h);
-                        setListViewHeightBasedOnChildren(listView);
+
+//FAZER VERIFICAÇOES HORAS
+                        adicionaHora(horaAdicionada);
                        // ViewGroup.LayoutParams params = listView.getLayoutParams();
                       //  params.height =
                       //  listView.setLayoutParams(new ViewGroup.LayoutParams().height=1);
-                        scrollView.requestLayout();
-                        scrollView.invalidate();
+
 
                         //scrollView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.MATCH_PARENT));
 
@@ -307,6 +305,18 @@ public class DadosCirurgia extends Activity {
 
         dpd.show();
 
+    }
+
+    public void adicionaHora(String horaAdicionada)
+    {
+
+        Horas hor = new Horas(h, horaAdicionada);
+        adapter.add(hor);
+        Log.i("Adapter horas", "Adatpter com " + adapter.getCount() + " horas");
+        itemsHora.remove(h);
+        setListViewHeightBasedOnChildren(listView);
+        scrollView.requestLayout();
+        scrollView.invalidate();
     }
 
     public static void setListViewHeightBasedOnChildren(ListView listView) {
@@ -507,42 +517,9 @@ public class DadosCirurgia extends Activity {
 
         insereHoras(c);
         data.setText(c.getData().toString());
-//        if(!(c.getHora()==null))
-//            horaCirurgia.setText(c.getHora().toString());
+        if(!(c.getHora()==null))
+            horaCirurgia.setText(c.getHora().toString());
 //
-//        if(!(c.getHoraChamadaUtente()==null))
-//            horaChamadaUtente.setText(c.getHoraChamadaUtente().toString());
-//
-//        if(!(c.getHoraEntradaBlocoOperatorio()==null))
-//            horaEntradaBO.setText(c.getHoraEntradaBlocoOperatorio().toString());
-//
-//        if(!(c.getHoraSaideBlocoOperatorio()==null))
-//        horaSaidaBO.setText(c.getHoraSaideBlocoOperatorio().toString());
-//
-//        if(!(c.getHoraEntradaSala()==null))
-//        horaEntradaSala.setText(c.getHoraEntradaSala().toString());
-//
-//        if(!(c.getHoraSaidaSala()==null))
-//        horaSaidaSala.setText(c.getHoraSaidaSala().toString());
-//
-//        if(!(c.getHoraInicioAnestesia()==null))
-//        horaInicioAnestesia.setText(c.getHoraInicioAnestesia().toString());
-//
-//        if(!(c.getHoraFimAnestesia()==null))
-//        horaFimAnestesia.setText(c.getHoraFimAnestesia().toString());
-//
-//        if(!(c.getHoraInicioCirurgia()==null))
-//        horaInicioCirurgia.setText(c.getHoraInicioCirurgia().toString());
-//
-//        if(!(c.getHoraFimCirurgia()==null))
-//        horaFimCirurgia.setText(c.getHoraFimCirurgia().toString());
-//
-//        if(!(c.getHoraEntradaRecobro()==null))
-//        horaEntradaRecobro.setText(c.getHoraEntradaRecobro().toString());
-//
-//        if(!(c.getHoraFimRecobro()==null))
-//        horaSaidaRecobro.setText(c.getHoraFimRecobro().toString());
-
         if(c.getInfoRelevante()!=null)
         informacoesRelevantes.setText(c.getInfoRelevante());
 
@@ -550,9 +527,9 @@ public class DadosCirurgia extends Activity {
         cirurgia.setText(c.getCirurgia().toString());
 
         // Spinner
-        // int gh = spinnerDaMeATuaPosicaoBloco(adaptadorBlococomSala,
-        // c.getIdSala());
-        sala.setSelection(5);
+         //int gh = spinnerDaMeATuaPosicaoBloco(adaptadorBlococomSala,
+       //  c.getIdSala());
+        //sala.setSelection(gh);
         int a =0;
         if(c.getTipoCirurgia()!=null){
         a = spinnerDaMeATuaPosicao(tipoCirurgia.getAdapter(),
@@ -871,6 +848,7 @@ public class DadosCirurgia extends Activity {
                 int a = spinnerDaMeATuaPosicaoBloco(adaptadorBlococomSala,
                         HomeActivity.getCirurgia().getIdSala());
                 sala.setSelection(a);
+                preencherAtividade(HomeActivity.getCirurgia());
 
                 ringProgressDialog.dismiss();
 

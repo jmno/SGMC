@@ -12,9 +12,9 @@ public final class R {
 		public static final int floating_action_button_show = 0x7f040008;
 	}
 	public static final class attr {
-		public static final int floatingActionButtonColor = 0x7f01002d;
-		public static final int floatingActionButtonImplicitElevation = 0x7f01002f;
-		public static final int floatingActionButtonSize = 0x7f01002e;
+		public static final int floatingActionButtonColor = 0x7f01002f;
+		public static final int floatingActionButtonImplicitElevation = 0x7f010031;
+		public static final int floatingActionButtonSize = 0x7f010030;
 		public static final int floatingActionButtonStyle = 0x7f010001;
 	}
 	public static final class dimen {
@@ -47,7 +47,7 @@ public final class R {
 		public static final int FloatingActionButton_Mini = 0x7f0c0066;
 	}
 	public static final class styleable {
-		public static final int[] FloatingActionButton = { 0x7f01002d, 0x7f01002e, 0x7f01002f };
+		public static final int[] FloatingActionButton = { 0x7f01002f, 0x7f010030, 0x7f010031 };
 		public static final int FloatingActionButton_floatingActionButtonColor = 0;
 		public static final int FloatingActionButton_floatingActionButtonImplicitElevation = 2;
 		public static final int FloatingActionButton_floatingActionButtonSize = 1;

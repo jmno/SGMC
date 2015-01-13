@@ -1,9 +1,5 @@
 package pt.mobilesgmc.modelo;
 
-import java.util.Date;
-
-import java.sql.*;
-
 public class Cirurgia {
 
 	private int id;
@@ -216,7 +212,7 @@ public class Cirurgia {
 
 	@Override
 	public String toString() {
-		return "Id:" + id +  " Cirurgia: " + getCirurgia() + " Data: " + data.toString() +"   " +horaEntradaBO;
+		return "Id:" + id +  " Cirurgia: " + getCirurgia() + " Data: " + data.toString();
 	}
 
 	public int getIdEquipa() {

@@ -1,11 +1,11 @@
 package pt.mobilesgmc.modelo;
 
-import java.io.IOException;
-import java.sql.Date;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.LinkedList;
-import java.util.List;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.util.Log;
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.ParseException;
@@ -22,13 +22,15 @@ import org.apache.http.util.EntityUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import java.net.URL;
 
-import android.util.Log;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-import com.google.gson.*;
+import java.io.IOException;
 import java.lang.reflect.Type;
+import java.sql.Date;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
 public class WebServiceUtils {
 
@@ -926,6 +928,42 @@ public class WebServiceUtils {
 
 	}
 
+
+    public static Utente getUtenteByID(int idUtente, String token)
+            throws ClientProtocolException, IOException, RestClientException,
+            ParseException, JSONException {
+        Utente utente = null;
+
+        HttpGet request = new HttpGet(URL + "getUtenteById?token="
+                + token + "&id=" + idUtente);
+        // request.setContentType(new BasicHeader(HTTP.CONTENT_TYPE,
+        // "application/json"));
+        request.setHeader("Accept", "Application/JSON");
+
+        BasicHttpResponse basicHttpResponse = (BasicHttpResponse) client
+                .execute(request);
+        Gson g = new Gson();
+
+        if (isOk(basicHttpResponse.getStatusLine().getStatusCode())) {
+
+            utente = g.fromJson(
+                    EntityUtils.toString(basicHttpResponse.getEntity()),
+                    Utente.class);
+
+        }
+
+        else {
+            throw new RestClientException(
+                    "HTTP Response with invalid status code "
+                            + basicHttpResponse.getStatusLine().getStatusCode()
+                            + ".");
+        }
+
+        return utente;
+
+    }
+
+
 	public static Boolean isOk(int statusCode) {
 		Boolean resultado = false;
 
@@ -948,5 +986,26 @@ public class WebServiceUtils {
 
 		return resultado;
 	}
+
+
+    public static Bitmap getImage(String sexo, String idPaciente)
+            throws ClientProtocolException, IOException, RestClientException, JSONException {
+
+        Bitmap imagem = null;
+
+        URL img_value = null;
+
+
+        img_value = new URL("http://www.nicolau.info/SGMC/"+sexo+"/" + idPaciente + ".jpg");
+
+        try {
+            imagem
+                    = BitmapFactory.decodeStream(img_value.openConnection().getInputStream());
+        } catch (Exception e) {
+            Log.i("error", e.getMessage().toString());
+        }
+        return imagem;
+
+    }
 
 }

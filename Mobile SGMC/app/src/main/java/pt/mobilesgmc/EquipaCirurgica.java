@@ -22,8 +22,8 @@ import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -85,6 +85,8 @@ public class EquipaCirurgica extends Activity implements Serializable {
 	public EquipaComJuncao equipaCirurgica;
 	public int idEquipa;
 	ProgressDialog ringProgressDialog = null;
+    private EquipaComJuncao equipaDaCirurgia;
+    private Boolean adicionou = false;
 
 
 	@Override
@@ -247,10 +249,11 @@ public class EquipaCirurgica extends Activity implements Serializable {
 				// tell the Dialog to use the dialog.xml as it's layout
 				// description
 				dialog.setContentView(R.layout.dialog_novoprofissional);
-				dialog.setTitle("Defina o Novo Profissional:");
+				dialog.setTitle("Novo Profissional:");
 				dialog.getWindow()
 						.setSoftInputMode(
 								WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+
 				final EditText nomeEditText = (EditText) dialog
 						.findViewById(R.id.editText_DialogNovoProfissional_Nome);
 				spinnerTipo = (Spinner) dialog
@@ -258,9 +261,9 @@ public class EquipaCirurgica extends Activity implements Serializable {
 				final EditText ccEditText = (EditText) dialog
 						.findViewById(R.id.editText_DialogNovoProfissional_cc);
 
-				Button guardar = (Button) dialog
+				ImageView guardar = (ImageView) dialog
 						.findViewById(R.id.btn_DialogNovoProfissional_Guardar);
-
+                guardar.setClickable(true);
 				guardar.setOnClickListener(new OnClickListener() {
 					@Override
 					public void onClick(View v) {
@@ -547,7 +550,17 @@ public class EquipaCirurgica extends Activity implements Serializable {
 
 	private class adicionarProfissionalSaude extends
 			AsyncTask<ProfissonalSaude, Void, Boolean> {
+        @Override
+        protected void onPreExecute() {
+            ringProgressDialog = new ProgressDialog(EquipaCirurgica.this);
+            ringProgressDialog.setIcon(R.drawable.ic_launcher);
+            ringProgressDialog.setTitle("Please wait...");
+            ringProgressDialog.setMessage("A Adicionar Profissional...");
 
+            //ringProgressDialog = ProgressDialog.show(Login.this, "Please wait ...",	"Loging in...", true);
+            ringProgressDialog.setCancelable(false);
+            ringProgressDialog.show();
+        };
 	
 		@Override
 		protected Boolean doInBackground(ProfissonalSaude... params) {
@@ -572,7 +585,8 @@ public class EquipaCirurgica extends Activity implements Serializable {
 
 			Toast.makeText(getApplicationContext(), a, Toast.LENGTH_LONG)
 					.show();
-			super.onPostExecute(result);
+            adicionou = true;
+            ringProgressDialog.dismiss();
 		}
 
 	}
@@ -741,6 +755,9 @@ public class EquipaCirurgica extends Activity implements Serializable {
 					lista);
 			spinnerTerceiroAjudante = (Spinner) findViewById(R.id.spinner_3Ajudante);
 			spinnerTerceiroAjudante.setAdapter(adaptador3ajudante);
+            if(adicionou)
+                preencheSpinnersComEquipa(equipaDaCirurgia);
+            break;
 		case 2:
 			adaptadorEnfermeiro = new ArrayAdapter<ProfissonalSaude>(
 					getBaseContext(), android.R.layout.simple_list_item_1,
@@ -756,6 +773,8 @@ public class EquipaCirurgica extends Activity implements Serializable {
 			spinnerEnfermeiroCiruculante.setAdapter(adaptadorEnfermeiro);
 			spinnerEnfermeiroAnestesia = (Spinner) findViewById(R.id.spinner_Enf_de_Anestesia);
 			spinnerEnfermeiroAnestesia.setAdapter(adaptadorEnfermeiro);
+            if(adicionou)
+                preencheSpinnersComEquipa(equipaDaCirurgia);
 			break;
 
 		}
@@ -852,6 +871,7 @@ public class EquipaCirurgica extends Activity implements Serializable {
 		@Override
 		protected void onPostExecute(EquipaComJuncao equipa) {
 			if (equipa != null) {
+                equipaDaCirurgia = equipa;
 				Log.i("equipa",equipa.toString());
 				preencheSpinnersComEquipa(equipa);
                 if(equipa.getNomeEquipa()!=null)

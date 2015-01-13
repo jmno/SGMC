@@ -1,15 +1,12 @@
-<pt.mobilesgmc.view.viewgroup.FlyOutContainer xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent" >
 
-    <include layout="@layout/layout_menu" />
 
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:orientation="vertical" 
-        android:background="@drawable/backgroundapp">
+        android:background="@drawable/backgroundapp"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools">
 
         <ScrollView
             android:id="@+id/scrollViewDadosIntraOperatorio"
@@ -1478,4 +1475,4 @@
             android:text="Guardar" />
     </LinearLayout>
 
-</pt.mobilesgmc.view.viewgroup.FlyOutContainer><!-- From: file:/Users/Nicolau/Dropbox/Leiria/4Ano/1Semestre/SGMC/NEW/Mobile%20SGMC/app/src/main/res/layout/activity_dados_intra_operatorio.xml -->
+<!-- From: file:/Users/Nicolau/Dropbox/Leiria/4Ano/1Semestre/SGMC/NEW/Mobile%20SGMC/app/src/main/res/layout/activity_dados_intra_operatorio.xml -->

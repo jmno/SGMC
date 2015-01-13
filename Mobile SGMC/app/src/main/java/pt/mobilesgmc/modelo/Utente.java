@@ -1,8 +1,6 @@
 package pt.mobilesgmc.modelo;
 
-import java.sql.Date;
-
-import android.text.method.DateTimeKeyListener;
+import java.util.LinkedList;
 
 public class Utente {
 	
@@ -14,6 +12,18 @@ public class Utente {
 	private String alergias;
 	private String patologias;
 	private String antecendentesCirurgicos;
+    private String sexo;
+
+    public LinkedList<Cirurgia> getCirurgias() {
+        return cirurgias;
+    }
+
+    public void setCirurgias(LinkedList<Cirurgia> cirurgias) {
+        this.cirurgias = cirurgias;
+    }
+
+    private LinkedList<Cirurgia> cirurgias;
+
 	public int getId() {
 		return id;
 	}
@@ -82,11 +92,13 @@ public class Utente {
 	public String toString() {
 		return  nomeUtente;
 	}
-	
-	
-	
-	
-	
-	
 
+
+    public String getSexo() {
+        return sexo;
+    }
+
+    public void setSexo(String sexo) {
+        this.sexo = sexo;
+    }
 }

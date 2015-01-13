@@ -3,10 +3,11 @@
     tools:context="com.example.mobilegsmc.UtentesActivity" >
 
     <item
-        android:id="@+id/action_settings"
+        android:id="@+id/action_Utentes_Search"
         android:orderInCategory="100"
-        android:showAsAction="never"
-        android:title="@string/action_settings"/>
+        android:showAsAction="always"
+        android:icon="@drawable/ic_search"
+        android:title="@string/search"/>
 
 </menu>
 <!-- From: file:/Users/Nicolau/Dropbox/Leiria/4Ano/1Semestre/SGMC/NEW/Mobile%20SGMC/app/src/main/res/menu/utentes.xml -->

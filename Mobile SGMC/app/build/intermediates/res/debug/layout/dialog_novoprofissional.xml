@@ -32,7 +32,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="54dp"
+        android:layout_marginTop="25dp"
         android:text="CC:"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
@@ -60,12 +60,10 @@
         android:layout_height="wrap_content"
         tools:listitem="@android:layout/simple_spinner_dropdown_item" />
 
-    <Button
-        android:id="@+id/btn_DialogNovoProfissional_Guardar"
-        style="android:buttonStyle"
+    <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/checkmark"
-        android:paddingTop="25dp" />
+        android:id="@+id/btn_DialogNovoProfissional_Guardar"
+        android:src="@drawable/save" />
 
 </LinearLayout><!-- From: file:/Users/Nicolau/Dropbox/Leiria/4Ano/1Semestre/SGMC/NEW/Mobile%20SGMC/app/src/main/res/layout/dialog_novoprofissional.xml -->
