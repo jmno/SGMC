@@ -195,7 +195,6 @@ public class DadosCirurgia extends Activity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 texto = (TextView) view.findViewById(R.id.value);
                 Toast.makeText(getApplicationContext(), texto.getText().toString(), Toast.LENGTH_SHORT).show();
-
                 final Calendar c = Calendar.getInstance();
                 mHour = c.get(Calendar.HOUR_OF_DAY);
                 mMinute = c.get(Calendar.MINUTE);

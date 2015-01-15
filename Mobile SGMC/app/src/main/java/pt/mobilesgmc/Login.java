@@ -1,13 +1,5 @@
 package pt.mobilesgmc;
 
-import java.io.IOException;
-
-import org.apache.http.ParseException;
-import org.apache.http.client.ClientProtocolException;
-import org.json.JSONException;
-
-import pt.mobilesgmc.modelo.RestClientException;
-import pt.mobilesgmc.modelo.WebServiceUtils;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
@@ -22,10 +14,17 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.mobilegsmc.R;
+
+import org.apache.http.ParseException;
+import org.json.JSONException;
+
+import java.io.IOException;
+
+import pt.mobilesgmc.modelo.RestClientException;
+import pt.mobilesgmc.modelo.WebServiceUtils;
 
 public class Login extends Activity {
 	EditText txtUser;
@@ -38,14 +37,14 @@ public class Login extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login);
 		setTitle("Login");
-//		startActivity(new Intent(this, DadosINtraOperatorioActivity.class));
+		startActivity(new Intent(this, DadosINtraOperatorioActivity.class));
 	//-W800
 		
 		
 		txtUser = (EditText) findViewById(R.id.editTextUsername);
 		txtPass = (EditText) findViewById(R.id.editTextPassword);
 		String token = PreferenceManager.getDefaultSharedPreferences(this).getString("token", "defaultStringIfNothingFound"); 
-		new IsLoggedIN().execute(token);
+		//new IsLoggedIN().execute(token);
 		Button btn_Login = (Button) findViewById(R.id.btn_Login);
 		btn_Login.setOnClickListener(new OnClickListener() {
 

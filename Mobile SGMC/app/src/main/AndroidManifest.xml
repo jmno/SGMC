@@ -53,8 +53,9 @@
         <activity
             android:name="pt.mobilesgmc.DadosINtraOperatorioActivity"
             android:label="@string/title_activity_dados_intra_operatorio"
-             android:windowSoftInputMode="stateHidden" 
-             android:configChanges="orientation|keyboardHidden|screenSize">
+             android:windowSoftInputMode="stateHidden|adjustPan"
+             android:configChanges="orientation|keyboardHidden|screenSize"
+           >
         </activity>
     </application>
 
