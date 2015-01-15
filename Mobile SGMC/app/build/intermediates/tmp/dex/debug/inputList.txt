@@ -1,10 +1,10 @@
-/Users/Nicolau/Dropbox/Leiria/4Ano/1Semestre/SGMC/NEW/Mobile SGMC/app/build/intermediates/classes/debug
-/Users/Nicolau/Dropbox/Leiria/4Ano/1Semestre/SGMC/NEW/Mobile SGMC/app/build/intermediates/pre-dexed/debug/support-annotations-21.0.3-7adaad4fce9c4a95143bb29ea5b3510041c2c306.jar
-/Users/Nicolau/Dropbox/Leiria/4Ano/1Semestre/SGMC/NEW/Mobile SGMC/app/build/intermediates/pre-dexed/debug/classes-6ab82cdb499adc4a23086ee501600b70cd894c96.jar
-/Users/Nicolau/Dropbox/Leiria/4Ano/1Semestre/SGMC/NEW/Mobile SGMC/app/build/intermediates/pre-dexed/debug/classes-334c0fd2f1a553ab45c01fd6f912552850420a94.jar
-/Users/Nicolau/Dropbox/Leiria/4Ano/1Semestre/SGMC/NEW/Mobile SGMC/app/build/intermediates/pre-dexed/debug/classes-c33b77443976774b6facbbb7454a1c6a07e10688.jar
-/Users/Nicolau/Dropbox/Leiria/4Ano/1Semestre/SGMC/NEW/Mobile SGMC/app/build/intermediates/pre-dexed/debug/internal_impl-21.0.3-938b16d06b931e5a7417e1f8c250cd7925c36050.jar
-/Users/Nicolau/Dropbox/Leiria/4Ano/1Semestre/SGMC/NEW/Mobile SGMC/app/build/intermediates/pre-dexed/debug/gson-2.3.1-469b79f15211b430dd3674b649b49a532ff63cbe.jar
-/Users/Nicolau/Dropbox/Leiria/4Ano/1Semestre/SGMC/NEW/Mobile SGMC/app/build/intermediates/pre-dexed/debug/classes-48f493afbaf744dd9d5985cc59acb45e910f8ff5.jar
-/Users/Nicolau/Dropbox/Leiria/4Ano/1Semestre/SGMC/NEW/Mobile SGMC/app/build/intermediates/pre-dexed/debug/classes-e864eb43bed07d28bbcb4294ab1922bb3fdfe26b.jar
-/Users/Nicolau/Dropbox/Leiria/4Ano/1Semestre/SGMC/NEW/Mobile SGMC/app/build/intermediates/pre-dexed/debug/joda-time-2.7-9eb276a3e995dd6ae402761464ed4349d6d47fea.jar
+C:\Users\Carolina\Desktop\Ultima Versao\sgmc\Mobile SGMC\app\build\intermediates\classes\debug
+C:\Users\Carolina\Desktop\Ultima Versao\sgmc\Mobile SGMC\app\build\intermediates\pre-dexed\debug\support-annotations-21.0.3-b2dcfda1758d4951169b0e841a34fc5671448a98.jar
+C:\Users\Carolina\Desktop\Ultima Versao\sgmc\Mobile SGMC\app\build\intermediates\pre-dexed\debug\classes-16923e9f8d44e27106aa213bf07572b29a0bd5dc.jar
+C:\Users\Carolina\Desktop\Ultima Versao\sgmc\Mobile SGMC\app\build\intermediates\pre-dexed\debug\classes-872bbb7a3ba1dc1ad6713b80d4f849b239268ffe.jar
+C:\Users\Carolina\Desktop\Ultima Versao\sgmc\Mobile SGMC\app\build\intermediates\pre-dexed\debug\classes-6d8a8145398fb563003f10ad36a7f8247a09d6e1.jar
+C:\Users\Carolina\Desktop\Ultima Versao\sgmc\Mobile SGMC\app\build\intermediates\pre-dexed\debug\internal_impl-21.0.3-137321a9d5b373b7eb0af0868062d1d9177b7dbb.jar
+C:\Users\Carolina\Desktop\Ultima Versao\sgmc\Mobile SGMC\app\build\intermediates\pre-dexed\debug\gson-2.3.1-8b5fae34991489c608410b36127e6818c74a7721.jar
+C:\Users\Carolina\Desktop\Ultima Versao\sgmc\Mobile SGMC\app\build\intermediates\pre-dexed\debug\classes-ae904bacdf434b3918ee17aa151944c1d64131dc.jar
+C:\Users\Carolina\Desktop\Ultima Versao\sgmc\Mobile SGMC\app\build\intermediates\pre-dexed\debug\classes-0d83cdf9ed89123701d87f19eec832cca204728e.jar
+C:\Users\Carolina\Desktop\Ultima Versao\sgmc\Mobile SGMC\app\build\intermediates\pre-dexed\debug\joda-time-2.7-6520ed8fbb7573277e27afe753c134d4521033e3.jar

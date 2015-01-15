@@ -37,14 +37,14 @@ public class Login extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login);
 		setTitle("Login");
-		startActivity(new Intent(this, DadosINtraOperatorioActivity.class));
+		//startActivity(new Intent(this, DadosINtraOperatorioActivity.class));
 	//-W800
 		
 		
 		txtUser = (EditText) findViewById(R.id.editTextUsername);
 		txtPass = (EditText) findViewById(R.id.editTextPassword);
 		String token = PreferenceManager.getDefaultSharedPreferences(this).getString("token", "defaultStringIfNothingFound"); 
-		//new IsLoggedIN().execute(token);
+		new IsLoggedIN().execute(token);
 		Button btn_Login = (Button) findViewById(R.id.btn_Login);
 		btn_Login.setOnClickListener(new OnClickListener() {
 
@@ -92,7 +92,7 @@ public class Login extends Activity {
 			ringProgressDialog = new ProgressDialog(Login.this);
 			ringProgressDialog.setIcon(R.drawable.ic_launcher);
 			ringProgressDialog.setTitle("Please wait...");
-			ringProgressDialog.setMessage("Loging in...");
+			ringProgressDialog.setMessage("Logging in...");
 			
 			//ringProgressDialog = ProgressDialog.show(Login.this, "Please wait ...",	"Loging in...", true);
 			ringProgressDialog.setCancelable(false);

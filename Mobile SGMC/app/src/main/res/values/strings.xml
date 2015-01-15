@@ -9,57 +9,49 @@
     <string name="action_settings">Settings</string>
     <string name="title_activity_equipa_cirurgica">Equipa Cirurgica</string>
     <string name="btn_WebService">WebService</string>
-<string name="search">Procurar</string>
-<string name="save_Equipa">Guardar Equipa Cirurgica</string>
-<string name="add_Profissional">Adicionar Profissional</string>
+    <string name="search">Procurar</string>
+    <string name="save_Equipa">Guardar Equipa Cirurgica</string>
+    <string name="add_Profissional">Adicionar Profissional</string>
     <string name="save_DadosCirurgia">Guardar Dados Cirurgia</string>
 
     <string-array name="spinnerInicio">
-        <item></item>
+        <item/>
     </string-array>
     <string-array name="menuDrawer">
-       
         <item>Equipa Cirurgica</item>
         <item>Utentes</item>
     </string-array>
     <string-array name="lateralidadeArray">
-        <item></item>
+        <item/>
         <item>Direita</item>
         <item>Esquerda</item>
         <item>Bi Lateral</item>
         <item>Não Aplicável</item>
     </string-array>
     <string-array name="arrayTipoAnestesia">
-        <item></item>
+        <item/>
         <item>Anestesia geral</item>
         <item>Anestesia peridural</item>
         <item>Anestesia raquidiana</item>
         <item>Anestesia local</item>
     </string-array>
-    
-     
-          <string-array name="arrayPlacaEletrodoNeutro">
-        <item></item>
+    <string-array name="arrayPlacaEletrodoNeutro">
+        <item/>
         <item>Sim</item>
         <item>Nao</item>
-        </string-array>
-        <string-array name="arrayCateterismovisical">
-        <item></item>
+    </string-array>
+    <string-array name="arrayCateterismovisical">
+        <item/>
         <item>Sonda de Nelaton</item>
         <item>Sonda de Foley</item>
         <item>Sonda de Owen</item>
-      
     </string-array>
-    
-          <string-array name="arrayNasogastrica">
-        <item></item>
+    <string-array name="arrayNasogastrica">
+        <item/>
         <item>Sonda Nasogástrica</item>
-        
-      
     </string-array>
-    
-           <string-array name="arrayPosicaoOperatoria">
-        <item></item>
+    <string-array name="arrayPosicaoOperatoria">
+        <item/>
         <item>Decubito dorsal</item>
         <item>Decubito ventral</item>
         <item>Decubito lateral</item>
@@ -68,25 +60,18 @@
         <item>Posiçao trendelenburg Reverso</item>
         <item>Posicao fowler </item>
         <item>Posicao de canivete </item>
-       
-        
-      
     </string-array>
-    
-           
-           <string-array name="arrayLocalizacao">
-        <item></item>
+    <string-array name="arrayLocalizacao">
+        <item/>
         <item>Ante-Braco</item>
         <item>Braco</item>
         <item>Peito</item>
         <item>Mao</item>
         <item>Perna</item>
-        <item>Coxa</item>     
-      
+        <item>Coxa</item>
     </string-array>
-    
-     <string-array name="arrayClassificacaoASA">
-        <item></item>
+    <string-array name="arrayClassificacaoASA">
+        <item/>
         <item>ASA I</item>
         <item>ASA II</item>
         <item>ASA III</item>
@@ -94,9 +79,8 @@
         <item>ASA V</item>
         <item>ASA VI</item>
     </string-array>
-    
     <string-array name="arrayEspecialidade">
-        <item></item>
+        <item/>
         <item>Anatomia Patologica</item>
         <item>Anestesiologia</item>
         <item>Cardiologia</item>
@@ -111,7 +95,7 @@
         <item>Urologia</item>
     </string-array>
     <string-array name="arrayTipoCirurgia">
-        <item></item>
+        <item/>
         <item>Cirurgia bucomaxilofacial</item>
         <item>Cirurgia oftalmologica</item>
         <item>Cirurgia otorrinolaringologica</item>
@@ -179,5 +163,7 @@
     <string name="_ClassifASA_">Classificação ASA</string>
     <string name="menu">MENU</string>
     <string name="title_activity_dados_intra_operatorio">DadosINtraOperatorioActivity</string>
+    <string name="title_activity_aparelhos">AparelhosActivity</string>
+    <string name="title_activity_instrumental">InstrumentalActivity</string>
 
 </resources>

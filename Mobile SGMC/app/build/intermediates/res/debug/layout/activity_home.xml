@@ -63,6 +63,16 @@
             android:text="Button"
             android:visibility="invisible" />
 
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Listas Materiais"
+            android:id="@+id/buttonTesteListas"
+            android:layout_marginBottom="55dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignLeft="@+id/textView_HomeActivity"
+            android:layout_alignStart="@+id/textView_HomeActivity" />
+
     </RelativeLayout>
 
-</pt.mobilesgmc.view.viewgroup.FlyOutContainer><!-- From: file:/Users/Nicolau/Dropbox/Leiria/4Ano/1Semestre/SGMC/NEW/Mobile%20SGMC/app/src/main/res/layout/activity_home.xml -->
+</pt.mobilesgmc.view.viewgroup.FlyOutContainer><!-- From: file:/C:/Users/Carolina/Desktop/Ultima%20Versao/sgmc/Mobile%20SGMC/app/src/main/res/layout/activity_home.xml -->

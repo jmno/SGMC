@@ -51,7 +51,7 @@ public class DadosINtraOperatorioActivity extends Activity {
 		token = PreferenceManager.getDefaultSharedPreferences(this).getString(
 				"token", "defaultStringIfNothingFound");
 
-
+/*
         spinner_tipoAnestesia = (Spinner) findViewById(R.id.spinner_DadosIntra_TipoAnestesia);
         editText_TET = (EditText) findViewById(R.id.editText_DadosIntra_TET);
         editText_ML = (EditText) findViewById(R.id.editText_DadosIntra_ML);
@@ -75,7 +75,7 @@ public class DadosINtraOperatorioActivity extends Activity {
         adaptadorSinaisVitais = new AdapterSinaisVitais(this,listaParentSinaisVitais);
         expandable_sinaisVitais.setAdapter(adaptadorSinaisVitais);
         expandable_sinaisVitais.setDescendantFocusability(ViewGroup.FOCUS_AFTER_DESCENDANTS);
-        expandable_sinaisVitais.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+        expandable_sinaisVitais.setChoiceMode(ListView.CHOICE_MODE_SINGLE);*/
 
         //new verificaIntraOperatorio().execute();
 

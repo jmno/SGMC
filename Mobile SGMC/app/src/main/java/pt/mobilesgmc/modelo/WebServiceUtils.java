@@ -964,7 +964,141 @@ public class WebServiceUtils {
     }
 
 
-	public static Boolean isOk(int statusCode) {
+    public static ArrayList<ListaProdutosComProdutos> getAllListas(String token)
+            throws ClientProtocolException, IOException, RestClientException,
+            ParseException, JSONException {
+        ArrayList<ListaProdutosComProdutos> lista = null;
+
+        HttpGet request = new HttpGet(URL + "getListasProdutosComMateriais?token=" + token);
+        // request.setContentType(new BasicHeader(HTTP.CONTENT_TYPE,
+        // "application/json"));
+        request.setHeader("Accept", "Application/JSON");
+
+        BasicHttpResponse basicHttpResponse = (BasicHttpResponse) client
+                .execute(request);
+
+        Gson g = new Gson();
+
+        if (isOk(basicHttpResponse.getStatusLine().getStatusCode())) {
+            lista = new ArrayList<ListaProdutosComProdutos>();
+            Type collectionType = new TypeToken<ArrayList<ListaProdutosComProdutos>>() {
+            }.getType();
+            lista = g.fromJson(
+                    EntityUtils.toString(basicHttpResponse.getEntity()),
+                    collectionType);
+
+        } else {
+            throw new RestClientException(
+                    "HTTP Response with invalid status code "
+                            + basicHttpResponse.getStatusLine().getStatusCode()
+                            + ".");
+        }
+
+        return lista;
+
+    }
+
+
+    public static ListaProdutosComProdutosCirurgia getProdutosByIdCirurgia(String token, int idCirurgia)
+            throws ClientProtocolException, IOException, RestClientException,
+            ParseException, JSONException {
+        ListaProdutosComProdutosCirurgia lista = null;
+
+        HttpGet request = new HttpGet(URL + "getListaComProdutosCirurgia?token=" + token + "&idCirurgia=" + idCirurgia);
+        // request.setContentType(new BasicHeader(HTTP.CONTENT_TYPE,
+        // "application/json"));
+        request.setHeader("Accept", "Application/JSON");
+
+        BasicHttpResponse basicHttpResponse = (BasicHttpResponse) client
+                .execute(request);
+
+        Gson g = new Gson();
+
+        if (isOk(basicHttpResponse.getStatusLine().getStatusCode())) {
+            lista = new ListaProdutosComProdutosCirurgia();
+            Type collectionType = new TypeToken<ListaProdutosComProdutosCirurgia>() {
+            }.getType();
+            lista = g.fromJson(
+                    EntityUtils.toString(basicHttpResponse.getEntity()),
+                    collectionType);
+
+        } else {
+            throw new RestClientException(
+                    "HTTP Response with invalid status code "
+                            + basicHttpResponse.getStatusLine().getStatusCode()
+                            + ".");
+        }
+
+        return lista;
+
+    }
+
+    public static Boolean adicionarProdutosDaCirurgia(
+            ProdutosCirurgia produtos, String token)
+            throws ClientProtocolException, IOException, ParseException,
+            JSONException, RestClientException {
+        Boolean adicionou = false;
+        Gson g = new Gson();
+
+        HttpPost httpPost = new HttpPost(URL + "addProdutosCirurgia?token="
+                + token);
+        StringEntity se = new StringEntity(g.toJson(produtos), "UTF-8");
+        se.setContentType("text/json");
+        se.setContentType("application/json;charset=UTF-8");
+
+        httpPost.setEntity(se);
+        BasicHttpResponse httpResponse = (BasicHttpResponse) client
+                .execute(httpPost);
+
+        if (isOk(httpResponse.getStatusLine().getStatusCode())) {
+            HttpEntity entity = httpResponse.getEntity();
+            String string = EntityUtils.toString(entity);
+            adicionou = Boolean.valueOf(string);
+        } else {
+            throw new RestClientException(
+                    "HTTP Response with invalid status code"
+                            + httpResponse.getStatusLine().getStatusCode()
+                            + ".");
+
+        }
+
+        return adicionou;
+    }
+
+    public static ArrayList<Produtos> getAllProdutos(String token)
+            throws ClientProtocolException, IOException, RestClientException,
+            ParseException, JSONException {
+        ArrayList<Produtos> produtos = null;
+
+        HttpGet request = new HttpGet(URL + "getAllProdutos?token=" + token);
+
+        request.setHeader("Accept", "Application/JSON");
+
+        BasicHttpResponse basicHttpResponse = (BasicHttpResponse) client
+                .execute(request);
+
+        Gson g = new Gson();
+
+        if (isOk(basicHttpResponse.getStatusLine().getStatusCode())) {
+            produtos = new ArrayList<Produtos>();
+            Type collectionType = new TypeToken<ArrayList<Produtos>>() {
+            }.getType();
+            produtos = g.fromJson(
+                    EntityUtils.toString(basicHttpResponse.getEntity()),
+                    collectionType);
+
+        } else {
+            throw new RestClientException(
+                    "HTTP Response with invalid status code "
+                            + basicHttpResponse.getStatusLine().getStatusCode()
+                            + ".");
+        }
+
+        return produtos;
+
+    }
+
+    public static Boolean isOk(int statusCode) {
 		Boolean resultado = false;
 
 		switch (statusCode) {

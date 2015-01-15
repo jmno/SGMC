@@ -63,6 +63,7 @@ public class HomeActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_home);
+        //View v =  findViewById(R.layout.activity_home);
 		setTitle("Ecrã Principal");
 		token = PreferenceManager.getDefaultSharedPreferences(this).getString(
 				"token", "defaultStringIfNothingFound");
@@ -130,12 +131,15 @@ public class HomeActivity extends Activity {
 		textoCirurgiaAUsar = (TextView) root
 				.findViewById(R.id.textViewCirurgia);
 
+
+
+
 		Button btnAdd = (Button) findViewById(R.id.btnEscolhaCirurgia);
 		btnAdd.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View arg0) {
-				new getAllCirurgias().execute();
+				/*new getAllCirurgias().execute();
 
 				dialog = new Dialog(HomeActivity.this);
 
@@ -218,13 +222,39 @@ public class HomeActivity extends Activity {
 										"defaultStringIfNothingFound");
 						textoCirurgiaAUsar.setText(cirurgia);
 					}
-				});
+				});*/
+
+               /* Intent i = new Intent(getApplicationContext(), ListaProdutosActivity.class);
+                startActivity(i);*/
+
+                /* Intent i = new Intent(getApplicationContext(), AparelhosActivity.class);
+                startActivity(i);*/
+
+                 Intent i = new Intent(getApplicationContext(), InstrumentalActivity.class);
+                startActivity(i);
 			}
 		});
 
 	}
 
 	public void setListenersMenus() {
+
+       /* TextView btnLista = (TextView) root
+                .findViewById(R.id.textViewMenuListasMateriais);
+        btnLista.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                if (cirurgia != null) {
+                    Intent equipa = new Intent(getBaseContext(),
+                            ListaProdutosActivity.class);
+                    toggleMenu(findViewById(R.layout.activity_lista_produtos));
+
+                    startActivity(equipa);
+                }
+
+            }
+        });*/
 
 		TextView btnEquipa = (TextView) root
 				.findViewById(R.id.textViewMenuEquipaCirurgica);
@@ -235,7 +265,7 @@ public class HomeActivity extends Activity {
 				if (cirurgia != null) {
 				Intent equipa = new Intent(getBaseContext(),
 						EquipaCirurgica.class);
-				toggleMenu(findViewById(R.layout.activity_equipa_cirurgica));
+			//	toggleMenu(findViewById(R.layout.activity_equipa_cirurgica));
 
 				startActivity(equipa);
 				} else {
@@ -255,7 +285,7 @@ public class HomeActivity extends Activity {
 				if (cirurgia != null) {
 					Intent dados = new Intent(getBaseContext(),
 							DadosCirurgia.class);
-					toggleMenu(findViewById(R.layout.activity_dados_cirurgia));
+				//	toggleMenu(findViewById(R.layout.activity_dados_cirurgia));
 
 					startActivity(dados);
 				} else {
@@ -274,7 +304,7 @@ public class HomeActivity extends Activity {
 				// TODO Auto-generated method stub
 				Intent utentes = new Intent(getBaseContext(),
 						UtentesActivity.class);
-				toggleMenu(findViewById(R.layout.activity_utentes));
+				//toggleMenu(findViewById(R.layout.activity_utentes));
 				startActivity(utentes);
 			}
 		});
@@ -288,7 +318,7 @@ public class HomeActivity extends Activity {
 				if (HomeActivity.getCirurgia() != null) {
 					Intent dados = new Intent(getBaseContext(),
 							DadosINtraOperatorioActivity.class);
-					toggleMenu(findViewById(R.layout.activity_dados_intra_operatorio));
+				//	toggleMenu(findViewById(R.layout.activity_dados_intra_operatorio));
 					startActivity(dados);
                     //Toast.makeText(getApplicationContext(),"Não perca a próxima versão, porque nós também não!",Toast.LENGTH_SHORT).show();
                     root.toggleMenu();
@@ -298,7 +328,7 @@ public class HomeActivity extends Activity {
 					Log.i("sgmc", "Não tem cirurgia escolhida");
                     Intent dados = new Intent(getBaseContext(),
                             DadosINtraOperatorioActivity.class);
-                    toggleMenu(findViewById(R.layout.activity_dados_intra_operatorio));
+                    //toggleMenu(findViewById(this));
                     startActivity(dados);
 					root.toggleMenu();
 				}

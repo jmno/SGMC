@@ -18,4 +18,4 @@
     <item android:state_pressed="true" android:color="@color/abc_search_url_text_pressed"/>
     <item android:state_selected="true" android:color="@color/abc_search_url_text_selected"/>
     <item android:color="@color/abc_search_url_text_normal"/>
-</selector><!-- From: file:/Users/Nicolau/Dropbox/Leiria/4Ano/1Semestre/SGMC/NEW/Mobile%20SGMC/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.3/res/color/abc_search_url_text.xml -->
+</selector><!-- From: file:/C:/Users/Carolina/Desktop/Ultima%20Versao/sgmc/Mobile%20SGMC/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.3/res/color/abc_search_url_text.xml -->

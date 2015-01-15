@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -199,7 +200,9 @@ public class UtentesActivity extends Activity {
                 String[] alergias = utente.getAlergias().split("!");
                 for (int i =0; i<alergias.length;i++){
                     al += alergias[i] + "\n";
+
                 }
+                textView_alergia.setTextColor(Color.RED);
             }
             else {
                 al="Não Tem";

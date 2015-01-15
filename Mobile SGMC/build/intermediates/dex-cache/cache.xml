@@ -2,67 +2,67 @@
 <items version="2" >
 
     <item
-        jar="/Users/Nicolau/Desktop/adt-bundle-mac-x86_64-20140702/sdk/extras/android/m2repository/com/android/support/support-annotations/21.0.3/support-annotations-21.0.3.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="4b74cefe1f0c1b819e7260c8627a14674e37fd35">
-        <dex dex="/Users/Nicolau/Dropbox/Leiria/4Ano/1Semestre/SGMC/NEW/Mobile SGMC/app/build/intermediates/pre-dexed/debug/support-annotations-21.0.3-7adaad4fce9c4a95143bb29ea5b3510041c2c306.jar" />
-    </item>
-    <item
-        jar="/Users/Nicolau/Dropbox/Leiria/4Ano/1Semestre/SGMC/NEW/Mobile SGMC/app/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.3/classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="2c91c949a45a21cdecf26e03951e46c7beec9ad8">
-        <dex dex="/Users/Nicolau/Dropbox/Leiria/4Ano/1Semestre/SGMC/NEW/Mobile SGMC/app/build/intermediates/pre-dexed/debug/classes-e864eb43bed07d28bbcb4294ab1922bb3fdfe26b.jar" />
-    </item>
-    <item
-        jar="/Users/Nicolau/Dropbox/Leiria/4Ano/1Semestre/SGMC/NEW/Mobile SGMC/app/build/intermediates/exploded-aar/com.shamanland/fab/0.0.6/classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="e388595587aab9cb9f919f90de90b1831db908f5">
-        <dex dex="/Users/Nicolau/Dropbox/Leiria/4Ano/1Semestre/SGMC/NEW/Mobile SGMC/app/build/intermediates/pre-dexed/debug/classes-c33b77443976774b6facbbb7454a1c6a07e10688.jar" />
-    </item>
-    <item
-        jar="/Users/Nicolau/.gradle/caches/modules-2/files-2.1/joda-time/joda-time/2.7/5599707a3eaad13e889f691b3af78c8c03842195/joda-time-2.7.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="5599707a3eaad13e889f691b3af78c8c03842195">
-        <dex dex="/Users/Nicolau/Dropbox/Leiria/4Ano/1Semestre/SGMC/NEW/Mobile SGMC/app/build/intermediates/pre-dexed/debug/joda-time-2.7-9eb276a3e995dd6ae402761464ed4349d6d47fea.jar" />
-    </item>
-    <item
-        jar="/Users/Nicolau/Dropbox/Leiria/4Ano/1Semestre/SGMC/NEW/Mobile SGMC/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.3/classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="81d42bf983a8741f4888a6e333e454e4a5e0eeb7">
-        <dex dex="/Users/Nicolau/Dropbox/Leiria/4Ano/1Semestre/SGMC/NEW/Mobile SGMC/app/build/intermediates/pre-dexed/debug/classes-48f493afbaf744dd9d5985cc59acb45e910f8ff5.jar" />
-    </item>
-    <item
-        jar="/Users/Nicolau/Dropbox/Leiria/4Ano/1Semestre/SGMC/NEW/Mobile SGMC/app/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.3/libs/internal_impl-21.0.3.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="01ec05bfbafcc07646ba813000bf2ef11742dd03">
-        <dex dex="/Users/Nicolau/Dropbox/Leiria/4Ano/1Semestre/SGMC/NEW/Mobile SGMC/app/build/intermediates/pre-dexed/debug/internal_impl-21.0.3-938b16d06b931e5a7417e1f8c250cd7925c36050.jar" />
-    </item>
-    <item
-        jar="/Users/Nicolau/Dropbox/Leiria/4Ano/1Semestre/SGMC/NEW/Mobile SGMC/app/build/intermediates/exploded-aar/de.hdodenhof/circleimageview/1.2.1/classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="4b868b833b0887aa48c4e581558eef4f1196f6a2">
-        <dex dex="/Users/Nicolau/Dropbox/Leiria/4Ano/1Semestre/SGMC/NEW/Mobile SGMC/app/build/intermediates/pre-dexed/debug/classes-334c0fd2f1a553ab45c01fd6f912552850420a94.jar" />
-    </item>
-    <item
-        jar="/Users/Nicolau/Dropbox/Leiria/4Ano/1Semestre/SGMC/NEW/Mobile SGMC/app/build/intermediates/exploded-aar/com.github.markushi/circlebutton/1.1/classes.jar"
+        jar="C:\Users\Carolina\Desktop\Ultima Versao\sgmc\Mobile SGMC\app\build\intermediates\exploded-aar\com.github.markushi\circlebutton\1.1\classes.jar"
         jumboMode="false"
         revision="21.1.2"
         sha1="ebe3b1f14fa79ba3cd1588acda4e6517ee9fe611">
-        <dex dex="/Users/Nicolau/Dropbox/Leiria/4Ano/1Semestre/SGMC/NEW/Mobile SGMC/app/build/intermediates/pre-dexed/debug/classes-6ab82cdb499adc4a23086ee501600b70cd894c96.jar" />
+        <dex dex="C:\Users\Carolina\Desktop\Ultima Versao\sgmc\Mobile SGMC\app\build\intermediates\pre-dexed\debug\classes-16923e9f8d44e27106aa213bf07572b29a0bd5dc.jar" />
     </item>
     <item
-        jar="/Users/Nicolau/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.3.1/ecb6e1f8e4b0e84c4b886c2f14a1500caf309757/gson-2.3.1.jar"
+        jar="C:\Users\Carolina\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\21.0.3\support-annotations-21.0.3.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="4b74cefe1f0c1b819e7260c8627a14674e37fd35">
+        <dex dex="C:\Users\Carolina\Desktop\Ultima Versao\sgmc\Mobile SGMC\app\build\intermediates\pre-dexed\debug\support-annotations-21.0.3-b2dcfda1758d4951169b0e841a34fc5671448a98.jar" />
+    </item>
+    <item
+        jar="C:\Users\Carolina\Desktop\Ultima Versao\sgmc\Mobile SGMC\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\21.0.3\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="81d42bf983a8741f4888a6e333e454e4a5e0eeb7">
+        <dex dex="C:\Users\Carolina\Desktop\Ultima Versao\sgmc\Mobile SGMC\app\build\intermediates\pre-dexed\debug\classes-ae904bacdf434b3918ee17aa151944c1d64131dc.jar" />
+    </item>
+    <item
+        jar="C:\Users\Carolina\Desktop\Ultima Versao\sgmc\Mobile SGMC\app\build\intermediates\exploded-aar\com.shamanland\fab\0.0.6\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="e388595587aab9cb9f919f90de90b1831db908f5">
+        <dex dex="C:\Users\Carolina\Desktop\Ultima Versao\sgmc\Mobile SGMC\app\build\intermediates\pre-dexed\debug\classes-6d8a8145398fb563003f10ad36a7f8247a09d6e1.jar" />
+    </item>
+    <item
+        jar="C:\Users\Carolina\Desktop\Ultima Versao\sgmc\Mobile SGMC\app\build\intermediates\exploded-aar\de.hdodenhof\circleimageview\1.2.1\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="4b868b833b0887aa48c4e581558eef4f1196f6a2">
+        <dex dex="C:\Users\Carolina\Desktop\Ultima Versao\sgmc\Mobile SGMC\app\build\intermediates\pre-dexed\debug\classes-872bbb7a3ba1dc1ad6713b80d4f849b239268ffe.jar" />
+    </item>
+    <item
+        jar="C:\Users\Carolina\.gradle\caches\modules-2\files-2.1\joda-time\joda-time\2.7\5599707a3eaad13e889f691b3af78c8c03842195\joda-time-2.7.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="5599707a3eaad13e889f691b3af78c8c03842195">
+        <dex dex="C:\Users\Carolina\Desktop\Ultima Versao\sgmc\Mobile SGMC\app\build\intermediates\pre-dexed\debug\joda-time-2.7-6520ed8fbb7573277e27afe753c134d4521033e3.jar" />
+    </item>
+    <item
+        jar="C:\Users\Carolina\Desktop\Ultima Versao\sgmc\Mobile SGMC\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="2c91c949a45a21cdecf26e03951e46c7beec9ad8">
+        <dex dex="C:\Users\Carolina\Desktop\Ultima Versao\sgmc\Mobile SGMC\app\build\intermediates\pre-dexed\debug\classes-0d83cdf9ed89123701d87f19eec832cca204728e.jar" />
+    </item>
+    <item
+        jar="C:\Users\Carolina\.gradle\caches\modules-2\files-2.1\com.google.code.gson\gson\2.3.1\ecb6e1f8e4b0e84c4b886c2f14a1500caf309757\gson-2.3.1.jar"
         jumboMode="false"
         revision="21.1.2"
         sha1="ecb6e1f8e4b0e84c4b886c2f14a1500caf309757">
-        <dex dex="/Users/Nicolau/Dropbox/Leiria/4Ano/1Semestre/SGMC/NEW/Mobile SGMC/app/build/intermediates/pre-dexed/debug/gson-2.3.1-469b79f15211b430dd3674b649b49a532ff63cbe.jar" />
+        <dex dex="C:\Users\Carolina\Desktop\Ultima Versao\sgmc\Mobile SGMC\app\build\intermediates\pre-dexed\debug\gson-2.3.1-8b5fae34991489c608410b36127e6818c74a7721.jar" />
+    </item>
+    <item
+        jar="C:\Users\Carolina\Desktop\Ultima Versao\sgmc\Mobile SGMC\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\libs\internal_impl-21.0.3.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="01ec05bfbafcc07646ba813000bf2ef11742dd03">
+        <dex dex="C:\Users\Carolina\Desktop\Ultima Versao\sgmc\Mobile SGMC\app\build\intermediates\pre-dexed\debug\internal_impl-21.0.3-137321a9d5b373b7eb0af0868062d1d9177b7dbb.jar" />
     </item>
 
 </items>

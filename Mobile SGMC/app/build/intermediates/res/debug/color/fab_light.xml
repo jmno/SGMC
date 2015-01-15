@@ -2,4 +2,4 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:state_pressed="true" android:color="#db6"/>
     <item android:color="#fd8"/>
-</selector><!-- From: file:/Users/Nicolau/Dropbox/Leiria/4Ano/1Semestre/SGMC/NEW/Mobile%20SGMC/app/src/main/res/color/fab_light.xml -->
+</selector><!-- From: file:/C:/Users/Carolina/Desktop/Ultima%20Versao/sgmc/Mobile%20SGMC/app/src/main/res/color/fab_light.xml -->
