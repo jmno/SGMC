@@ -23,10 +23,10 @@ public class EditTextWatcherTaMin  implements TextWatcher{
             Double d = 0.0;
             try{
                 d = Double.parseDouble(s.toString());
-                sinaisVitais.setTamin(Double.parseDouble(s.toString()));
+                sinaisVitais.setTaMin(Double.parseDouble(s.toString()));
             }
             catch (Exception e){
-                sinaisVitais.setTamin(0.0);
+                sinaisVitais.setTaMin(0.0);
                 Log.i("ExcecaoTAmin","Valor Inferior a 0");
             }
 

@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
@@ -25,8 +24,13 @@ import org.json.JSONException;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Calendar;
 
+import pt.mobilesgmc.acessosVenosos.AdapterAcessosVenosos;
+import pt.mobilesgmc.medicacaoAdministrada.AdapterMedicacaoAdministrada;
+import pt.mobilesgmc.modelo.AcessoVenoso;
 import pt.mobilesgmc.modelo.DadosIntraoperatorioFinal;
+import pt.mobilesgmc.modelo.MedicacaoAdministrada;
 import pt.mobilesgmc.modelo.RestClientException;
 import pt.mobilesgmc.modelo.SinaisVitais;
 import pt.mobilesgmc.modelo.WebServiceUtils;
@@ -40,12 +44,33 @@ public class DadosINtraOperatorioActivity extends Activity {
     private EditText editText_TET;
     private EditText editText_ML;
     private EditText editText_AgulhaCalibre;
-    private ListView listView_SinaisVitais;
     private int mYear, mMonth, mDay, mHour, mMinute, mSecond;
+
+    //Acessos Venosos
+    private ListView listView_AcessosVenosos;
+    private ArrayList<AcessoVenoso> itemsAcessoVenoso;
+    private AdapterAcessosVenosos adapterAcessosVenosos;
+    private ImageView adicionarAcessosVenosos;
+    private ImageView expandCollapseAcessosVenosos;
+
+
+    //Sinais Vitais
+    private ListView listView_SinaisVitais;
     private ArrayList<SinaisVitais> itemsSinaisVitais;
     private AdapterSinaisVitais adapterSinaisVitais;
     private TextView horaSinalVital;
     private ImageView adicionarSinalVital;
+    private ImageView expandCollapseSinaisVitais;
+
+    //Sinais Vitais
+    private ListView listView_MedicacaoAdministrada;
+    private ArrayList<MedicacaoAdministrada> itemsMedicacaoAdministrada;
+    private AdapterMedicacaoAdministrada adapterMedicacaoAdministrada;
+    private ImageView adicionarMedicacao;
+    private ImageView expandCollapseMedicacao;
+
+
+
 
 
 
@@ -58,24 +83,94 @@ public class DadosINtraOperatorioActivity extends Activity {
 				"token", "defaultStringIfNothingFound");
 
 
+
         spinner_tipoAnestesia = (Spinner) findViewById(R.id.spinner_DadosIntra_TipoAnestesia);
         editText_TET = (EditText) findViewById(R.id.editText_DadosIntra_TET);
         editText_ML = (EditText) findViewById(R.id.editText_DadosIntra_ML);
         editText_AgulhaCalibre = (EditText) findViewById(R.id.editText_DadosIntra_AgulhaPLCalibre);
+
+        acessosVenosos();
+        sinaisVitais();
+        medicacaoAdministrada();
+       
+        //new verificaIntraOperatorio().execute();
+
+	}
+
+    public void acessosVenosos()
+    {
+        listView_AcessosVenosos = (ListView) findViewById(R.id.listView_DadosIntra_AcessosVenosos);
+        itemsAcessoVenoso = new ArrayList<AcessoVenoso>();
+
+
+        adapterAcessosVenosos = new AdapterAcessosVenosos(this,itemsAcessoVenoso);
+        listView_AcessosVenosos.setAdapter(adapterAcessosVenosos);
+        listView_AcessosVenosos.setScrollContainer(false);
+        listView_AcessosVenosos.setVisibility(View.GONE);
+
+        AcessoVenoso a = new AcessoVenoso();
+        a.setLocalizacaoAcessoVenoso("");
+        a.setCalibreAcessoVenoso(0);
+        a.setTipoAcessoVenoso("");
+        adapterAcessosVenosos.add(a);
+        setListViewHeightBasedOnChildren(listView_AcessosVenosos);
+
+
+        adicionarAcessosVenosos = (ImageView) findViewById(R.id.imageView_DadosIntra_addAcessoVenoso);
+        adicionarAcessosVenosos.setClickable(true);
+        adicionarAcessosVenosos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AcessoVenoso a = new AcessoVenoso();
+                a.setLocalizacaoAcessoVenoso("");
+                a.setCalibreAcessoVenoso(0);
+                a.setTipoAcessoVenoso("");
+                adapterAcessosVenosos.add(a);
+                setListViewHeightBasedOnChildren(listView_AcessosVenosos);
+            }
+        });
+
+        if(itemsAcessoVenoso.size()!=0)
+            adicionarAcessosVenosos.setVisibility(View.GONE);
+
+        expandCollapseAcessosVenosos = (ImageView) findViewById(R.id.imageView_DadosIntra_expandCollapseAcessosVenosos);
+        expandCollapseAcessosVenosos.setClickable(true);
+        expandCollapseAcessosVenosos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(listView_AcessosVenosos.getVisibility() == View.VISIBLE){
+                    expandCollapseAcessosVenosos.setBackgroundResource(R.drawable.ic_collapse);
+                    listView_AcessosVenosos.setVisibility(View.GONE);
+                    setListViewHeightBasedOnChildren(listView_AcessosVenosos);
+                    adicionarAcessosVenosos.setVisibility(View.GONE);
+                }
+                else {
+                    expandCollapseAcessosVenosos.setBackgroundResource(R.drawable.ic_expand);
+                    listView_AcessosVenosos.setVisibility(View.VISIBLE);
+                    setListViewHeightBasedOnChildren(listView_AcessosVenosos);
+                    adicionarAcessosVenosos.setVisibility(View.VISIBLE);
+                }
+            }
+        });
+
+    }
+
+    public void sinaisVitais()
+    {
         listView_SinaisVitais = (ListView) findViewById(R.id.listView_DadosIntra_SinaisVitais);
         SinaisVitais s = new SinaisVitais();
         s.setFc(1.2);
         s.setHora("10:10");
         s.setSpo2(2);
-        s.setTamax(2.1);
-        s.setTamin(2.2);
+        s.setTaMax(2.1);
+        s.setTaMin(2.2);
         s.setTemp(36);
         SinaisVitais s1 = new SinaisVitais();
         s1.setFc(1.2);
         s1.setHora("10:10");
         s1.setSpo2(2);
-        s1.setTamax(2.1);
-        s1.setTamin(2.2);
+        s1.setTaMax(2.1);
+        s1.setTaMin(2.2);
         s1.setTemp(36);
         itemsSinaisVitais = new ArrayList<SinaisVitais>();
         itemsSinaisVitais.add(s);
@@ -83,46 +178,119 @@ public class DadosINtraOperatorioActivity extends Activity {
         setListViewHeightBasedOnChildren(listView_SinaisVitais);
         adapterSinaisVitais = new AdapterSinaisVitais(this,itemsSinaisVitais);
         listView_SinaisVitais.setAdapter(adapterSinaisVitais);
+        listView_SinaisVitais.setScrollContainer(false);
+        listView_SinaisVitais.setVisibility(View.GONE);
         adicionarSinalVital = (ImageView) findViewById(R.id.imageView_DadosIntra_AddSinalVital);
-        adicionarSinalVital.setClickable(true);
-        adicionarSinalVital.setOnClickListener(new View.OnClickListener() {
+        if(itemsSinaisVitais.size()!=0)
+            adicionarSinalVital.setVisibility(View.GONE);
+        expandCollapseSinaisVitais = (ImageView) findViewById(R.id.imageView_DadosIntra_ShowHideSinaisVitais);
+        expandCollapseSinaisVitais.setClickable(true);
+        expandCollapseSinaisVitais.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(listView_SinaisVitais.getVisibility() == View.VISIBLE){
-                listView_SinaisVitais.setVisibility(View.GONE);
+                    expandCollapseSinaisVitais.setBackgroundResource(R.drawable.ic_collapse);
+                    listView_SinaisVitais.setVisibility(View.GONE);
+                    setListViewHeightBasedOnChildren(listView_SinaisVitais);
+                    adicionarSinalVital.setVisibility(View.GONE);
                 }
-                else
+                else {
+                    expandCollapseSinaisVitais.setBackgroundResource(R.drawable.ic_expand);
                     listView_SinaisVitais.setVisibility(View.VISIBLE);
-            }
-        });
-
-        listView_SinaisVitais.setOnTouchListener(new ListView.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                int action = event.getAction();
-                switch (action) {
-                    case MotionEvent.ACTION_DOWN:
-                        // Disallow ScrollView to intercept touch events.
-                        v.getParent().requestDisallowInterceptTouchEvent(true);
-                        break;
-
-                    case MotionEvent.ACTION_UP:
-                        // Allow ScrollView to intercept touch events.
-                        v.getParent().requestDisallowInterceptTouchEvent(false);
-                        break;
+                    setListViewHeightBasedOnChildren(listView_SinaisVitais);
+                    adicionarSinalVital.setVisibility(View.VISIBLE);
                 }
-
-                // Handle ListView touch events.
-                v.onTouchEvent(event);
-                return true;
             }
         });
 
+        adicionarSinalVital.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SinaisVitais s = new SinaisVitais();
+                s.setTemp(0);
+                s.setSpo2(0);
+                s.setTaMax(0);
+                s.setTaMin(0);
+                final Calendar c = Calendar.getInstance();
+                mHour = c.get(Calendar.HOUR_OF_DAY);
+                mMinute = c.get(Calendar.MINUTE);
+                String hr = (mHour + ":"
+                        + mMinute + ":00");
+                s.setHora(hr);
+                s.setFc(0);
+                adapterSinaisVitais.add(s);
+                setListViewHeightBasedOnChildren(listView_SinaisVitais);
 
-        //new verificaIntraOperatorio().execute();
+            }
+        });
 
-	}
+    }
 
+    public void medicacaoAdministrada()
+    {
+        listView_MedicacaoAdministrada = (ListView) findViewById(R.id.listView_DadosIntra_MedicacaoAdmin);
+
+        itemsMedicacaoAdministrada = new ArrayList<MedicacaoAdministrada>();
+
+        MedicacaoAdministrada m = new MedicacaoAdministrada();
+        m.setFarmaco("");
+        m.setVia("");
+        m.setDose(0.0);
+        final Calendar c = Calendar.getInstance();
+        mHour = c.get(Calendar.HOUR_OF_DAY);
+        mMinute = c.get(Calendar.MINUTE);
+        String hr = (mHour + ":"
+                + mMinute + ":00");
+        m.setHora(hr);
+        itemsMedicacaoAdministrada.add(m);
+
+        setListViewHeightBasedOnChildren(listView_MedicacaoAdministrada);
+        adapterMedicacaoAdministrada = new AdapterMedicacaoAdministrada(this,itemsMedicacaoAdministrada);
+        listView_MedicacaoAdministrada.setAdapter(adapterMedicacaoAdministrada);
+        listView_MedicacaoAdministrada.setScrollContainer(false);
+        listView_MedicacaoAdministrada.setVisibility(View.GONE);
+        adicionarMedicacao = (ImageView) findViewById(R.id.imageView_DadosIntra_AddMedicacao);
+        if(itemsMedicacaoAdministrada.size()!=0)
+            adicionarMedicacao.setVisibility(View.GONE);
+        expandCollapseMedicacao = (ImageView) findViewById(R.id.imageView_DadosIntra_ExpandCollapseMedicacao);
+        expandCollapseMedicacao.setClickable(true);
+        expandCollapseMedicacao.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(listView_MedicacaoAdministrada.getVisibility() == View.VISIBLE){
+                    expandCollapseMedicacao.setBackgroundResource(R.drawable.ic_collapse);
+                    listView_MedicacaoAdministrada.setVisibility(View.GONE);
+                    setListViewHeightBasedOnChildren(listView_MedicacaoAdministrada);
+                    adicionarMedicacao.setVisibility(View.GONE);
+                }
+                else {
+                    expandCollapseMedicacao.setBackgroundResource(R.drawable.ic_expand);
+                    listView_MedicacaoAdministrada.setVisibility(View.VISIBLE);
+                    setListViewHeightBasedOnChildren(listView_MedicacaoAdministrada);
+                    adicionarMedicacao.setVisibility(View.VISIBLE);
+                }
+            }
+        });
+
+        adicionarSinalVital.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MedicacaoAdministrada m = new MedicacaoAdministrada();
+                m.setFarmaco("");
+                m.setVia("");
+                m.setDose(0.0);
+                final Calendar c = Calendar.getInstance();
+                mHour = c.get(Calendar.HOUR_OF_DAY);
+                mMinute = c.get(Calendar.MINUTE);
+                String hr = (mHour + ":"
+                        + mMinute + ":00");
+                m.setHora(hr);
+                adapterMedicacaoAdministrada.add(m);
+                setListViewHeightBasedOnChildren(listView_MedicacaoAdministrada);
+
+            }
+        });
+    }
     public static void setListViewHeightBasedOnChildren(ListView listView) {
         ListAdapter listAdapter = listView.getAdapter();
         if (listAdapter == null) {

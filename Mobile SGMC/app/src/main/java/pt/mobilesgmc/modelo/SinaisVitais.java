@@ -2,28 +2,14 @@ package pt.mobilesgmc.modelo;
 
 public class SinaisVitais {
 
-    @Override
-    public String toString() {
-        return "SinaisVitais{" +
-                "id=" + id +
-                ", hora='" + hora + '\'' +
-                ", tamin=" + tamin +
-                ", tamax=" + tamax +
-                ", fc=" + fc +
-                ", spo2=" + spo2 +
-                ", temp=" + temp +
-                ", idIntraOperatorio=" + idIntraOperatorio +
-                '}';
-    }
-
     private int id;
 	private String hora;
-    private double tamin;
-    private double tamax;
+    private double taMin;
+    private double taMax;
     private double fc;
 	private double spo2;
 	private double temp;
-	public int idIntraOperatorio;
+	private int idIntraOperatorio;
 
     public int getId() {
         return id;
@@ -41,20 +27,20 @@ public class SinaisVitais {
         this.hora = hora;
     }
 
-    public double getTamin() {
-        return tamin;
+    public double getTaMin() {
+        return taMin;
     }
 
-    public void setTamin(double tamin) {
-        this.tamin = tamin;
+    public void setTaMin(double taMin) {
+        this.taMin = taMin;
     }
 
-    public double getTamax() {
-        return tamax;
+    public double getTaMax() {
+        return taMax;
     }
 
-    public void setTamax(double tamax) {
-        this.tamax = tamax;
+    public void setTaMax(double taMax) {
+        this.taMax = taMax;
     }
 
     public double getFc() {
@@ -90,4 +76,18 @@ public class SinaisVitais {
     }
 
     public SinaisVitais(){}
+
+    @Override
+    public String toString() {
+        return "SinaisVitais{" +
+                "id=" + id +
+                ", hora='" + hora + '\'' +
+                ", taMin=" + taMin +
+                ", taMax=" + taMax +
+                ", fc=" + fc +
+                ", spo2=" + spo2 +
+                ", temp=" + temp +
+                ", idIntraOperatorio=" + idIntraOperatorio +
+                '}';
+    }
 }

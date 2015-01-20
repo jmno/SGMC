@@ -11,87 +11,106 @@ public class DadosIntraoperatorioFinal {
 	private LinkedList<Drenagem> listaDrenagemVesical;
 	private LinkedList<Drenagem> listaDrenagemNasogastrica;
 	private LinkedList<Eliminacao> listaEliminacao;
-	private AdministracaoSangue adminSangue;
-
-	public DadosIntraoperatorio getDados() {
-		return dados;
-	}
-
-	public void setDados(DadosIntraoperatorio dados) {
-		this.dados = dados;
-	}
-
-	public LinkedList<SinaisVitais> getListaSinais() {
-		return listaSinais;
-	}
-
-	public void setListaSinais(LinkedList<SinaisVitais> listaSinais) {
-		this.listaSinais = listaSinais;
-	}
-
-	public LinkedList<MedicacaoAdministrada> getListaMedicacao() {
-		return listaMedicacao;
-	}
-
-	public void setListaMedicacao(
-			LinkedList<MedicacaoAdministrada> listaMedicacao) {
-		this.listaMedicacao = listaMedicacao;
-	}
-
-	public LinkedList<BalancoHidrico> getListaBalanco() {
-		return listaBalancos;
-	}
-
-	public void setListaBalanco(LinkedList<BalancoHidrico> listaBalanco) {
-		this.listaBalancos = listaBalanco;
-	}
-
-	public LinkedList<Drenagem> getListaDrenagemVesical() {
-		return listaDrenagemVesical;
-	}
-
-	public void setListaDrenagemVesical(
-			LinkedList<Drenagem> listaDrenagemVesical) {
-		this.listaDrenagemVesical = listaDrenagemVesical;
-	}
-
-	public LinkedList<Drenagem> getListaDrenagemNasogastrica() {
-		return listaDrenagemNasogastrica;
-	}
-
-	public void setListaDrenagemNasogastrica(
-			LinkedList<Drenagem> listaDrenagemNasogastrica) {
-		this.listaDrenagemNasogastrica = listaDrenagemNasogastrica;
-	}
-
-	public LinkedList<Eliminacao> getListaEliminacao() {
-		return listaEliminacao;
-	}
-
-	public void setListaEliminacao(LinkedList<Eliminacao> listaEliminacao) {
-		this.listaEliminacao = listaEliminacao;
-	}
-
-	public AdministracaoSangue getAdministracao() {
-		return adminSangue;
-	}
-
-	public void setAdministracao(AdministracaoSangue administracao) {
-		this.adminSangue = administracao;
-	}
+    private LinkedList<AcessoVenoso> listaAcessoVenoso;
+    private LinkedList<PecaBiopsia> listaPecaBiopsia;
+	private LinkedList<AdministracaoSangue> adminSangue;
 
 	public DadosIntraoperatorioFinal() {
 	}
 
-	@Override
-	public String toString() {
+    public DadosIntraoperatorio getDados() {
+        return dados;
+    }
 
-		return dados.toString() + "\nLista de Sinais:" + listaSinais.toString()
-				+ "\nLista de Balanco:" + listaBalancos.toString()
-				+ "\nLista de Medicacao:" + listaMedicacao.toString()
-				+ "\nLista de Eliminacao:" + listaEliminacao.toString()
-				+ "\nLista de Drenagem Vesical:" + listaDrenagemVesical
-				+ "\nLista de Drenagem Nasogastrica:"
-				+ listaDrenagemNasogastrica + "\nAdministracao de Sangue:";
-	}
+    public void setDados(DadosIntraoperatorio dados) {
+        this.dados = dados;
+    }
+
+    public LinkedList<SinaisVitais> getListaSinais() {
+        return listaSinais;
+    }
+
+    public void setListaSinais(LinkedList<SinaisVitais> listaSinais) {
+        this.listaSinais = listaSinais;
+    }
+
+    public LinkedList<MedicacaoAdministrada> getListaMedicacao() {
+        return listaMedicacao;
+    }
+
+    public void setListaMedicacao(LinkedList<MedicacaoAdministrada> listaMedicacao) {
+        this.listaMedicacao = listaMedicacao;
+    }
+
+    public LinkedList<BalancoHidrico> getListaBalancos() {
+        return listaBalancos;
+    }
+
+    public void setListaBalancos(LinkedList<BalancoHidrico> listaBalancos) {
+        this.listaBalancos = listaBalancos;
+    }
+
+    public LinkedList<Drenagem> getListaDrenagemVesical() {
+        return listaDrenagemVesical;
+    }
+
+    public void setListaDrenagemVesical(LinkedList<Drenagem> listaDrenagemVesical) {
+        this.listaDrenagemVesical = listaDrenagemVesical;
+    }
+
+    public LinkedList<Drenagem> getListaDrenagemNasogastrica() {
+        return listaDrenagemNasogastrica;
+    }
+
+    public void setListaDrenagemNasogastrica(LinkedList<Drenagem> listaDrenagemNasogastrica) {
+        this.listaDrenagemNasogastrica = listaDrenagemNasogastrica;
+    }
+
+    public LinkedList<Eliminacao> getListaEliminacao() {
+        return listaEliminacao;
+    }
+
+    public void setListaEliminacao(LinkedList<Eliminacao> listaEliminacao) {
+        this.listaEliminacao = listaEliminacao;
+    }
+
+    public LinkedList<AcessoVenoso> getListaAcessoVenoso() {
+        return listaAcessoVenoso;
+    }
+
+    public void setListaAcessoVenoso(LinkedList<AcessoVenoso> listaAcessoVenoso) {
+        this.listaAcessoVenoso = listaAcessoVenoso;
+    }
+
+    public LinkedList<PecaBiopsia> getListaPecaBiopsia() {
+        return listaPecaBiopsia;
+    }
+
+    public void setListaPecaBiopsia(LinkedList<PecaBiopsia> listaPecaBiopsia) {
+        this.listaPecaBiopsia = listaPecaBiopsia;
+    }
+
+    public LinkedList<AdministracaoSangue> getAdminSangue() {
+        return adminSangue;
+    }
+
+    public void setAdminSangue(LinkedList<AdministracaoSangue> adminSangue) {
+        this.adminSangue = adminSangue;
+    }
+
+    @Override
+    public String toString() {
+        return "DadosIntraoperatorioFinal{" +
+                "dados=" + dados +
+                ", listaSinais=" + listaSinais +
+                ", listaMedicacao=" + listaMedicacao +
+                ", listaBalancos=" + listaBalancos +
+                ", listaDrenagemVesical=" + listaDrenagemVesical +
+                ", listaDrenagemNasogastrica=" + listaDrenagemNasogastrica +
+                ", listaEliminacao=" + listaEliminacao +
+                ", listaAcessoVenoso=" + listaAcessoVenoso +
+                ", listaPecaBiopsia=" + listaPecaBiopsia +
+                ", adminSangue=" + adminSangue +
+                '}';
+    }
 }

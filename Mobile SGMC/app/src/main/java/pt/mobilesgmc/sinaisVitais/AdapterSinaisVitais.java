@@ -88,15 +88,21 @@ public class AdapterSinaisVitais extends ArrayAdapter<SinaisVitais> {
             }
         });
 
-        editText_tamin.setText(itemsArrayList.get(position).getTamin() + "");
+        editText_tamin.setText(itemsArrayList.get(position).getTaMin() + "");
 
-        editText_tamax.setText(itemsArrayList.get(position).getTamax()+"");
+        editText_tamax.setText(itemsArrayList.get(position).getTaMax()+"");
         editText_fc.setText(itemsArrayList.get(position).getFc()+"");
         editText_spo2.setText(itemsArrayList.get(position).getSpo2()+"");
         editText_temp.setText(itemsArrayList.get(position).getTemp()+"");
 
         editText_tamin.addTextChangedListener(new EditTextWatcherTaMin(itemsArrayList.get(position)));
-        Log.i("tamin", itemsArrayList.get(position).getTamin()+"");
+        editText_tamax.addTextChangedListener(new EditTextWatcherTaMax(itemsArrayList.get(position)));
+        editText_fc.addTextChangedListener(new EditTextWatcherFc(itemsArrayList.get(position)));
+        editText_spo2.addTextChangedListener(new EditTextWatcherSpo2(itemsArrayList.get(position)));
+        editText_temp.addTextChangedListener(new EditTextWatcherTem(itemsArrayList.get(position)));
+
+
+        Log.i("tamin", itemsArrayList.get(position).getTaMin()+"");
         // 5. retrn rowView
         return rowView;
     }
