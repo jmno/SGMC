@@ -6,7 +6,6 @@ package pt.mobilesgmc.modelo;
 public class ProdutosCirurgiaComProdutos {
 
     private int id;
-    private String nomeProduto;
     private int quantidade;
     private String tipoProduto;
     private Boolean preparado;
@@ -14,14 +13,8 @@ public class ProdutosCirurgiaComProdutos {
     private int idProduto;
     private String codigoProduto;
     private String referenciaProduto;
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
+    private Boolean utilizado;
+    private String nomeProduto;
 
     public String getNomeProduto() {
         return nomeProduto;
@@ -29,6 +22,22 @@ public class ProdutosCirurgiaComProdutos {
 
     public void setNomeProduto(String nomeProduto) {
         this.nomeProduto = nomeProduto;
+    }
+
+    public Boolean getUtilizado() {
+        return utilizado;
+    }
+
+    public void setUtilizado(Boolean utilizado) {
+        this.utilizado = utilizado;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getQuantidade() {
@@ -90,6 +99,7 @@ public class ProdutosCirurgiaComProdutos {
     @Override
     public String toString() {
         return
-                nomeProduto + "- Quantidade=" + quantidade;
+                nomeProduto +
+                        "- Quantidade=" + quantidade;
     }
 }

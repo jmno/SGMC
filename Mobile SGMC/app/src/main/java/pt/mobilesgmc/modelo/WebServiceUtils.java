@@ -17,16 +17,18 @@ import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicHeader;
 import org.apache.http.message.BasicHttpResponse;
+import org.apache.http.params.BasicHttpParams;
+import org.apache.http.params.HttpConnectionParams;
+import org.apache.http.params.HttpParams;
 import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import java.net.URL;
-
 
 import java.io.IOException;
 import java.lang.reflect.Type;
+import java.net.URL;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -40,6 +42,7 @@ public class WebServiceUtils {
 	public static LinkedList<Tipo> listaTipos = new LinkedList<Tipo>();
 	public static LinkedList<Utente> listaUtentes = new LinkedList<>();
 	public static HttpClient client = new DefaultHttpClient();
+
 
 	public static ArrayList<ProfissonalSaude> getAllProfissionalSaude(
 			String token) throws ClientProtocolException, IOException,
@@ -246,6 +249,7 @@ public class WebServiceUtils {
 		HttpPost httpPost = new HttpPost(URL + "login?username=" + username
 				+ "&password=" + password);
 
+        client = new DefaultHttpClient();
 		BasicHttpResponse httpResponse = (BasicHttpResponse) client
 				.execute(httpPost);
 
@@ -253,7 +257,11 @@ public class WebServiceUtils {
 			HttpEntity entity = httpResponse.getEntity();
 			token = EntityUtils.toString(entity);
 
-		} else {
+		}
+        else if(httpResponse.getStatusLine().getStatusCode() == 500)
+        {
+            token = "ERRO";
+        }else {
 			throw new RestClientException(
 					"HTTP Response with invalid status code "
 							+ httpResponse.getStatusLine().getStatusCode()
@@ -268,7 +276,14 @@ public class WebServiceUtils {
 			throws ClientProtocolException, IOException, RestClientException {
 		Boolean resultado = false;
 
-		HttpGet request = new HttpGet(URL + "isLoggedIn?token=" + token);
+        HttpParams httpParameters = new BasicHttpParams();
+        int timeoutConnection = 15000;
+        HttpConnectionParams.setConnectionTimeout(httpParameters, timeoutConnection);
+        int timeoutSocket = 15000;
+        HttpConnectionParams.setSoTimeout(httpParameters, timeoutSocket);
+        client = new DefaultHttpClient(httpParameters);
+
+        HttpGet request = new HttpGet(URL + "isLoggedIn?token=" + token);
 		// request.setContentType(new BasicHeader(HTTP.CONTENT_TYPE,
 		// "application/json"));
 		request.setHeader("Accept", "Application/JSON");
@@ -281,7 +296,12 @@ public class WebServiceUtils {
 			HttpEntity entity = basicHttpResponse.getEntity();
 			resultado = Boolean.valueOf(EntityUtils.toString(entity));
 
-		} else {
+		}
+        else if(basicHttpResponse.getStatusLine().getStatusCode() == 500)
+        {
+            resultado = false;
+        }
+        else {
 			throw new RestClientException(
 					"HTTP Response with invalid status code "
 							+ basicHttpResponse.getStatusLine().getStatusCode()
@@ -1034,25 +1054,31 @@ public class WebServiceUtils {
     }
 
     public static Boolean adicionarProdutosDaCirurgia(
-            ProdutosCirurgia produtos, String token)
+            ArrayList<ProdutosCirurgia> produtos, String token)
             throws ClientProtocolException, IOException, ParseException,
             JSONException, RestClientException {
         Boolean adicionou = false;
         Gson g = new Gson();
 
-        HttpPost httpPost = new HttpPost(URL + "addProdutosCirurgia?token="
+        HttpPost httpPost = new HttpPost(URL + "addAllProdutosCirurgia?token="
                 + token);
-        StringEntity se = new StringEntity(g.toJson(produtos), "UTF-8");
+
+        Type collectionType = new TypeToken<ArrayList<ProdutosCirurgia>>() {
+        }.getType();
+
+        StringEntity se = new StringEntity(g.toJson(produtos,collectionType), "UTF-8");
         se.setContentType("text/json");
         se.setContentType("application/json;charset=UTF-8");
 
         httpPost.setEntity(se);
         BasicHttpResponse httpResponse = (BasicHttpResponse) client
                 .execute(httpPost);
+        HttpEntity entity = httpResponse.getEntity();
+        String string = EntityUtils.toString(entity);
 
+        Log.i("adicionarProdutos",string);
         if (isOk(httpResponse.getStatusLine().getStatusCode())) {
-            HttpEntity entity = httpResponse.getEntity();
-            String string = EntityUtils.toString(entity);
+
             adicionou = Boolean.valueOf(string);
         } else {
             throw new RestClientException(

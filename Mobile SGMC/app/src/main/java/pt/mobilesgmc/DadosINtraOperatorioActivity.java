@@ -7,11 +7,15 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.ExpandableListView;
+import android.widget.ImageView;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.mobilegsmc.R;
@@ -24,10 +28,9 @@ import java.util.ArrayList;
 
 import pt.mobilesgmc.modelo.DadosIntraoperatorioFinal;
 import pt.mobilesgmc.modelo.RestClientException;
+import pt.mobilesgmc.modelo.SinaisVitais;
 import pt.mobilesgmc.modelo.WebServiceUtils;
 import pt.mobilesgmc.sinaisVitais.AdapterSinaisVitais;
-import pt.mobilesgmc.sinaisVitais.ChildSinaisVitais;
-import pt.mobilesgmc.sinaisVitais.ParentSinaisVitais;
 
 public class DadosINtraOperatorioActivity extends Activity {
 
@@ -37,10 +40,13 @@ public class DadosINtraOperatorioActivity extends Activity {
     private EditText editText_TET;
     private EditText editText_ML;
     private EditText editText_AgulhaCalibre;
-    private ExpandableListView expandable_sinaisVitais;
-    private AdapterSinaisVitais adaptadorSinaisVitais;
-    private ArrayList<ParentSinaisVitais> listaParentSinaisVitais;
-    private ArrayList<ChildSinaisVitais> listaChildSinaisVitais;
+    private ListView listView_SinaisVitais;
+    private int mYear, mMonth, mDay, mHour, mMinute, mSecond;
+    private ArrayList<SinaisVitais> itemsSinaisVitais;
+    private AdapterSinaisVitais adapterSinaisVitais;
+    private TextView horaSinalVital;
+    private ImageView adicionarSinalVital;
+
 
 
     @Override
@@ -51,36 +57,91 @@ public class DadosINtraOperatorioActivity extends Activity {
 		token = PreferenceManager.getDefaultSharedPreferences(this).getString(
 				"token", "defaultStringIfNothingFound");
 
-/*
+
         spinner_tipoAnestesia = (Spinner) findViewById(R.id.spinner_DadosIntra_TipoAnestesia);
         editText_TET = (EditText) findViewById(R.id.editText_DadosIntra_TET);
         editText_ML = (EditText) findViewById(R.id.editText_DadosIntra_ML);
         editText_AgulhaCalibre = (EditText) findViewById(R.id.editText_DadosIntra_AgulhaPLCalibre);
-        expandable_sinaisVitais = (ExpandableListView) findViewById(R.id.expandableListView_DadosIntra_SinaisVitais);
-        ChildSinaisVitais c = new ChildSinaisVitais();
-        c.setHora("10:10");
-        ChildSinaisVitais b = new ChildSinaisVitais();
-        b.setHora("10:10");
-        ChildSinaisVitais a = new ChildSinaisVitais();
-        a.setHora("10:10");
-        listaChildSinaisVitais = new ArrayList<ChildSinaisVitais>();
-        listaChildSinaisVitais.add(a);
-        listaChildSinaisVitais.add(b);
-        listaChildSinaisVitais.add(c);
-        ParentSinaisVitais p = new ParentSinaisVitais();
-        p.setSinaisVitais("Sinais Vitais");
-        p.setChildren(listaChildSinaisVitais);
-        listaParentSinaisVitais = new ArrayList<ParentSinaisVitais>();
-        listaParentSinaisVitais.add(p);
-        adaptadorSinaisVitais = new AdapterSinaisVitais(this,listaParentSinaisVitais);
-        expandable_sinaisVitais.setAdapter(adaptadorSinaisVitais);
-        expandable_sinaisVitais.setDescendantFocusability(ViewGroup.FOCUS_AFTER_DESCENDANTS);
-        expandable_sinaisVitais.setChoiceMode(ListView.CHOICE_MODE_SINGLE);*/
+        listView_SinaisVitais = (ListView) findViewById(R.id.listView_DadosIntra_SinaisVitais);
+        SinaisVitais s = new SinaisVitais();
+        s.setFc(1.2);
+        s.setHora("10:10");
+        s.setSpo2(2);
+        s.setTamax(2.1);
+        s.setTamin(2.2);
+        s.setTemp(36);
+        SinaisVitais s1 = new SinaisVitais();
+        s1.setFc(1.2);
+        s1.setHora("10:10");
+        s1.setSpo2(2);
+        s1.setTamax(2.1);
+        s1.setTamin(2.2);
+        s1.setTemp(36);
+        itemsSinaisVitais = new ArrayList<SinaisVitais>();
+        itemsSinaisVitais.add(s);
+        itemsSinaisVitais.add(s1);
+        setListViewHeightBasedOnChildren(listView_SinaisVitais);
+        adapterSinaisVitais = new AdapterSinaisVitais(this,itemsSinaisVitais);
+        listView_SinaisVitais.setAdapter(adapterSinaisVitais);
+        adicionarSinalVital = (ImageView) findViewById(R.id.imageView_DadosIntra_AddSinalVital);
+        adicionarSinalVital.setClickable(true);
+        adicionarSinalVital.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(listView_SinaisVitais.getVisibility() == View.VISIBLE){
+                listView_SinaisVitais.setVisibility(View.GONE);
+                }
+                else
+                    listView_SinaisVitais.setVisibility(View.VISIBLE);
+            }
+        });
+
+        listView_SinaisVitais.setOnTouchListener(new ListView.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                int action = event.getAction();
+                switch (action) {
+                    case MotionEvent.ACTION_DOWN:
+                        // Disallow ScrollView to intercept touch events.
+                        v.getParent().requestDisallowInterceptTouchEvent(true);
+                        break;
+
+                    case MotionEvent.ACTION_UP:
+                        // Allow ScrollView to intercept touch events.
+                        v.getParent().requestDisallowInterceptTouchEvent(false);
+                        break;
+                }
+
+                // Handle ListView touch events.
+                v.onTouchEvent(event);
+                return true;
+            }
+        });
+
 
         //new verificaIntraOperatorio().execute();
 
 	}
 
+    public static void setListViewHeightBasedOnChildren(ListView listView) {
+        ListAdapter listAdapter = listView.getAdapter();
+        if (listAdapter == null) {
+            // pre-condition
+            return;
+        }
+
+        int totalHeight = 0;
+        for (int i = 0; i < listAdapter.getCount(); i++) {
+            View listItem = listAdapter.getView(i, null, listView);
+            listItem.measure(0, 0);
+            totalHeight += listItem.getMeasuredHeight();
+        }
+
+        ViewGroup.LayoutParams params = listView.getLayoutParams();
+        params.height = totalHeight + (listView.getDividerHeight() * (listAdapter.getCount() - 1));
+        listView.setLayoutParams(params);
+        listView.requestLayout();
+    }
 
 
 	@Override

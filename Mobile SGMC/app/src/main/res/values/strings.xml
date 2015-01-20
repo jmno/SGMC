@@ -13,6 +13,9 @@
     <string name="save_Equipa">Guardar Equipa Cirurgica</string>
     <string name="add_Profissional">Adicionar Profissional</string>
     <string name="save_DadosCirurgia">Guardar Dados Cirurgia</string>
+    <string name="save_Lista">Guardar Lista</string>
+    <string name="add_Produto">Adicionar Produto</string>
+    <string name="search_Lista">Procurar Lista Material de Cirurgia</string>
 
     <string-array name="spinnerInicio">
         <item/>

@@ -13,6 +13,15 @@ public class ProdutosCirurgia {
     private Boolean preparado;
     private int idCirurgia;
     private int idProduto;
+    private Boolean utilizado;
+
+    public Boolean getUtilizado() {
+        return utilizado;
+    }
+
+    public void setUtilizado(Boolean utilizado) {
+        this.utilizado = utilizado;
+    }
 
     public ProdutosCirurgia(){}
 

@@ -5,7 +5,6 @@ import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnCancelListener;
-import android.content.DialogInterface.OnDismissListener;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -22,7 +21,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.WindowManager;
 import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -98,7 +96,7 @@ public class HomeActivity extends Activity {
 			public void onSwipeLeft() {
 				String estado = root.getState().toString();
 				if (estado.equals("OPEN"))
-					toggleMenu(findViewById(R.layout.activity_home));
+                    toggleMenu(findViewById(R.layout.activity_home));
 			}
 
 			public void onSwipeBottom() {
@@ -139,7 +137,7 @@ public class HomeActivity extends Activity {
 
 			@Override
 			public void onClick(View arg0) {
-				/*new getAllCirurgias().execute();
+				new getAllCirurgias().execute();
 
 				dialog = new Dialog(HomeActivity.this);
 
@@ -179,7 +177,7 @@ public class HomeActivity extends Activity {
 						.findViewById(R.id.listView_cirurgias);
 
 				listaCirurgias
-						.setOnItemClickListener(new OnItemClickListener() {
+						.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
 							@Override
 							public void onItemClick(AdapterView<?> arg0,
@@ -211,7 +209,8 @@ public class HomeActivity extends Activity {
 							}
 						});
 
-				dialog.setOnDismissListener(new OnDismissListener() {
+
+				dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
 
 					@Override
 					public void onDismiss(DialogInterface dialog) {
@@ -222,7 +221,7 @@ public class HomeActivity extends Activity {
 										"defaultStringIfNothingFound");
 						textoCirurgiaAUsar.setText(cirurgia);
 					}
-				});*/
+				});
 
                /* Intent i = new Intent(getApplicationContext(), ListaProdutosActivity.class);
                 startActivity(i);*/
@@ -230,8 +229,8 @@ public class HomeActivity extends Activity {
                 /* Intent i = new Intent(getApplicationContext(), AparelhosActivity.class);
                 startActivity(i);*/
 
-                 Intent i = new Intent(getApplicationContext(), InstrumentalActivity.class);
-                startActivity(i);
+               /*  Intent i = new Intent(getApplicationContext(), InstrumentalActivity.class);
+                startActivity(i); */
 			}
 		});
 
@@ -351,6 +350,30 @@ public class HomeActivity extends Activity {
 				finish();
 			}
 		});
+
+        TextView btnListasMateriais = (TextView) findViewById(R.id.textViewMenuListasMateriais);
+        btnListasMateriais.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (HomeActivity.getCirurgia() != null) {
+                    Intent listasMat = new Intent(getBaseContext(),
+                            ListaProdutosActivity.class);
+                    //	toggleMenu(findViewById(R.layout.activity_dados_intra_operatorio));
+                    startActivity(listasMat);
+                    //Toast.makeText(getApplicationContext(),"Não perca a próxima versão, porque nós também não!",Toast.LENGTH_SHORT).show();
+                    root.toggleMenu();
+
+                } else {
+                    Toast.makeText(getApplicationContext(), "Tem de selecionar uma cirurgia primeiro", Toast.LENGTH_SHORT).show();
+                    Log.i("sgmc", "Não tem cirurgia escolhida");
+                    Intent listasMat = new Intent(getBaseContext(),
+                            ListaProdutosActivity.class);
+                    //	toggleMenu(findViewById(R.layout.activity_dados_intra_operatorio));
+                    startActivity(listasMat);
+                    root.toggleMenu();
+                }
+            }
+        });
 	}
 
 	@Override

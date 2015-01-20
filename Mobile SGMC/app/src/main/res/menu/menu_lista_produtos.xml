@@ -2,6 +2,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="pt.mobilesgmc.ListaProdutosActivity">
-    <item android:id="@+id/action_settings" android:title="@string/action_settings"
-        android:orderInCategory="100" app:showAsAction="never" />
+
+
+    <item android:id="@+id/action_searchLista"
+        android:icon="@drawable/ic_action_search"
+        android:title="@string/search_Lista"
+        android:showAsAction="always" />
+    <item android:id="@+id/action_addProduto"
+        android:icon="@drawable/ic_action_novo"
+        android:title="@string/add_Produto"
+        android:showAsAction="always" />
+    <item android:id="@+id/action_saveLista"
+        android:icon="@drawable/ic_save"
+        android:title="@string/save_Lista"
+        android:showAsAction="always" />
+
 </menu>

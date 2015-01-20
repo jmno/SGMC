@@ -128,14 +128,21 @@ public class Login extends Activity {
 					// new Notifications(getApplicationContext(),
 					// "Connexão Efetuada com Sucesso!");
 					token = token.replace("\"", "");
-					PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putString("token", token).commit();  
-					ringProgressDialog.dismiss();
-					Intent equipa = new Intent(getBaseContext(),
-							HomeActivity.class);
-					startActivity(equipa);
+                    if(!token.equals("ERRO")) {
+                        PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putString("token", token).commit();
+                        ringProgressDialog.dismiss();
+                        Intent equipa = new Intent(getBaseContext(),
+                                HomeActivity.class);
+                        startActivity(equipa);
+                    }
+                    else
+                    {
+                        ringProgressDialog.dismiss();
+                        Toast.makeText(getApplicationContext(),"Erro Utilizador/Password",Toast.LENGTH_SHORT).show();
+                    }
 				}
 			} else {
-
+                    ringProgressDialog.dismiss();
 			}
 		}
 	}

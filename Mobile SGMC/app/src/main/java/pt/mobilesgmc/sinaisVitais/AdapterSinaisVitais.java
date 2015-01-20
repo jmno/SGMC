@@ -1,152 +1,105 @@
 package pt.mobilesgmc.sinaisVitais;
 
+import android.app.TimePickerDialog;
 import android.content.Context;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseExpandableListAdapter;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.TimePicker;
 
 import com.example.mobilegsmc.R;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+
+import pt.mobilesgmc.modelo.SinaisVitais;
 
 /**
  * Created by Nicolau on 13/01/15.
  */
-public class AdapterSinaisVitais extends BaseExpandableListAdapter {
+public class AdapterSinaisVitais extends ArrayAdapter<SinaisVitais> {
 
-    private Context context;
-    private ArrayList<ParentSinaisVitais> listaParent;
-    private TextView hora;
-    private EditText tamin;
-    private ChildSinaisVitais child;
-    public AdapterSinaisVitais(Context context, ArrayList<ParentSinaisVitais> listaParent) {
+    private final Context context;
+    private final ArrayList<SinaisVitais> itemsArrayList;
+    private TextView textView_hora;
+    private int mYear, mMonth, mDay, mHour, mMinute, mSecond;
+
+
+    public AdapterSinaisVitais(Context context, ArrayList<SinaisVitais> itemsArrayList) {
+
+        super(context, R.layout.child_sinais_vitais, itemsArrayList);
+
         this.context = context;
-        this.listaParent = listaParent;
+        this.itemsArrayList = itemsArrayList;
     }
 
     @Override
-    public Object getChild(int groupPosition, int childPosition) {
-        ArrayList<ChildSinaisVitais> listaChild = ((ParentSinaisVitais) listaParent
-                .get(groupPosition)).getChildren();
-        return listaChild.get(childPosition);
-    }
+    public View getView(final int position, View convertView, ViewGroup parent) {
 
-    @Override
-    public long getChildId(int groupPosition, int childPosition) {
-        return childPosition;
-    }
+        // 1. Create inflater
+        LayoutInflater inflater = (LayoutInflater) context
+                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-    @Override
-    public View getChildView(final int groupPosition, final int childPosition,
-                             boolean isLastChild, View convertView, ViewGroup parent) {
+        // 2. Get rowView from inflater
+        View rowView = inflater.inflate(R.layout.child_sinais_vitais, parent, false);
 
+        // 3. Get the two text view from the rowView
+        textView_hora = (TextView) rowView.findViewById(R.id.textView_Hora);
+        EditText editText_tamin = (EditText) rowView.findViewById(R.id.editText_TaMin);
+        EditText editText_tamax = (EditText) rowView.findViewById(R.id.editText_TaMax);
+        EditText editText_fc = (EditText) rowView.findViewById(R.id.editText_fc);
+        EditText editText_spo2 = (EditText) rowView.findViewById(R.id.editText_spo2);
+        EditText editText_temp = (EditText) rowView.findViewById(R.id.editText_temp);
 
+        // 4. Set the text for textView
 
-           child = (ChildSinaisVitais) getChild(groupPosition,
-                    childPosition);
-
-            LayoutInflater inflater = (LayoutInflater) context
-                    .getSystemService(context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate(R.layout.child_sinais_vitais, null);
-
-            hora = (TextView) convertView.findViewById(R.id.textView_Hora);
-            hora.setText(child.getHora());
-            tamin = (EditText) convertView.findViewById(R.id.editText_TaMin);
-            tamin.setText(child.getTaMin());
-            tamin.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                child.setTaMin(s.toString());
-                Log.i("tamin",child.getTaMin());
-
-            }
-        });
-        hora.setClickable(true);
-        hora.setOnClickListener(new View.OnClickListener() {
+        textView_hora.setText(itemsArrayList.get(position).getHora());
+        textView_hora.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                child.setHora(childPosition+"");
-                Log.i("child" , childPosition+"");
-                Log.i("child_",child.getHora());
+                final TextView horaSinalVital = (TextView) v.findViewById(R.id.textView_Hora);
+
+                final Calendar c = Calendar.getInstance();
+                mHour = c.get(Calendar.HOUR_OF_DAY);
+                mMinute = c.get(Calendar.MINUTE);
+
+                // Launch Date Picker Dialog
+                TimePickerDialog dpd = new TimePickerDialog(context,
+                        new TimePickerDialog.OnTimeSetListener() {
+
+                            @Override
+                            public void onTimeSet(TimePicker view,
+                                                  int hourOfDay, int minute) {
+                                Log.i("hora inicio", itemsArrayList.get(position).getHora());
+                                String hr = (hourOfDay + ":"
+                                        + minute + ":00");
+                                itemsArrayList.get(position).setHora(hr);
+                                Log.i("hora fim:", itemsArrayList.get(position).getHora());
+                                horaSinalVital.setText(hr);
+                            }
+
+                        }, mHour, mMinute, true);
+
+                dpd.show();
             }
         });
-        /*convertView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                child.setHora(childPosition+"");
-                notifyDataSetChanged();
-                hora.setText(child.getHora());
-                Log.i("child" , childPosition+"");
-                Log.i("child_",child.getHora());
 
-            }
-        });*/
-         //TEXTVIEW e ECT
+        editText_tamin.setText(itemsArrayList.get(position).getTamin() + "");
 
+        editText_tamax.setText(itemsArrayList.get(position).getTamax()+"");
+        editText_fc.setText(itemsArrayList.get(position).getFc()+"");
+        editText_spo2.setText(itemsArrayList.get(position).getSpo2()+"");
+        editText_temp.setText(itemsArrayList.get(position).getTemp()+"");
 
-        return convertView;
-
+        editText_tamin.addTextChangedListener(new EditTextWatcherTaMin(itemsArrayList.get(position)));
+        Log.i("tamin", itemsArrayList.get(position).getTamin()+"");
+        // 5. retrn rowView
+        return rowView;
     }
 
-    @Override
-    public int getChildrenCount(int groupPosition) {
-            return listaParent.get(groupPosition).getChildren().size();
-    }
 
-    @Override
-    public Object getGroup(int groupPosition) {
-        return listaParent.get(groupPosition);
-    }
-
-    @Override
-    public int getGroupCount() {
-            return listaParent.size();
-    }
-
-    @Override
-    public long getGroupId(int groupPosition) {
-        return groupPosition;
-    }
-
-    @Override
-    public View getGroupView(int groupPosition, boolean isExpanded,
-                             View convertView, ViewGroup parent) {
-
-        ParentSinaisVitais p = (ParentSinaisVitais) getGroup(groupPosition);
-        if (convertView == null) {
-            LayoutInflater inflater = (LayoutInflater) context
-                    .getSystemService(context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate(R.layout.group_sinais_vitais, null);
-        }
-
-        TextView txtBloco = (TextView) convertView.findViewById(R.id.txtview_DadosIntra_Anestesia);
-        txtBloco.setText(p.getSinaisVitais());
-
-        return convertView;
-    }
-
-    @Override
-    public boolean hasStableIds() {
-        return true;
-    }
-
-    @Override
-    public boolean isChildSelectable(int groupPosition, int childPosition) {
-        return true;
-    }
 }
