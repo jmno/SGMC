@@ -21,7 +21,6 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Hora: "
                 android:id="@+id/textView16"
                 android:layout_marginLeft="0dp" />
@@ -29,7 +28,6 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="   :   "
                 android:id="@+id/textViewHoraMed"
                 android:layout_marginTop="10dp"
@@ -48,7 +46,6 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Fármaco"
                 android:id="@+id/textView22"
                 android:layout_marginLeft="30dp"
@@ -70,7 +67,6 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Dose"
                 android:id="@+id/textView23"
                 android:layout_marginLeft="15dp"
@@ -94,7 +90,6 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Via"
                 android:id="@+id/textView24"
                 android:layout_marginLeft="30dp"

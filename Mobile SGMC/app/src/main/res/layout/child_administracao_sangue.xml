@@ -22,14 +22,12 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Hora"
                 android:id="@+id/textView25" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="   :   "
                 android:id="@+id/textViewHoraAdministracaoSangue"
                 android:layout_marginLeft="0dp"
@@ -48,7 +46,6 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="TaMin (mmHg)"
                 android:id="@+id/textView26"
                 android:layout_marginRight="0dp" />
@@ -58,12 +55,11 @@
                 android:layout_height="wrap_content"
                 android:inputType="numberDecimal"
                 android:ems="10"
-                android:id="@+id/editTextTaMinAdminSangue" />
+                android:id="@+id/editText_AdminSangue_TaMinAdminSangue" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="TaMax (mmHg)"
                 android:id="@+id/textView27"
                 android:layout_marginTop="2dp" />
@@ -73,7 +69,7 @@
                 android:layout_height="wrap_content"
                 android:inputType="numberDecimal"
                 android:ems="10"
-                android:id="@+id/editTextTaMax" />
+                android:id="@+id/editText_AdminSangue_TaMax" />
         </LinearLayout>
 
         <LinearLayout
@@ -86,7 +82,6 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Fc (bpm)"
                 android:id="@+id/textView28"
                 android:layout_marginTop="2dp"
@@ -97,12 +92,11 @@
                 android:layout_height="wrap_content"
                 android:inputType="numberDecimal"
                 android:ems="10"
-                android:id="@+id/editTextFc" />
+                android:id="@+id/editText_AdminSangue_Fc" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Spo2 (%)"
                 android:id="@+id/textView29"
                 android:layout_marginTop="2dp" />
@@ -112,7 +106,7 @@
                 android:layout_height="wrap_content"
                 android:inputType="numberDecimal"
                 android:ems="10"
-                android:id="@+id/editTextSpo2AdminSangue" />
+                android:id="@+id/editText_AdminSangue_Spo2AdminSangue" />
         </LinearLayout>
 
         <LinearLayout
@@ -125,7 +119,6 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Tipo"
                 android:id="@+id/textView30"
                 android:layout_marginLeft="25dp" />
@@ -133,12 +126,13 @@
             <Spinner
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/spinnerTipoAdminSangue" />
+                android:id="@+id/spinnerTipoAdminSangue"
+                android:entries="@array/arrayAdminSangue" />
 
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/editTextCodigo" />
+                android:id="@+id/editText_AdminSangue_codigo" />
         </LinearLayout>
     </LinearLayout>
 

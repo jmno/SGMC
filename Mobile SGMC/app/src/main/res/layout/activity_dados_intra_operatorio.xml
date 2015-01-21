@@ -267,6 +267,76 @@
                 android:layout_weight="1" />
         </LinearLayout>
 
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="#FFFFFF"
+            android:layout_marginTop="10dp" >
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" >
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/imageView_DadosIntra_ExpandeCollapseAdminSangue"
+                    android:background="@drawable/ic_collapse" />
+
+                <TextView
+                    android:id="@+id/textView41"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:text="Administração Sangue"
+                    android:textColor="#000000"
+                    android:textStyle="bold|italic"
+                    android:layout_gravity="center"
+                    android:layout_weight="1" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/imageView_DadosIntra_AddAdminSangue"
+                    android:src="@drawable/ic_action_new" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/linearLayout_DadosIntra_ObsAdminSangue">
+
+                <TextView
+                    android:id="@+id/textView42"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:text="Obs:"
+                    android:textColor="#000000"
+                    android:textStyle="bold|italic"
+                    android:layout_gravity="center" />
+
+                <EditText
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textMultiLine"
+                    android:id="@+id/editText_DadosIntra_ObsAdminSangue"
+                    android:layout_marginLeft="5dp" />
+
+            </LinearLayout>
+
+            <ListView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/listView_DadosIntra_AdminSangue"
+                android:minHeight="100dp"
+                android:layout_weight="1"
+                android:layout_marginTop="5dp" />
+        </LinearLayout>
+
 
     </LinearLayout>
 

@@ -2290,6 +2290,13 @@
         <item>Anestesia peridural</item>
         <item>Anestesia raquidiana</item>
         <item>Anestesia local</item>
+    </string-array><string-array name="arrayAdminSangue">
+        <item/>
+        <item>Sangue</item>
+        <item>Plasma Sanguíneo</item>
+        <item>Plaquetas</item>
+        <item>Hemácias</item>
+        <item>Leucócitos</item>
     </string-array><string name="_dataNascimento_">Data Nascimento:</string><string name="dummy_button">Dummy Button</string><string name="title_activity_aparelhos">AparelhosActivity</string><string-array name="arrayLocalizacao">
         <item/>
         <item>Ante-Braco</item>

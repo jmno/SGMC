@@ -58,10 +58,10 @@ public class AdapterSinaisVitais extends ArrayAdapter<SinaisVitais> {
         // 4. Set the text for textView
 
         textView_hora.setText(itemsArrayList.get(position).getHora());
-        textView_hora.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final TextView horaSinalVital = (TextView) v.findViewById(R.id.textView_Hora);
+                textView_hora.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        final TextView horaSinalVital = (TextView) v.findViewById(R.id.textView_Hora);
 
                 final Calendar c = Calendar.getInstance();
                 mHour = c.get(Calendar.HOUR_OF_DAY);

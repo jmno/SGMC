@@ -73,6 +73,15 @@
         <item>Perna</item>
         <item>Coxa</item>
     </string-array>
+    <string-array name="arrayAdminSangue">
+        <item/>
+        <item>Sangue</item>
+        <item>Plasma Sanguíneo</item>
+        <item>Plaquetas</item>
+        <item>Hemácias</item>
+        <item>Leucócitos</item>
+    </string-array>
+
     <string-array name="arrayClassificacaoASA">
         <item/>
         <item>ASA I</item>
@@ -82,6 +91,7 @@
         <item>ASA V</item>
         <item>ASA VI</item>
     </string-array>
+
     <string-array name="arrayEspecialidade">
         <item/>
         <item>Anatomia Patologica</item>

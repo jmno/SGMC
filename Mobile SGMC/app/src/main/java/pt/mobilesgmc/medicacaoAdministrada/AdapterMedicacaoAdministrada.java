@@ -50,7 +50,6 @@ public class AdapterMedicacaoAdministrada extends ArrayAdapter<MedicacaoAdminist
         EditText editText_dose = (EditText) rowView.findViewById(R.id.editTextDose);
         EditText editText_via = (EditText) rowView.findViewById(R.id.editTextVia);
 
-        textView_hora.setText(itemsArrayList.get(position).getHora());
         textView_hora.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -58,6 +57,7 @@ public class AdapterMedicacaoAdministrada extends ArrayAdapter<MedicacaoAdminist
                 final Calendar c = Calendar.getInstance();
                 mHour = c.get(Calendar.HOUR_OF_DAY);
                 mMinute = c.get(Calendar.MINUTE);
+                textView_hora = (TextView) v;
 
                 // Launch Date Picker Dialog
                 TimePickerDialog dpd = new TimePickerDialog(context,
@@ -80,6 +80,11 @@ public class AdapterMedicacaoAdministrada extends ArrayAdapter<MedicacaoAdminist
             }
         });
         // 4. Set the text for textView
+
+        editText_farmaco.setText(itemsArrayList.get(position).getFarmaco());
+        editText_dose.setText(itemsArrayList.get(position).getDose()+"");
+        editText_via.setText(itemsArrayList.get(position).getVia());
+        textView_hora.setText(itemsArrayList.get(position).getHora());
 
         editText_farmaco.addTextChangedListener(new EditTextWatcherFarmacoMedicacaoAdministrada(itemsArrayList.get(position)));
         editText_dose.addTextChangedListener(new EditTextWatcherDoseMedicacaoAdministrada(itemsArrayList.get(position)));

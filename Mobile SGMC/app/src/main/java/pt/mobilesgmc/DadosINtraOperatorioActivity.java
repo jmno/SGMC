@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
@@ -27,8 +28,10 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 import pt.mobilesgmc.acessosVenosos.AdapterAcessosVenosos;
+import pt.mobilesgmc.adminSangue.AdapterAdministracaoSangue;
 import pt.mobilesgmc.medicacaoAdministrada.AdapterMedicacaoAdministrada;
 import pt.mobilesgmc.modelo.AcessoVenoso;
+import pt.mobilesgmc.modelo.AdministracaoSangue;
 import pt.mobilesgmc.modelo.DadosIntraoperatorioFinal;
 import pt.mobilesgmc.modelo.MedicacaoAdministrada;
 import pt.mobilesgmc.modelo.RestClientException;
@@ -69,6 +72,15 @@ public class DadosINtraOperatorioActivity extends Activity {
     private ImageView adicionarMedicacao;
     private ImageView expandCollapseMedicacao;
 
+    //Administracao Sangue
+    private ListView listView_AdminSangue;
+    private ArrayList<AdministracaoSangue> itemsAdministracaoSangue;
+    private AdapterAdministracaoSangue adapterAdministracaoSangue;
+    private TextView horaAdminSangue;
+    private ImageView adicionarAdminSangue;
+    private ImageView expandCollapseAdminSangue;
+    private LinearLayout layoutObsAdminSangue;
+    private EditText obsAdminSangue;
 
 
 
@@ -92,7 +104,8 @@ public class DadosINtraOperatorioActivity extends Activity {
         acessosVenosos();
         sinaisVitais();
         medicacaoAdministrada();
-       
+        administracaoSangue();
+
         //new verificaIntraOperatorio().execute();
 
 	}
@@ -272,7 +285,7 @@ public class DadosINtraOperatorioActivity extends Activity {
             }
         });
 
-        adicionarSinalVital.setOnClickListener(new View.OnClickListener() {
+        adicionarMedicacao.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 MedicacaoAdministrada m = new MedicacaoAdministrada();
@@ -290,6 +303,92 @@ public class DadosINtraOperatorioActivity extends Activity {
 
             }
         });
+    }
+
+    public void administracaoSangue()
+    {
+
+        layoutObsAdminSangue = (LinearLayout) findViewById(R.id.linearLayout_DadosIntra_ObsAdminSangue);
+        layoutObsAdminSangue.setVisibility(View.GONE);
+        //VIR AQUI bUSCAR TEXTO
+        obsAdminSangue = (EditText) findViewById(R.id.editText_DadosIntra_ObsAdminSangue);
+        //
+
+
+        listView_AdminSangue = (ListView) findViewById(R.id.listView_DadosIntra_AdminSangue);
+        AdministracaoSangue s = new AdministracaoSangue();
+        s.setFc(1.2);
+        s.setHora("10:10");
+        s.setSpo2(2);
+        s.setTaMax(2.1);
+        s.setTaMin(2.2);
+        s.setTipo("Sangue");
+        AdministracaoSangue s1 = new AdministracaoSangue();
+        s1.setFc(1.2);
+        s1.setHora("10:10");
+        s1.setSpo2(2);
+        s1.setTaMax(2.1);
+        s1.setTaMin(2.2);
+        s1.setTipo("Hemácias");
+
+        itemsAdministracaoSangue = new ArrayList<AdministracaoSangue>();
+        itemsAdministracaoSangue.add(s);
+        itemsAdministracaoSangue.add(s1);
+        setListViewHeightBasedOnChildren(listView_AdminSangue);
+        adapterAdministracaoSangue = new AdapterAdministracaoSangue(this,itemsAdministracaoSangue);
+        listView_AdminSangue.setAdapter(adapterAdministracaoSangue);
+        listView_AdminSangue.setScrollContainer(false);
+        listView_AdminSangue.setVisibility(View.GONE);
+        adicionarAdminSangue = (ImageView) findViewById(R.id.imageView_DadosIntra_AddAdminSangue);
+        if(itemsAdministracaoSangue.size()!=0)
+            adicionarAdminSangue.setVisibility(View.GONE);
+        expandCollapseAdminSangue = (ImageView) findViewById(R.id.imageView_DadosIntra_ExpandeCollapseAdminSangue);
+        expandCollapseAdminSangue.setClickable(true);
+        expandCollapseAdminSangue.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(listView_AdminSangue.getVisibility() == View.VISIBLE){
+                    expandCollapseAdminSangue.setBackgroundResource(R.drawable.ic_collapse);
+                    listView_AdminSangue.setVisibility(View.GONE);
+                    setListViewHeightBasedOnChildren(listView_AdminSangue);
+                    adicionarAdminSangue.setVisibility(View.GONE);
+                    layoutObsAdminSangue.setVisibility(View.GONE);
+                }
+                else {
+                    expandCollapseAdminSangue.setBackgroundResource(R.drawable.ic_expand);
+                    listView_AdminSangue.setVisibility(View.VISIBLE);
+                    setListViewHeightBasedOnChildren(listView_AdminSangue);
+                    adicionarAdminSangue.setVisibility(View.VISIBLE);
+                    layoutObsAdminSangue.setVisibility(View.VISIBLE);
+
+                }
+            }
+        });
+
+        adicionarAdminSangue.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AdministracaoSangue s = new AdministracaoSangue();
+                s.setFc(0);
+                s.setSpo2(0);
+                s.setTaMax(0);
+                s.setTaMin(0);
+                s.setTipo(" ");
+                final Calendar c = Calendar.getInstance();
+                mHour = c.get(Calendar.HOUR_OF_DAY);
+                mMinute = c.get(Calendar.MINUTE);
+                String hr = (mHour + ":"
+                        + mMinute + ":00");
+                s.setHora(hr);
+                s.setFc(0);
+                adapterAdministracaoSangue.add(s);
+                setListViewHeightBasedOnChildren(listView_AdminSangue);
+
+            }
+        });
+
+
+
     }
     public static void setListViewHeightBasedOnChildren(ListView listView) {
         ListAdapter listAdapter = listView.getAdapter();
@@ -310,6 +409,8 @@ public class DadosINtraOperatorioActivity extends Activity {
         listView.setLayoutParams(params);
         listView.requestLayout();
     }
+
+
 
 
 	@Override
