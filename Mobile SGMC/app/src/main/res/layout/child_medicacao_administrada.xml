@@ -54,7 +54,8 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/editTextFarmaco" />
+                android:id="@+id/editTextFarmaco"
+                android:singleLine="true" />
         </LinearLayout>
 
         <LinearLayout
@@ -77,7 +78,8 @@
                 android:layout_height="wrap_content"
                 android:inputType="numberDecimal"
                 android:ems="10"
-                android:id="@+id/editTextDose" />
+                android:id="@+id/editTextDose"
+                android:singleLine="true" />
         </LinearLayout>
 
         <LinearLayout
@@ -98,7 +100,8 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/editTextVia" />
+                android:id="@+id/editTextVia"
+                android:singleLine="true" />
 
         </LinearLayout>
     </LinearLayout>

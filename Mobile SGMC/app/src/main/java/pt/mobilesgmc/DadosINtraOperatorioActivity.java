@@ -29,10 +29,12 @@ import java.util.Calendar;
 
 import pt.mobilesgmc.acessosVenosos.AdapterAcessosVenosos;
 import pt.mobilesgmc.adminSangue.AdapterAdministracaoSangue;
+import pt.mobilesgmc.dreanagem.AdapterDrenagem;
 import pt.mobilesgmc.medicacaoAdministrada.AdapterMedicacaoAdministrada;
 import pt.mobilesgmc.modelo.AcessoVenoso;
 import pt.mobilesgmc.modelo.AdministracaoSangue;
 import pt.mobilesgmc.modelo.DadosIntraoperatorioFinal;
+import pt.mobilesgmc.modelo.Drenagem;
 import pt.mobilesgmc.modelo.MedicacaoAdministrada;
 import pt.mobilesgmc.modelo.RestClientException;
 import pt.mobilesgmc.modelo.SinaisVitais;
@@ -82,7 +84,30 @@ public class DadosINtraOperatorioActivity extends Activity {
     private LinearLayout layoutObsAdminSangue;
     private EditText obsAdminSangue;
 
+    //ELIMINACAO
+    private ImageView expandCollapseEliminacao;
+    private LinearLayout linearLayoutDrenagemVesical;
+    private LinearLayout linearLayoutDrenagemNasogastrica;
 
+    //DRENAGEM VESICAL
+    private ListView listView_DrenagemVesical;
+    private ArrayList<Drenagem> itemsDrenagemVesical;
+    private AdapterDrenagem adaptadorDrenagemVesical;
+    private ImageView adicionarDrenagemVesical;
+    private ImageView expandeCollapseDrenagemVesical;
+    private LinearLayout layoutDadosDrenagemVesical;
+    private EditText calibreDrenagemVesical;
+    private Spinner spinner_tipoDrenagemVesical;
+
+    //DRENAGEM NASOGASTRICA
+    private ListView listView_DrenagemNasogastrica;
+    private ArrayList<Drenagem> itemsDrenagemNasogastrica;
+    private AdapterDrenagem adaptadorDrenagemNasogastrica;
+    private ImageView adicionarDrenagemNasogastrica;
+    private ImageView expandeCollapseDrenagemNasogastrica;
+    private LinearLayout layoutDadosDrenagemNasogastrica;
+    private EditText calibreDrenagemNasogastrica;
+    private Spinner spinner_tipoDrenagemNasogastrica;
 
 
 
@@ -105,7 +130,7 @@ public class DadosINtraOperatorioActivity extends Activity {
         sinaisVitais();
         medicacaoAdministrada();
         administracaoSangue();
-
+        eliminacao();
         //new verificaIntraOperatorio().execute();
 
 	}
@@ -387,6 +412,187 @@ public class DadosINtraOperatorioActivity extends Activity {
             }
         });
 
+
+
+    }
+
+    public void eliminacao()
+    {
+        linearLayoutDrenagemVesical = (LinearLayout) findViewById(R.id.linearLayout_DadosIntra_Vesical);
+        linearLayoutDrenagemVesical.setVisibility(View.GONE);
+        linearLayoutDrenagemNasogastrica = (LinearLayout) findViewById(R.id.linearLayout_DadosIntra_Nasogastrica);
+        linearLayoutDrenagemNasogastrica.setVisibility(View.GONE);
+        expandCollapseEliminacao = (ImageView) findViewById(R.id.imageView_DadosIntra_ExpandeCollapseEliminacao);
+        expandCollapseEliminacao.setClickable(true);
+        expandCollapseEliminacao.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(linearLayoutDrenagemVesical.getVisibility() == View.VISIBLE){
+                    expandCollapseEliminacao.setBackgroundResource(R.drawable.ic_collapse);
+                    linearLayoutDrenagemVesical.setVisibility(View.GONE);
+                    linearLayoutDrenagemNasogastrica.setVisibility(View.GONE);
+                }
+                else {
+                    expandCollapseEliminacao.setBackgroundResource(R.drawable.ic_expand);
+                    linearLayoutDrenagemVesical.setVisibility(View.VISIBLE);
+                    linearLayoutDrenagemNasogastrica.setVisibility(View.VISIBLE);
+                }
+            }
+        });
+
+        cataterismoVesical();
+        cataterismoNasogastrico();
+    }
+
+    public void cataterismoVesical()
+    {
+
+        layoutDadosDrenagemVesical = (LinearLayout) findViewById(R.id.linearLayout_DadosIntra_DadosVesical);
+        layoutDadosDrenagemVesical.setVisibility(View.GONE);
+        //VIR AQUI bUSCAR TEXTO
+        calibreDrenagemVesical = (EditText) findViewById(R.id.editText_DadosIntra_calibreSondaVesical);
+        spinner_tipoDrenagemVesical = (Spinner) findViewById(R.id.spinner_DadosIntra_tipoSondaVesical);
+        //
+
+
+        listView_DrenagemVesical = (ListView) findViewById(R.id.listView_DadosIntra_dreanagemVesical);
+        Drenagem s = new Drenagem();
+        s.setHora("10:10");
+        s.setDrenagem(" a ");
+        s.setCaracteristicas("Anestesia geral");
+        Drenagem s1 = new Drenagem();
+        s1.setHora("10:10");
+        s1.setDrenagem(" a ");
+        s1.setCaracteristicas("Anestesia local");
+
+        itemsDrenagemVesical = new ArrayList<Drenagem>();
+        itemsDrenagemVesical.add(s);
+        itemsDrenagemVesical.add(s1);
+        setListViewHeightBasedOnChildren(listView_DrenagemVesical);
+        adaptadorDrenagemVesical = new AdapterDrenagem(this,itemsDrenagemVesical);
+        listView_DrenagemVesical.setAdapter(adaptadorDrenagemVesical);
+        listView_DrenagemVesical.setScrollContainer(false);
+        listView_DrenagemVesical.setVisibility(View.GONE);
+        adicionarDrenagemVesical = (ImageView) findViewById(R.id.imageView_DadosIntra_AddVesical);
+        if(itemsDrenagemVesical.size()!=0)
+            adicionarDrenagemVesical.setVisibility(View.GONE);
+        expandeCollapseDrenagemVesical = (ImageView) findViewById(R.id.imageView_DadosIntra_ExpandeCollapseVesical);
+        expandeCollapseDrenagemVesical.setClickable(true);
+        expandeCollapseDrenagemVesical.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(listView_DrenagemVesical.getVisibility() == View.VISIBLE){
+                    expandeCollapseDrenagemVesical.setBackgroundResource(R.drawable.ic_collapse);
+                    listView_DrenagemVesical.setVisibility(View.GONE);
+                    setListViewHeightBasedOnChildren(listView_DrenagemVesical);
+                    adicionarDrenagemVesical.setVisibility(View.GONE);
+                    layoutDadosDrenagemVesical.setVisibility(View.GONE);
+                }
+                else {
+                    expandeCollapseDrenagemVesical.setBackgroundResource(R.drawable.ic_expand);
+                    listView_DrenagemVesical.setVisibility(View.VISIBLE);
+                    setListViewHeightBasedOnChildren(listView_DrenagemVesical);
+                    adicionarDrenagemVesical.setVisibility(View.VISIBLE);
+                    layoutDadosDrenagemVesical.setVisibility(View.VISIBLE);
+
+                }
+            }
+        });
+
+        adicionarDrenagemVesical.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Drenagem s = new Drenagem();
+                final Calendar c = Calendar.getInstance();
+                mHour = c.get(Calendar.HOUR_OF_DAY);
+                mMinute = c.get(Calendar.MINUTE);
+                String hr = (mHour + ":"
+                        + mMinute + ":00");
+                s.setHora(hr);
+                s.setDrenagem("");
+                s.setCaracteristicas("");
+                adaptadorDrenagemVesical.add(s);
+                setListViewHeightBasedOnChildren(listView_DrenagemVesical);
+
+            }
+        });
+
+    }
+
+    public void cataterismoNasogastrico()
+    {
+
+
+
+        layoutDadosDrenagemNasogastrica = (LinearLayout) findViewById(R.id.linearLayout_DadosIntra_DadosNasogastrica);
+        layoutDadosDrenagemNasogastrica.setVisibility(View.GONE);
+        //VIR AQUI bUSCAR TEXTO
+        calibreDrenagemNasogastrica = (EditText) findViewById(R.id.editText_DadosIntra_calibreSondaNasogastrica);
+        spinner_tipoDrenagemNasogastrica = (Spinner) findViewById(R.id.spinner_DadosIntra_tipoSondaNasogastrica);
+        //
+
+
+        listView_DrenagemNasogastrica = (ListView) findViewById(R.id.listView_DadosIntra_dreanagemNasogastrica);
+        Drenagem s = new Drenagem();
+        s.setHora("10:10");
+        s.setDrenagem(" a ");
+        s.setCaracteristicas("Anestesia geral");
+        Drenagem s1 = new Drenagem();
+        s1.setHora("10:10");
+        s1.setDrenagem(" a ");
+        s1.setCaracteristicas("Anestesia local");
+
+        itemsDrenagemNasogastrica = new ArrayList<Drenagem>();
+        itemsDrenagemNasogastrica.add(s);
+        itemsDrenagemNasogastrica.add(s1);
+        setListViewHeightBasedOnChildren(listView_DrenagemNasogastrica);
+        adaptadorDrenagemNasogastrica = new AdapterDrenagem(this,itemsDrenagemNasogastrica);
+        listView_DrenagemNasogastrica.setAdapter(adaptadorDrenagemNasogastrica);
+        listView_DrenagemNasogastrica.setScrollContainer(false);
+        listView_DrenagemNasogastrica.setVisibility(View.GONE);
+        adicionarDrenagemNasogastrica = (ImageView) findViewById(R.id.imageView_DadosIntra_AddNasogastrica);
+        if(itemsDrenagemNasogastrica.size()!=0)
+            adicionarDrenagemNasogastrica.setVisibility(View.GONE);
+        expandeCollapseDrenagemNasogastrica = (ImageView) findViewById(R.id.imageView_DadosIntra_ExpandeCollapseNasogastrica);
+        expandeCollapseDrenagemNasogastrica.setClickable(true);
+        expandeCollapseDrenagemNasogastrica.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(listView_DrenagemNasogastrica.getVisibility() == View.VISIBLE){
+                    expandeCollapseDrenagemNasogastrica.setBackgroundResource(R.drawable.ic_collapse);
+                    listView_DrenagemNasogastrica.setVisibility(View.GONE);
+                    setListViewHeightBasedOnChildren(listView_DrenagemNasogastrica);
+                    adicionarDrenagemNasogastrica.setVisibility(View.GONE);
+                    layoutDadosDrenagemNasogastrica.setVisibility(View.GONE);
+                }
+                else {
+                    expandeCollapseDrenagemNasogastrica.setBackgroundResource(R.drawable.ic_expand);
+                    listView_DrenagemNasogastrica.setVisibility(View.VISIBLE);
+                    setListViewHeightBasedOnChildren(listView_DrenagemNasogastrica);
+                    adicionarDrenagemNasogastrica.setVisibility(View.VISIBLE);
+                    layoutDadosDrenagemNasogastrica.setVisibility(View.VISIBLE);
+
+                }
+            }
+        });
+
+        adicionarDrenagemNasogastrica.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Drenagem s = new Drenagem();
+                final Calendar c = Calendar.getInstance();
+                mHour = c.get(Calendar.HOUR_OF_DAY);
+                mMinute = c.get(Calendar.MINUTE);
+                String hr = (mHour + ":"
+                        + mMinute + ":00");
+                s.setHora(hr);
+                s.setDrenagem("");
+                s.setCaracteristicas("");
+                adaptadorDrenagemNasogastrica.add(s);
+                setListViewHeightBasedOnChildren(listView_DrenagemNasogastrica);
+
+            }
+        });
 
 
     }

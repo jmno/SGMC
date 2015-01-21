@@ -55,7 +55,8 @@
                 android:layout_height="wrap_content"
                 android:inputType="numberDecimal"
                 android:ems="10"
-                android:id="@+id/editText_AdminSangue_TaMinAdminSangue" />
+                android:id="@+id/editText_AdminSangue_TaMinAdminSangue"
+                android:singleLine="true" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -69,7 +70,8 @@
                 android:layout_height="wrap_content"
                 android:inputType="numberDecimal"
                 android:ems="10"
-                android:id="@+id/editText_AdminSangue_TaMax" />
+                android:id="@+id/editText_AdminSangue_TaMax"
+                android:singleLine="true" />
         </LinearLayout>
 
         <LinearLayout
@@ -92,7 +94,8 @@
                 android:layout_height="wrap_content"
                 android:inputType="numberDecimal"
                 android:ems="10"
-                android:id="@+id/editText_AdminSangue_Fc" />
+                android:id="@+id/editText_AdminSangue_Fc"
+                android:singleLine="true" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -106,7 +109,8 @@
                 android:layout_height="wrap_content"
                 android:inputType="numberDecimal"
                 android:ems="10"
-                android:id="@+id/editText_AdminSangue_Spo2AdminSangue" />
+                android:id="@+id/editText_AdminSangue_Spo2AdminSangue"
+                android:singleLine="true" />
         </LinearLayout>
 
         <LinearLayout
@@ -132,7 +136,8 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/editText_AdminSangue_codigo" />
+                android:id="@+id/editText_AdminSangue_codigo"
+                android:singleLine="false" />
         </LinearLayout>
     </LinearLayout>
 

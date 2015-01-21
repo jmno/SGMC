@@ -336,7 +336,247 @@
                 android:layout_weight="1"
                 android:layout_marginTop="5dp" />
         </LinearLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="#FFFFFF"
+            android:layout_marginTop="10dp"
+            android:focusableInTouchMode="false"
+            android:id="@+id/eliminacao">
 
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" >
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/imageView_DadosIntra_ExpandeCollapseEliminacao"
+                    android:background="@drawable/ic_collapse" />
+
+                <TextView
+                    android:id="@+id/textView41"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:text="Eliminação"
+                    android:textColor="#000000"
+                    android:textStyle="bold|italic"
+                    android:layout_gravity="center"
+                    android:layout_weight="1" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="#FFFFFF"
+                android:layout_marginTop="10dp"
+                android:id="@+id/linearLayout_DadosIntra_Vesical"
+                android:layout_marginLeft="10dp">
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content" >
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/imageView_DadosIntra_ExpandeCollapseVesical"
+                        android:background="@drawable/ic_collapse" />
+
+                    <TextView
+                        android:id="@+id/textView45"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:text="Cateterismo Vesical"
+                        android:textColor="#000000"
+                        android:textStyle="bold|italic"
+                        android:layout_gravity="center"
+                        android:layout_weight="1" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/imageView_DadosIntra_AddVesical"
+                        android:src="@drawable/ic_action_new" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/linearLayout_DadosIntra_DadosVesical" >
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_marginTop="5dp" >
+
+                        <TextView
+                            android:id="@+id/textView_tipoSonda"
+                            android:layout_width="wrap_content"
+                            android:layout_height="fill_parent"
+                            android:gravity="center"
+                            android:text="Tipo"
+                            android:textAlignment="center"
+                            android:textColor="#000000"
+                            android:textStyle="italic"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp" />
+
+                        <Spinner
+                            android:id="@+id/spinner_DadosIntra_tipoSondaVesical"
+                            android:layout_width="match_parent"
+                            android:layout_height="fill_parent"
+                            android:entries="@array/arrayTipoAnestesia"
+                            android:layout_marginRight="5dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginTop="5dp" >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Calibre"
+                            android:id="@+id/textView44"
+                            android:textColor="#000000" />
+
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="numberDecimal"
+                            android:ems="10"
+                            android:id="@+id/editText_DadosIntra_calibreSondaVesical"
+                            android:layout_marginLeft="5dp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <ListView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/listView_DadosIntra_dreanagemVesical"
+                    android:minHeight="100dp"
+                    android:layout_weight="1"
+                    android:layout_marginTop="5dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="#FFFFFF"
+                android:layout_marginTop="10dp"
+                android:id="@+id/linearLayout_DadosIntra_Nasogastrica"
+                android:layout_marginLeft="10dp">
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content" >
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/imageView_DadosIntra_ExpandeCollapseNasogastrica"
+                        android:background="@drawable/ic_collapse" />
+
+                    <TextView
+                        android:id="@+id/textView4a5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:text="Cateterismo Nasogastrico"
+                        android:textColor="#000000"
+                        android:textStyle="bold|italic"
+                        android:layout_gravity="center"
+                        android:layout_weight="1" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/imageView_DadosIntra_AddNasogastrica"
+                        android:src="@drawable/ic_action_new" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/linearLayout_DadosIntra_DadosNasogastrica" >
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_marginTop="5dp" >
+
+                        <TextView
+                            android:id="@+id/textView_tipoSondaNasogastrica"
+                            android:layout_width="wrap_content"
+                            android:layout_height="fill_parent"
+                            android:gravity="center"
+                            android:text="Tipo"
+                            android:textAlignment="center"
+                            android:textColor="#000000"
+                            android:textStyle="italic"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp" />
+
+                        <Spinner
+                            android:id="@+id/spinner_DadosIntra_tipoSondaNasogastrica"
+                            android:layout_width="match_parent"
+                            android:layout_height="fill_parent"
+                            android:entries="@array/arrayTipoAnestesia"
+                            android:layout_marginRight="5dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginTop="5dp" >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Calibre"
+                            android:id="@+id/textView44sd"
+                            android:textColor="#000000" />
+
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="numberDecimal"
+                            android:ems="10"
+                            android:id="@+id/editText_DadosIntra_calibreSondaNasogastrica"
+                            android:layout_marginLeft="5dp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <ListView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/listView_DadosIntra_dreanagemNasogastrica"
+                    android:minHeight="100dp"
+                    android:layout_weight="1"
+                    android:layout_marginTop="5dp" />
+            </LinearLayout>
+        </LinearLayout>
 
     </LinearLayout>
 

@@ -22,14 +22,12 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Hora"
                 android:id="@+id/textView37" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="   :   "
                 android:id="@+id/textViewHoraDrenagem"
                 android:layout_marginLeft="0dp"
@@ -50,7 +48,6 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Drenagem"
                 android:id="@+id/textView38"
                 android:layout_marginTop="2dp"
@@ -60,7 +57,8 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/editTextDrenagem" />
+                android:id="@+id/editTextDrenagem"
+                android:singleLine="true" />
 
 
         </LinearLayout>
@@ -75,7 +73,6 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Caracteristicas"
                 android:id="@+id/textView39"
                 android:layout_marginLeft="25dp" />
@@ -83,7 +80,7 @@
             <Spinner
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/spinnerCaracteristicasDrenagem" />
+                android:id="@+id/spinner_DadosIntra_Caracteristicas" />
 
 
         </LinearLayout>

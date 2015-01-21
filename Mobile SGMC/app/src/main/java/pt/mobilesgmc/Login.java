@@ -37,7 +37,7 @@ public class Login extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login);
 		setTitle("Login");
-		//startActivity(new Intent(this, DadosINtraOperatorioActivity.class));
+		startActivity(new Intent(this, DadosINtraOperatorioActivity.class));
 	//-W800
 		
 		
