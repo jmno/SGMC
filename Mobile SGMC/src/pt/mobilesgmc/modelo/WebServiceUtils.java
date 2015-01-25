@@ -6,7 +6,11 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.Charset;
 import java.sql.Date;
+import java.sql.SQLData;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -25,6 +29,8 @@ import org.apache.http.util.EntityUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import android.util.Log;
 
 public class WebServiceUtils {
 
@@ -95,33 +101,33 @@ public class WebServiceUtils {
 				c.setId(Integer.parseInt(o.getString("id")));
 				c.setEspecialidade(o.getString("especialidade"));
 				c.setCirurgia(o.getString("cirurgia"));
-				data = JsonDateToDate(o.getString("data"));
-				c.setData(data);
+//				data = JsonDateToDate(o.getString("data"));
+				c.setData(o.getString("data"));
 
-				c.setHora(JsonTimeToTime(o.getString("hora")));
+				c.setHora(o.getString("hora"));
 				c.setTipoCirurgia(o.getString("tipoCirurgia"));
 				c.setLateralidade(o.getString("lateralidade"));
 				c.setClassificacaoASA(o.getString("classifASA"));
-				c.setHoraChamadaUtente(JsonTimeToTime(o
-						.getString("horaChamadaUtente")));
-				c.setHoraEntradaBlocoOperatorio(JsonTimeToTime(o
+				c.setHoraChamadaUtente(o
+						.getString("horaChamadaUtente"));
+				c.setHoraEntradaBlocoOperatorio((o
 						.getString("horaEntradaBO")));
-				c.setHoraSaideBlocoOperatorio(JsonTimeToTime(o
+				c.setHoraSaideBlocoOperatorio((o
 						.getString("horaSaidaBO")));
-				c.setHoraEntradaSala(JsonTimeToTime(o
+				c.setHoraEntradaSala((o
 						.getString("horaEntradaSala")));
-				c.setHoraSaidaSala(JsonTimeToTime(o.getString("horaSaidaSala")));
-				c.setHoraInicioAnestesia(JsonTimeToTime(o
+				c.setHoraSaidaSala((o.getString("horaSaidaSala")));
+				c.setHoraInicioAnestesia((o
 						.getString("horaInicioAnestesia")));
-				c.setHoraFimAnestesia(JsonTimeToTime(o
+				c.setHoraFimAnestesia((o
 						.getString("horaFimAnestesia")));
-				c.setHoraInicioCirurgia(JsonTimeToTime(o
+				c.setHoraInicioCirurgia((o
 						.getString("horaInicioCirurgia")));
-				c.setHoraFimCirurgia(JsonTimeToTime(o
+				c.setHoraFimCirurgia((o
 						.getString("horaFimCirurgia")));
-				c.setHoraEntradaRecobro(JsonTimeToTime(o
+				c.setHoraEntradaRecobro((o
 						.getString("horaEntradaRecobro")));
-				c.setHoraFimRecobro(JsonTimeToTime(o
+				c.setHoraFimRecobro((o
 						.getString("horaSaidaRecobro")));
 				c.setDestinoDoente(o.getString("destinoDoente"));
 				c.setIdEquipa(Integer.parseInt(o.getString("idEquipa")));
@@ -274,9 +280,9 @@ public class WebServiceUtils {
 				u.setNome(o.getString("nomeUtente"));
 				u.setNumProcesso(Integer.parseInt(o.getString("numProcesso")));
 				String dataNas = o.getString("dataNascimento");
-				data = JsonDateToDate(dataNas);
+				
 
-				u.setDataNascimento(data);
+				u.setDataNascimento(dataNas);
 				// u.setDataNascimento(Date.parse(o.getString("dataNascimento")));
 				u.setSubsistema(o.getString("subsistema"));
 				u.setAlergias(o.getString("alergias"));
@@ -297,30 +303,63 @@ public class WebServiceUtils {
 
 	}
 
-	public static Date JsonDateToDate(String jsonDate) {
-		// "/Date(1321867151710+0100)/"
-		int idx1 = jsonDate.indexOf("(");
-		int idx2 = jsonDate.indexOf(")") - 5;
-		String s = jsonDate.substring(idx1 + 1, idx2);
-		long l = Long.valueOf(s);
-		return new Date(l);
-	}
+//	public static Date JsonDateToDate(String jsonDate) {
+//		// "/Date(1321867151710+0100)/"
+//		int idx1 = jsonDate.indexOf("(");
+//		int idx2 = jsonDate.indexOf(")") - 5;
+//		String s = jsonDate.substring(idx1 + 1, idx2);
+//		long l = Long.valueOf(s);
+//		return new Date(l);
+//	}
 
-	public static java.sql.Time JsonTimeToTime(String jsonTime) {
-		int horas = 0;
-		int minutos = 0;
-		int segundos = 0;
-		try {
-			horas = Integer.valueOf(jsonTime.substring(2, 4));
-			minutos = Integer.valueOf(jsonTime.substring(5, 7));
-			segundos = Integer.valueOf(jsonTime.substring(8, 10));
-		} catch (Exception e) {
+//	public static java.sql.Time JsonTimeToTime(String jsonTime) {
+//		int horas = 0;
+//		int minutos = 0;
+//		int segundos = 0;
+//		try {
+//			horas = Integer.valueOf(jsonTime.substring(2, 4));
+//			minutos = Integer.valueOf(jsonTime.substring(5, 7));
+//			segundos = Integer.valueOf(jsonTime.substring(8, 10));
+//		} catch (Exception e) {
+//
+//		}
+//		java.sql.Time t = new java.sql.Time(horas, minutos, segundos);
+//
+//		return t;
+//	}
+	
 
-		}
-		java.sql.Time t = new java.sql.Time(horas, minutos, segundos);
-
-		return t;
-	}
+//	public static String dataParaJson(java.util.Date date2)
+//	{
+//		
+//		String x = date2.toString();
+//		long date = date2.getTime();
+//		String senddate = "/Date("+date+")/";
+//		Log.i("data",x);
+//		devolveDada(senddate);
+//		return senddate;
+//		
+//	}
+//	
+//	public static java.util.Date devolveDada(String date)
+//	{
+//		Calendar calendar = Calendar.getInstance();
+//		String datereip = date.replace("/Date(", "").replace("+0000)/", "");
+//		Long timeInMillis = Long.valueOf(datereip);
+//		calendar.setTimeInMillis(timeInMillis);
+//		Log.i("data", calendar.getTime().toString());
+//		java.util.Date data = new java.util.Date(1);
+//		try
+//		{
+//			data =  calendar.getTime();
+//		}
+//		catch(Exception e)
+//		{
+//			Log.i("exceccao",e.getMessage());
+//		}
+//		return data;
+//		
+//	}
 
 	public static String logIn(String username, String password)
 			throws ClientProtocolException, IOException, RestClientException,
@@ -670,12 +709,12 @@ public class WebServiceUtils {
 
 		jsonObject.put("cirurgia", cirurgia.getCirurgia());
 		jsonObject.put("classifASA", cirurgia.getClassificacaoASA());
-		jsonObject.put("data", cirurgia.getData());
+		jsonObject.put("data", (cirurgia.getData()));
 		jsonObject.put("especialidade", cirurgia.getEspecialidade());
 		jsonObject.put("hora", cirurgia.getHora());
 		jsonObject.put("horaChamadaUtente", cirurgia.getHoraChamadaUtente());
 		jsonObject.put("horaEntradaBO",
-				cirurgia.getHoraEntradaBlocoOperatorio());
+				cirurgia.getHoraEntradaBlocoOperatorio().toString());
 		jsonObject.put("horaEntradaRecobro", cirurgia.getHoraEntradaRecobro());
 		jsonObject.put("horaEntradaSala", cirurgia.getHoraEntradaSala());
 		jsonObject.put("horaFimAnestesia", cirurgia.getHoraFimAnestesia());
@@ -694,16 +733,18 @@ public class WebServiceUtils {
 		jsonObject.put("infoRelevante", cirurgia.getInfoRelevante());
 		jsonObject.put("lateralidade", cirurgia.getLateralidade());
 		jsonObject.put("tipoCirurgia", cirurgia.getTipoCirurgia());
-
+Log.i("webserv", jsonObject.toString());
 		HttpPost httpPost = new HttpPost(URL + "updateCirurgiaTotal?token="
 				+ token + "&id=" + idCirurgia);
 		StringEntity se = new StringEntity(jsonObject.toString());
 
 		se.setContentType("text/json");
+		
 		httpPost.setEntity(se);
 		BasicHttpResponse httpResponse = (BasicHttpResponse) client
 				.execute(httpPost);
-
+		
+		
 		if (httpResponse.getStatusLine().getStatusCode() == 200) {
 			HttpEntity entity = httpResponse.getEntity();
 			String string = EntityUtils.toString(entity);
@@ -719,4 +760,45 @@ public class WebServiceUtils {
 		return adicionou;
 	}
 
+	
+	public static ArrayList<BlocoComSala> getAllBlocosComSala(String token)
+			throws ClientProtocolException, IOException, RestClientException,
+			ParseException, JSONException {
+		ArrayList<BlocoComSala> listaBlocosComSala = null;
+		HttpGet request = new HttpGet(URL + "getBlocoComSala?token=" + token);
+		// request.setContentType(new BasicHeader(HTTP.CONTENT_TYPE,
+		// "application/json"));
+		request.setHeader("Accept", "Application/JSON");
+
+		BasicHttpResponse basicHttpResponse = (BasicHttpResponse) client
+				.execute(request);
+
+		if (basicHttpResponse.getStatusLine().getStatusCode() == 200) {
+			listaBlocosComSala = new ArrayList<BlocoComSala>();
+			JSONArray array = new JSONArray(
+					EntityUtils.toString(basicHttpResponse.getEntity()));
+			for (int i = 0; i < array.length(); i++) {
+				JSONObject o = array.getJSONObject(i);
+				BlocoComSala bloco = new BlocoComSala();
+				
+				bloco.setNomeBlocoOperatorio(o.getString("nomeBlocoOperatorio"));
+				JSONObject o2 = o
+						.getJSONObject("sala");
+				Sala sala = new Sala();
+				sala.setId(o2.getInt("id"));
+				sala.setIdBloco(o2.getInt("idBloco"));
+				sala.setNome(o2.getString("nome"));
+				bloco.setSala(sala);
+				listaBlocosComSala.add(bloco);
+			}
+		} else {
+			throw new RestClientException(
+					"HTTP Response with invalid status code "
+							+ basicHttpResponse.getStatusLine().getStatusCode()
+							+ ".");
+		}
+
+		return listaBlocosComSala;
+
+	}
 }

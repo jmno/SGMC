@@ -93,7 +93,7 @@ public class Login extends Activity {
 			ringProgressDialog.setMessage("Loging in...");
 			
 			//ringProgressDialog = ProgressDialog.show(Login.this, "Please wait ...",	"Loging in...", true);
-			ringProgressDialog.setCancelable(true);
+			ringProgressDialog.setCancelable(false);
 			ringProgressDialog.setOnCancelListener(new OnCancelListener() {
 				
 				@Override

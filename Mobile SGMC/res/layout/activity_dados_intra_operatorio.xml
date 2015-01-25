@@ -211,6 +211,7 @@
                 android:layout_height="wrap_content" >
 
                 <TableLayout
+                    android:id="@+id/table_layout_sinais_vitais"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" >
 
@@ -291,6 +292,13 @@
                             android:textAppearance="?android:attr/textAppearanceMedium"
                             android:textColor="#000000"
                             android:textStyle="italic" />
+
+                        <Button
+                            android:id="@+id/button1"
+                            android:layout_width="35dip"
+                            android:layout_height="35dip"
+                            android:background="@drawable/add_row" />
+
                     </TableRow>
 
                     <TableRow
@@ -418,6 +426,7 @@
                             android:layout_span="0"
                             android:gravity="center" />
                     </TableRow>
+
                 </TableLayout>
             </TableRow>
 
@@ -432,6 +441,7 @@
                 android:layout_height="wrap_content" >
 
                 <TableLayout
+                    android:id="@+id/table_layout_medicacao_administrada"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" >
 
@@ -922,6 +932,7 @@
                 android:layout_height="wrap_content" >
 
                 <TableLayout
+                    android:id="@+id/tablelayout_balanco_hidrico"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" >
 
@@ -1240,6 +1251,7 @@
                 android:layout_height="wrap_content" >
 
                 <TableLayout
+                    android:id="@+id/tablelayout_drenagem_vesical"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" >
 
@@ -1407,6 +1419,7 @@
                 </TableLayout>
 
                 <TableLayout
+                    android:id="@+id/tablelayout_drenagem_nasogastrica"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" >
 

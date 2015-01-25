@@ -22,6 +22,7 @@ import pt.mobilesgmc.modelo.WebServiceUtils;
 import pt.mobilesgmc.view.viewgroup.FlyOutContainer;
 import android.app.Activity;
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.DialogInterface.OnDismissListener;
@@ -56,6 +57,7 @@ public class EquipaCirurgica extends Activity implements Serializable {
 	/**
 	 * 
 	 */
+
 	private static final long serialVersionUID = -8374033655851874766L;
 	private int idTipo;
 	private ArrayAdapter<Tipo> adaptadorTipo;
@@ -93,9 +95,10 @@ public class EquipaCirurgica extends Activity implements Serializable {
 		setContentView(R.layout.activity_equipa_cirurgica);
 
 		// new getProfissionaisSaude().execute();
-		atualizaAGui();
 		token = PreferenceManager.getDefaultSharedPreferences(this).getString(
 				"token", "defaultStringIfNothingFound");
+		atualizaAGui();
+
 		idCirurgia = Integer.parseInt(PreferenceManager
 				.getDefaultSharedPreferences(getApplicationContext())
 				.getString("idCirurgia", "0"));
@@ -151,10 +154,15 @@ public class EquipaCirurgica extends Activity implements Serializable {
 		});
 		editNomeEquipa = (EditText) findViewById(R.id.edit_text_NomeEquipa);
 
+<<<<<<< HEAD
 		TextView btnEquipa = (TextView) root.findViewById(R.id.textViewMenuEquipaCirurgica);
 
 		//VOLTAR AQUI !!!!!!!
 		TextView btnUtentes = (TextView) root.findViewById(R.id.textViewMenuUtentes);
+=======
+	
+		TextView btnUtentes = (TextView) findViewById(R.id.textViewMenuUtentes);
+>>>>>>> FETCH_HEAD
 		btnUtentes.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -164,6 +172,7 @@ public class EquipaCirurgica extends Activity implements Serializable {
 						UtentesActivity.class);
 				toggleMenu(findViewById(R.layout.activity_utentes));
 				startActivity(utentes);
+<<<<<<< HEAD
 			}
 		});
 		
@@ -182,9 +191,54 @@ public class EquipaCirurgica extends Activity implements Serializable {
 					Log.i("sgmc", "NÃ£o tem cirurgia escolhida");
 					root.toggleMenu();
 				}
+=======
+				finish();
 			}
 		});
 		
+		TextView btnDadosCirurgia = (TextView) findViewById(R.id.textViewMenuDadosCirurgia);
+		btnDadosCirurgia.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				if (HomeActivity.getCirurgia() != null) {
+					Intent dados = new Intent(getBaseContext(),
+							DadosCirurgia.class);
+					toggleMenu(findViewById(R.layout.activity_dados_cirurgia));
+
+					startActivity(dados);
+					finish();
+				} else {
+					Log.i("sgmc", "Não tem cirurgia escolhida");
+					root.toggleMenu();
+				}
+				
+			}
+		});
+		
+		TextView btnDadosIntraOperatorio = (TextView) findViewById(R.id.textViewMenuDadosIntraOperatorio);
+		btnDadosIntraOperatorio.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				if (HomeActivity.getCirurgia() != null) {
+					Intent dados = new Intent(getBaseContext(),
+							DadosINtraOperatorioActivity.class);
+					toggleMenu(findViewById(R.layout.activity_dados_intra_operatorio));
+					startActivity(dados);
+					finish();
+				} else {
+					Log.i("sgmc", "Não tem cirurgia escolhida");
+					root.toggleMenu();
+				}
+				
+>>>>>>> FETCH_HEAD
+			}
+		});
+		
+
 
 		Button btnAdd = (Button) findViewById(R.id.btn_AdicionarProfissional);
 		btnAdd.setOnClickListener(new OnClickListener() {
@@ -415,8 +469,9 @@ public class EquipaCirurgica extends Activity implements Serializable {
 
 			
 		});
-
-		if (idCirurgia != 0 & idEquipa != -1) {
+		try{
+		Log.i("equipa",HomeActivity.getCirurgia().toString() + " idEquipa: " + HomeActivity.getCirurgia().getIdEquipa());
+		if (HomeActivity.getCirurgia().getIdEquipa() != 0) {
 			try{
 			new getEquipaByID().execute(HomeActivity.getCirurgia().getIdEquipa());
 			}
@@ -427,7 +482,16 @@ public class EquipaCirurgica extends Activity implements Serializable {
 		}
 		else{
 			
+<<<<<<< HEAD
 			Log.i("equipa","Nï¿½o foi encontrada Equipa");}
+=======
+			Log.i("equipa","Não foi encontrada Equipa");}
+		}
+		catch (Exception e)
+		{
+			Log.i("erro", "Equipa Não Selecionada");
+		}
+>>>>>>> FETCH_HEAD
 	}
 
 	private int spinnerDaMeATuaPosicao(ArrayAdapter<ProfissonalSaude> adapter,
@@ -603,6 +667,7 @@ public class EquipaCirurgica extends Activity implements Serializable {
 	private class adicionarProfissionalSaude extends
 			AsyncTask<ProfissonalSaude, Void, Boolean> {
 
+	
 		@Override
 		protected Boolean doInBackground(ProfissonalSaude... params) {
 			Boolean adicionou = false;
@@ -626,7 +691,6 @@ public class EquipaCirurgica extends Activity implements Serializable {
 
 			Toast.makeText(getApplicationContext(), a, Toast.LENGTH_LONG)
 					.show();
-
 			super.onPostExecute(result);
 		}
 
@@ -634,7 +698,7 @@ public class EquipaCirurgica extends Activity implements Serializable {
 
 	private class adicionarEquipa extends
 			AsyncTask<List<ProfissionalDaCirurgia>, Void, Boolean> {
-
+		
 		@Override
 		protected Boolean doInBackground(List<ProfissionalDaCirurgia>... params) {
 			Boolean adicionou = false;
@@ -719,7 +783,7 @@ public class EquipaCirurgica extends Activity implements Serializable {
 
 	private class getProfissionaisSaudeByTipo extends
 			AsyncTask<String, Void, ArrayList<ProfissonalSaude>> {
-
+	
 		@Override
 		protected ArrayList<ProfissonalSaude> doInBackground(String... params) {
 			ArrayList<ProfissonalSaude> lista = null;
@@ -738,6 +802,7 @@ public class EquipaCirurgica extends Activity implements Serializable {
 
 		@Override
 		protected void onPostExecute(ArrayList<ProfissonalSaude> lista) {
+			
 			if (lista != null) {
 
 				
@@ -749,6 +814,7 @@ public class EquipaCirurgica extends Activity implements Serializable {
 						Toast.LENGTH_LONG).show();
 
 			}
+			
 		}
 	}
 
@@ -823,7 +889,7 @@ public class EquipaCirurgica extends Activity implements Serializable {
 
 	private class getEquipas extends
 			AsyncTask<String, Void, ArrayList<EquipaComJuncao>> {
-
+		
 		@Override
 		protected ArrayList<EquipaComJuncao> doInBackground(String... params) {
 			ArrayList<EquipaComJuncao> lista = null;
@@ -856,12 +922,13 @@ public class EquipaCirurgica extends Activity implements Serializable {
 				listaEquipas.setAdapter(adaptadorEquipa);
 				dialogoEquipas.show();
 			}
+
 		}
 	}
 
 	private class getEquipaByID extends
 			AsyncTask<Integer, Void, EquipaComJuncao> {
-
+		
 		@Override
 		protected EquipaComJuncao doInBackground(Integer... params) {
 			EquipaComJuncao equipa = null;

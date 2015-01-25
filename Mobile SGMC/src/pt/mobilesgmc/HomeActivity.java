@@ -15,6 +15,7 @@ import pt.mobilesgmc.modelo.WebServiceUtils;
 import pt.mobilesgmc.view.viewgroup.FlyOutContainer;
 import android.app.Activity;
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnDismissListener;
 import android.content.Intent;
@@ -38,15 +39,12 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.example.mobilegsmc.DadosINtraOperatorioActivity;
+
 import com.example.mobilegsmc.R;
 import com.example.mobilegsmc.R.menu;
 
 public class HomeActivity extends Activity {
-	// IMPLEMENTAR ONBACKPRESSED N√ÉO IR PARA O ECRA DE LOGIN,SAIR APENAS DA
-	// APLICA√á√ÉO.
-	// ACABAR MENU
-	//
+
 
 	FlyOutContainer root;
 	String token;
@@ -56,7 +54,9 @@ public class HomeActivity extends Activity {
 	public static EditText texto_cirurgia;
 	public static TextView textoCirurgiaAUsar;
 	private static Cirurgia cirurgia;
+	ProgressDialog ringProgressDialog = null;
 
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -110,6 +110,7 @@ public class HomeActivity extends Activity {
 		texto_cirurgia = (EditText) root
 				.findViewById(R.id.editText_escolhaCirurgia);
 
+<<<<<<< HEAD
 		TextView btnEquipa = (TextView) root.findViewById(R.id.textViewMenuEquipaCirurgica);
 		btnEquipa.setOnClickListener(new OnClickListener() {
 
@@ -152,6 +153,9 @@ public class HomeActivity extends Activity {
 				startActivity(utentes);
 			}
 		});
+=======
+		setListenersMenus();
+>>>>>>> FETCH_HEAD
 		
 		Button button = (Button) findViewById(R.id.button1);
 		button.setOnClickListener(new OnClickListener() {
@@ -237,6 +241,85 @@ public class HomeActivity extends Activity {
 		});
 
 	}
+	
+	public void setListenersMenus(){
+		
+		TextView btnEquipa = (TextView) root.findViewById(R.id.textViewMenuEquipaCirurgica);
+		btnEquipa.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				Intent equipa = new Intent(getBaseContext(),
+						EquipaCirurgica.class);
+				toggleMenu(findViewById(R.layout.activity_equipa_cirurgica));
+
+				startActivity(equipa);
+
+			}
+		});
+		TextView btnDados = (TextView) root.findViewById(R.id.textViewMenuDadosCirurgia);
+		btnDados.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				if (cirurgia != null) {
+					Intent dados = new Intent(getBaseContext(),
+							DadosCirurgia.class);
+					toggleMenu(findViewById(R.layout.activity_dados_cirurgia));
+
+					startActivity(dados);
+				} else {
+					Log.i("sgmc", "N„o tem cirurgia escolhida");
+					root.toggleMenu();
+				}
+			}
+		});
+		TextView btnUtentes = (TextView) root.findViewById(R.id.textViewMenuUtentes);
+		btnUtentes.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				Intent utentes = new Intent(getBaseContext(),
+						UtentesActivity.class);
+				toggleMenu(findViewById(R.layout.activity_utentes));
+				startActivity(utentes);
+			}
+		});
+		
+		TextView btnDadosIntraOperatorio = (TextView) findViewById(R.id.textViewMenuDadosIntraOperatorio);
+		btnDadosIntraOperatorio.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				if (HomeActivity.getCirurgia() != null) {
+					Intent dados = new Intent(getBaseContext(),
+							DadosINtraOperatorioActivity.class);
+					toggleMenu(findViewById(R.layout.activity_dados_intra_operatorio));
+					startActivity(dados);
+					
+				} else {
+					Log.i("sgmc", "N„o tem cirurgia escolhida");
+					root.toggleMenu();
+				}
+				
+			}
+		});
+		TextView btnSair = (TextView) findViewById(R.id.textViewMenuSair);
+		btnSair.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+			PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().clear().commit();
+			Intent intent = new Intent(Intent.ACTION_MAIN);
+			intent.addCategory(Intent.CATEGORY_HOME);
+			intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+			startActivity(intent);
+			finish();}
+		});
+	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -287,7 +370,20 @@ public class HomeActivity extends Activity {
 
 	private class getAllCirurgias extends
 			AsyncTask<Cirurgia, Void, ArrayList<Cirurgia>> {
+		@Override
+		protected void onPreExecute() {
 
+			ringProgressDialog = new ProgressDialog(HomeActivity.this);
+			ringProgressDialog.setIcon(R.drawable.ic_launcher);
+			ringProgressDialog.setTitle("Aguarde...");
+			ringProgressDialog.setMessage("A carregar Dados...");
+
+			// ringProgressDialog = ProgressDialog.show(Login.this,
+			// "Please wait ...", "Loging in...", true);
+			ringProgressDialog.setCancelable(false);
+
+			ringProgressDialog.show();
+		};
 		@Override
 		protected ArrayList<Cirurgia> doInBackground(Cirurgia... params) {
 			ArrayList<Cirurgia> lista = null;
@@ -312,11 +408,12 @@ public class HomeActivity extends Activity {
 
 					@Override
 					public int compare(Cirurgia lhs, Cirurgia rhs) {
-						return lhs.getCirurgia().toLowerCase()
-								.compareTo(rhs.getCirurgia().toLowerCase());
+						return (""+lhs.getId())
+								.compareTo((""+rhs.getId()));
 					}
 				});
 				listaCirurgias.setAdapter(adaptadorCirurgias);
+				ringProgressDialog.dismiss();
 				dialog.show();
 			}
 		}

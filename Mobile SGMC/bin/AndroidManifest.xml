@@ -33,11 +33,13 @@
         </activity>
         <activity
             android:name="pt.mobilesgmc.UtentesActivity"
-            android:label="@string/title_activity_utentes" >
+            android:label="@string/title_activity_utentes"
+             android:windowSoftInputMode="stateHidden" >
         </activity>
         <activity
             android:name="pt.mobilesgmc.HomeActivity"
-            android:label="@string/title_activity_home" >
+            android:label="@string/title_activity_home"
+             android:windowSoftInputMode="stateHidden" >
         </activity>
         <activity
             android:name="pt.mobilesgmc.DadosCirurgia"
@@ -45,8 +47,9 @@
             android:windowSoftInputMode="stateHidden" >
         </activity>
         <activity
-            android:name=".DadosINtraOperatorioActivity"
-            android:label="@string/title_activity_dados_intra_operatorio" >
+            android:name="pt.mobilesgmc.DadosINtraOperatorioActivity"
+            android:label="@string/title_activity_dados_intra_operatorio"
+             android:windowSoftInputMode="stateHidden" >
         </activity>
     </application>
 

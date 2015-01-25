@@ -18,6 +18,7 @@ import com.example.mobilegsmc.R.layout;
 import com.example.mobilegsmc.R.menu;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -48,6 +49,8 @@ public class UtentesActivity extends Activity {
 	private EditText inputSearch;
 	private String token;
 	private int idUtente = 0;
+	ProgressDialog ringProgressDialog = null;
+
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -151,7 +154,20 @@ public class UtentesActivity extends Activity {
 	}
 
 	private class getUtentes extends AsyncTask<Integer, Void, ArrayList<Utente>> {
+		@Override
+		protected void onPreExecute() {
 
+			ringProgressDialog = new ProgressDialog(UtentesActivity.this);
+			ringProgressDialog.setIcon(R.drawable.ic_launcher);
+			ringProgressDialog.setTitle("Aguarde...");
+			ringProgressDialog.setMessage("A carregar Dados...");
+
+			// ringProgressDialog = ProgressDialog.show(Login.this,
+			// "Please wait ...", "Loging in...", true);
+			ringProgressDialog.setCancelable(false);
+
+			ringProgressDialog.show();
+		};
 		@Override
 		protected ArrayList<Utente> doInBackground(Integer... params) {
 			ArrayList<Utente> lista = null;
@@ -191,6 +207,7 @@ public class UtentesActivity extends Activity {
 						.show();
 
 			}
+			ringProgressDialog.dismiss();
 		}
 
 		private void populateList(int idUtente) {

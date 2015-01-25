@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableRow xmlns:android="http://schemas.android.com/apk/res/android"
+                        android:id="@+id/tableRow00005"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <EditText
+                            android:id="@+id/editTexthoraasogastrica3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_span="0"
+                            android:gravity="center"
+                            android:text="   :   :   " />
+
+                        <EditText
+                            android:id="@+id/editTextdrenagemasogastrica3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_span="0"
+                            android:gravity="center"
+                            android:text="             " />
+
+                        <EditText
+                            android:id="@+id/editTextcaracteristicasasogastrica3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_span="0"
+                            android:gravity="center"
+                            android:text="             " />
+                    </TableRow>

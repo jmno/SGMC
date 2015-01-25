@@ -9,22 +9,22 @@ public class Cirurgia {
 	private int id;
 	private String especialidade;
 	private String cirurgia;
-	private Date data;
-	private Time hora;
+	private String data;
+	private String hora;
 	private String tipoCirurgia;
 	private String lateralidade;
 	private String classificacaoASA;
-	private Time horaChamadaUtente;
-	private Time horaEntradaBlocoOperatorio;
-	private Time horaSaideBlocoOperatorio;
-	private Time horaEntradaSala;
-	private Time horaSaidaSala;
-	private Time horaInicioAnestesia;
-	private Time horaFimAnestesia;
-	private Time horaInicioCirurgia;
-	private Time horaFimCirurgia;
-	private Time horaEntradaRecobro;
-	private Time horaFimRecobro;
+	private String horaChamadaUtente;
+	private String horaEntradaBlocoOperatorio;
+	private String horaSaideBlocoOperatorio;
+	private String horaEntradaSala;
+	private String horaSaidaSala;
+	private String horaInicioAnestesia;
+	private String horaFimAnestesia;
+	private String horaInicioCirurgia;
+	private String horaFimCirurgia;
+	private String horaEntradaRecobro;
+	private String horaFimRecobro;
 	private String destinoDoente;
 	private String infoRelevante;
 	private int idSala;
@@ -48,19 +48,19 @@ public class Cirurgia {
 	}
 
 
-	public Date getData() {
+	public String getData() {
 		return data;
 	}
 
-	public void setData(Date data) {
+	public void setData(String data) {
 		this.data = data;
 	}
 
-	public Time getHora() {
+	public String getHora() {
 		return hora;
 	}
 
-	public void setHora(Time hora) {
+	public void setHora(String hora) {
 		this.hora = hora;
 	}
 
@@ -88,91 +88,91 @@ public class Cirurgia {
 		this.classificacaoASA = classificacaoASA;
 	}
 
-	public Time getHoraChamadaUtente() {
+	public String getHoraChamadaUtente() {
 		return horaChamadaUtente;
 	}
 
-	public void setHoraChamadaUtente(Time horaChamadaUtente) {
+	public void setHoraChamadaUtente(String horaChamadaUtente) {
 		this.horaChamadaUtente = horaChamadaUtente;
 	}
 
-	public Time getHoraEntradaBlocoOperatorio() {
+	public String getHoraEntradaBlocoOperatorio() {
 		return horaEntradaBlocoOperatorio;
 	}
 
-	public void setHoraEntradaBlocoOperatorio(Time horaEntradaBlocoOperatorio) {
+	public void setHoraEntradaBlocoOperatorio(String horaEntradaBlocoOperatorio) {
 		this.horaEntradaBlocoOperatorio = horaEntradaBlocoOperatorio;
 	}
 
-	public Time getHoraSaideBlocoOperatorio() {
+	public String getHoraSaideBlocoOperatorio() {
 		return horaSaideBlocoOperatorio;
 	}
 
-	public void setHoraSaideBlocoOperatorio(Time horaSaideBlocoOperatorio) {
+	public void setHoraSaideBlocoOperatorio(String horaSaideBlocoOperatorio) {
 		this.horaSaideBlocoOperatorio = horaSaideBlocoOperatorio;
 	}
 
-	public Time getHoraEntradaSala() {
+	public String getHoraEntradaSala() {
 		return horaEntradaSala;
 	}
 
-	public void setHoraEntradaSala(Time horaEntradaSala) {
+	public void setHoraEntradaSala(String horaEntradaSala) {
 		this.horaEntradaSala = horaEntradaSala;
 	}
 
-	public Time getHoraSaidaSala() {
+	public String getHoraSaidaSala() {
 		return horaSaidaSala;
 	}
 
-	public void setHoraSaidaSala(Time horaSaidaSala) {
+	public void setHoraSaidaSala(String horaSaidaSala) {
 		this.horaSaidaSala = horaSaidaSala;
 	}
 
-	public Time getHoraInicioAnestesia() {
+	public String getHoraInicioAnestesia() {
 		return horaInicioAnestesia;
 	}
 
-	public void setHoraInicioAnestesia(Time horaInicioAnestesia) {
+	public void setHoraInicioAnestesia(String horaInicioAnestesia) {
 		this.horaInicioAnestesia = horaInicioAnestesia;
 	}
 
-	public Time getHoraFimAnestesia() {
+	public String getHoraFimAnestesia() {
 		return horaFimAnestesia;
 	}
 
-	public void setHoraFimAnestesia(Time horaFimAnestesia) {
+	public void setHoraFimAnestesia(String horaFimAnestesia) {
 		this.horaFimAnestesia = horaFimAnestesia;
 	}
 
-	public Time getHoraInicioCirurgia() {
+	public String getHoraInicioCirurgia() {
 		return horaInicioCirurgia;
 	}
 
-	public void setHoraInicioCirurgia(Time horaInicioCirurgia) {
+	public void setHoraInicioCirurgia(String horaInicioCirurgia) {
 		this.horaInicioCirurgia = horaInicioCirurgia;
 	}
 
-	public Time getHoraFimCirurgia() {
+	public String getHoraFimCirurgia() {
 		return horaFimCirurgia;
 	}
 
-	public void setHoraFimCirurgia(Time horaFimCirurgia) {
+	public void setHoraFimCirurgia(String horaFimCirurgia) {
 		this.horaFimCirurgia = horaFimCirurgia;
 	}
 
-	public Time getHoraEntradaRecobro() {
+	public String getHoraEntradaRecobro() {
 		return horaEntradaRecobro;
 	}
 
-	public void setHoraEntradaRecobro(Time horaEntradaRecobro) {
+	public void setHoraEntradaRecobro(String horaEntradaRecobro) {
 		this.horaEntradaRecobro = horaEntradaRecobro;
 	}
 
-	public Time getHoraFimRecobro() {
+	public String getHoraFimRecobro() {
 		return horaFimRecobro;
 	}
 
-	public void setHoraFimRecobro(Time horaFimRecobro) {
+	public void setHoraFimRecobro(String horaFimRecobro) {
 		this.horaFimRecobro = horaFimRecobro;
 	}
 
