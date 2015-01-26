@@ -4,6 +4,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 
+import pt.mobilesgmc.DadosINtraOperatorioActivity;
 import pt.mobilesgmc.modelo.Drenagem;
 
 /**
@@ -22,6 +23,7 @@ public class EditTextWatcherDrenagem implements TextWatcher {
     public void afterTextChanged(Editable s) {
         try{
             drenagem.setDrenagem(s.toString());
+            DadosINtraOperatorioActivity.refreshBalancos();
         }
         catch (Exception e){
             drenagem.setDrenagem("");

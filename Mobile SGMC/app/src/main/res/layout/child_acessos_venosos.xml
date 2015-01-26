@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- CHILD -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
     android:gravity="center|center_vertical|center_horizontal">
@@ -30,7 +30,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:ellipsize="end"
-            android:gravity="center_vertical|center_horizontal|end"
+            android:gravity="center_vertical|center_horizontal"
             android:singleLine="true"
             android:minEms="5"
             android:ems="5"
@@ -90,7 +90,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:ellipsize="end"
-            android:gravity="center_vertical|center_horizontal|end"
+            android:gravity="center_vertical|center_horizontal"
             android:singleLine="true"
             android:id="@+id/editText_Localizacao_AcessoVenoso"
              />

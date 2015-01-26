@@ -18,6 +18,7 @@ import com.example.mobilegsmc.R;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import pt.mobilesgmc.DadosINtraOperatorioActivity;
 import pt.mobilesgmc.modelo.AdministracaoSangue;
 
 /**
@@ -54,6 +55,7 @@ public class AdapterAdministracaoSangue extends ArrayAdapter<AdministracaoSangue
         EditText editText_spo2 = (EditText) rowView.findViewById(R.id.editText_AdminSangue_Spo2AdminSangue);
         final Spinner spinner_tipo = (Spinner) rowView.findViewById(R.id.spinnerTipoAdminSangue);
         final EditText editText_codigo = (EditText) rowView.findViewById(R.id.editText_AdminSangue_codigo);
+        EditText editText_valor = (EditText) rowView.findViewById(R.id.editText_AdminSangue_Valor);
 
         textView_hora.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,6 +79,7 @@ public class AdapterAdministracaoSangue extends ArrayAdapter<AdministracaoSangue
                                 itemsArrayList.get(position).setHora(hr);
                                 Log.i("hora fim:", itemsArrayList.get(position).getHora());
                                 textView_hora.setText(hr);
+                                DadosINtraOperatorioActivity.refreshBalancos();
                             }
 
                         }, mHour, mMinute, true);
@@ -88,9 +91,12 @@ public class AdapterAdministracaoSangue extends ArrayAdapter<AdministracaoSangue
 
 
         textView_hora.setText(itemsArrayList.get(position).getHora());
+        editText_tamin.setText(itemsArrayList.get(position).getTaMin()+"");
         editText_tamax.setText(itemsArrayList.get(position).getTaMax()+"");
         editText_fc.setText(itemsArrayList.get(position).getFc()+"");
         editText_spo2.setText(itemsArrayList.get(position).getSpo2()+"");
+        editText_valor.setText(itemsArrayList.get(position).getValorAdministracao()+"");
+        editText_codigo.setText(itemsArrayList.get(position).getCodigo());
 
         int tipo = spinnerDaMeATuaPosicao(spinner_tipo, itemsArrayList.get(position).getTipo());
         if(tipo != -1)
@@ -99,13 +105,10 @@ public class AdapterAdministracaoSangue extends ArrayAdapter<AdministracaoSangue
             spinner_tipo.setSelection(0);
 
 
-        editText_codigo.setText(getCodigo(tipo));
-        editText_codigo.setEnabled(false);
         spinner_tipo.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int posicao, long id) {
                 itemsArrayList.get(position).setTipo(spinner_tipo.getItemAtPosition(posicao).toString());
-                editText_codigo.setText(getCodigo(posicao));
 
             }
 
@@ -122,7 +125,8 @@ public class AdapterAdministracaoSangue extends ArrayAdapter<AdministracaoSangue
         editText_tamax.addTextChangedListener(new EditTextWatcherTaMax(itemsArrayList.get(position)));
         editText_fc.addTextChangedListener(new EditTextWatcherFC(itemsArrayList.get(position)));
         editText_spo2.addTextChangedListener(new EditTextWatcherSpo2(itemsArrayList.get(position)));
-
+        editText_valor.addTextChangedListener(new EditTextWatcherValor(itemsArrayList.get(position)));
+        editText_codigo.addTextChangedListener(new EditTextWatcherCodigo(itemsArrayList.get(position)));
 
         // 5. retrn rowView
         return rowView;
@@ -141,21 +145,7 @@ public class AdapterAdministracaoSangue extends ArrayAdapter<AdministracaoSangue
         return resultado;
     }
 
-    public String getCodigo(int posicao)
-    {
-        String resultado ="";
-        switch (posicao){
-            case 1:
-                resultado =  "Código 1";
-                break;
-            default:
-                resultado = "";
-                break;
-        }
 
-        return resultado;
-
-    }
 
 
 }

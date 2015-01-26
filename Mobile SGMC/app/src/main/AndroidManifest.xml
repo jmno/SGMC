@@ -18,12 +18,12 @@
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@android:style/Theme.Material.Light.DarkActionBar" >
+        android:theme="@style/AppTheme" >
         <activity
             android:name="pt.mobilesgmc.Login"
-            android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/app_name"
-            android:windowSoftInputMode="stateHidden" >
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:windowSoftInputMode="stateHidden|adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -32,27 +32,30 @@
         </activity>
         <activity
             android:name="pt.mobilesgmc.EquipaCirurgica"
-            android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_equipa_cirurgica"
-            android:windowSoftInputMode="stateHidden" >
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:windowSoftInputMode="stateHidden|adjustPan"
+             >
         </activity>
         <activity
             android:name="pt.mobilesgmc.UtentesActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_utentes"
-            android:windowSoftInputMode="stateHidden" >
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:windowSoftInputMode="stateHidden|adjustPan"
+            >
         </activity>
         <activity
             android:name="pt.mobilesgmc.HomeActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_home"
-            android:windowSoftInputMode="stateHidden" >
+            android:theme="@style/nLiveoDrawer"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:windowSoftInputMode="stateHidden|adjustPan">
         </activity>
         <activity
             android:name="pt.mobilesgmc.DadosCirurgia"
-            android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_home"
-            android:windowSoftInputMode="stateHidden" >
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:windowSoftInputMode="stateHidden|adjustPan">
         </activity>
         <activity
             android:name="pt.mobilesgmc.DadosINtraOperatorioActivity"
@@ -63,15 +66,26 @@
         <activity
             android:name="pt.mobilesgmc.ListaProdutosActivity"
             android:label="Lista Materiais"
-            android:windowSoftInputMode="stateHidden" >
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:windowSoftInputMode="stateHidden|adjustPan" >
         </activity>
         <activity
             android:name="pt.mobilesgmc.AparelhosActivity"
-            android:label="@string/title_activity_aparelhos" >
+            android:label="@string/title_activity_aparelhos"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:windowSoftInputMode="stateHidden|adjustPan">
         </activity>
         <activity
             android:name="pt.mobilesgmc.InstrumentalActivity"
-            android:label="@string/title_activity_instrumental" >
+            android:label="@string/title_activity_instrumental"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:windowSoftInputMode="stateHidden|adjustPan">
+        </activity>
+        <activity
+            android:name="pt.mobilesgmc.MaterialActivity"
+            android:label="@string/title_activity_material"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:windowSoftInputMode="stateHidden|adjustPan">
         </activity>
     </application>
 

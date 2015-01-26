@@ -10,6 +10,14 @@
         <item>Hemácias</item>
         <item>Leucócitos</item>
     </string-array>
+    <string-array name="arrayCaracteristicasDrenagem">
+        <item/>
+        <item>C1</item>
+        <item>C2</item>
+        <item>C3</item>
+        <item>C4</item>
+        <item>C5</item>
+    </string-array>
     <string-array name="arrayCateterismovisical">
         <item/>
         <item>Sonda de Nelaton</item>
@@ -128,10 +136,18 @@
     <!-- From: file:/Users/Nicolau/Dropbox/Leiria/4Ano/1Semestre/SGMC/NEW/Mobile%20SGMC/app/build/intermediates/exploded-aar/com.shamanland/fab/0.0.6/res/values/values.xml -->
     <eat-comment/>
     <attr format="reference" name="floatingActionButtonStyle"/>
+    <!-- From: file:/Users/Nicolau/Dropbox/Leiria/4Ano/1Semestre/SGMC/NEW/Mobile%20SGMC/app/build/intermediates/exploded-aar/br.com.liveo/navigationdrawer-material/1.0.2/res/values/values.xml -->
+    <eat-comment/>
+    <attr format="string" name="fontPath"/>
     <!-- From: file:/Users/Nicolau/Dropbox/Leiria/4Ano/1Semestre/SGMC/NEW/Mobile%20SGMC/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.3/res/values/values.xml -->
     <eat-comment/>
     <attr format="dimension" name="height"/>
     <attr format="boolean" name="isLightTheme"/>
+    <!-- From: file:/Users/Nicolau/Dropbox/Leiria/4Ano/1Semestre/SGMC/NEW/Mobile%20SGMC/app/build/intermediates/exploded-aar/br.com.liveo/navigationdrawer-material/1.0.2/res/values/values.xml -->
+    <eat-comment/>
+    <attr format="color" name="statusBarBackground"/>
+    <!-- From: file:/Users/Nicolau/Dropbox/Leiria/4Ano/1Semestre/SGMC/NEW/Mobile%20SGMC/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.3/res/values/values.xml -->
+    <eat-comment/>
     <attr format="string" name="title"/>
     <bool name="abc_action_bar_embed_tabs">true</bool>
     <bool name="abc_action_bar_embed_tabs_pre_jb">false</bool>
@@ -197,6 +213,42 @@
     <color name="material_blue_grey_950">#ff21272b</color>
     <color name="material_deep_teal_200">#ff80cbc4</color>
     <color name="material_deep_teal_500">#ff009688</color>
+    <!-- From: file:/Users/Nicolau/Dropbox/Leiria/4Ano/1Semestre/SGMC/NEW/Mobile%20SGMC/app/build/intermediates/exploded-aar/br.com.liveo/navigationdrawer-material/1.0.2/res/values/values.xml -->
+    <eat-comment/>
+    <color name="nliveo_black">#000000</color>
+    <color name="nliveo_blue_alpha_colorPrimaryDark">#801976D2</color>
+    <color name="nliveo_blue_colorPrimary">#2196F3</color>
+    <color name="nliveo_blue_colorPrimaryDark">#1976D2</color>
+    <color name="nliveo_blue_gray_alpha_colorPrimaryDark">#80455A64</color>
+    <color name="nliveo_blue_gray_colorPrimary">#607D8B</color>
+    <color name="nliveo_blue_gray_colorPrimaryDark">#80455A64</color>
+    <color name="nliveo_brown_alpha_colorPrimaryDark">#805D4037</color>
+    <color name="nliveo_brown_colorPrimary">#795548</color>
+    <color name="nliveo_brown_colorPrimaryDark">#5D4037</color>
+    <color name="nliveo_cyan_alpha_colorPrimaryDark">#800097A7</color>
+    <color name="nliveo_cyan_colorPrimary">#00BCD4</color>
+    <color name="nliveo_cyan_colorPrimaryDark">#0097A7</color>
+    <color name="nliveo_gray">#e0e0e0</color>
+    <color name="nliveo_green_alpha_colorPrimaryDark">#80388E3C</color>
+    <color name="nliveo_green_colorPrimary">#4CAF50</color>
+    <color name="nliveo_green_colorPrimaryDark">#388E3C</color>
+    <color name="nliveo_indigo_alpha_colorPrimaryDark">#8030379F</color>
+    <color name="nliveo_indigo_colorPrimary">#3F51B5</color>
+    <color name="nliveo_indigo_colorPrimaryDark">#30379F</color>
+    <color name="nliveo_lime_alpha_colorPrimaryDark">#80AFB42B</color>
+    <color name="nliveo_lime_colorPrimary">#CDDC39</color>
+    <color name="nliveo_lime_colorPrimaryDark">#AFB42B</color>
+    <color name="nliveo_orange_alpha_colorPrimaryDark">#80F57C00</color>
+    <color name="nliveo_orange_colorPrimary">#FF9800</color>
+    <color name="nliveo_orange_colorPrimaryDark">#F57C00</color>
+    <color name="nliveo_red_alpha_colorPrimaryDark">#80D32F2F</color>
+    <color name="nliveo_red_colorPrimary">#F44336</color>
+    <color name="nliveo_red_colorPrimaryDark">#D32F2F</color>
+    <color name="nliveo_teal_alpha_colorPrimaryDark">#8000796B</color>
+    <color name="nliveo_teal_colorPrimary">#009688</color>
+    <color name="nliveo_teal_colorPrimaryDark">#00796B</color>
+    <color name="nliveo_transparent">#00000000</color>
+    <color name="nliveo_white">#ffffff</color>
     <!-- From: file:/Users/Nicolau/Dropbox/Leiria/4Ano/1Semestre/SGMC/NEW/Mobile%20SGMC/app/src/main/res/values/colors.xml -->
     <eat-comment/>
     <color name="pink">#e91e63</color>
@@ -255,6 +307,7 @@
     <declare-styleable name="MenuView"><attr name="android:itemTextAppearance"/><attr name="android:horizontalDivider"/><attr name="android:verticalDivider"/><attr name="android:headerBackground"/><attr name="android:itemBackground"/><attr name="android:windowAnimationStyle"/><attr name="android:itemIconDisabledAlpha"/><attr format="boolean" name="preserveIconSpacing"/></declare-styleable>
     <declare-styleable name="PopupWindow"><attr format="boolean" name="overlapAnchor"/><attr name="android:popupBackground"/></declare-styleable>
     <declare-styleable name="PopupWindowBackgroundState"><attr format="boolean" name="state_above_anchor"/></declare-styleable>
+    <declare-styleable name="ScrimInsetsView"><attr format="reference|color" name="insetForeground"/></declare-styleable>
     <declare-styleable name="SearchView"><attr format="reference" name="layout"/><attr format="boolean" name="iconifiedByDefault"/><attr name="android:maxWidth"/><attr format="string" name="queryHint"/><attr name="android:imeOptions"/><attr name="android:inputType"/><attr format="reference" name="closeIcon"/><attr format="reference" name="goIcon"/><attr format="reference" name="searchIcon"/><attr format="reference" name="voiceIcon"/><attr format="reference" name="commitIcon"/><attr format="reference" name="suggestionRowLayout"/><attr format="reference" name="queryBackground"/><attr format="reference" name="submitBackground"/><attr name="android:focusable"/></declare-styleable>
     <declare-styleable name="Spinner"><attr format="reference" name="prompt"/><attr format="enum" name="spinnerMode"><enum name="dialog" value="0"/><enum name="dropdown" value="1"/></attr><attr name="android:dropDownSelector"/><attr name="android:popupBackground"/><attr name="android:dropDownVerticalOffset"/><attr name="android:dropDownHorizontalOffset"/><attr name="android:dropDownWidth"/><attr format="reference" name="popupPromptView"/><attr name="android:gravity"/><attr format="boolean" name="disableChildrenWhenDisabled"/><attr name="android:background"/></declare-styleable>
     <declare-styleable name="SwitchCompat"><attr name="android:thumb"/><attr format="reference" name="track"/><attr name="android:textOn"/><attr name="android:textOff"/><attr format="dimension" name="thumbTextPadding"/><attr format="reference" name="switchTextAppearance"/><attr format="dimension" name="switchMinWidth"/><attr format="dimension" name="switchPadding"/><attr format="boolean" name="splitTrack"/><attr format="boolean" name="showText"/></declare-styleable>
@@ -305,6 +358,9 @@
     <eat-comment/>
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
+    <!-- From: file:/Users/Nicolau/Dropbox/Leiria/4Ano/1Semestre/SGMC/NEW/Mobile%20SGMC/app/build/intermediates/exploded-aar/br.com.liveo/navigationdrawer-material/1.0.2/res/values/values.xml -->
+    <eat-comment/>
+    <dimen name="default_textSize">14sp</dimen>
     <!-- From: file:/Users/Nicolau/Dropbox/Leiria/4Ano/1Semestre/SGMC/NEW/Mobile%20SGMC/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.3/res/values/values.xml -->
     <eat-comment/>
     <item name="dialog_fixed_height_major" type="dimen">80%</item>
@@ -313,6 +369,9 @@
     <item name="dialog_fixed_width_minor" type="dimen">320dp</item>
     <item format="float" name="disabled_alpha_material_dark" type="dimen">0.30</item>
     <item format="float" name="disabled_alpha_material_light" type="dimen">0.26</item>
+    <!-- From: file:/Users/Nicolau/Dropbox/Leiria/4Ano/1Semestre/SGMC/NEW/Mobile%20SGMC/app/build/intermediates/exploded-aar/br.com.liveo/navigationdrawer-material/1.0.2/res/values/values.xml -->
+    <eat-comment/>
+    <dimen name="drawer_layout_width">-.5dp</dimen>
     <!-- From: file:/Users/Nicolau/Dropbox/Leiria/4Ano/1Semestre/SGMC/NEW/Mobile%20SGMC/app/build/intermediates/exploded-aar/com.shamanland/fab/0.0.6/res/values/values.xml -->
     <eat-comment/>
     <dimen name="floating_action_button_elevation">4dp</dimen>
@@ -323,6 +382,25 @@
     <dimen name="floating_action_button_shadow_radius">6dp</dimen>
     <dimen name="floating_action_button_size_mini">40dp</dimen>
     <dimen name="floating_action_button_size_normal">56dp</dimen>
+    <!-- From: file:/Users/Nicolau/Dropbox/Leiria/4Ano/1Semestre/SGMC/NEW/Mobile%20SGMC/app/build/intermediates/exploded-aar/br.com.liveo/navigationdrawer-material/1.0.2/res/values/values.xml -->
+    <eat-comment/>
+    <dimen name="userBackground_layout_height">164dp</dimen>
+    <dimen name="userData_layout_height">56dp</dimen>
+    <dimen name="userData_layout_marginBottom">8dp</dimen>
+    <dimen name="userEmail_layout_marginLeft">16dp</dimen>
+    <dimen name="userEmail_textSize">14sp</dimen>
+    <dimen name="userName_layout_marginLeft">16dp</dimen>
+    <dimen name="userName_textSize">14sp</dimen>
+    <dimen name="userPhotoTree_layout_height">40dp</dimen>
+    <dimen name="userPhotoTree_layout_marginRight">16dp</dimen>
+    <dimen name="userPhotoTree_layout_width">40dp</dimen>
+    <dimen name="userPhotoTwo_layout_height">40dp</dimen>
+    <dimen name="userPhotoTwo_layout_marginRight">16dp</dimen>
+    <dimen name="userPhotoTwo_layout_width">40dp</dimen>
+    <dimen name="userPhoto_layout_height">64dp</dimen>
+    <dimen name="userPhoto_layout_marginLeft">16dp</dimen>
+    <dimen name="userPhoto_layout_marginTop">16dp</dimen>
+    <dimen name="userPhoto_layout_width">64dp</dimen>
     <!-- From: file:/Users/Nicolau/Dropbox/Leiria/4Ano/1Semestre/SGMC/NEW/Mobile%20SGMC/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.3/res/values/values.xml -->
     <eat-comment/>
     <item name="action_bar_activity_content" type="id"/>
@@ -381,10 +459,20 @@
     <!-- From: file:/Users/Nicolau/Dropbox/Leiria/4Ano/1Semestre/SGMC/NEW/Mobile%20SGMC/app/src/main/res/values/strings.xml -->
     <eat-comment/>
     <string name="action_settings">Settings</string>
+    <string name="add_Aparelho">Adicionar Aparelho</string>
+    <string name="add_Instrumento">Adicionar Instrumento</string>
+    <string name="add_Material">Adicionar Material</string>
     <string name="add_Produto">Adicionar Produto</string>
     <string name="add_Profissional">Adicionar Profissional</string>
     <string name="app_name">Mobile SGMC</string>
     <string name="btn_WebService">WebService</string>
+    <!-- From: file:/Users/Nicolau/Dropbox/Leiria/4Ano/1Semestre/SGMC/NEW/Mobile%20SGMC/app/build/intermediates/exploded-aar/br.com.liveo/navigationdrawer-material/1.0.2/res/values/values.xml -->
+    <eat-comment/>
+    <string name="clear">""</string>
+    <string name="drawer_close">Navigation drawer Close</string>
+    <string name="drawer_open">Open drawer navigation</string>
+    <!-- From: file:/Users/Nicolau/Dropbox/Leiria/4Ano/1Semestre/SGMC/NEW/Mobile%20SGMC/app/src/main/res/values/strings.xml -->
+    <eat-comment/>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="equipa_cirurgica">Equipa Cirurgica</string>
@@ -394,9 +482,13 @@
     <string name="menu">MENU</string>
     <string name="password_">Password ...</string>
     <string name="sair">Sair</string>
+    <string name="save_Aparelho">Guardar Aparelho Utilizado</string>
     <string name="save_DadosCirurgia">Guardar Dados Cirurgia</string>
     <string name="save_Equipa">Guardar Equipa Cirurgica</string>
+    <string name="save_Instrumento">Guardar Instrumento Utilizado</string>
+    <string name="save_Intra">Salvar Dados</string>
     <string name="save_Lista">Guardar Lista</string>
+    <string name="save_Material">Guardar Material Utilizado</string>
     <string name="search">Procurar</string>
     <string name="search_Lista">Procurar Lista Material de Cirurgia</string>
     <string name="text_equipa_cirurgia">Equipa Cirurgia</string>
@@ -407,9 +499,36 @@
     <string name="title_activity_home">HomeActivity</string>
     <string name="title_activity_instrumental">InstrumentalActivity</string>
     <string name="title_activity_login">Logina</string>
+    <string name="title_activity_material">MaterialActivity</string>
     <string name="title_activity_utentes">UtentesActivity</string>
     <string name="username_">Username ...</string>
     <string name="utentes">Utentes</string>
+    <!-- From: file:/Users/Nicolau/Dropbox/Leiria/4Ano/1Semestre/SGMC/NEW/Mobile%20SGMC/app/build/intermediates/exploded-aar/br.com.liveo/navigationdrawer-material/1.0.2/res/values/values.xml -->
+    <eat-comment/>
+    <style name="AppTheme.DarkActionBar" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/nliveo_blue_colorPrimary</item>
+        <item name="colorPrimaryDark">@color/nliveo_blue_alpha_colorPrimaryDark</item>
+        <item name="colorAccent">@color/nliveo_blue_colorPrimary</item>
+        <item name="colorControlHighlight">@color/nliveo_blue_colorPrimary</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowActionModeOverlay">true</item>
+
+        <item name="popupTheme">@style/ThemeOverlay.AppCompat.Light</item>
+        <item name="theme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
+    </style>
+    <style name="AppTheme.Ligth" parent="Theme.AppCompat.Light">
+        <item name="colorPrimary">@color/nliveo_cyan_colorPrimary</item>
+        <item name="colorPrimaryDark">@color/nliveo_cyan_alpha_colorPrimaryDark</item>
+        <item name="colorAccent">@color/nliveo_cyan_colorPrimary</item>
+        <item name="colorControlHighlight">@color/nliveo_cyan_colorPrimary</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowActionModeOverlay">true</item>
+
+        <item name="popupTheme">@style/ThemeOverlay.AppCompat.Light</item>
+        <item name="theme">@style/ThemeOverlay.AppCompat.Light</item>
+    </style>
     <!-- From: file:/Users/Nicolau/Dropbox/Leiria/4Ano/1Semestre/SGMC/NEW/Mobile%20SGMC/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.3/res/values/values.xml -->
     <eat-comment/>
     <style name="Base.TextAppearance.AppCompat" parent="android:TextAppearance">
@@ -1475,5 +1594,23 @@
     <style name="menu_labels_style">
         <item name="android:background">@drawable/fab_label_background</item>
         <item name="android:textColor">@color/white</item>
+    </style>
+    <style name="myTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/nliveo_blue_colorPrimary</item>
+        <item name="colorPrimaryDark">@color/nliveo_blue_colorPrimaryDark</item>
+        <item name="colorAccent">@color/nliveo_blue_colorPrimary</item>
+    </style>
+    <!-- From: file:/Users/Nicolau/Dropbox/Leiria/4Ano/1Semestre/SGMC/NEW/Mobile%20SGMC/app/build/intermediates/exploded-aar/br.com.liveo/navigationdrawer-material/1.0.2/res/values/values.xml -->
+    <eat-comment/>
+    <style name="nLiveo.Theme.DarkActionBar" parent="AppTheme.DarkActionBar"/>
+    <style name="nLiveo.Theme.Light" parent="AppTheme.Ligth"/>
+    <!-- From: file:/Users/Nicolau/Dropbox/Leiria/4Ano/1Semestre/SGMC/NEW/Mobile%20SGMC/app/src/main/res/values/styles.xml -->
+    <eat-comment/>
+    <style name="nLiveoDrawer" parent="nLiveo.Theme.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/nliveo_blue_colorPrimary</item>
+        <item name="colorPrimaryDark">@color/nliveo_blue_alpha_colorPrimaryDark</item>
+        <item name="colorAccent">@color/nliveo_blue_colorPrimary</item>
     </style>
 </resources>

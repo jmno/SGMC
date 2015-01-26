@@ -37,9 +37,8 @@ public class Login extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login);
 		setTitle("Login");
-		startActivity(new Intent(this, DadosINtraOperatorioActivity.class));
-	//-W800
-		
+//		startActivity(new Intent(this, DadosINtraOperatorioActivity.class));
+
 		
 		txtUser = (EditText) findViewById(R.id.editTextUsername);
 		txtPass = (EditText) findViewById(R.id.editTextPassword);
@@ -95,7 +94,7 @@ public class Login extends Activity {
 			ringProgressDialog.setMessage("Logging in...");
 			
 			//ringProgressDialog = ProgressDialog.show(Login.this, "Please wait ...",	"Loging in...", true);
-			ringProgressDialog.setCancelable(false);
+			ringProgressDialog.setCancelable(true);
 			ringProgressDialog.setOnCancelListener(new OnCancelListener() {
 				
 				@Override

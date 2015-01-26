@@ -2,7 +2,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="pt.mobilesgmc.AparelhosActivity">
-    <item android:id="@+id/action_settings" android:title="@string/action_settings"
-        android:orderInCategory="100" app:showAsAction="never" />
+
+
+
+    <item android:id="@+id/action_addAparelho"
+        android:icon="@drawable/ic_action_novo"
+        android:title="@string/add_Aparelho"
+        android:showAsAction="always" />
+
+    <item android:id="@+id/action_saveAparelho"
+        android:icon="@drawable/ic_save"
+        android:title="@string/save_Aparelho"
+        android:showAsAction="always" />
 </menu>
 <!-- From: file:/Users/Nicolau/Dropbox/Leiria/4Ano/1Semestre/SGMC/NEW/Mobile%20SGMC/app/src/main/res/menu/menu_aparelhos.xml -->

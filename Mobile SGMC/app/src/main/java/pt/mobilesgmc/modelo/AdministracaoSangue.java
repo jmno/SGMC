@@ -9,8 +9,26 @@ public class AdministracaoSangue {
 	private double taMax;
 	private String tipo;
 	private int idIntraOperatorio;
+    private double valorAdministracao;
+    private String codigo;
 
-	public AdministracaoSangue(){}
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
+    }
+
+    public double getValorAdministracao() {
+        return valorAdministracao;
+    }
+
+    public void setValorAdministracao(double valorAdministracao) {
+        this.valorAdministracao = valorAdministracao;
+    }
+
+    public AdministracaoSangue(){}
 
     public int getId() {
         return id;

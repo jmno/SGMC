@@ -2,6 +2,13 @@
 <items version="2" >
 
     <item
+        jar="/Users/Nicolau/Dropbox/Leiria/4Ano/1Semestre/SGMC/NEW/Mobile SGMC/app/build/intermediates/exploded-aar/br.com.liveo/navigationdrawer-material/1.0.2/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="4220e33fcaaad2d2d825dec91657e347a4e42a10">
+        <dex dex="/Users/Nicolau/Dropbox/Leiria/4Ano/1Semestre/SGMC/NEW/Mobile SGMC/app/build/intermediates/pre-dexed/debug/classes-5d00eb29b25bedc6469a499853efb3995d80a8be.jar" />
+    </item>
+    <item
         jar="/Users/Nicolau/.gradle/caches/modules-2/files-2.1/com.itextpdf/itextpdf/5.5.4/7dd57cfb40e2fb5c4e4df33cfca0b9a936a81863/itextpdf-5.5.4.jar"
         jumboMode="false"
         revision="21.1.2"

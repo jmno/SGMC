@@ -2,6 +2,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="pt.mobilesgmc.InstrumentalActivity">
-    <item android:id="@+id/action_settings" android:title="@string/action_settings"
-        android:orderInCategory="100" app:showAsAction="never" />
+
+    <item android:id="@+id/action_addInstrumento"
+    android:icon="@drawable/ic_action_novo"
+    android:title="@string/add_Instrumento"
+    android:showAsAction="always" />
+
+    <item android:id="@+id/action_saveInstrumento"
+        android:icon="@drawable/ic_save"
+        android:title="@string/save_Instrumento"
+        android:showAsAction="always" />
 </menu>

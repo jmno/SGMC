@@ -18,6 +18,7 @@ import com.example.mobilegsmc.R;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import pt.mobilesgmc.DadosINtraOperatorioActivity;
 import pt.mobilesgmc.modelo.Drenagem;
 
 /**
@@ -73,6 +74,7 @@ public class AdapterDrenagem extends ArrayAdapter<Drenagem> {
                                 itemsArrayList.get(position).setHora(hr);
                                 Log.i("hora fim:", itemsArrayList.get(position).getHora());
                                 textView_hora.setText(hr);
+                                DadosINtraOperatorioActivity.refreshBalancos();
                             }
 
                         }, mHour, mMinute, true);
@@ -117,7 +119,7 @@ public class AdapterDrenagem extends ArrayAdapter<Drenagem> {
     {
         int resultado = -1;
 
-        for(int i=0; i<s.getCount(); i++)
+        for(int i=0; i<s.getAdapter().getCount(); i++)
         {
             if(s.getItemAtPosition(i).toString().toLowerCase().equals(valor.toLowerCase()))
                 resultado = i;

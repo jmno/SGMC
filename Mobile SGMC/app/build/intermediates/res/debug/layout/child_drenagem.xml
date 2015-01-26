@@ -58,7 +58,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/editTextDrenagem"
-                android:singleLine="true" />
+                android:gravity="center_vertical|center_horizontal"
+                android:singleLine="true"
+                android:inputType="numberDecimal"
+                />
 
 
         </LinearLayout>
@@ -80,7 +83,8 @@
             <Spinner
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/spinner_DadosIntra_Caracteristicas" />
+                android:id="@+id/spinner_DadosIntra_Caracteristicas"
+                android:entries="@array/arrayCaracteristicasDrenagem"/>
 
 
         </LinearLayout>

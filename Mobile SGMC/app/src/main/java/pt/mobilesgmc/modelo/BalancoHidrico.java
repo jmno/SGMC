@@ -11,6 +11,13 @@ public class BalancoHidrico {
 
 	public BalancoHidrico(){}
 
+    public BalancoHidrico(double valorAdminSangue, double valorElim)
+    {
+        this.valorAdministracaoSangue = valorAdminSangue;
+        this.valorEliminacao = valorElim;
+        this.valorTotal = (valorAdministracaoSangue-valorEliminacao);
+    }
+
 
     public int getId() {
         return id;
@@ -34,6 +41,7 @@ public class BalancoHidrico {
 
     public void setValorAdministracaoSangue(double valorAdministracaoSangue) {
         this.valorAdministracaoSangue = valorAdministracaoSangue;
+        this.valorTotal = this.valorAdministracaoSangue-this.valorEliminacao;
     }
 
     public double getValorEliminacao() {
@@ -42,6 +50,7 @@ public class BalancoHidrico {
 
     public void setValorEliminacao(double valorEliminacao) {
         this.valorEliminacao = valorEliminacao;
+        this.valorTotal = this.valorAdministracaoSangue-this.valorEliminacao;
     }
 
     public double getValorTotal() {

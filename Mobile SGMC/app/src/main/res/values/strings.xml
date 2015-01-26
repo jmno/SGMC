@@ -14,8 +14,15 @@
     <string name="add_Profissional">Adicionar Profissional</string>
     <string name="save_DadosCirurgia">Guardar Dados Cirurgia</string>
     <string name="save_Lista">Guardar Lista</string>
+    <string name="save_Intra">Salvar Dados</string>
     <string name="add_Produto">Adicionar Produto</string>
     <string name="search_Lista">Procurar Lista Material de Cirurgia</string>
+    <string name="add_Aparelho">Adicionar Aparelho</string>
+    <string name="add_Instrumento">Adicionar Instrumento</string>
+    <string name="save_Aparelho">Guardar Aparelho Utilizado</string>
+    <string name="save_Instrumento">Guardar Instrumento Utilizado</string>
+    <string name="add_Material">Adicionar Material</string>
+    <string name="save_Material">Guardar Material Utilizado</string>
 
     <string-array name="spinnerInicio">
         <item/>
@@ -80,6 +87,14 @@
         <item>Plaquetas</item>
         <item>Hemácias</item>
         <item>Leucócitos</item>
+    </string-array>
+    <string-array name="arrayCaracteristicasDrenagem">
+        <item/>
+        <item>C1</item>
+        <item>C2</item>
+        <item>C3</item>
+        <item>C4</item>
+        <item>C5</item>
     </string-array>
 
     <string-array name="arrayClassificacaoASA">
@@ -178,5 +193,6 @@
     <string name="title_activity_dados_intra_operatorio">DadosINtraOperatorioActivity</string>
     <string name="title_activity_aparelhos">AparelhosActivity</string>
     <string name="title_activity_instrumental">InstrumentalActivity</string>
+    <string name="title_activity_material">MaterialActivity</string>
 
 </resources>

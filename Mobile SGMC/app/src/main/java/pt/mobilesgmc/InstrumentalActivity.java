@@ -21,6 +21,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.NumberPicker;
 import android.widget.Toast;
 
 import com.example.mobilegsmc.R;
@@ -35,23 +36,26 @@ import java.util.LinkedList;
 import java.util.List;
 
 import pt.mobilesgmc.modelo.Produtos;
+import pt.mobilesgmc.modelo.ProdutosCirurgia;
 import pt.mobilesgmc.modelo.RestClientException;
 import pt.mobilesgmc.modelo.WebServiceUtils;
 
 public class InstrumentalActivity extends Activity {
 
-    private ProgressDialog ringProgressDialog;
-    private ArrayAdapter<Produtos> adaptadorInstrumentos;
-    private ListView listaInstrumentos;
-    private Dialog dialogoInstrumentos;
+
     private String token;
-    private Button btnEscolheIntrumentos;
+    private int idCirurgia;
+    private ProgressDialog ringProgressDialog;
+    private ArrayList<ProdutosCirurgia> arrayProdutos = new ArrayList<ProdutosCirurgia>();
+    private ArrayAdapter<ProdutosCirurgia> adaptadorProdutosCirurgia;
     private ListView listaInstrumentosUtilizados;
+    private ArrayAdapter<Produtos> adaptadorInstrumentos;
+    private  ListView listaInstrumentos;
+    private  Dialog dialogoInstrumentos;
     private AlertDialog.Builder builder;
-    private Produtos p;
-    private LinkedList<Produtos> listaP= new LinkedList<Produtos>();
-    private ListView listaAparelhosUtilizados;
-    private ArrayAdapter<Produtos> adaptadorInstrumentosUtilizados;
+    private ProdutosCirurgia p;
+    private NumberPicker np;
+    private Produtos l;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,113 +64,253 @@ public class InstrumentalActivity extends Activity {
 
         token = PreferenceManager.getDefaultSharedPreferences(this).getString(
                 "token", "defaultStringIfNothingFound");
-        btnEscolheIntrumentos = (Button) findViewById(R.id.btnEscolhaInstrumentos);
+        idCirurgia = Integer.parseInt(PreferenceManager
+                .getDefaultSharedPreferences(getApplicationContext())
+                .getString("idCirurgia", "0"));
+
+
         listaInstrumentosUtilizados = (ListView) findViewById(R.id.listView_InstrumentosUtilizados);
         builder = new AlertDialog.Builder(InstrumentalActivity.this);
+
+        if(idCirurgia!=0){
+            new getProdutosCirurgia().execute();
+        }
+
+        listaInstrumentosUtilizados.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                ProdutosCirurgia pc = (ProdutosCirurgia) listaInstrumentosUtilizados.getItemAtPosition(position);
+                pc.setUtilizado(!pc.getUtilizado());
+            }
+        });
+
         listaInstrumentosUtilizados.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
-            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+            public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
 
-                p= (Produtos) listaInstrumentosUtilizados.getItemAtPosition(position);
+                p = (ProdutosCirurgia) listaInstrumentosUtilizados.getItemAtPosition(position);
+
 
                 builder.setIcon(R.drawable.ic_launcher);
-                builder.setTitle("Pretende Apagar?");
-                builder.setMessage(p.getNome())
+
+
+                builder.setTitle("Editar / Apagar ?");
+                builder.setMessage(p.getNomeProduto())
                         .setCancelable(false)
-                        .setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+                        .setNegativeButton("Editar", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
-                                adaptadorInstrumentosUtilizados.remove(p);
-                                listaInstrumentosUtilizados.setAdapter(adaptadorInstrumentosUtilizados);
+                                AlertDialog.Builder alert = new AlertDialog.Builder(InstrumentalActivity.this);
+
+                                alert.setTitle("Escolha a quantidade: ");
+
+                                np = new NumberPicker(InstrumentalActivity.this);
+                                String[] nums = new String[100];
+                                for (int i = 0; i < nums.length; i++)
+                                    nums[i] = Integer.toString(i);
+
+                                np.setMinValue(0);
+                                np.setMaxValue(nums.length - 1);
+                                np.setWrapSelectorWheel(false);
+                                np.setDisplayedValues(nums);
+                                np.setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS);
+                              //  np.setValue(p.getQuantidade() + 1);
+
+                                alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int whichButton) {
+                                        int valor = np.getValue();
+                                        ((ProdutosCirurgia) adaptadorProdutosCirurgia.getItem(position)).setQuantidade(valor);
+                                        adaptadorProdutosCirurgia = new ArrayAdapter<ProdutosCirurgia>(
+                                                getBaseContext(), android.R.layout.simple_list_item_multiple_choice,
+                                                arrayProdutos);
+
+                                        listaInstrumentosUtilizados.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
+                                        listaInstrumentosUtilizados.setAdapter(adaptadorProdutosCirurgia);
+
+                                        for (int i = 0; i < arrayProdutos.size(); i++) {
+                                            if (arrayProdutos.get(i).getUtilizado() == true) {
+                                                listaInstrumentosUtilizados.setItemChecked(i, true);
+                                            }
+                                        }
+                                        //  p.setQuantidade(Integer.parseInt(np.getValue()));
+                                    }
+                                });
+
+                                alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int whichButton) {
+                                        // Cancel.
+                                    }
+                                });
+
+                                alert.setView(np);
+                                alert.show();
                             }
                         })
-                        .setNegativeButton("Não", new DialogInterface.OnClickListener() {
+                        .setPositiveButton("Apagar", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
-                                dialog.cancel();
+                                adaptadorProdutosCirurgia.remove(p);
+                                listaInstrumentosUtilizados.setAdapter(adaptadorProdutosCirurgia);
+                                for (int j = 0; j < arrayProdutos.size(); j++) {
+                                    if (arrayProdutos.get(j).getUtilizado() == true) {
+                                        listaInstrumentosUtilizados.setItemChecked(j, true);
+                                    }
+
+                                }
                             }
                         });
                 AlertDialog alert = builder.create();
                 alert.show();
-                return false;
+                return true;
+
+            }     });
+    }
+
+
+    public void listenerProcurarProduto()
+    {
+        new getProdutos().execute();
+        dialogoInstrumentos = new Dialog(InstrumentalActivity.this);
+
+        // tell the Dialog to use the dialog.xml as it's layout
+        // description
+        dialogoInstrumentos.setContentView(R.layout.dialog_procuracirurgias);
+        dialogoInstrumentos.setTitle("Escolha o Instrumento Utilizado:");
+        dialogoInstrumentos
+                .getWindow()
+                .setSoftInputMode(
+                        WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+        final EditText nomeEditText = (EditText) dialogoInstrumentos
+                .findViewById(R.id.editText_escolhaCirurgia);
+        nomeEditText.setHint("Nome Instrumento ..");
+
+
+        nomeEditText.addTextChangedListener(new TextWatcher() {
+
+            @Override
+            public void onTextChanged(CharSequence s, int start,
+                                      int before, int count) {
+                // TODO Auto-generated method stub
+                adaptadorInstrumentos.getFilter().filter(s);
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start,
+                                          int count, int after) {
+                // TODO Auto-generated method stub
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                // TODO Auto-generated method stub
+
             }
         });
-        btnEscolheIntrumentos.setOnClickListener(new View.OnClickListener() {
+        listaInstrumentos = (ListView) dialogoInstrumentos
+                .findViewById(R.id.listView_cirurgias);
+
+        listaInstrumentos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
             @Override
-            public void onClick(View v) {
-                new getProdutos().execute();
-                dialogoInstrumentos = new Dialog(InstrumentalActivity.this);
-
-                // tell the Dialog to use the dialog.xml as it's layout
-                // description
-                dialogoInstrumentos.setContentView(R.layout.dialog_procuracirurgias);
-                dialogoInstrumentos.setTitle("Escolha o Instrumental Utilizado:");
-                dialogoInstrumentos
-                        .getWindow()
-                        .setSoftInputMode(
-                                WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
-                final EditText nomeEditText = (EditText) dialogoInstrumentos
-                        .findViewById(R.id.editText_escolhaCirurgia);
-                nomeEditText.setHint("Nome Instrumento ..");
+            public void onItemClick(AdapterView<?> arg0, View arg1,
+                                    int arg2, long arg3) {
 
 
-                nomeEditText.addTextChangedListener(new TextWatcher() {
+                l = (Produtos) listaInstrumentos.getItemAtPosition(arg2);
 
-                    @Override
-                    public void onTextChanged(CharSequence s, int start,
-                                              int before, int count) {
-                        // TODO Auto-generated method stub
-                        adaptadorInstrumentos.getFilter().filter(s);
-                    }
+                // listaP.add(l);
 
-                    @Override
-                    public void beforeTextChanged(CharSequence s, int start,
-                                                  int count, int after) {
-                        // TODO Auto-generated method stub
-
-                    }
-
-                    @Override
-                    public void afterTextChanged(Editable s) {
-                        // TODO Auto-generated method stub
-
-                    }
-                });
-                listaInstrumentos = (ListView) dialogoInstrumentos
-                        .findViewById(R.id.listView_cirurgias);
-
-                listaInstrumentos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
-                    @Override
-                    public void onItemClick(AdapterView<?> arg0, View arg1,
-                                            int arg2, long arg3) {
+                builder.setIcon(R.drawable.ic_launcher);
 
 
-                        Produtos l = (Produtos) listaInstrumentos.getItemAtPosition(arg2);
+                builder.setTitle("Escolha a Quantidade:");
+                builder.setMessage("Quantidade")
+                        .setCancelable(false);
+                       /* .setNegativeButton("Editar", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {*/
+                AlertDialog.Builder alert = new AlertDialog.Builder(InstrumentalActivity.this);
 
-                        listaP.add(l);
-                        adaptadorInstrumentosUtilizados = new ArrayAdapter<Produtos>(getBaseContext(),
-                                android.R.layout.simple_list_item_1,
-                                listaP);
+                alert.setTitle("Escolha a quantidade: ");
+
+                np = new NumberPicker(InstrumentalActivity.this);
+                String[] nums = new String[100];
+                for (int i = 0; i < nums.length; i++)
+                    nums[i] = Integer.toString(i);
+
+                np.setMinValue(0);
+                np.setMaxValue(nums.length - 1);
+                np.setWrapSelectorWheel(false);
+                np.setDisplayedValues(nums);
+                np.setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS);
 
 
-                        listaInstrumentosUtilizados.setAdapter(adaptadorInstrumentosUtilizados);
+                alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        int valor = (np.getValue());
+                        ProdutosCirurgia produtoC = new ProdutosCirurgia();
+                        produtoC.setNomeProduto(l.getNome());
+                        produtoC.setIdCirurgia(idCirurgia);
+                        produtoC.setPreparado(false);
+                        produtoC.setIdProduto(l.getId());
+                        produtoC.setQuantidade(valor);
+                        produtoC.setTipoProduto(l.getTipo());
+                        produtoC.setUtilizado(true);
+                        arrayProdutos.add(produtoC);
+                        adaptadorProdutosCirurgia = new ArrayAdapter<ProdutosCirurgia>(getBaseContext(),
+                                android.R.layout.simple_list_item_multiple_choice,
+                                arrayProdutos);
+
+
+                        listaInstrumentosUtilizados.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
+                        listaInstrumentosUtilizados.setAdapter(adaptadorProdutosCirurgia);
+
+                        for (int i = 0; i < arrayProdutos.size(); i++) {
+                            if (arrayProdutos.get(i).getUtilizado() == true) {
+                                listaInstrumentosUtilizados.setItemChecked(i, true);
+                            }
+                        }
 
                         dialogoInstrumentos.dismiss();
+                        //  p.setQuantidade(Integer.parseInt(np.getValue()));
                     }
                 });
 
-                dialogoInstrumentos.setOnDismissListener(new DialogInterface.OnDismissListener() {
+               /*alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        // Cancel.
+                    }*/
+                // });
 
-                    @Override
-                    public void onDismiss(DialogInterface dialog) {
+                alert.setView(np);
+                alert.show();
 
-                    }
-                });
             }
         });
+
+
+       /* AlertDialog alert = builder.create();
+        alert.show();*/
+
+
+
+
+        dialogoInstrumentos.setOnDismissListener(new DialogInterface.OnDismissListener() {
+
+            @Override
+            public void onDismiss(DialogInterface dialog) {
+
+            }
+        });
+
 
     }
 
 
+    public void listenerGuardarInstrumentos(){
+
+
+        new adicionarInstrumentos().execute(arrayProdutos);
+
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -182,12 +326,98 @@ public class InstrumentalActivity extends Activity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_addInstrumento) {
+            listenerProcurarProduto();
             return true;
         }
 
+        if (id == R.id.action_saveInstrumento) {
+            listenerGuardarInstrumentos();
+            return true;
+        }
         return super.onOptionsItemSelected(item);
     }
+
+
+
+
+
+    private class getProdutosCirurgia extends
+            AsyncTask<Integer, Void, ArrayList<ProdutosCirurgia>> {
+        @Override
+        protected void onPreExecute() {
+
+            ringProgressDialog = new ProgressDialog(InstrumentalActivity.this);
+            ringProgressDialog.setIcon(R.drawable.ic_launcher);
+            ringProgressDialog.setTitle("Aguarde...");
+            ringProgressDialog.setMessage("A Procurar Instrumentos...");
+
+            // ringProgressDialog = ProgressDialog.show(Login.this,
+            // "Please wait ...", "Loging in...", true);
+            ringProgressDialog.setCancelable(false);
+
+            ringProgressDialog.show();
+        };
+
+        @Override
+        protected ArrayList<ProdutosCirurgia> doInBackground(Integer... params) {
+            ArrayList<ProdutosCirurgia> lista = null;
+
+            try {
+                lista = WebServiceUtils.getProdutosCirurgia(token, idCirurgia);
+            } catch (IOException | RestClientException | ParseException
+                    | JSONException e) {
+                e.printStackTrace();
+            }
+            return lista;
+        }
+
+        protected void onPostExecute(ArrayList<ProdutosCirurgia> lista) {
+            if (lista != null) {
+
+
+                for(int i=0; i<lista.size(); i++) {
+                    if (lista.get(i).getTipoProduto().equals("I")) {
+                        arrayProdutos.add(lista.get(i));
+                    }
+                }
+
+                if(arrayProdutos.size()>0) {
+                    adaptadorProdutosCirurgia = new ArrayAdapter<ProdutosCirurgia>(getBaseContext(),
+                            android.R.layout.simple_list_item_multiple_choice, arrayProdutos);
+
+                    adaptadorProdutosCirurgia.sort(new Comparator<ProdutosCirurgia>() {
+
+                        @Override
+                        public int compare(ProdutosCirurgia lhs, ProdutosCirurgia rhs) {
+                            return ("" + lhs.getNomeProduto().toUpperCase()).compareTo(("" + rhs.getNomeProduto()).toUpperCase());
+                        }
+                    });
+                    listaInstrumentosUtilizados.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
+                    listaInstrumentosUtilizados.setAdapter(adaptadorProdutosCirurgia);
+
+
+                    for (int j = 0; j < arrayProdutos.size(); j++) {
+                        if (arrayProdutos.get(j).getUtilizado() == true) {
+                            listaInstrumentosUtilizados.setItemChecked(j, true);
+                        }
+
+                    }
+
+
+                }
+
+                ringProgressDialog.dismiss();
+
+
+
+            } else {
+                ringProgressDialog.dismiss();
+                Toast.makeText(getApplicationContext(), "Erro Get Produtos da Cirurgia", Toast.LENGTH_SHORT).show();
+                finish();
+
+            }
+        }}
 
     private class getProdutos extends
             AsyncTask<Integer, Void, ArrayList<Produtos>> {
@@ -221,7 +451,7 @@ public class InstrumentalActivity extends Activity {
 
         protected void onPostExecute(ArrayList<Produtos> lista) {
             if (lista != null) {
-                LinkedList<Produtos> listaProdutos = new LinkedList<Produtos>();
+                ArrayList<Produtos> listaProdutos = new ArrayList<Produtos>();
                 for(int i=0; i<lista.size();i++) {
                     if(lista.get(i).getTipo().equals("I")) {
                         Produtos p = new Produtos();
@@ -237,6 +467,14 @@ public class InstrumentalActivity extends Activity {
 
                 }
 
+                if(arrayProdutos.size()>0){
+
+                    for(int i=0; i<arrayProdutos.size(); i++){
+                        listaProdutos = removeElementoDaLista(listaProdutos, arrayProdutos.get(i));
+                    }
+                }
+
+                if(listaProdutos.size()>0){
                 adaptadorInstrumentos = new ArrayAdapter<Produtos>(getBaseContext(),
                         android.R.layout.simple_list_item_1, listaProdutos);
                 adaptadorInstrumentos.sort(new Comparator<Produtos>() {
@@ -249,7 +487,9 @@ public class InstrumentalActivity extends Activity {
 
                 listaInstrumentos.setAdapter(adaptadorInstrumentos );
                 ringProgressDialog.dismiss();
-                dialogoInstrumentos.show();
+                dialogoInstrumentos.show();}
+                else
+                    ringProgressDialog.dismiss();
 
 
             } else {
@@ -258,5 +498,73 @@ public class InstrumentalActivity extends Activity {
                 finish();
 
             }
-        }}
+        }
+        public ArrayList<Produtos> removeElementoDaLista(ArrayList<Produtos> lista, ProdutosCirurgia p)
+        {
+            ArrayList<Produtos> listaAux = new ArrayList<Produtos>();
+
+            for (int o = 0; o<lista.size(); o++)
+            {
+                if(!lista.get(o).getNome().toLowerCase().equals(p.getNomeProduto().toLowerCase()))
+                    listaAux.add(lista.get(o));
+            }
+
+            return listaAux;
+
+        }
+    }
+
+
+
+
+
+
+    private class adicionarInstrumentos extends
+            AsyncTask<ArrayList<ProdutosCirurgia>, Void, Boolean> {
+        @Override
+        protected void onPreExecute() {
+            ringProgressDialog = new ProgressDialog(InstrumentalActivity.this);
+            ringProgressDialog.setIcon(R.drawable.ic_launcher);
+            ringProgressDialog.setTitle("Please wait...");
+            ringProgressDialog.setMessage("A Adicionar Instrumentos...");
+
+//ringProgressDialog = ProgressDialog.show(Login.this, "Please wait ...",	"Loging in...", true);
+            ringProgressDialog.setCancelable(false);
+            ringProgressDialog.show();
+        }
+
+        ;
+
+        @Override
+        protected Boolean doInBackground(ArrayList<ProdutosCirurgia>... params) {
+            Boolean adicionou = false;
+
+            try {
+                adicionou = WebServiceUtils.adicionarInstrumentos(params[0],idCirurgia, token);
+            } catch (ParseException | IOException | JSONException
+                    | RestClientException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+
+            return adicionou;
+        }
+
+        @Override
+        protected void onPostExecute(Boolean result) {
+            String a = (result ? "Instrumentos Adicionados com Sucesso!"
+                    : "Instrumentos Não Adicionados!");
+
+            Toast.makeText(getApplicationContext(), a, Toast.LENGTH_LONG)
+                    .show();
+
+            ringProgressDialog.dismiss();
+
+
+        }
+
+    }
+
+
+
 }

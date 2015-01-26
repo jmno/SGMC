@@ -1,19 +1,19 @@
 package pt.mobilesgmc.modelo;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 
 public class DadosIntraoperatorioFinal {
 
 	private DadosIntraoperatorio dados;
-	private LinkedList<SinaisVitais> listaSinais;
-	private LinkedList<MedicacaoAdministrada> listaMedicacao;
-	private LinkedList<BalancoHidrico> listaBalancos;
-	private LinkedList<Drenagem> listaDrenagemVesical;
-	private LinkedList<Drenagem> listaDrenagemNasogastrica;
-	private LinkedList<Eliminacao> listaEliminacao;
-    private LinkedList<AcessoVenoso> listaAcessoVenoso;
-    private LinkedList<PecaBiopsia> listaPecaBiopsia;
-	private LinkedList<AdministracaoSangue> adminSangue;
+	private ArrayList<SinaisVitais> listaSinais;
+	private ArrayList<MedicacaoAdministrada> listaMedicacao;
+	private ArrayList<BalancoHidrico> listaBalancos;
+	private ArrayList<Drenagem> listaDrenagemVesical;
+	private ArrayList<Drenagem> listaDrenagemNasogastrica;
+	private ArrayList<Eliminacao> listaEliminacao;
+    private ArrayList<AcessoVenoso> listaAcessoVenoso;
+    private ArrayList<PecaBiopsia> listaPecaBiopsia;
+	private ArrayList<AdministracaoSangue> adminSangue;
 
 	public DadosIntraoperatorioFinal() {
 	}
@@ -26,75 +26,75 @@ public class DadosIntraoperatorioFinal {
         this.dados = dados;
     }
 
-    public LinkedList<SinaisVitais> getListaSinais() {
+    public ArrayList<SinaisVitais> getListaSinais() {
         return listaSinais;
     }
 
-    public void setListaSinais(LinkedList<SinaisVitais> listaSinais) {
+    public void setListaSinais(ArrayList<SinaisVitais> listaSinais) {
         this.listaSinais = listaSinais;
     }
 
-    public LinkedList<MedicacaoAdministrada> getListaMedicacao() {
+    public ArrayList<MedicacaoAdministrada> getListaMedicacao() {
         return listaMedicacao;
     }
 
-    public void setListaMedicacao(LinkedList<MedicacaoAdministrada> listaMedicacao) {
+    public void setListaMedicacao(ArrayList<MedicacaoAdministrada> listaMedicacao) {
         this.listaMedicacao = listaMedicacao;
     }
 
-    public LinkedList<BalancoHidrico> getListaBalancos() {
+    public ArrayList<BalancoHidrico> getListaBalancos() {
         return listaBalancos;
     }
 
-    public void setListaBalancos(LinkedList<BalancoHidrico> listaBalancos) {
+    public void setListaBalancos(ArrayList<BalancoHidrico> listaBalancos) {
         this.listaBalancos = listaBalancos;
     }
 
-    public LinkedList<Drenagem> getListaDrenagemVesical() {
+    public ArrayList<Drenagem> getListaDrenagemVesical() {
         return listaDrenagemVesical;
     }
 
-    public void setListaDrenagemVesical(LinkedList<Drenagem> listaDrenagemVesical) {
+    public void setListaDrenagemVesical(ArrayList<Drenagem> listaDrenagemVesical) {
         this.listaDrenagemVesical = listaDrenagemVesical;
     }
 
-    public LinkedList<Drenagem> getListaDrenagemNasogastrica() {
+    public ArrayList<Drenagem> getListaDrenagemNasogastrica() {
         return listaDrenagemNasogastrica;
     }
 
-    public void setListaDrenagemNasogastrica(LinkedList<Drenagem> listaDrenagemNasogastrica) {
+    public void setListaDrenagemNasogastrica(ArrayList<Drenagem> listaDrenagemNasogastrica) {
         this.listaDrenagemNasogastrica = listaDrenagemNasogastrica;
     }
 
-    public LinkedList<Eliminacao> getListaEliminacao() {
+    public ArrayList<Eliminacao> getListaEliminacao() {
         return listaEliminacao;
     }
 
-    public void setListaEliminacao(LinkedList<Eliminacao> listaEliminacao) {
+    public void setListaEliminacao(ArrayList<Eliminacao> listaEliminacao) {
         this.listaEliminacao = listaEliminacao;
     }
 
-    public LinkedList<AcessoVenoso> getListaAcessoVenoso() {
+    public ArrayList<AcessoVenoso> getListaAcessoVenoso() {
         return listaAcessoVenoso;
     }
 
-    public void setListaAcessoVenoso(LinkedList<AcessoVenoso> listaAcessoVenoso) {
+    public void setListaAcessoVenoso(ArrayList<AcessoVenoso> listaAcessoVenoso) {
         this.listaAcessoVenoso = listaAcessoVenoso;
     }
 
-    public LinkedList<PecaBiopsia> getListaPecaBiopsia() {
+    public ArrayList<PecaBiopsia> getListaPecaBiopsia() {
         return listaPecaBiopsia;
     }
 
-    public void setListaPecaBiopsia(LinkedList<PecaBiopsia> listaPecaBiopsia) {
+    public void setListaPecaBiopsia(ArrayList<PecaBiopsia> listaPecaBiopsia) {
         this.listaPecaBiopsia = listaPecaBiopsia;
     }
 
-    public LinkedList<AdministracaoSangue> getAdminSangue() {
+    public ArrayList<AdministracaoSangue> getAdminSangue() {
         return adminSangue;
     }
 
-    public void setAdminSangue(LinkedList<AdministracaoSangue> adminSangue) {
+    public void setAdminSangue(ArrayList<AdministracaoSangue> adminSangue) {
         this.adminSangue = adminSangue;
     }
 

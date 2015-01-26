@@ -8,7 +8,7 @@ public class DadosIntraoperatorio {
 	private int ml;
 	private double calibreAgulha;
 	private String posicaoOperatoria;
-	private String alivioZonaPressao;
+	private String alivioZonapressao;
 	private String localAlivioZonaPressao;
 	private boolean mantaTermica;
 	private String localMantaTermica;
@@ -23,6 +23,7 @@ public class DadosIntraoperatorio {
 	private int idCirurgia;
 
 	public DadosIntraoperatorio(){}
+
 
 
     public int getId() {
@@ -73,12 +74,12 @@ public class DadosIntraoperatorio {
         this.posicaoOperatoria = posicaoOperatoria;
     }
 
-    public String getAlivioZonaPressao() {
-        return alivioZonaPressao;
+    public String getAlivioZonapressao() {
+        return alivioZonapressao;
     }
 
-    public void setAlivioZonaPressao(String alivioZonaPressao) {
-        this.alivioZonaPressao = alivioZonaPressao;
+    public void setAlivioZonapressao(String alivioZonapressao) {
+        this.alivioZonapressao = alivioZonapressao;
     }
 
     public String getLocalAlivioZonaPressao() {
@@ -186,7 +187,7 @@ public class DadosIntraoperatorio {
                 ", ml=" + ml +
                 ", calibreAgulha=" + calibreAgulha +
                 ", posicaoOperatoria='" + posicaoOperatoria + '\'' +
-                ", alivioZonaPressao='" + alivioZonaPressao + '\'' +
+                ", alivioZonaPressao='" + alivioZonapressao + '\'' +
                 ", localAlivioZonaPressao='" + localAlivioZonaPressao + '\'' +
                 ", mantaTermica=" + mantaTermica +
                 ", localMantaTermica='" + localMantaTermica + '\'' +
