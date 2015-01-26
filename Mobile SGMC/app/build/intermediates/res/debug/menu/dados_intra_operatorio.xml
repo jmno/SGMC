@@ -1,0 +1,11 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.example.mobilegsmc.DadosINtraOperatorioActivity" >
+
+    <item android:id="@+id/action_saveIntra"
+        android:icon="@drawable/ic_save"
+        android:title="@string/save_Intra"
+        app:showAsAction="ifRoom" />
+</menu>
+<!-- From: file:/Users/Nicolau/Dropbox/Leiria/4Ano/1Semestre/SGMC/NEW/Mobile%20SGMC/app/src/main/res/menu/dados_intra_operatorio.xml -->

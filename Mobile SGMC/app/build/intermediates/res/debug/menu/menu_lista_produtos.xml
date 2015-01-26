@@ -1,0 +1,21 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="pt.mobilesgmc.ListaProdutosActivity">
+
+
+    <item android:id="@+id/action_searchLista"
+        android:icon="@drawable/ic_action_search"
+        android:title="@string/search_Lista"
+        app:showAsAction="ifRoom" />
+    <item android:id="@+id/action_addProduto"
+        android:icon="@drawable/ic_action_novo"
+        android:title="@string/add_Produto"
+        app:showAsAction="ifRoom" />
+    <item android:id="@+id/action_saveLista"
+        android:icon="@drawable/ic_save"
+        android:title="@string/save_Lista"
+        app:showAsAction="ifRoom" />
+
+</menu>
+<!-- From: file:/Users/Nicolau/Dropbox/Leiria/4Ano/1Semestre/SGMC/NEW/Mobile%20SGMC/app/src/main/res/menu/menu_lista_produtos.xml -->
