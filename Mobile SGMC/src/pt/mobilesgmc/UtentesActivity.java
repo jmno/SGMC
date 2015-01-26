@@ -51,7 +51,6 @@ public class UtentesActivity extends Activity {
 	private int idUtente = 0;
 	ProgressDialog ringProgressDialog = null;
 
-
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -70,7 +69,7 @@ public class UtentesActivity extends Activity {
 		txt_patologiasUtente = (TextView) findViewById(R.id.textViewPatologiasUtente);
 		txt_antecedentesUtente = (TextView) findViewById(R.id.textViewAntecedentesUtente);
 		listaUtentes.setOnItemClickListener(new OnItemClickListener() {
-		
+
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 					long arg3) {
@@ -81,21 +80,34 @@ public class UtentesActivity extends Activity {
 				txt_dataNascimentoUtente.setText(a.getDataNascimento()
 						.toString());
 				txt_subSistemaUtente.setText(a.getSubsistema().toString());
-				if (a.getAlergias().equals("null")
+				if (a.getAlergias() == null) {
+
+					txt_alergiasUtente.setText("N/A");
+
+				} else if (a.getAlergias().equals("null")
+						|| a.getAlergias().trim().isEmpty()
 						|| a.getAlergias().equals("NULL")
 						|| a.getAlergias().equals(""))
 					txt_alergiasUtente.setText("N/A");
 				else
 					txt_alergiasUtente.setText(a.getAlergias().toString());
 
-				if (a.getPatologias().equals("null")
+				if (a.getPatologias() == null) {
+					txt_patologiasUtente.setText("N/A");
+
+				} else if (a.getPatologias().equals("null")
+						|| a.getPatologias().trim().isEmpty()
 						|| a.getPatologias().equals("NULL")
 						|| a.getPatologias().equals(""))
 					txt_patologiasUtente.setText("N/A");
 				else
 					txt_patologiasUtente.setText(a.getPatologias().toString());
 
-				if (a.getAntecedentesCirurgicos().equals("null")
+				if (a.getAntecedentesCirurgicos() == null) {
+					txt_antecedentesUtente.setText("N/A");
+
+				} else if (a.getAntecedentesCirurgicos().equals("null")
+						|| a.getAntecedentesCirurgicos().trim().isEmpty()
 						|| a.getAntecedentesCirurgicos().equals("NULL")
 						|| a.getAntecedentesCirurgicos().equals(""))
 					txt_antecedentesUtente.setText("N/A");
@@ -105,9 +117,8 @@ public class UtentesActivity extends Activity {
 
 			}
 		});
-		idUtente = PreferenceManager
-				.getDefaultSharedPreferences(
-						getApplicationContext()).getInt("idUtente", 0);
+		idUtente = PreferenceManager.getDefaultSharedPreferences(
+				getApplicationContext()).getInt("idUtente", 0);
 		new getUtentes().execute(idUtente);
 
 		inputSearch.addTextChangedListener(new TextWatcher() {
@@ -153,7 +164,8 @@ public class UtentesActivity extends Activity {
 		return super.onOptionsItemSelected(item);
 	}
 
-	private class getUtentes extends AsyncTask<Integer, Void, ArrayList<Utente>> {
+	private class getUtentes extends
+			AsyncTask<Integer, Void, ArrayList<Utente>> {
 		@Override
 		protected void onPreExecute() {
 
@@ -168,6 +180,7 @@ public class UtentesActivity extends Activity {
 
 			ringProgressDialog.show();
 		};
+
 		@Override
 		protected ArrayList<Utente> doInBackground(Integer... params) {
 			ArrayList<Utente> lista = null;
@@ -178,7 +191,6 @@ public class UtentesActivity extends Activity {
 					| JSONException e) {
 				e.printStackTrace();
 			}
-
 			return lista;
 		}
 
@@ -195,10 +207,10 @@ public class UtentesActivity extends Activity {
 					}
 				});
 				listaUtentes.setAdapter(adaptadorUtente);
-				if(idUtente!=0)
-				populateList(idUtente);
+				if (idUtente != 0)
+					populateList(idUtente);
 				// new Notifications(getApplicationContext(),
-				// "Connexão Efetuada com Sucesso!");
+				// "Connexï¿½o Efetuada com Sucesso!");
 				Toast.makeText(getApplicationContext(),
 						"Get Utentes successful!", Toast.LENGTH_LONG).show();
 			} else {
@@ -211,51 +223,61 @@ public class UtentesActivity extends Activity {
 		}
 
 		private void populateList(int idUtente) {
-			
-			int posicao=0;
+
+			int posicao = 0;
 			String nomeUtente = "";
-		
-			for(int i = 0; i < adaptadorUtente.getCount(); i++)
-			{
+
+			for (int i = 0; i < adaptadorUtente.getCount(); i++) {
 				Utente novo = (Utente) listaUtentes.getItemAtPosition(i);
 				int id = novo.getId();
-				if (id == idUtente){
+				if (id == idUtente) {
 					posicao = i;
 					nomeUtente = novo.getNome();
 					listaUtentes.setSelection(posicao);
 					adaptadorUtente.isEnabled(posicao);
 				}
 			}
-			
-			
+
 			Utente a = (Utente) listaUtentes.getItemAtPosition(posicao);
 			txt_nomeUtente.setText(a.getNome().toString());
 			txt_numProcessoUtente.setText(String.valueOf(a.getNumProcesso()));
-			txt_dataNascimentoUtente.setText(a.getDataNascimento()
-					.toString());
+			txt_dataNascimentoUtente.setText(a.getDataNascimento().toString());
 			txt_subSistemaUtente.setText(a.getSubsistema().toString());
-			if (a.getAlergias().equals("null")
-					|| a.getAlergias().equals("NULL")
-					|| a.getAlergias().equals(""))
+			if (a.getAlergias() == null) {
 				txt_alergiasUtente.setText("N/A");
-			else
-				txt_alergiasUtente.setText(a.getAlergias().toString());
-
-			if (a.getPatologias().equals("null")
-					|| a.getPatologias().equals("NULL")
-					|| a.getPatologias().equals(""))
+			} else {
+				if (a.getAlergias().equals("null")
+						|| a.getAlergias().equals("NULL")
+						|| a.getAlergias().equals(""))
+					txt_alergiasUtente.setText("N/A");
+				else
+					txt_alergiasUtente.setText(a.getAlergias().toString());
+			}
+			if (a.getPatologias() == null) {
 				txt_patologiasUtente.setText("N/A");
-			else
-				txt_patologiasUtente.setText(a.getPatologias().toString());
-
-			if (a.getAntecedentesCirurgicos().equals("null")
-					|| a.getAntecedentesCirurgicos().equals("NULL")
-					|| a.getAntecedentesCirurgicos().equals(""))
-				txt_antecedentesUtente.setText("N/A");
-			else
-				txt_antecedentesUtente.setText(a
-						.getAntecedentesCirurgicos().toString());
+			} else {
+				if (a.getPatologias().equals("null")
+						|| a.getPatologias().equals("NULL")
+						|| a.getPatologias().equals(""))
+					txt_patologiasUtente.setText("N/A");
+				else
+					txt_patologiasUtente.setText(a.getPatologias().toString());
+			}
 			
+			
+			if (a.getAntecedentesCirurgicos() == null){
+				txt_antecedentesUtente.setText("N/A");
+			}
+			else{
+				if (a.getAntecedentesCirurgicos().equals("null")
+						|| a.getAntecedentesCirurgicos().equals("NULL")
+						|| a.getAntecedentesCirurgicos().equals(""))
+					txt_antecedentesUtente.setText("N/A");
+				else
+					txt_antecedentesUtente.setText(a
+							.getAntecedentesCirurgicos().toString());
+			}
+
 		}
 	}
 

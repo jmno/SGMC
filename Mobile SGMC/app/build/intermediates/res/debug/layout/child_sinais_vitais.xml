@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- CHILD -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center|center_vertical|center_horizontal">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/l1"
+        android:layout_centerVertical="true"
+        android:layout_alignParentStart="false"
+        android:layout_alignParentLeft="false"
+        android:gravity="center_horizontal"
+        android:layout_marginRight="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hora:"
+            android:id="@+id/textView15" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New Text"
+            android:id="@+id/textView_Hora"
+            android:layout_marginTop="10dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/l2"
+        android:layout_toEndOf="@id/l1"
+        android:layout_toRightOf="@+id/l1"
+        android:gravity="clip_horizontal"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="5dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TaMin (mmHg)"
+            android:id="@+id/textView17" />
+
+        <EditText
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@id/textView17"
+            android:ellipsize="end"
+            android:gravity="center_vertical|end"
+            android:singleLine="true"
+            android:id="@+id/editText_TaMin"
+            android:numeric="decimal" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TaMax (mmHg)"
+            android:id="@+id/textView18"
+            android:layout_marginTop="5dp" />
+
+        <EditText
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@id/textView18"
+            android:ellipsize="end"
+            android:gravity="center_vertical|end"
+            android:singleLine="true"
+            android:id="@+id/editText_TaMax"
+            android:numeric="decimal" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/l3"
+        android:layout_toEndOf="@id/l2"
+        android:layout_toRightOf="@+id/l2"
+        android:gravity="clip_horizontal"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="5dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Fc (bpm)"
+            android:id="@+id/textView19" />
+
+        <EditText
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/textView19"
+            android:ellipsize="end"
+            android:gravity="center_vertical|end"
+            android:singleLine="true"
+            android:id="@+id/editText_fc"
+            android:numeric="decimal" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SpO2 (%)"
+            android:id="@+id/textView20"
+            android:layout_marginTop="5dp" />
+
+        <EditText
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/textView20"
+            android:ellipsize="end"
+            android:gravity="center_vertical|end"
+            android:singleLine="true"
+            android:id="@+id/editText_spo2"
+            android:numeric="decimal" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/l4"
+        android:layout_toEndOf="@id/l3"
+        android:layout_toRightOf="@+id/l3"
+        android:gravity="center_horizontal"
+        android:layout_centerVertical="true">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Temp (ºC)"
+            android:id="@+id/textView21" />
+
+        <EditText
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/textView20"
+            android:ellipsize="end"
+            android:gravity="center_vertical|end"
+            android:singleLine="true"
+            android:id="@+id/editText_temp"
+            android:numeric="decimal" />
+
+    </LinearLayout>
+</RelativeLayout><!-- From: file:/Users/Nicolau/Dropbox/Leiria/4Ano/1Semestre/SGMC/NEW/Mobile%20SGMC/app/src/main/res/layout/child_sinais_vitais.xml -->

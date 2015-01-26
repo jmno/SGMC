@@ -1,0 +1,356 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="it.sephiroth.android.library.floatingmenu.app.MainActivity"
+    android:id="@+id/scrollDadosCirurgia"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="#EEEEEE"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="#FFFFFF">
+
+            <TextView
+                android:id="@+id/txtview_especialidade"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:layout_marginLeft="5dp"
+                android:gravity="center"
+                android:text="Especialidade Cirurgica: "
+                android:textColor="#000000"
+                android:textStyle="italic"
+                android:layout_marginTop="10dp" />
+
+            <Spinner
+                android:id="@+id/spinnerEspecialidade"
+                android:layout_width="250dp"
+                android:layout_height="fill_parent"
+                android:entries="@array/arrayEspecialidade" />
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="5dp">
+
+                <TextView
+                    android:id="@+id/txtView_cirurgia"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:gravity="center"
+                    android:text="Cirurgia: "
+                    android:textAlignment="center"
+                    android:textColor="#000000"
+                    android:textStyle="italic" />
+
+                <EditText
+                    android:id="@+id/editTextCirurgia"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:ems="10"
+                    android:layout_marginLeft="5dp"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    android:id="@+id/txtView_data"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:text="Data: "
+                    android:textAlignment="center"
+                    android:textColor="#000000"
+                    android:textStyle="italic" />
+
+                <TextView
+                    android:id="@+id/TextViewData"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_span="2"
+                    android:text="      /        /     "
+                    android:gravity="end"
+                    android:layout_marginRight="15dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginLeft="5dp">
+
+                <TextView
+                    android:id="@+id/TextView_hora"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:gravity="center"
+                    android:text="Hora:"
+                    android:textAlignment="center"
+                    android:textColor="#000000"
+                    android:textStyle="italic" />
+
+                <TextView
+                    android:id="@+id/TextViewHoraCirurgia"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="      :        :     "
+                    android:layout_marginLeft="5dp"
+                    android:gravity="end" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:background="#FFFFFF">
+
+            <TextView
+                android:id="@+id/txtview_tipoCirurgia"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:layout_marginLeft="5dp"
+                android:gravity="center"
+                android:text="Tipo Cirurgia: "
+                android:textColor="#000000"
+                android:textStyle="italic"
+                android:layout_marginTop="10dp" />
+
+            <Spinner
+                android:id="@+id/spinnerTipoCirurgia"
+                android:layout_width="250dp"
+                android:layout_height="fill_parent"
+                android:entries="@array/arrayTipoCirurgia"
+                android:layout_marginLeft="5dp"
+                />
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    android:id="@+id/txtview_Sala"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:gravity="center"
+                    android:text="Sala: "
+                    android:textColor="#000000"
+                    android:textStyle="italic" />
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent">
+
+                    <Spinner
+                        android:id="@+id/spinnerSala"
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:layout_marginLeft="5dp"
+                        android:layout_gravity="right" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    android:id="@+id/txtview_lateralidade"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:gravity="center"
+                    android:text="Lateralidade:"
+                    android:textColor="#000000"
+                    android:textStyle="italic" />
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent">
+
+                    <Spinner
+                        android:id="@+id/spinnerLateralidade"
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:entries="@array/lateralidadeArray"
+                        android:layout_marginLeft="5dp"
+                        android:layout_gravity="right" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp">
+
+                <TextView
+                    android:id="@+id/txtview_asa"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:gravity="center"
+                    android:text="Classificação ASA:"
+                    android:textColor="#000000"
+                    android:textStyle="italic" />
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent">
+
+                    <Spinner
+                        android:id="@+id/spinnerASA"
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:entries="@array/arrayClassificacaoASA"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_gravity="right" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+ <!-- INICIO HORAS  -->
+
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="#FFFFFF"
+            android:layout_marginTop="15dp">
+            <TextView
+                android:id="@+id/txtview_destinoDoente"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:layout_marginLeft="5dp"
+                android:gravity="center"
+                android:text="Destino Doente: "
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#000000"
+                android:textStyle="italic" />
+
+            <Spinner
+                android:id="@+id/spinnerDestinoDoente"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_span="2"
+                android:layout_weight="0.5"
+                android:entries="@array/arrayDestino"
+                android:layout_marginRight="5dp" />
+
+            </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="#FFFFFF"
+            android:layout_marginTop="15dp">
+
+            <TextView
+                android:id="@+id/txtView_informacoes"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:layout_marginLeft="5dp"
+                android:gravity="center"
+                android:text="Informacoes Relevantes "
+                android:textAlignment="center"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#000000"
+                android:textStyle="italic" />
+
+            <EditText
+                android:id="@+id/editTextInformacoes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_span="4"
+                android:inputType="textMultiLine"
+                android:scrollbars="vertical"
+                android:text="  " />
+        </LinearLayout>
+
+        <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFFFFF"
+            android:layout_marginTop="15dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Horas"
+            android:id="@+id/Horas"
+            android:textStyle="bold|italic"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:layout_marginLeft="5dp" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageView_DadosCirurgia_AddHora"
+            android:background="@drawable/ic_action_new"
+            android:layout_gravity="right|center_vertical"
+            />
+    </LinearLayout>
+
+
+            <ListView
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:id="@+id/listView_DadosCirurgia_horas"
+                android:background="#FFFFFF" />
+
+        <!-- FIM HORAS  -->
+
+
+    </LinearLayout>
+
+
+</ScrollView>
+

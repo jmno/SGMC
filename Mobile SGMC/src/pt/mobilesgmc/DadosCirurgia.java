@@ -106,7 +106,7 @@ public class DadosCirurgia extends Activity {
 
 		// idEquipa = Integer.parseInt(PreferenceManager
 		// .getDefaultSharedPreferences(getApplicationContext())
-		// .getString("idEquipa", "-1"));
+		// .getString("icdEquipa", "-1"));
 
 		scrollDadosCirurgia = (ScrollView) root
 				.findViewById(R.id.scrollDadosCirurgia);
@@ -186,7 +186,7 @@ public class DadosCirurgia extends Activity {
 				ci.setIdUtente(p.getIdUtente());
 				ci.setIdEquipa(p.getIdEquipa());
 				ci.setLateralidade(lateralidade.getSelectedItem().toString());
-				ci.setClassificacaoASA(classificacaoASA.getSelectedItem()
+				ci.setClassifASA(classificacaoASA.getSelectedItem()
 						.toString());
 <<<<<<< HEAD
 				ci.setHoraEntradaBlocoOperatorio(p
@@ -945,7 +945,7 @@ public class DadosCirurgia extends Activity {
 		lateralidade.setSelection(a);
 
 		a = spinnerDaMeATuaPosicao(classificacaoASA.getAdapter(),
-				c.getClassificacaoASA());
+				c.getClassifASA());
 		classificacaoASA.setSelection(a);
 
 		a = spinnerDaMeATuaPosicao(destinoDoente.getAdapter(),
@@ -1133,13 +1133,17 @@ public class DadosCirurgia extends Activity {
 		@Override
 		protected void onPostExecute(Boolean result) {
 			String a = (result ? "Cirurgia Alterada com Sucesso!"
-					: "Cirurgoa Não Alterada!");
+					: "Cirurgoa NÃ£o Alterada!");
 			if (result) {
 				HomeActivity.setCirurgia(cir);
 
 				Toast.makeText(getApplicationContext(), a, Toast.LENGTH_LONG)
 						.show();
 				finish();
+			}
+			else
+			{
+				Toast.makeText(getApplicationContext(), "Erro Atualizar Cirurgia - Verifique a Internet e repita o Processo", Toast.LENGTH_SHORT).show();
 			}
 			ringProgressDialog.dismiss();
 			super.onPostExecute(result);
@@ -1204,6 +1208,10 @@ public class DadosCirurgia extends Activity {
 
 				ringProgressDialog.dismiss();
 
+			}
+			else
+			{
+				Toast.makeText(getApplicationContext(), "Erro Get Blocos Com Sala - Verifique a Internet e repita o Processo", Toast.LENGTH_SHORT).show();
 			}
 		}
 >>>>>>> FETCH_HEAD

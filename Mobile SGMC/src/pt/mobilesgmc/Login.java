@@ -32,11 +32,14 @@ public class Login extends Activity {
 	EditText txtPass;
 	ProgressDialog ringProgressDialog = null;
 	
-	@Override
+	@Override 
 	protected void onCreate(Bundle savedInstanceState) {
 
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login);
+		setTitle("Login");
+//		startActivity(new Intent(this, DadosINtraOperatorioActivity.class));
+	//-W800
 		
 		
 		txtUser = (EditText) findViewById(R.id.editTextUsername);
@@ -64,7 +67,7 @@ public class Login extends Activity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.login, menu);
+		//getMenuInflater().inflate(R.menu.login, menu);
 		return true;
 	}
 
@@ -177,7 +180,7 @@ public class Login extends Activity {
 							HomeActivity.class);
 					startActivity(equipa);
 			} else {
-				Toast.makeText(getApplicationContext(), "Sess„o expirada!", Toast.LENGTH_SHORT).show();
+				Toast.makeText(getApplicationContext(), "Sess√£o expirada!", Toast.LENGTH_SHORT).show();
 				PreferenceManager
 				.getDefaultSharedPreferences(
 						getApplicationContext())

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableRow xmlns:android="http://schemas.android.com/apk/res/android"
+                        android:id="@+id/tableRowDrenagemVesical"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+      
+
+                                <TextView
+                                    android:id="@+id/txtViewHoraDrenagemCataterismo"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_column="0"
+                                    android:text="   :   "
+                                    android:onClick="setOnClickTimer"
+                        android:clickable="true" />
+
+                                <EditText
+                                    android:id="@+id/editTextDrenagemCataterismo"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_column="1"
+                                    android:layout_marginLeft="25dp" />
+
+                                <EditText
+                                    android:id="@+id/editTextCaracteristicasCataterismo"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_column="2"
+                                    android:layout_marginLeft="25dp" />
+                            </TableRow><!-- From: file:/Users/Nicolau/Dropbox/Leiria/4Ano/1Semestre/SGMC/NEW/Mobile%20SGMC/app/src/main/res/layout-sw720dp/layout_row_drenagem_vesical.xml -->
