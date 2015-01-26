@@ -37,6 +37,7 @@ import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
+import android.view.TextureView;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.WindowManager;
@@ -157,8 +158,15 @@ public class EquipaCirurgica extends Activity implements Serializable {
 		});
 		editNomeEquipa = (EditText) findViewById(R.id.edit_text_NomeEquipa);
 
+<<<<<<< HEAD
+		TextView btnEquipa = (TextView) root.findViewById(R.id.textViewMenuEquipaCirurgica);
+
+		//VOLTAR AQUI !!!!!!!
+		TextView btnUtentes = (TextView) root.findViewById(R.id.textViewMenuUtentes);
+=======
 	
 		TextView btnUtentes = (TextView) findViewById(R.id.textViewMenuUtentes);
+>>>>>>> FETCH_HEAD
 		btnUtentes.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -168,6 +176,26 @@ public class EquipaCirurgica extends Activity implements Serializable {
 						UtentesActivity.class);
 				toggleMenu(findViewById(R.layout.activity_utentes));
 				startActivity(utentes);
+<<<<<<< HEAD
+			}
+		});
+		
+		TextView btnDadosCirurgia = (TextView) root.findViewById(R.id.textViewMenuDadosCirurgia);
+		btnUtentes.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				if (HomeActivity.getCirurgia() != null) {
+					Intent dados = new Intent(getBaseContext(),
+							DadosCirurgia.class);
+					toggleMenu(findViewById(R.layout.activity_dados_cirurgia));
+
+					startActivity(dados);
+				} else {
+					Log.i("sgmc", "Não tem cirurgia escolhida");
+					root.toggleMenu();
+				}
+=======
 				finish();
 			}
 		});
@@ -210,8 +238,10 @@ public class EquipaCirurgica extends Activity implements Serializable {
 					root.toggleMenu();
 				}
 				
+>>>>>>> FETCH_HEAD
 			}
 		});
+		
 
 
 		
@@ -474,7 +504,143 @@ public class EquipaCirurgica extends Activity implements Serializable {
 				if (!lista.isEmpty())
 					new adicionarEquipa().execute(lista);
 
+<<<<<<< HEAD
+			}
+		});
+
+		Button btnProcurarCirurgias = (Button) root
+				.findViewById(R.id.btn_PesquisarEquipas);
+		btnProcurarCirurgias.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				/****************/
+				new getEquipas().execute(token);
+				// new getAllCirurgias().execute();
+
+				dialogoEquipas = new Dialog(EquipaCirurgica.this);
+
+				// tell the Dialog to use the dialog.xml as it's layout
+				// description
+				dialogoEquipas.setContentView(R.layout.dialog_procurarequipas);
+				dialogoEquipas.setTitle("Escolha a Equipa:");
+				dialogoEquipas
+						.getWindow()
+						.setSoftInputMode(
+								WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+				final EditText nomeEditText = (EditText) dialogoEquipas
+						.findViewById(R.id.editText_escolhaEquipa);
+				listaEquipas = (ListView) dialogoEquipas
+						.findViewById(R.id.listView_equipas);
+
+				listaEquipas.setOnItemClickListener(new OnItemClickListener() {
+
+					@Override
+					public void onItemClick(AdapterView<?> arg0, View arg1,
+							int arg2, long arg3) {
+
+						equipaCirurgica = (EquipaComJuncao) listaEquipas
+								.getItemAtPosition(arg2);
+						preencheSpinnersComEquipa(equipaCirurgica);
+						editNomeEquipa.setText(equipaCirurgica.getNomeEquipa());
+						dialogoEquipas.dismiss();
+					}
+				});
+
+				dialogoEquipas.setOnDismissListener(new OnDismissListener() {
+
+					@Override
+					public void onDismiss(DialogInterface dialog) {
+
+					}
+				});
+
+				/****************/
+
+				// spinnerEquipa.setOnItemSelectedListener(new
+				// OnItemSelectedListener()
+				// {
+				//
+				//
+				//
+				// @Override
+				// public void onItemSelected(AdapterView<?> arg0, View arg1,
+				// int arg2, long arg3) {
+				// EquipaComJuncao equipa = (EquipaComJuncao)
+				// spinnerEquipa.getItemAtPosition(spinnerEquipa.getSelectedItemPosition());
+				// //
+				//
+				//
+				// }
+				//
+				// @Override
+				// public void onNothingSelected(AdapterView<?> arg0) {
+				// // TODO Auto-generated method stub
+				//
+				// }
+				// });
+
+			}
+
+			
+
+			
+		});
+		try{
+		Log.i("equipa",HomeActivity.getCirurgia().toString() + " idEquipa: " + HomeActivity.getCirurgia().getIdEquipa());
+		if (HomeActivity.getCirurgia().getIdEquipa() != 0) {
+			try{
+			new getEquipaByID().execute(HomeActivity.getCirurgia().getIdEquipa());
+			}
+			catch(Exception e)
+			{
+				Log.i("Webservice:", "ERROR - " + e.getMessage());
+			}
+		}
+		else{
+			
+<<<<<<< HEAD
+			Log.i("equipa","N�o foi encontrada Equipa");}
+=======
+			Log.i("equipa","N�o foi encontrada Equipa");}
+		}
+		catch (Exception e)
+		{
+			Log.i("erro", "Equipa N�o Selecionada");
+		}
+>>>>>>> FETCH_HEAD
+	}
+
+	private int spinnerDaMeATuaPosicao(ArrayAdapter<ProfissonalSaude> adapter,
+			ProfissonalSaude p) {
+		int valor = -1;
+		for (int i = 0; i < adapter.getCount(); i++) {
+			ProfissonalSaude pro = (ProfissonalSaude) adapter.getItem(i);
+			if (pro.getId() == p.getId())
+				valor = i;
+		}
+		return valor;
+	}
+
+	private void atualizaAGui() {
+		new getProfissionaisSaudeByTipo().execute("1", token);
+		new getProfissionaisSaudeByTipo().execute("2", token);
+	}
+	
+	
+	public void reloadSpinners() {
+		spinnerCirurgiao.setSelection(0);
+		spinnerPrimAjudante.setSelection(0);
+		spinnerSegundoAjudante.setSelection(0);
+		spinnerTerceiroAjudante.setSelection(0);
+		spinnerAnestesista.setSelection(0);
+		spinnerAssistente.setSelection(0);
+		spinnerEnfermeiroAnestesia.setSelection(0);
+		spinnerEnfermeiroCiruculante.setSelection(0);
+		spinnerEnfermeiroinstrumentista.setSelection(0);
+=======
 		
+>>>>>>> FETCH_HEAD
 	}
 	public void preencheSpinnersComEquipa(EquipaComJuncao e) {
 		EquipaComJuncao equipa = e;
@@ -704,7 +870,11 @@ public class EquipaCirurgica extends Activity implements Serializable {
 		@Override
 		protected void onPostExecute(Boolean result) {
 			String a = (result ? "Equipa Adicionado com Sucesso!"
+<<<<<<< HEAD
+					: "Equipa Não Adicionado!");
+=======
 					: "Equipa Não Adicionada! Verifique Ligação");
+>>>>>>> FETCH_HEAD
 			Toast.makeText(getApplicationContext(), a, Toast.LENGTH_LONG)
 					.show();
 			if (result) {

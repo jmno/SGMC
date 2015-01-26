@@ -32,6 +32,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.text.format.Time;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -162,7 +163,10 @@ public class DadosCirurgia extends Activity {
 		cirurgia = (EditText) findViewById(R.id.editTextCirurgia);
 		carregaOsListeners();
 		preencherAtividade(HomeActivity.getCirurgia());
+<<<<<<< HEAD
+=======
 		new getBlocosComSala().execute(token);
+>>>>>>> FETCH_HEAD
 
 		final Cirurgia p = HomeActivity.getCirurgia();
 		btnGuardar = (Button) findViewById(R.id.button3);
@@ -171,6 +175,10 @@ public class DadosCirurgia extends Activity {
 			@Override
 			public void onClick(View v) {
 				Cirurgia ci = new Cirurgia();
+<<<<<<< HEAD
+				ci.setHora(p.getHora());
+=======
+>>>>>>> FETCH_HEAD
 				ci.setEspecialidade(especialidadeCirurgica.getSelectedItem()
 						.toString());
 				ci.setTipoCirurgia(tipoCirurgia.getSelectedItem().toString());
@@ -180,6 +188,118 @@ public class DadosCirurgia extends Activity {
 				ci.setLateralidade(lateralidade.getSelectedItem().toString());
 				ci.setClassifASA(classificacaoASA.getSelectedItem()
 						.toString());
+<<<<<<< HEAD
+				ci.setHoraEntradaBlocoOperatorio(p
+						.getHoraEntradaBlocoOperatorio());
+				ci.setHoraSaideBlocoOperatorio(p.getHoraSaideBlocoOperatorio());
+				ci.setHoraSaidaSala(p.getHoraSaidaSala());
+				ci.setHoraEntradaSala(p.getHoraEntradaSala());
+				ci.setHoraInicioAnestesia(p.getHoraInicioAnestesia());
+				ci.setHoraFimAnestesia(p.getHoraFimAnestesia());
+				ci.setHoraFimRecobro(p.getHoraFimRecobro());
+				ci.setHoraFimCirurgia(p.getHoraFimCirurgia());
+				ci.setHoraInicioCirurgia(p.getHoraInicioCirurgia());
+				ci.setHoraFimCirurgia(p.getHoraFimCirurgia());
+				ci.setHoraInicioAnestesia(p.getHoraInicioAnestesia());
+				ci.setHoraFimCirurgia(p.getHoraFimCirurgia());
+				ci.setHoraEntradaRecobro(p.getHoraEntradaRecobro());
+				ci.setDestinoDoente(destinoDoente.getSelectedItem().toString());
+				ci.setCirurgia(cirurgia.getText().toString());
+				ci.setInfoRelevante(informacoesRelevantes.getText().toString());
+				String datad = (String) data.getText();
+				String[] dataF = datad.split("/");
+				int dia = Integer.parseInt(dataF[0]);
+				int mes = Integer.parseInt(dataF[1]);
+				int ano = Integer.parseInt(dataF[2]);
+				int hora;
+				int minuto;
+				int segundo;
+				java.sql.Time horas = null;
+
+				Date dataFinal = new Date(dia, mes, ano);
+				ci.setData(dataFinal);
+
+				String horaChamU = (String) horaChamadaUtente.getText();
+				String[] horaChamada = horaChamU.split(":");
+				if (horaChamada.length == 2) {
+					hora = Integer.parseInt(horaChamada[0]);
+					minuto = Integer.parseInt(horaChamada[1]);
+					horas = new java.sql.Time(hora, minuto, 00);
+				} else if (horaChamada.length == 3) {
+					hora = Integer.parseInt(horaChamada[0]);
+					minuto = Integer.parseInt(horaChamada[1]);
+					segundo = Integer.parseInt(horaChamada[2]);
+					horas = new java.sql.Time(hora, minuto, segundo);
+				}
+
+				ci.setHoraChamadaUtente(horas);
+
+				String horaEntB = (String) horaEntradaBO.getText();
+				String[] horaEntBo = horaEntB.split(":");
+				if (horaEntBo.length == 2) {
+					hora = Integer.parseInt(horaEntBo[0]);
+					minuto = Integer.parseInt(horaEntBo[1]);
+					horas = new java.sql.Time(hora, minuto, 00);
+				} else if (horaEntBo.length == 3) {
+					hora = Integer.parseInt(horaEntBo[0]);
+					minuto = Integer.parseInt(horaEntBo[1]);
+					segundo = Integer.parseInt(horaEntBo[2]);
+					horas = new java.sql.Time(hora, minuto, segundo);
+				}
+
+				ci.setHoraEntradaBlocoOperatorio(horas);
+
+				String horaSaidaB = (String) horaSaidaBO.getText();
+				String[] horaSaidaBo = horaSaidaB.split(":");
+				if (horaSaidaBo.length == 2) {
+					hora = Integer.parseInt(horaSaidaBo[0]);
+					minuto = Integer.parseInt(horaSaidaBo[1]);
+					horas = new java.sql.Time(hora, minuto, 00);
+				} else if (horaSaidaBo.length == 3) {
+					hora = Integer.parseInt(horaSaidaBo[0]);
+					minuto = Integer.parseInt(horaSaidaBo[1]);
+					segundo = Integer.parseInt(horaSaidaBo[2]);
+					horas = new java.sql.Time(hora, minuto, segundo);
+				}
+
+				ci.setHoraSaideBlocoOperatorio(horas);
+
+				String horaEntSala = (String) horaEntradaSala.getText();
+				String[] horaEntSa = horaEntSala.split(":");
+				if (horaEntSa.length == 2) {
+					hora = Integer.parseInt(horaEntSa[0]);
+					minuto = Integer.parseInt(horaEntSa[1]);
+					horas = new java.sql.Time(hora, minuto, 00);
+				} else if (horaEntSa.length == 3) {
+					hora = Integer.parseInt(horaEntSa[0]);
+					minuto = Integer.parseInt(horaEntSa[1]);
+					segundo = Integer.parseInt(horaEntSa[2]);
+					horas = new java.sql.Time(hora, minuto, segundo);
+				}
+
+				ci.setHoraEntradaSala(horas);
+
+				String horaSaiSala = (String) horaSaidaSala.getText();
+				String[] horaSaiSa = horaSaiSala.split(":");
+				if (horaEntSa.length == 2) {
+					hora = Integer.parseInt(horaEntSa[0]);
+					minuto = Integer.parseInt(horaEntSa[1]);
+					horas = new java.sql.Time(hora, minuto, 00);
+				} else if (horaEntSa.length == 3) {
+					hora = Integer.parseInt(horaEntSa[0]);
+					minuto = Integer.parseInt(horaEntSa[1]);
+					segundo = Integer.parseInt(horaEntSa[2]);
+					horas = new java.sql.Time(hora, minuto, segundo);
+				}
+
+				ci.setHoraSaidaSala(horas);
+				
+				ci.setId(idCirurgia);
+				try {
+					new atualizarCirurgia().execute(ci);
+				} catch (Exception rn) {
+					Log.i("webservice", rn.getMessage());
+=======
 
 				ci.setDestinoDoente(destinoDoente.getSelectedItem().toString());
 				ci.setCirurgia(cirurgia.getText().toString());
@@ -397,6 +517,7 @@ public class DadosCirurgia extends Activity {
 				try {
 					new atualizarCirurgia().execute(ci);
 				} catch (Exception rn) {
+>>>>>>> FETCH_HEAD
 				}
 			}
 		});
@@ -476,7 +597,11 @@ public class DadosCirurgia extends Activity {
 							public void onTimeSet(TimePicker view,
 									int hourOfDay, int minute) {
 								horaChamadaUtente.setText(hourOfDay + ":"
+<<<<<<< HEAD
+										+ minute);
+=======
 										+ minute + ":00");
+>>>>>>> FETCH_HEAD
 
 							}
 
@@ -503,8 +628,12 @@ public class DadosCirurgia extends Activity {
 							@Override
 							public void onTimeSet(TimePicker view,
 									int hourOfDay, int minute) {
+<<<<<<< HEAD
+								horaEntradaBO.setText(hourOfDay + ":" + minute);
+=======
 								horaEntradaBO.setText(hourOfDay + ":" + minute
 										+ ":00");
+>>>>>>> FETCH_HEAD
 
 							}
 						}, mHour, mMinute, true);
@@ -529,8 +658,12 @@ public class DadosCirurgia extends Activity {
 							@Override
 							public void onTimeSet(TimePicker view,
 									int hourOfDay, int minute) {
+<<<<<<< HEAD
+								horaSaidaBO.setText(hourOfDay + ":" + minute);
+=======
 								horaSaidaBO.setText(hourOfDay + ":" + minute
 										+ ":00");
+>>>>>>> FETCH_HEAD
 
 							}
 						}, mHour, mMinute, true);
@@ -581,8 +714,12 @@ public class DadosCirurgia extends Activity {
 							@Override
 							public void onTimeSet(TimePicker view,
 									int hourOfDay, int minute) {
+<<<<<<< HEAD
+								horaSaidaSala.setText(hourOfDay + ":" + minute);
+=======
 								horaSaidaSala.setText(hourOfDay + ":" + minute
 										+ ":00");
+>>>>>>> FETCH_HEAD
 
 							}
 						}, mHour, mMinute, true);
@@ -742,7 +879,11 @@ public class DadosCirurgia extends Activity {
 							public void onTimeSet(TimePicker view,
 									int hourOfDay, int minute) {
 								horaSaidaRecobro.setText(hourOfDay + ":"
+<<<<<<< HEAD
+										+ minute);
+=======
 										+ minute + ":00");
+>>>>>>> FETCH_HEAD
 
 							}
 						}, mHour, mMinute, true);
@@ -859,6 +1000,70 @@ public class DadosCirurgia extends Activity {
 
 	}
 
+<<<<<<< HEAD
+	private class getBlocoOperatorios extends
+			AsyncTask<String, Void, ArrayList<BlocoOperatorio>> {
+
+		@Override
+		protected ArrayList<BlocoOperatorio> doInBackground(String... params) {
+			ArrayList<BlocoOperatorio> lista = null;
+
+			try {
+				lista = WebServiceUtils.getAllBloco(token);
+
+			} catch (IOException | RestClientException | ParseException
+					| JSONException e) {
+				e.printStackTrace();
+			}
+
+			return lista;
+		}
+
+		@Override
+		protected void onPostExecute(ArrayList<BlocoOperatorio> lista) {
+			if (lista != null) {
+				adaptadorBloco = new ArrayAdapter<>(getBaseContext(),
+						android.R.layout.simple_list_item_1, lista);
+				bloco.setAdapter(adaptadorBloco);
+			} else {
+				Toast.makeText(getApplicationContext(),
+						"Get Bloco unsuccessful...", Toast.LENGTH_LONG).show();
+
+			}
+		}
+	}
+
+	private class atualizarCirurgia extends AsyncTask<Cirurgia, Void, Boolean> {
+
+		@Override
+		protected Boolean doInBackground(Cirurgia... params) {
+			Boolean adicionou = false;
+
+			try {
+				adicionou = WebServiceUtils.updateCirurgia(params[0],
+						idCirurgia, token);
+
+			} catch (ParseException | IOException | JSONException
+					| RestClientException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+			return adicionou;
+		}
+
+		@Override
+		protected void onPostExecute(Boolean result) {
+			String a = (result ? "Cirurgia Alterada com Sucesso!"
+					: "Cirurgoa Não Alterada!");
+
+			Toast.makeText(getApplicationContext(), a, Toast.LENGTH_LONG)
+					.show();
+
+			super.onPostExecute(result);
+		}
+
+=======
 	// private class getBlocoOperatorios extends
 	// AsyncTask<String, Void, ArrayList<BlocoOperatorio>> {
 	//
@@ -1009,5 +1214,6 @@ public class DadosCirurgia extends Activity {
 				Toast.makeText(getApplicationContext(), "Erro Get Blocos Com Sala - Verifique a Internet e repita o Processo", Toast.LENGTH_SHORT).show();
 			}
 		}
+>>>>>>> FETCH_HEAD
 	}
 }

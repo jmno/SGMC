@@ -113,8 +113,57 @@ public class HomeActivity extends Activity {
 		texto_cirurgia = (EditText) root
 				.findViewById(R.id.editText_escolhaCirurgia);
 
-		setListenersMenus();
+<<<<<<< HEAD
+		TextView btnEquipa = (TextView) root.findViewById(R.id.textViewMenuEquipaCirurgica);
+		btnEquipa.setOnClickListener(new OnClickListener() {
 
+			@Override
+			public void onClick(View v) {
+				Intent equipa = new Intent(getBaseContext(),
+						EquipaCirurgica.class);
+				toggleMenu(findViewById(R.layout.activity_equipa_cirurgica));
+
+				startActivity(equipa);
+
+			}
+		});
+		TextView btnDados = (TextView) root.findViewById(R.id.textViewMenuDadosCirurgia);
+		btnDados.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				if (cirurgia != null) {
+					Intent dados = new Intent(getBaseContext(),
+							DadosCirurgia.class);
+					toggleMenu(findViewById(R.layout.activity_dados_cirurgia));
+
+					startActivity(dados);
+				} else {
+					Log.i("sgmc", "Não tem cirurgia escolhida");
+					root.toggleMenu();
+				}
+			}
+		});
+		TextView btnUtentes = (TextView) root.findViewById(R.id.textViewMenuUtentes);
+		btnUtentes.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				Intent utentes = new Intent(getBaseContext(),
+						UtentesActivity.class);
+				toggleMenu(findViewById(R.layout.activity_utentes));
+				startActivity(utentes);
+			}
+		});
+=======
+		setListenersMenus();
+<<<<<<< HEAD
+>>>>>>> FETCH_HEAD
+		
+=======
+
+>>>>>>> FETCH_HEAD
 		Button button = (Button) findViewById(R.id.button1);
 		button.setOnClickListener(new OnClickListener() {
 
