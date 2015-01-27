@@ -699,10 +699,11 @@ public void atualizaTipoCirurgia(int position)
 
                 BlocoComSala blocoCS = (BlocoComSala) sala.getSelectedItem();
                 ci.setIdSala(blocoCS.getSala().getId());
-                cir = ci;
+
 
                 ci.setId(idCirurgia);
-
+                ci.setIdUtente(idUtente);
+                cir = ci;
                 new atualizarCirurgia().execute(ci);
             }
             else

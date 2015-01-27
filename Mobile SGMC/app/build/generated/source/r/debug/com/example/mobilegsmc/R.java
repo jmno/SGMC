@@ -2160,18 +2160,21 @@ containing a value of this type.
         public static final int save_Material=0x7f0b003e;
         public static final int search=0x7f0b003f;
         public static final int search_Lista=0x7f0b0040;
-        public static final int text_equipa_cirurgia=0x7f0b0041;
-        public static final int texto_cirurgiao=0x7f0b0042;
-        public static final int title_activity_aparelhos=0x7f0b0043;
-        public static final int title_activity_dados_intra_operatorio=0x7f0b0044;
-        public static final int title_activity_equipa_cirurgica=0x7f0b0045;
-        public static final int title_activity_home=0x7f0b0046;
-        public static final int title_activity_instrumental=0x7f0b0047;
-        public static final int title_activity_login=0x7f0b0048;
-        public static final int title_activity_material=0x7f0b0049;
-        public static final int title_activity_utentes=0x7f0b004a;
-        public static final int username_=0x7f0b004b;
-        public static final int utentes=0x7f0b004c;
+        public static final int speech_not_supported=0x7f0b0041;
+        public static final int speech_prompt=0x7f0b0042;
+        public static final int tap_on_mic=0x7f0b0043;
+        public static final int text_equipa_cirurgia=0x7f0b0044;
+        public static final int texto_cirurgiao=0x7f0b0045;
+        public static final int title_activity_aparelhos=0x7f0b0046;
+        public static final int title_activity_dados_intra_operatorio=0x7f0b0047;
+        public static final int title_activity_equipa_cirurgica=0x7f0b0048;
+        public static final int title_activity_home=0x7f0b0049;
+        public static final int title_activity_instrumental=0x7f0b004a;
+        public static final int title_activity_login=0x7f0b004b;
+        public static final int title_activity_material=0x7f0b004c;
+        public static final int title_activity_utentes=0x7f0b004d;
+        public static final int username_=0x7f0b004e;
+        public static final int utentes=0x7f0b004f;
     }
     public static final class style {
         public static final int Base_TextAppearance_AppCompat=0x7f0c0000;

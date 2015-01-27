@@ -2280,7 +2280,7 @@
         <item>C3</item>
         <item>C4</item>
         <item>C5</item>
-    </string-array><string name="add_Aparelho">Adicionar Aparelho</string><string name="_Cirurgia_">Cirurgia:</string><string name="_Data_">Data:</string><string name="title_activity_home">HomeActivity</string><string name="_1_ajudante_">1ºAjudante:</string><string name="title_activity_utentes">UtentesActivity</string><string name="save_Material">Guardar Material Utilizado</string><string name="title_activity_instrumental">InstrumentalActivity</string><string-array name="arrayNasogastrica">
+    </string-array><string name="add_Aparelho">Adicionar Aparelho</string><string name="_Cirurgia_">Cirurgia:</string><string name="_Data_">Data:</string><string name="speech_not_supported">Sorry! Your device doesn\'t support speech input</string><string name="title_activity_home">HomeActivity</string><string name="_1_ajudante_">1ºAjudante:</string><string name="title_activity_utentes">UtentesActivity</string><string name="save_Material">Guardar Material Utilizado</string><string name="title_activity_instrumental">InstrumentalActivity</string><string-array name="arrayNasogastrica">
         <item/>
         <item>Sonda Nasogástrica</item>
     </string-array><string-array name="arrayClassificacaoASA">
@@ -2291,7 +2291,7 @@
         <item>ASA IV</item>
         <item>ASA V</item>
         <item>ASA VI</item>
-    </string-array><string name="title_activity_equipa_cirurgica">Equipa Cirurgica</string><string name="login">Log In</string><string name="_TipoCirurgia_"/><string name="username_">Username ...</string><string-array name="arrayTipoAnestesia">
+    </string-array><string name="speech_prompt">Say something…</string><string name="title_activity_equipa_cirurgica">Equipa Cirurgica</string><string name="login">Log In</string><string name="_TipoCirurgia_"/><string name="username_">Username ...</string><string-array name="arrayTipoAnestesia">
         <item/>
         <item>Anestesia geral</item>
         <item>Anestesia peridural</item>
@@ -2347,7 +2347,7 @@
         <item>Bloco 13</item>
         <item>Bloco 14</item>
         <item>Bloco 15</item>
-    </string-array><string name="menu">MENU</string><string name="password_">Password ...</string><string name="_Assistente_Operacional_">Assistente Operacional:</string><string name="save_DadosCirurgia">Guardar Dados Cirurgia</string><string name="equipa_cirurgica">Equipa Cirurgica</string><string name="search_Lista">Procurar Lista Material de Cirurgia</string><string name="utentes">Utentes</string><string name="hello_world">Hello world!</string><string name="sair">Sair</string><string name="_2_ajudante_">2ºAjudante:</string><string name="_Enfermeiro_Anestesia_">Enfermeiro de Anestesia:</string><string name="_Anestesista_">Anestesista:</string><string-array name="lateralidadeArray">
+    </string-array><string name="menu">MENU</string><string name="password_">Password ...</string><string name="_Assistente_Operacional_">Assistente Operacional:</string><string name="save_DadosCirurgia">Guardar Dados Cirurgia</string><string name="equipa_cirurgica">Equipa Cirurgica</string><string name="search_Lista">Procurar Lista Material de Cirurgia</string><string name="utentes">Utentes</string><string name="hello_world">Hello world!</string><string name="sair">Sair</string><string name="_2_ajudante_">2ºAjudante:</string><string name="_Enfermeiro_Anestesia_">Enfermeiro de Anestesia:</string><string name="_Anestesista_">Anestesista:</string><string name="tap_on_mic">Tap on mic to speak</string><string-array name="lateralidadeArray">
         <item/>
         <item>Direita</item>
         <item>Esquerda</item>

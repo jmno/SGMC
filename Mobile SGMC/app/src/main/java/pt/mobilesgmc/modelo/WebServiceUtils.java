@@ -1359,35 +1359,40 @@ public class WebServiceUtils {
 
     public static Boolean guardarDadosIntraOperatorios(String token, DadosIntraoperatorioFinal dados)
             throws ClientProtocolException, IOException, ParseException,
-            JSONException, RestClientException {
+            JSONException, RestClientException, ExceptionLog {
         Boolean adicionou = false;
         Gson g = new Gson();
 
         HttpPost httpPost = new HttpPost(URL + "guardaIntraOperatorio?token="
                 + token+"&idIntraOperatorio="+dados.getDados().getId());
 
+        try{
+            StringEntity se = new StringEntity(g.toJson(dados,DadosIntraoperatorioFinal.class), "UTF-8");
+            se.setContentType("text/json");
+            se.setContentType("application/json;charset=UTF-8");
 
-        StringEntity se = new StringEntity(g.toJson(dados,DadosIntraoperatorioFinal.class), "UTF-8");
-        se.setContentType("text/json");
-        se.setContentType("application/json;charset=UTF-8");
+            httpPost.setEntity(se);
+            BasicHttpResponse httpResponse = (BasicHttpResponse) client
+                    .execute(httpPost);
+            HttpEntity entity = httpResponse.getEntity();
+            String string = EntityUtils.toString(entity);
 
-        httpPost.setEntity(se);
-        BasicHttpResponse httpResponse = (BasicHttpResponse) client
-                .execute(httpPost);
-        HttpEntity entity = httpResponse.getEntity();
-        String string = EntityUtils.toString(entity);
+            Log.i("guardarIntraOperatorio",string);
+            if (isOk(httpResponse.getStatusLine().getStatusCode())) {
 
-        Log.i("guardarIntraOperatorio",string);
-        if (isOk(httpResponse.getStatusLine().getStatusCode())) {
-
-            adicionou = Boolean.valueOf(string);
-        } else {
-            throw new RestClientException(
-                    "HTTP Response with invalid status code"
-                            + httpResponse.getStatusLine().getStatusCode()
-                            + ".");
-
+                adicionou = Boolean.valueOf(string);
+            } else {
+                throw new RestClientException(
+                        "HTTP Response with invalid status code"
+                                + httpResponse.getStatusLine().getStatusCode()
+                                + ".");
+            }
         }
+        catch (Exception e)
+        {
+            throw new ExceptionLog(e.getMessage().toString());
+        }
+
 
         return adicionou;
     }

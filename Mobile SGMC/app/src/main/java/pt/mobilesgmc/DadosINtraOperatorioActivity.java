@@ -47,6 +47,7 @@ import pt.mobilesgmc.modelo.BalancoHidrico;
 import pt.mobilesgmc.modelo.DadosIntraoperatorioFinal;
 import pt.mobilesgmc.modelo.Drenagem;
 import pt.mobilesgmc.modelo.Eliminacao;
+import pt.mobilesgmc.modelo.ExceptionLog;
 import pt.mobilesgmc.modelo.MedicacaoAdministrada;
 import pt.mobilesgmc.modelo.PecaBiopsia;
 import pt.mobilesgmc.modelo.RestClientException;
@@ -293,6 +294,7 @@ public class DadosINtraOperatorioActivity extends ActionBarActivity {
                         + mMinute + ":00");
                 s.setHora(hr);
                 s.setFc(0);
+                s.setIdIntraOperatorio(dadosFinal.getDados().getId());
                 adapterSinaisVitais.add(s);
                 setListViewHeightBasedOnChildren(listView_SinaisVitais);
 
@@ -350,6 +352,7 @@ public class DadosINtraOperatorioActivity extends ActionBarActivity {
                 String hr = (mHour + ":"
                         + mMinute + ":00");
                 m.setHora(hr);
+                m.setIdIntraOperatorio(dadosFinal.getDados().getId());
                 adapterMedicacaoAdministrada.add(m);
                 setListViewHeightBasedOnChildren(listView_MedicacaoAdministrada);
 
@@ -519,8 +522,9 @@ public class DadosINtraOperatorioActivity extends ActionBarActivity {
                 String hr = (mHour + ":"
                         + mMinute + ":00");
                 s.setHora(hr);
-                s.setDrenagem("");
+                s.setDrenagem(0);
                 s.setCaracteristicas("");
+
                 adaptadorDrenagemVesical.add(s);
                 setListViewHeightBasedOnChildren(listView_DrenagemVesical);
 
@@ -588,7 +592,7 @@ public class DadosINtraOperatorioActivity extends ActionBarActivity {
                 String hr = (mHour + ":"
                         + mMinute + ":00");
                 s.setHora(hr);
-                s.setDrenagem("");
+                s.setDrenagem(0);
                 s.setCaracteristicas("");
 
                 adaptadorDrenagemNasogastrica.add(s);
@@ -837,13 +841,58 @@ public class DadosINtraOperatorioActivity extends ActionBarActivity {
 
 
     public void preencherAtividade() {
-        spinner_tipoAnestesia.setSelection(spinnerDaMeATuaPosicao(spinner_tipoAnestesia, dadosFinal.getDados().getTipoAnestesia()));
-        editText_TET.setText(dadosFinal.getDados().getTet() + "");
-        editText_ML.setText(dadosFinal.getDados().getMl() + "");
-        editText_AgulhaCalibre.setText(dadosFinal.getDados().getCalibreAgulha() + "");
 
-        if(dadosFinal.getDados().getObsAdminSangue()!=null)
-        obsAdminSangue.setText(dadosFinal.getDados().getObsAdminSangue());
+        if(dadosFinal.getDados()!=null){
+            if(dadosFinal.getDados().getTipoAnestesia()!=null)
+                spinner_tipoAnestesia.setSelection(spinnerDaMeATuaPosicao(spinner_tipoAnestesia, dadosFinal.getDados().getTipoAnestesia()));
+
+            editText_TET.setText(dadosFinal.getDados().getTet() + "");
+            editText_ML.setText(dadosFinal.getDados().getMl() + "");
+            editText_AgulhaCalibre.setText(dadosFinal.getDados().getCalibreAgulha() + "");
+
+            if(dadosFinal.getDados().getObsAdminSangue()!=null)
+                obsAdminSangue.setText(dadosFinal.getDados().getObsAdminSangue());
+
+            if(dadosFinal.getDados().getPosicaoOperatoria()!=null)
+                spinner_posicaoOperatoria.setSelection(spinnerDaMeATuaPosicao(spinner_posicaoOperatoria,dadosFinal.getDados().getPosicaoOperatoria()));
+
+
+            if(dadosFinal.getDados().getAlivioZonapressao()!=null)
+                editText_alivioZonasPressao.setText(dadosFinal.getDados().getAlivioZonapressao());
+
+            if(dadosFinal.getDados().getLocalAlivioZonaPressao()!=null)
+                spinner_localPosicaoOperatoria.setSelection(spinnerDaMeATuaPosicao(spinner_localPosicaoOperatoria,dadosFinal.getDados().getLocalAlivioZonaPressao()));
+
+            if(dadosFinal.getDados().isMantaTermica())
+            {
+                radioButton_mantatermica_sim.setChecked(true);
+                linearLayout_mantaTermica.setVisibility(View.VISIBLE);
+                spinner_localMantaTermica.setSelection(spinnerDaMeATuaPosicao(spinner_localMantaTermica,dadosFinal.getDados().getLocalMantaTermica()));
+            }
+
+            if(dadosFinal.getDados().getPressaoGarrotePneumatico()>0.0)
+            {
+                radioButton_Garrote_sim.setChecked(true);
+                linearLayout_garrote.setVisibility(View.VISIBLE);
+                spinner_localizacaoGarrote.setSelection(spinnerDaMeATuaPosicao(spinner_localizacaoGarrote,dadosFinal.getDados().getLocalizacaoGarrotePneumatico()));
+                editText_GarrotePressao.setText(dadosFinal.getDados().getPressaoGarrotePneumatico()+"");
+                if(dadosFinal.getDados().getHoraInicioGarrotePneum()!=null)
+                    textView_Garrote_horaInicio.setText(dadosFinal.getDados().getHoraInicioGarrotePneum());
+                if(dadosFinal.getDados().getHoraFimGarrotePneum()!=null)
+                    textView_Garrote_horaFim.setText(dadosFinal.getDados().getHoraFimGarrotePneum());
+            }
+
+            if(dadosFinal.getDados().isPlacaEletrodo())
+            {
+                radioButton_Electrodo_sim.setChecked(true);
+                linearLayout_electrodo.setVisibility(View.VISIBLE);
+                spinner_localizacaoElectrodo.setSelection(spinnerDaMeATuaPosicao(spinner_localizacaoElectrodo,dadosFinal.getDados().getLocalizacaoPlacaEletrodo()));
+            }
+
+            nFrascosBiopsia.setText(dadosFinal.getDados().getNumFrascosPecaBiopsia()+"");
+
+
+        }
 
         if(dadosFinal.getListaEliminacao()==null)
             dadosFinal.setListaEliminacao(new ArrayList<Eliminacao>());
@@ -865,43 +914,6 @@ public class DadosINtraOperatorioActivity extends ActionBarActivity {
         }
 
 
-        if(dadosFinal.getDados().getPosicaoOperatoria()!=null)
-        spinner_posicaoOperatoria.setSelection(spinnerDaMeATuaPosicao(spinner_posicaoOperatoria,dadosFinal.getDados().getPosicaoOperatoria()));
-
-
-        if(dadosFinal.getDados().getAlivioZonapressao()!=null)
-        editText_alivioZonasPressao.setText(dadosFinal.getDados().getAlivioZonapressao());
-
-        if(dadosFinal.getDados().getLocalAlivioZonaPressao()!=null)
-        spinner_localPosicaoOperatoria.setSelection(spinnerDaMeATuaPosicao(spinner_localPosicaoOperatoria,dadosFinal.getDados().getLocalAlivioZonaPressao()));
-
-        if(dadosFinal.getDados().isMantaTermica())
-        {
-            radioButton_mantatermica_sim.setChecked(true);
-            linearLayout_mantaTermica.setVisibility(View.VISIBLE);
-            spinner_localMantaTermica.setSelection(spinnerDaMeATuaPosicao(spinner_localMantaTermica,dadosFinal.getDados().getLocalMantaTermica()));
-        }
-
-        if(dadosFinal.getDados().getPressaoGarrotePneumatico()>0.0)
-        {
-            radioButton_Garrote_sim.setChecked(true);
-            linearLayout_garrote.setVisibility(View.VISIBLE);
-            spinner_localizacaoGarrote.setSelection(spinnerDaMeATuaPosicao(spinner_localizacaoGarrote,dadosFinal.getDados().getLocalizacaoGarrotePneumatico()));
-            editText_GarrotePressao.setText(dadosFinal.getDados().getPressaoGarrotePneumatico()+"");
-            if(dadosFinal.getDados().getHoraInicioGarrotePneum()!=null)
-            textView_Garrote_horaInicio.setText(dadosFinal.getDados().getHoraInicioGarrotePneum());
-            if(dadosFinal.getDados().getHoraFimGarrotePneum()!=null)
-            textView_Garrote_horaFim.setText(dadosFinal.getDados().getHoraFimGarrotePneum());
-        }
-
-        if(dadosFinal.getDados().isPlacaEletrodo())
-        {
-            radioButton_Electrodo_sim.setChecked(true);
-            linearLayout_electrodo.setVisibility(View.VISIBLE);
-            spinner_localizacaoElectrodo.setSelection(spinnerDaMeATuaPosicao(spinner_localizacaoElectrodo,dadosFinal.getDados().getLocalizacaoPlacaEletrodo()));
-        }
-
-        nFrascosBiopsia.setText(dadosFinal.getDados().getNumFrascosPecaBiopsia()+"");
 
 
 
@@ -996,13 +1008,13 @@ public class DadosINtraOperatorioActivity extends ActionBarActivity {
     {
         int resultado = existsDrenagemNasogastrica(dre);
         if(resultado!=-1){
-            dadosFinal.getListaBalancos().get(resultado).setValorEliminacao(Double.parseDouble(dre.getDrenagem()));
+            dadosFinal.getListaBalancos().get(resultado).setValorEliminacao(dre.getDrenagem());
         }
         else
         {
             BalancoHidrico bal = new BalancoHidrico();
             bal.setIdIntraOperatorio(dadosFinal.getDados().getId());
-            bal.setValorEliminacao(Double.parseDouble(dre.getDrenagem()));
+            bal.setValorEliminacao(dre.getDrenagem());
             bal.setHora(dre.getHora());
             dadosFinal.getListaBalancos().add(bal);
             setListViewHeightBasedOnChildren(listView_BalancoHidrico);
@@ -1013,13 +1025,13 @@ public class DadosINtraOperatorioActivity extends ActionBarActivity {
     {
         int resultado = existsDrenagemVesical(dre);
         if(resultado!=-1){
-            dadosFinal.getListaBalancos().get(resultado).setValorEliminacao(Double.parseDouble(dre.getDrenagem()));
+            dadosFinal.getListaBalancos().get(resultado).setValorEliminacao(dre.getDrenagem());
         }
         else
         {
             BalancoHidrico bal = new BalancoHidrico();
             bal.setIdIntraOperatorio(dadosFinal.getDados().getId());
-            bal.setValorEliminacao(Double.parseDouble(dre.getDrenagem()));
+            bal.setValorEliminacao(dre.getDrenagem());
             bal.setHora(dre.getHora());
             dadosFinal.getListaBalancos().add(bal);
             setListViewHeightBasedOnChildren(listView_BalancoHidrico);
@@ -1064,8 +1076,7 @@ public class DadosINtraOperatorioActivity extends ActionBarActivity {
         return resultado;
     }
 
-    public void guardarDadosIntraOperatorio()
-    {
+    public void guardarDadosIntraOperatorio() throws ExceptionLog {
         dadosFinal.getDados().setTipoAnestesia(spinner_tipoAnestesia.getSelectedItem().toString());
         dadosFinal.getDados().setTet(Integer.parseInt(editText_TET.getText().toString()));
         dadosFinal.getDados().setMl(Integer.parseInt(editText_ML.getText().toString()));
@@ -1080,9 +1091,17 @@ public class DadosINtraOperatorioActivity extends ActionBarActivity {
 
         if(!isEmpty(calibreDrenagemVesical))
         {
-            e.setCalibre(Double.parseDouble(calibreDrenagemVesical.getText().toString()));
+            try {
+                e.setCalibre(Double.parseDouble(calibreDrenagemVesical.getText().toString()));
+            }
+            catch (Exception ex)
+            {
+                e.setCalibre(0);
+                throw new ExceptionLog(ex.getMessage().toString());
+            }
             dadosFinal.getListaEliminacao().add(e);
         }
+
         e = new Eliminacao();
         e.setIdEnfermagemIntra(dadosFinal.getDados().getId());
         e.setTipo("N");
@@ -1137,7 +1156,11 @@ public class DadosINtraOperatorioActivity extends ActionBarActivity {
 
         int id = item.getItemId();
         if (id == R.id.action_saveIntra) {
-            guardarDadosIntraOperatorio();
+            try {
+                guardarDadosIntraOperatorio();
+            } catch (ExceptionLog exceptionLog) {
+                exceptionLog.printStackTrace();
+            }
             return true;
         }
         if(id == android.R.id.home)
@@ -1284,7 +1307,7 @@ public class DadosINtraOperatorioActivity extends ActionBarActivity {
                 resultado = WebServiceUtils.guardarDadosIntraOperatorios(token,dadosFinal);
 
             } catch (IOException | RestClientException | ParseException
-                    | JSONException e) {
+                    | JSONException | ExceptionLog e) {
                 e.printStackTrace();
             }
 

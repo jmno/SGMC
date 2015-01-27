@@ -126,6 +126,10 @@
         <item>Bloco 15</item>
     </string-array>
 
+    <string name="speech_prompt">Say something&#8230;</string>
+    <string name="speech_not_supported">Sorry! Your device doesn\'t support speech input</string>
+    <string name="tap_on_mic">Tap on mic to speak</string>
+
     <string name="text_equipa_cirurgia">Equipa Cirurgia</string>
     <string name="introduza_o_nome_do_novo_profissional_">Introduza o nome do novo profissional...</string>
     <string name="texto_cirurgiao">Cirurgião:</string>

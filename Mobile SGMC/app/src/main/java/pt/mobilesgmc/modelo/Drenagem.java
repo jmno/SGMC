@@ -4,7 +4,7 @@ public class Drenagem {
 
 	private int id;
 	private String hora;
-	private String drenagem;
+	private double drenagem;
 	private String caracteristicas;
 	private int idEliminacao;
 
@@ -26,11 +26,11 @@ public class Drenagem {
         this.hora = hora;
     }
 
-    public String getDrenagem() {
+    public double getDrenagem() {
         return drenagem;
     }
 
-    public void setDrenagem(String drenagem) {
+    public void setDrenagem(double drenagem) {
         this.drenagem = drenagem;
     }
 

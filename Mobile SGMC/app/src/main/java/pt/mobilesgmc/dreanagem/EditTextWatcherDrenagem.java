@@ -22,11 +22,11 @@ public class EditTextWatcherDrenagem implements TextWatcher {
     @Override
     public void afterTextChanged(Editable s) {
         try{
-            drenagem.setDrenagem(s.toString());
+            drenagem.setDrenagem(Double.parseDouble(s.toString()));
             DadosINtraOperatorioActivity.refreshBalancos();
         }
         catch (Exception e){
-            drenagem.setDrenagem("");
+            drenagem.setDrenagem(0);
             Log.i("ExcecaoDrenagem", "Valor inferior a 0");
         }
 

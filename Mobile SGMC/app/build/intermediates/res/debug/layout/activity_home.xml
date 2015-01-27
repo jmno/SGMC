@@ -61,7 +61,7 @@
             android:layout_below="@+id/btnEscolhaCirurgia"
             android:layout_marginTop="42dp"
             android:text="Button"
-            android:visibility="invisible" />
+            android:visibility="visible" />
 
     </RelativeLayout>
 
