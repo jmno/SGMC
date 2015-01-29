@@ -24,6 +24,7 @@ import org.json.JSONException;
 
 import java.io.IOException;
 
+import pt.mobilesgmc.modelo.ProfissonalSaude;
 import pt.mobilesgmc.modelo.RestClientException;
 import pt.mobilesgmc.modelo.WebServiceUtils;
 
@@ -38,7 +39,7 @@ public class Login extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login);
 		setTitle("Login");
-//		startActivity(new Intent(this, DadosINtraOperatorioActivity.class));
+//		startActivity(new Intent(this, HomeActivity.class));
 
 		
 		txtUser = (EditText) findViewById(R.id.editTextUsername);
@@ -141,9 +142,7 @@ public class Login extends Activity {
                         if (!token.equals("ERRO")) {
                             PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putString("token", token).commit();
                             ringProgressDialog.dismiss();
-                            Intent equipa = new Intent(getBaseContext(),
-                                    HomeActivity.class);
-                            startActivity(equipa);
+                            new GetDadosProfissional().execute(token);
                         } else {
                             ringProgressDialog.dismiss();
                             Toast.makeText(getApplicationContext(), "Erro Utilizador/Password", Toast.LENGTH_SHORT).show();
@@ -160,6 +159,58 @@ public class Login extends Activity {
 			}
 		}
 	}
+    private class GetDadosProfissional extends AsyncTask<String, Void, ProfissonalSaude> {
+
+
+        @Override
+        protected void onPreExecute() {
+            ringProgressDialog = new ProgressDialog(Login.this);
+            ringProgressDialog.setIcon(R.drawable.ic_launcher);
+            ringProgressDialog.setTitle("Por Favor Espere...");
+            ringProgressDialog.setMessage("A verificar dados de utilizador...");
+
+            //ringProgressDialog = ProgressDialog.show(Login.this, "Please wait ...",	"Loging in...", true);
+            ringProgressDialog.setCancelable(true);
+            ringProgressDialog.setOnCancelListener(new OnCancelListener() {
+
+                @Override
+                public void onCancel(DialogInterface dialog) {
+                    cancel(true);
+
+                }
+            });
+            ringProgressDialog.show();
+        };
+        @Override
+        protected ProfissonalSaude doInBackground(String... params) {
+            ProfissonalSaude pro = new ProfissonalSaude();
+
+            try {
+                pro = WebServiceUtils.getDadosProfissional(params[0]);
+            } catch (IOException | RestClientException | ParseException
+                    | JSONException e) {
+                e.printStackTrace();
+            }
+
+            return pro;
+        }
+
+        @Override
+        protected void onPostExecute(ProfissonalSaude pro) {
+            if (pro != null) {
+               PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putString("username", pro.getNome()).commit();
+                PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putString("cc", pro.getCc()+"").commit();
+
+                ringProgressDialog.dismiss();
+                            Intent home = new Intent(getBaseContext(),
+                                    HomeActivity.class);
+                            startActivity(home);
+
+            } else {
+                ringProgressDialog.dismiss();
+            }
+        }
+    }
 	private class IsLoggedIN extends AsyncTask<String, Void, Boolean> {
 
 		
@@ -168,7 +219,7 @@ public class Login extends Activity {
 			ringProgressDialog = new ProgressDialog(Login.this);
 			ringProgressDialog.setIcon(R.drawable.ic_launcher);
 			ringProgressDialog.setTitle("Please wait...");
-			ringProgressDialog.setMessage("Checking Log In...");
+			ringProgressDialog.setMessage("Checking LogIn...");
 			
 			//ringProgressDialog = ProgressDialog.show(Login.this, "Please wait ...",	"Loging in...", true);
 			ringProgressDialog.setCancelable(false);
@@ -179,7 +230,7 @@ public class Login extends Activity {
 			Boolean resultado= false;
 
 			try {
-                if(!params[0].toLowerCase().equals("erro no login"))
+                if(!params[0].toLowerCase().equals("erro no LogIn"))
 				resultado = WebServiceUtils.isLoggedIn(params[0]);
 			} catch (ParseException | IOException | RestClientException e) {
 				e.printStackTrace();

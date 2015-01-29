@@ -9,14 +9,16 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
-import android.preference.PreferenceManager;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -43,149 +45,95 @@ import java.util.ArrayList;
 import java.util.Comparator;
 
 import pt.mobilesgmc.modelo.ListaProdutosComProdutos;
+import pt.mobilesgmc.modelo.ListasProdutosCirurgia;
 import pt.mobilesgmc.modelo.Produtos;
 import pt.mobilesgmc.modelo.ProdutosCirurgia;
 import pt.mobilesgmc.modelo.RestClientException;
 import pt.mobilesgmc.modelo.WebServiceUtils;
+import pt.mobilesgmc.produtosDaCirurgia.AdapterProdutosCirurgia;
 
-public class ListaProdutosActivity extends ActionBarActivity {
+public class ListaProdutosActivity extends Fragment {
 
 
     private String token;
-    private int idCirurgia;
     private ProgressDialog ringProgressDialog;
     private ArrayAdapter<ListaProdutosComProdutos> adaptadorLista;
     private ListView listas;
     private Dialog dialogoListas;
-    private ArrayList<ProdutosCirurgia> arrayProdutos;
     private ArrayAdapter<ProdutosCirurgia> adaptadorProdutosFinal;
-    private ListView listaProdutosFinal;
+    public static ListView listaProdutosFinal;
     private ProdutosCirurgia p;
     private AlertDialog.Builder builder;
     private NumberPicker np;
     private ArrayAdapter<Produtos> adaptadorProduto;
     private ListView listaApresentaProduto;
     private Dialog dialogoProdutos;
+    public static AdapterProdutosCirurgia adaptadorProdutos;
     private Produtos l;
     private boolean adicionou;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        setContentView(R.layout.activity_lista_produtos);
-        getSupportActionBar();
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-        token = PreferenceManager.getDefaultSharedPreferences(this).getString(
-                "token", "defaultStringIfNothingFound");
-        idCirurgia = Integer.parseInt(PreferenceManager
-                .getDefaultSharedPreferences(getApplicationContext())
-                .getString("idCirurgia", "0"));
-        builder = new AlertDialog.Builder(ListaProdutosActivity.this);
-        listaProdutosFinal = (ListView) findViewById(R.id.listView_Produtos_Cirurgia);
-
-        arrayProdutos= new ArrayList<ProdutosCirurgia>();
-
-        if(idCirurgia!=0){
-            new getProdutosCirurgia().execute();
-        }
-
-        listaProdutosFinal.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                p = (ProdutosCirurgia) listaProdutosFinal.getItemAtPosition(position);
-                p.setPreparado(!p.getPreparado());
-            }
-        });
-
-        listaProdutosFinal.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-            @Override
-            public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
-
-                p = (ProdutosCirurgia) listaProdutosFinal.getItemAtPosition(position);
-
-                builder.setIcon(R.drawable.ic_launcher);
-
-
-                builder.setTitle("Editar / Apagar ?");
-                builder.setMessage(p.getNomeProduto())
-                        .setCancelable(false)
-                        .setNegativeButton("Editar", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                AlertDialog.Builder alert = new AlertDialog.Builder(ListaProdutosActivity.this);
-
-                                alert.setTitle("Escolha a quantidade: ");
-
-                                np = new NumberPicker(ListaProdutosActivity.this);
-                                String[] nums = new String[100];
-                                for (int i = 0; i < nums.length; i++)
-                                    nums[i] = Integer.toString(i);
-
-                                np.setMinValue(1);
-                                np.setMaxValue(nums.length-1);
-                                np.setWrapSelectorWheel(false);
-                                np.setDisplayedValues(nums);
-                                np.setValue(p.getQuantidade() + 1);
-
-                                alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialog, int whichButton) {
-                                        int valor = np.getValue() - 1;
-                                        ((ProdutosCirurgia) adaptadorProdutosFinal.getItem(position)).setQuantidade(valor);
-
-                                        //  p.setQuantidade(Integer.parseInt(np.getValue()));
-
-                                        adaptadorProdutosFinal = new ArrayAdapter<ProdutosCirurgia>(
-                                                getBaseContext(), android.R.layout.simple_list_item_multiple_choice,
-                                                arrayProdutos);
-
-                                        listaProdutosFinal.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
-                                        listaProdutosFinal.setAdapter(adaptadorProdutosFinal);
-
-                                        for (int i = 0; i < arrayProdutos.size(); i++) {
-                                            if (arrayProdutos.get(i).getPreparado() == true) {
-                                                listaProdutosFinal.setItemChecked(i, true);
-                                            }
-                                        }
-                                    }
-                                });
-
-                                alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialog, int whichButton) {
-                                        // Cancel.
-                                    }
-                                });
-
-                                alert.setView(np);
-                                alert.show();
-                            }
-                        })
-                        .setPositiveButton("Apagar", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                adaptadorProdutosFinal.remove(p);
-                                listaProdutosFinal.setAdapter(adaptadorProdutosFinal);
-                            }
-                        });
-                AlertDialog alert = builder.create();
-                alert.show();
-
-                return true;
-            }
-        });
-
-
-
+    public ListaProdutosActivity newInstance(String text){
+        ListaProdutosActivity mFragment = new ListaProdutosActivity();
+        Bundle mBundle = new Bundle();
+        mFragment.setArguments(mBundle);
+        return mFragment;
     }
 
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // TODO Auto-generated method stub
+        View rootView = inflater.inflate(R.layout.activity_lista_produtos, container, false);
+        token = HomeActivity.getToken();
 
 
-  
+
+        builder = new AlertDialog.Builder(getActivity());
+        listaProdutosFinal = (ListView) rootView.findViewById(R.id.listView_Produtos_Cirurgia);
+
+        if(HomeActivity.getListaProdutos()==null) {
+            HomeActivity.setListaProdutos(new ListasProdutosCirurgia());
+
+
+            if (HomeActivity.getCirurgia().getId() != 0) {
+                new getProdutosCirurgia().execute();
+            }
+        }
+        else
+        {
+            adaptadorProdutos = new AdapterProdutosCirurgia(getActivity(),HomeActivity.getListaProdutos().getListas());
+
+
+            adaptadorProdutos.sort(new Comparator<ProdutosCirurgia>() {
+
+                @Override
+                public int compare(ProdutosCirurgia lhs, ProdutosCirurgia rhs) {
+                    return ("" + lhs.getNomeProduto().toUpperCase()).compareTo(("" + rhs.getNomeProduto()).toUpperCase());
+                }
+            });
+
+            // adaptadorProdutosFinal = new ArrayAdapter<ProdutosCirurgia>(getActivity().getBaseContext(),
+            //       android.R.layout.simple_list_item_multiple_choice, arrayProdutos);
+
+            listaProdutosFinal.setAdapter(adaptadorProdutos);
+        }
+
+        setHasOptionsMenu(true);
+        return  rootView;
+    }
+
+    public static void atualizaProdutos()
+    {
+        listaProdutosFinal.invalidate();
+        adaptadorProdutos.notifyDataSetChanged();
+    }
+
 
     public void listenerBotaoEscolhaListaMateriais() {
         new getListas().execute();
 
 
-        dialogoListas = new Dialog(ListaProdutosActivity.this);
+        dialogoListas = new Dialog(getActivity());
 
         // tell the Dialog to use the dialog.xml as it's layout
         // description
@@ -231,7 +179,7 @@ public class ListaProdutosActivity extends ActionBarActivity {
                                     int arg2, long arg3) {
 
                 /** ver isto   */
-                arrayProdutos.clear();
+                HomeActivity.setListaProdutos(new ListasProdutosCirurgia());
 
                 ListaProdutosComProdutos l = (ListaProdutosComProdutos) listas.getItemAtPosition(arg2);
 
@@ -241,7 +189,7 @@ public class ListaProdutosActivity extends ActionBarActivity {
                 for(int i=0; i<l.getProdutos().getProduto().size();i++){
                     produto = new ProdutosCirurgia();
 
-                    produto.setIdCirurgia(idCirurgia);
+                    produto.setIdCirurgia(HomeActivity.getCirurgia().getId());
                     produto.setId(0);
                     produto.setNomeProduto(l.getProdutos().getProduto().get(i).getProduto().getNome());
                     produto.setTipoProduto(l.getProdutos().getProduto().get(i).getProduto().getTipo());
@@ -250,23 +198,42 @@ public class ListaProdutosActivity extends ActionBarActivity {
                     produto.setPreparado(false);
                     produto.setQuantidade(l.getProdutos().getProduto().get(i).getQuantidade());
 
+                    if(HomeActivity.getListaProdutos().getListaAparelhos()==null)
+                        HomeActivity.getListaProdutos().setListaAparelhos(new ArrayList<ProdutosCirurgia>());
 
 
-                    arrayProdutos.add(produto);
+                    if(HomeActivity.getListaProdutos().getListaInstrumentos()==null)
+                        HomeActivity.getListaProdutos().setListaInstrumentos(new ArrayList<ProdutosCirurgia>());
+
+                    if(HomeActivity.getListaProdutos().getListaMateriais()==null)
+                        HomeActivity.getListaProdutos().setListaMateriais(new ArrayList<ProdutosCirurgia>());
+
+                    if(produto.getTipoProduto().toLowerCase().equals("a"))
+                    HomeActivity.getListaProdutos().getListaAparelhos().add(produto);
+
+                    if(produto.getTipoProduto().toLowerCase().equals("i"))
+                        HomeActivity.getListaProdutos().getListaInstrumentos().add(produto);
+
+                    if(produto.getTipoProduto().toLowerCase().equals("m"))
+                        HomeActivity.getListaProdutos().getListaMateriais().add(produto);
+
                 }
 
+                adaptadorProdutos = new AdapterProdutosCirurgia(getActivity(),HomeActivity.getListaProdutos().getListas());
 
-                adaptadorProdutosFinal = new ArrayAdapter<ProdutosCirurgia>(getBaseContext(),
-                        android.R.layout.simple_list_item_multiple_choice,
-                        arrayProdutos);
-                listaProdutosFinal.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
-                listaProdutosFinal.setAdapter(adaptadorProdutosFinal);
-                       /* adpatorProdutosFinal = new ArrayAdapter<ProdutosDaLista>(
-                                getBaseContext(), android.R.layout.simple_list_item_multiple_choice,
-                                ( l.getProdutos().getProduto()));
-                        listaProdutosFinal.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
-                        listaProdutosFinal.setAdapter(adpatorProdutosFinal);
-*/
+
+                adaptadorProdutos.sort(new Comparator<ProdutosCirurgia>() {
+
+                    @Override
+                    public int compare(ProdutosCirurgia lhs, ProdutosCirurgia rhs) {
+                        return ("" + lhs.getNomeProduto().toUpperCase()).compareTo(("" + rhs.getNomeProduto()).toUpperCase());
+                    }
+                });
+
+                // adaptadorProdutosFinal = new ArrayAdapter<ProdutosCirurgia>(getActivity().getBaseContext(),
+                //       android.R.layout.simple_list_item_multiple_choice, arrayProdutos);
+
+                listaProdutosFinal.setAdapter(adaptadorProdutos);
                 dialogoListas.dismiss();
             }
         });
@@ -283,7 +250,7 @@ public class ListaProdutosActivity extends ActionBarActivity {
     public void listenerBotaoAdicionarProduto(){
 
         new getProdutos().execute();
-        dialogoProdutos= new Dialog(ListaProdutosActivity.this);
+        dialogoProdutos= new Dialog(getActivity());
 
         // tell the Dialog to use the dialog.xml as it's layout
         // description
@@ -342,11 +309,11 @@ public class ListaProdutosActivity extends ActionBarActivity {
                         .setCancelable(false);
                        /* .setNegativeButton("Editar", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {*/
-                AlertDialog.Builder alert = new AlertDialog.Builder(ListaProdutosActivity.this);
+                AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
 
                 alert.setTitle("Escolha a quantidade: ");
 
-                np = new NumberPicker(ListaProdutosActivity.this);
+                np = new NumberPicker(getActivity());
                 String[] nums = new String[100];
                 for (int i = 0; i < nums.length; i++)
                     nums[i] = Integer.toString(i);
@@ -363,27 +330,24 @@ public class ListaProdutosActivity extends ActionBarActivity {
                         int valor = (np.getValue());
                         ProdutosCirurgia produtoC = new ProdutosCirurgia();
                         produtoC.setNomeProduto(l.getNome());
-                        produtoC.setIdCirurgia(idCirurgia);
+                        produtoC.setIdCirurgia(HomeActivity.getCirurgia().getId());
                         produtoC.setPreparado(false);
                         produtoC.setIdProduto(l.getId());
                         produtoC.setQuantidade(valor);
                         produtoC.setTipoProduto(l.getTipo());
                         produtoC.setUtilizado(true);
-                        arrayProdutos.add(produtoC);
-                        adaptadorProdutosFinal = new ArrayAdapter<ProdutosCirurgia>(getBaseContext(),
-                                android.R.layout.simple_list_item_multiple_choice,
-                                arrayProdutos);
+                        if(produtoC.getTipoProduto().toLowerCase().equals("a"))
+                            HomeActivity.getListaProdutos().getListaAparelhos().add(produtoC);
 
+                        if(produtoC.getTipoProduto().toLowerCase().equals("i"))
+                            HomeActivity.getListaProdutos().getListaInstrumentos().add(produtoC);
 
-                        listaProdutosFinal.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
-                        listaProdutosFinal.setAdapter(adaptadorProdutosFinal);
+                        if(produtoC.getTipoProduto().toLowerCase().equals("m"))
+                            HomeActivity.getListaProdutos().getListaAparelhos().add(produtoC);
 
-                        for (int i = 0; i < arrayProdutos.size(); i++) {
-                            if (arrayProdutos.get(i).getPreparado() == true) {
-                                listaProdutosFinal.setItemChecked(i, true);
-                            }
-                        }
-
+                        adaptadorProdutos = new AdapterProdutosCirurgia(getActivity(),HomeActivity.getListaProdutos().getListas());
+                        listaProdutosFinal.setAdapter(adaptadorProdutos);
+                        //VIR AQUI VER SE É PRECISO ATUALIZAR O ADAPTADOR;
                         dialogoProdutos.dismiss();
                         //  p.setQuantidade(Integer.parseInt(np.getValue()));
                     }
@@ -421,18 +385,20 @@ public class ListaProdutosActivity extends ActionBarActivity {
     public void listenerBotaoGuardarLista(){
 
 
-        new adicionarProdutosCirurgia().execute(arrayProdutos);
+        new adicionarProdutosCirurgia().execute(HomeActivity.getListaProdutos());
     }
 
-
-  
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
+    public void onCreateOptionsMenu(Menu menu,  MenuInflater inflater) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_lista_produtos, menu);
-        return true;
+        inflater.inflate(R.menu.menu_lista_produtos, menu);
+
+
+        super.onCreateOptionsMenu(menu, inflater);
+
     }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -457,27 +423,6 @@ public class ListaProdutosActivity extends ActionBarActivity {
             return true;
         }
 
-        if(id == android.R.id.home)
-        {
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setIcon(R.drawable.ic_launcher);
-            builder.setMessage("Pretende Retroceder sem guardar?")
-                    .setCancelable(false)
-                    .setPositiveButton("Sim", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            finish();                        }
-                    })
-                    .setNegativeButton("Não", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            dialog.cancel();
-                        }
-                    });
-            AlertDialog alert = builder.create();
-            alert.show();
-            return true;
-        }
-
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -486,7 +431,7 @@ public class ListaProdutosActivity extends ActionBarActivity {
             AsyncTask<String, Void, ArrayList<ListaProdutosComProdutos>> {
         @Override
         protected void onPreExecute() {
-            ringProgressDialog = new ProgressDialog(ListaProdutosActivity.this);
+            ringProgressDialog = new ProgressDialog(getActivity());
             ringProgressDialog.setIcon(R.drawable.ic_launcher);
             ringProgressDialog.setTitle("Please wait...");
             ringProgressDialog.setMessage("A verificar Listas...");
@@ -517,7 +462,7 @@ public class ListaProdutosActivity extends ActionBarActivity {
         protected void onPostExecute(ArrayList<ListaProdutosComProdutos> lista) {
             if (lista != null) {
                 adaptadorLista = new ArrayAdapter<ListaProdutosComProdutos>(
-                        getBaseContext(), android.R.layout.simple_list_item_1,
+                        getActivity().getBaseContext(), android.R.layout.simple_list_item_1,
                         lista);
 
                 adaptadorLista.sort(new Comparator<ListaProdutosComProdutos>() {
@@ -533,8 +478,9 @@ public class ListaProdutosActivity extends ActionBarActivity {
                 dialogoListas.show();
             } else {
                 ringProgressDialog.dismiss();
-                finish();
-                Toast.makeText(getApplicationContext(), "Erro Get Listas - Verifique a Internet e repita o Processo", Toast.LENGTH_SHORT).show();
+                ((HomeActivity) getActivity()).onItemClickNavigation(0, HomeActivity.getLayoutcontainerid());
+                ((HomeActivity) getActivity()).setCheckedItemNavigation(0,true);
+                Toast.makeText(getActivity().getApplicationContext(), "Erro Get Listas - Verifique a Internet e repita o Processo", Toast.LENGTH_SHORT).show();
             }
 
         }
@@ -542,11 +488,11 @@ public class ListaProdutosActivity extends ActionBarActivity {
 
 
     private class getProdutosCirurgia extends
-            AsyncTask<Integer, Void, ArrayList<ProdutosCirurgia>> {
+            AsyncTask<Integer, Void, ListasProdutosCirurgia> {
         @Override
         protected void onPreExecute() {
 
-            ringProgressDialog = new ProgressDialog(ListaProdutosActivity.this);
+            ringProgressDialog = new ProgressDialog(getActivity());
             ringProgressDialog.setIcon(R.drawable.ic_launcher);
             ringProgressDialog.setTitle("Aguarde...");
             ringProgressDialog.setMessage("A Procurar Produtos...");
@@ -559,11 +505,11 @@ public class ListaProdutosActivity extends ActionBarActivity {
         };
 
         @Override
-        protected ArrayList<ProdutosCirurgia> doInBackground(Integer... params) {
-            ArrayList<ProdutosCirurgia> lista = null;
+        protected ListasProdutosCirurgia doInBackground(Integer... params) {
+            ListasProdutosCirurgia lista = null;
 
             try {
-                lista = WebServiceUtils.getProdutosCirurgia(token, idCirurgia);
+                lista = WebServiceUtils.getProdutosCirurgia(token, HomeActivity.getCirurgia().getId());
             } catch (IOException | RestClientException | ParseException
                     | JSONException e) {
                 e.printStackTrace();
@@ -571,37 +517,27 @@ public class ListaProdutosActivity extends ActionBarActivity {
             return lista;
         }
 
-        protected void onPostExecute(ArrayList<ProdutosCirurgia> lista) {
+        protected void onPostExecute(ListasProdutosCirurgia lista) {
             if (lista != null) {
 
+                HomeActivity.setListaProdutos(lista);
+                if(HomeActivity.getListaProdutos().getSize()>0) {
+                    adaptadorProdutos = new AdapterProdutosCirurgia(getActivity(),HomeActivity.getListaProdutos().getListas());
 
-                for(int i=0; i<lista.size(); i++) {
 
-                        arrayProdutos.add(lista.get(i));
-
-                }
-
-                if(arrayProdutos.size()>0) {
-                    adaptadorProdutosFinal = new ArrayAdapter<ProdutosCirurgia>(getBaseContext(),
-                            android.R.layout.simple_list_item_multiple_choice, arrayProdutos);
-
-                    adaptadorProdutosFinal.sort(new Comparator<ProdutosCirurgia>() {
+                    adaptadorProdutos.sort(new Comparator<ProdutosCirurgia>() {
 
                         @Override
                         public int compare(ProdutosCirurgia lhs, ProdutosCirurgia rhs) {
                             return ("" + lhs.getNomeProduto().toUpperCase()).compareTo(("" + rhs.getNomeProduto()).toUpperCase());
                         }
                     });
-                    listaProdutosFinal.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
-                    listaProdutosFinal.setAdapter(adaptadorProdutosFinal);
 
+                   // adaptadorProdutosFinal = new ArrayAdapter<ProdutosCirurgia>(getActivity().getBaseContext(),
+                     //       android.R.layout.simple_list_item_multiple_choice, arrayProdutos);
 
-                    for (int j = 0; j < arrayProdutos.size(); j++) {
-                        if (arrayProdutos.get(j).getPreparado() == true) {
-                            listaProdutosFinal.setItemChecked(j, true);
-                        }
+                    listaProdutosFinal.setAdapter(adaptadorProdutos);
 
-                    }
 
 
                 }
@@ -612,8 +548,9 @@ public class ListaProdutosActivity extends ActionBarActivity {
 
             } else {
                 ringProgressDialog.dismiss();
-                Toast.makeText(getApplicationContext(), "Erro Get Produtos da Cirurgia", Toast.LENGTH_SHORT).show();
-                finish();
+                Toast.makeText(getActivity().getApplicationContext(), "Erro Get Produtos da Cirurgia", Toast.LENGTH_SHORT).show();
+                ((HomeActivity) getActivity()).onItemClickNavigation(0, HomeActivity.getLayoutcontainerid());
+                ((HomeActivity) getActivity()).setCheckedItemNavigation(0,true);
 
             }
         }}
@@ -625,7 +562,7 @@ public class ListaProdutosActivity extends ActionBarActivity {
         @Override
         protected void onPreExecute() {
 
-            ringProgressDialog = new ProgressDialog(ListaProdutosActivity.this);
+            ringProgressDialog = new ProgressDialog(getActivity());
             ringProgressDialog.setIcon(R.drawable.ic_launcher);
             ringProgressDialog.setTitle("Aguarde...");
             ringProgressDialog.setMessage("A Procurar Produtos...");
@@ -654,7 +591,6 @@ public class ListaProdutosActivity extends ActionBarActivity {
             if (lista != null) {
                 ArrayList<Produtos> listaProdutos = new ArrayList<Produtos>();
                 for(int i=0; i<lista.size();i++) {
-                    if(lista.get(i).getTipo().equals("A")) {
                         Produtos p = new Produtos();
                         p.setTipo(lista.get(i).getTipo());
                         p.setNome(lista.get(i).getNome());
@@ -664,14 +600,14 @@ public class ListaProdutosActivity extends ActionBarActivity {
                         p.setReferencia(lista.get(i).getReferencia());
 
                         listaProdutos.add(p);
-                    }
+
 
                 }
 
-                if(arrayProdutos.size()>0){
+                if(HomeActivity.getListaProdutos().getSize()>0){
 
-                    for(int i=0; i<arrayProdutos.size(); i++){
-                        listaProdutos = removeElementoDaLista(listaProdutos, arrayProdutos.get(i));
+                    for(int i=0; i<HomeActivity.getListaProdutos().getListas().size(); i++){
+                        listaProdutos = removeElementoDaLista(listaProdutos, HomeActivity.getListaProdutos().getListas().get(i));
                     }
                 }
 
@@ -680,7 +616,7 @@ public class ListaProdutosActivity extends ActionBarActivity {
 
 
                 if(listaProdutos.size()>0){
-                    adaptadorProduto = new ArrayAdapter<Produtos>(getBaseContext(),
+                    adaptadorProduto = new ArrayAdapter<Produtos>(getActivity().getBaseContext(),
                             android.R.layout.simple_list_item_1, listaProdutos);
                     adaptadorProduto.sort(new Comparator<Produtos>() {
 
@@ -698,8 +634,9 @@ public class ListaProdutosActivity extends ActionBarActivity {
                     ringProgressDialog.dismiss();
             } else {
                 ringProgressDialog.dismiss();
-                Toast.makeText(getApplicationContext(), "Erro Get Produtos", Toast.LENGTH_SHORT).show();
-                finish();
+                Toast.makeText(getActivity().getApplicationContext(), "Erro Get Produtos", Toast.LENGTH_SHORT).show();
+                ((HomeActivity) getActivity()).onItemClickNavigation(0, HomeActivity.getLayoutcontainerid());
+                ((HomeActivity) getActivity()).setCheckedItemNavigation(0,true);
 
             }
         }
@@ -723,10 +660,10 @@ public class ListaProdutosActivity extends ActionBarActivity {
 
 
     private class adicionarProdutosCirurgia extends
-            AsyncTask<ArrayList<ProdutosCirurgia>, Void, Boolean> {
+            AsyncTask<ListasProdutosCirurgia, Void, Boolean> {
         @Override
         protected void onPreExecute() {
-            ringProgressDialog = new ProgressDialog(ListaProdutosActivity.this);
+            ringProgressDialog = new ProgressDialog(getActivity());
             ringProgressDialog.setIcon(R.drawable.ic_launcher);
             ringProgressDialog.setTitle("Please wait...");
             ringProgressDialog.setMessage("A Adicionar Produtos...");
@@ -739,7 +676,7 @@ public class ListaProdutosActivity extends ActionBarActivity {
         ;
 
         @Override
-        protected Boolean doInBackground(ArrayList<ProdutosCirurgia>... params) {
+        protected Boolean doInBackground(ListasProdutosCirurgia... params) {
             Boolean adicionou = false;
 
             try {
@@ -755,86 +692,24 @@ public class ListaProdutosActivity extends ActionBarActivity {
 
         @Override
         protected void onPostExecute(Boolean result) {
-            String a = (result ? "Produtos Adicionados com Sucesso!"
-                    : "Produtos Não Adicionados!");
-
-            Toast.makeText(getApplicationContext(), a, Toast.LENGTH_LONG)
+            Toast.makeText(getActivity().getApplicationContext(), (result ? "Produtos Adicionados com Sucesso!"
+                    : "Produtos Não Adicionados!"), Toast.LENGTH_LONG)
                     .show();
+
+            if(result)
+            {
+                ((HomeActivity) getActivity()).onItemClickNavigation(0, HomeActivity.getLayoutcontainerid());
+                ((HomeActivity) getActivity()).setCheckedItemNavigation(0, true);
+            }
             adicionou = true;
             ringProgressDialog.dismiss();
 
-            createPDF();
+          //  createPDF();
 
         }
 
     }
 
-    public void createPDF()
-    {
-        Document doc = new Document();
-
-        try {
-            String path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/PDF";
-
-            File dir = new File(path);
-            if(!dir.exists())
-                dir.mkdirs();
-
-            Log.d("PDFCreator", "PDF Path: " + path);
-            File file = new File(dir,"ListaMateriais_id:" + idCirurgia+".pdf");
-            FileOutputStream fOut = new FileOutputStream(file);
-
-            PdfWriter.getInstance(doc, fOut);
-
-            //open the document
-            doc.open();
-
-            /* Create Paragraph and Set Font */
-            Paragraph p1 = new Paragraph("Lista Materiais:  ", FontFactory.getFont(FontFactory.defaultEncoding, Font.DEFAULTSIZE, Font.BOLDITALIC));
-            p1.setAlignment(Paragraph.ALIGN_LEFT);
-            doc.add(p1);
-
-            Paragraph enter = new Paragraph(" ");
-            doc.add(enter);
-
-
-            for(int i = 0; i<arrayProdutos.size(); i++)
-            {
-                Paragraph s = new Paragraph(arrayProdutos.get(i).toString(), FontFactory.getFont(FontFactory.defaultEncoding, Font.DEFAULTSIZE, Font.UNDERLINE));
-                s.setAlignment(Paragraph.ALIGN_LEFT);
-                doc.add(s);
-            }
-
-            doc.add(enter);
-            doc.add(enter);
-            doc.add(enter);
-
-
-
-            Toast.makeText(getApplicationContext(), "Created...", Toast.LENGTH_LONG).show();
-
-        } catch (DocumentException de) {
-            Log.e("PDFCreator", "DocumentException:" + de);
-        } catch (IOException e) {
-            Log.e("PDFCreator", "ioException:" + e);
-        }
-        finally
-        {
-            doc.close();
-            openPdf();
-        }
-    }
-
-    void openPdf()
-    {
-        Intent intent = new Intent(Intent.ACTION_VIEW);
-        String path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/PDF";
-
-        File file = new File(path,"ListaMateriais_id:" + idCirurgia+".pdf");
-
-        intent.setDataAndType( Uri.fromFile(file), "application/pdf" );
-        startActivity(intent);
-    }
 
 
 }

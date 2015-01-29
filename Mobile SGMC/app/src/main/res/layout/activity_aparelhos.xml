@@ -25,16 +25,39 @@
             android:layout_marginTop="10dp">
 
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Aparelhos Utilizados:"
-                android:id="@+id/textview_Aparelho"
-                android:layout_marginRight="15dp"
-                android:layout_marginTop="15dp"
-                android:textStyle="bold|italic"
-                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-                android:layout_marginLeft="15dp" />
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Material:"
+                    android:id="@+id/textView59"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginTop="15dp"
+                    android:textStyle="bold|italic"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Utilizado:"
+                    android:id="@+id/textView60"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginTop="15dp"
+                    android:textStyle="bold|italic"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_weight="1"
+                    android:gravity="end" />
+            </LinearLayout>
+
             <ListView
                 android:id="@+id/listView_AparelhosUtilizados"
                 android:layout_width="match_parent"

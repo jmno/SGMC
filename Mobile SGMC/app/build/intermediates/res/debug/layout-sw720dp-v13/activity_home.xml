@@ -1,11 +1,6 @@
-<pt.mobilesgmc.view.viewgroup.FlyOutContainer xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent" >
-
-   <include
-        layout="@layout/layout_menu" />
 
     <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/backgroundapp"
@@ -64,5 +59,4 @@
             android:visibility="invisible" />
 
     </RelativeLayout>
-
-</pt.mobilesgmc.view.viewgroup.FlyOutContainer><!-- From: file:/Users/Nicolau/Dropbox/Leiria/4Ano/1Semestre/SGMC/NEW/Mobile%20SGMC/app/src/main/res/layout-sw720dp/activity_home.xml -->
+<!-- From: file:/Users/Nicolau/Dropbox/Leiria/4Ano/1Semestre/SGMC/NEW/Mobile%20SGMC/app/src/main/res/layout-sw720dp/activity_home.xml -->

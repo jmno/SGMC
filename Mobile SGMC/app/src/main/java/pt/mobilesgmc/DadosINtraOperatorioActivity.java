@@ -1,16 +1,15 @@
 package pt.mobilesgmc;
 
-import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v4.app.Fragment;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -55,7 +54,7 @@ import pt.mobilesgmc.modelo.SinaisVitais;
 import pt.mobilesgmc.modelo.WebServiceUtils;
 import pt.mobilesgmc.sinaisVitais.AdapterSinaisVitais;
 
-public class DadosINtraOperatorioActivity extends ActionBarActivity {
+public class DadosINtraOperatorioActivity extends Fragment {
 
 	String token;
 	ProgressDialog ringProgressDialog = null;
@@ -64,8 +63,7 @@ public class DadosINtraOperatorioActivity extends ActionBarActivity {
     private EditText editText_ML;
     private EditText editText_AgulhaCalibre;
     private int mYear, mMonth, mDay, mHour, mMinute, mSecond;
-    private Context contexto;
-    private static DadosIntraoperatorioFinal dadosFinal;
+
 
     //Acessos Venosos
     private ListView listView_AcessosVenosos;
@@ -156,29 +154,35 @@ public class DadosINtraOperatorioActivity extends ActionBarActivity {
     private EditText nFrascosBiopsia;
     private LinearLayout linearLayoutBiopsia;
 
+    public DadosINtraOperatorioActivity newInstance(String text){
+        DadosINtraOperatorioActivity mFragment = new DadosINtraOperatorioActivity();
+        Bundle mBundle = new Bundle();
+        mFragment.setArguments(mBundle);
+        return mFragment;
+    }
 
     @Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_dados_intra_operatorio);
-        getSupportActionBar();
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // TODO Auto-generated method stub
+        View rootView = inflater.inflate(R.layout.activity_dados_intra_operatorio, container, false);
+        token = HomeActivity.getToken();
 
-        setTitle("Intra");
-		token = PreferenceManager.getDefaultSharedPreferences(this).getString(
-				"token", "defaultStringIfNothingFound");
 
-        spinner_tipoAnestesia = (Spinner) findViewById(R.id.spinner_DadosIntra_TipoAnestesia);
-        editText_TET = (EditText) findViewById(R.id.editText_DadosIntra_TET);
-        editText_ML = (EditText) findViewById(R.id.editText_DadosIntra_ML);
-        editText_AgulhaCalibre = (EditText) findViewById(R.id.editText_DadosIntra_AgulhaPLCalibre);
+        spinner_tipoAnestesia = (Spinner) rootView.findViewById(R.id.spinner_DadosIntra_TipoAnestesia);
+        editText_TET = (EditText) rootView.findViewById(R.id.editText_DadosIntra_TET);
+        editText_ML = (EditText) rootView.findViewById(R.id.editText_DadosIntra_ML);
+        editText_AgulhaCalibre = (EditText) rootView.findViewById(R.id.editText_DadosIntra_AgulhaPLCalibre);
 
-        contexto = this;
 
 
         new verificaIntraOperatorio().execute();
 
-	}
+        setHasOptionsMenu(true);
+        return rootView;
+    }
+
+
 
     public void constroiAtividade()
     {
@@ -194,18 +198,18 @@ public class DadosINtraOperatorioActivity extends ActionBarActivity {
 
     public void acessosVenosos()
     {
-        listView_AcessosVenosos = (ListView) findViewById(R.id.listView_DadosIntra_AcessosVenosos);
+        listView_AcessosVenosos = (ListView) getView().findViewById(R.id.listView_DadosIntra_AcessosVenosos);
 
-        if(dadosFinal.getListaAcessoVenoso()==null)
-            dadosFinal.setListaAcessoVenoso(new ArrayList<AcessoVenoso>());
-        adapterAcessosVenosos = new AdapterAcessosVenosos(this,dadosFinal.getListaAcessoVenoso());
+        if(HomeActivity.getDadosFinal().getListaAcessoVenoso()==null)
+            HomeActivity.getDadosFinal().setListaAcessoVenoso(new ArrayList<AcessoVenoso>());
+        adapterAcessosVenosos = new AdapterAcessosVenosos(getActivity(),HomeActivity.getDadosFinal().getListaAcessoVenoso());
         listView_AcessosVenosos.setAdapter(adapterAcessosVenosos);
         listView_AcessosVenosos.setScrollContainer(false);
         listView_AcessosVenosos.setVisibility(View.GONE);
         setListViewHeightBasedOnChildren(listView_AcessosVenosos);
 
 
-        adicionarAcessosVenosos = (ImageView) findViewById(R.id.imageView_DadosIntra_addAcessoVenoso);
+        adicionarAcessosVenosos = (ImageView) getView().findViewById(R.id.imageView_DadosIntra_addAcessoVenoso);
         adicionarAcessosVenosos.setClickable(true);
         adicionarAcessosVenosos.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -214,16 +218,16 @@ public class DadosINtraOperatorioActivity extends ActionBarActivity {
                 a.setLocalizacaoAcessoVenoso("");
                 a.setCalibreAcessoVenoso(0);
                 a.setTipoAcessoVenoso("");
-                a.setIdIntra(dadosFinal.getDados().getId());
+                a.setIdIntra(HomeActivity.getDadosFinal().getDados().getId());
                 adapterAcessosVenosos.add(a);
                 setListViewHeightBasedOnChildren(listView_AcessosVenosos);
             }
         });
 
-        if(dadosFinal.getListaAcessoVenoso().size()!=0)
+        if(HomeActivity.getDadosFinal().getListaAcessoVenoso().size()!=0)
             adicionarAcessosVenosos.setVisibility(View.GONE);
 
-        expandCollapseAcessosVenosos = (ImageView) findViewById(R.id.imageView_DadosIntra_expandCollapseAcessosVenosos);
+        expandCollapseAcessosVenosos = (ImageView) getView().findViewById(R.id.imageView_DadosIntra_expandCollapseAcessosVenosos);
         expandCollapseAcessosVenosos.setClickable(true);
         expandCollapseAcessosVenosos.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -247,19 +251,19 @@ public class DadosINtraOperatorioActivity extends ActionBarActivity {
 
     public void sinaisVitais()
     {
-        listView_SinaisVitais = (ListView) findViewById(R.id.listView_DadosIntra_SinaisVitais);
+        listView_SinaisVitais = (ListView) getView().findViewById(R.id.listView_DadosIntra_SinaisVitais);
 
-        if(dadosFinal.getListaSinais()==null)
-            dadosFinal.setListaSinais(new ArrayList<SinaisVitais>());
+        if(HomeActivity.getDadosFinal().getListaSinais()==null)
+            HomeActivity.getDadosFinal().setListaSinais(new ArrayList<SinaisVitais>());
         setListViewHeightBasedOnChildren(listView_SinaisVitais);
-        adapterSinaisVitais = new AdapterSinaisVitais(this,dadosFinal.getListaSinais());
+        adapterSinaisVitais = new AdapterSinaisVitais(getActivity(),HomeActivity.getDadosFinal().getListaSinais());
         listView_SinaisVitais.setAdapter(adapterSinaisVitais);
         listView_SinaisVitais.setScrollContainer(false);
         listView_SinaisVitais.setVisibility(View.GONE);
-        adicionarSinalVital = (ImageView) findViewById(R.id.imageView_DadosIntra_AddSinalVital);
-        if(dadosFinal.getListaSinais().size()!=0)
+        adicionarSinalVital = (ImageView)  getView().findViewById(R.id.imageView_DadosIntra_AddSinalVital);
+        if(HomeActivity.getDadosFinal().getListaSinais().size()!=0)
             adicionarSinalVital.setVisibility(View.GONE);
-        expandCollapseSinaisVitais = (ImageView) findViewById(R.id.imageView_DadosIntra_ShowHideSinaisVitais);
+        expandCollapseSinaisVitais = (ImageView)  getView().findViewById(R.id.imageView_DadosIntra_ShowHideSinaisVitais);
         expandCollapseSinaisVitais.setClickable(true);
         expandCollapseSinaisVitais.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -294,7 +298,7 @@ public class DadosINtraOperatorioActivity extends ActionBarActivity {
                         + mMinute + ":00");
                 s.setHora(hr);
                 s.setFc(0);
-                s.setIdIntraOperatorio(dadosFinal.getDados().getId());
+                s.setIdIntraOperatorio(HomeActivity.getDadosFinal().getDados().getId());
                 adapterSinaisVitais.add(s);
                 setListViewHeightBasedOnChildren(listView_SinaisVitais);
 
@@ -305,21 +309,21 @@ public class DadosINtraOperatorioActivity extends ActionBarActivity {
 
     public void medicacaoAdministrada()
     {
-        listView_MedicacaoAdministrada = (ListView) findViewById(R.id.listView_DadosIntra_MedicacaoAdmin);
+        listView_MedicacaoAdministrada = (ListView) getView().findViewById(R.id.listView_DadosIntra_MedicacaoAdmin);
 
 
 
-        if(dadosFinal.getListaMedicacao()==null)
-            dadosFinal.setListaMedicacao(new ArrayList<MedicacaoAdministrada>());
+        if(HomeActivity.getDadosFinal().getListaMedicacao()==null)
+            HomeActivity.getDadosFinal().setListaMedicacao(new ArrayList<MedicacaoAdministrada>());
         setListViewHeightBasedOnChildren(listView_MedicacaoAdministrada);
-        adapterMedicacaoAdministrada = new AdapterMedicacaoAdministrada(this,dadosFinal.getListaMedicacao());
+        adapterMedicacaoAdministrada = new AdapterMedicacaoAdministrada(getActivity(),HomeActivity.getDadosFinal().getListaMedicacao());
         listView_MedicacaoAdministrada.setAdapter(adapterMedicacaoAdministrada);
         listView_MedicacaoAdministrada.setScrollContainer(false);
         listView_MedicacaoAdministrada.setVisibility(View.GONE);
-        adicionarMedicacao = (ImageView) findViewById(R.id.imageView_DadosIntra_AddMedicacao);
-        if(dadosFinal.getListaMedicacao().size()!=0)
+        adicionarMedicacao = (ImageView) getView().findViewById(R.id.imageView_DadosIntra_AddMedicacao);
+        if(HomeActivity.getDadosFinal().getListaMedicacao().size()!=0)
             adicionarMedicacao.setVisibility(View.GONE);
-        expandCollapseMedicacao = (ImageView) findViewById(R.id.imageView_DadosIntra_ExpandCollapseMedicacao);
+        expandCollapseMedicacao = (ImageView) getView().findViewById(R.id.imageView_DadosIntra_ExpandCollapseMedicacao);
         expandCollapseMedicacao.setClickable(true);
         expandCollapseMedicacao.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -352,7 +356,7 @@ public class DadosINtraOperatorioActivity extends ActionBarActivity {
                 String hr = (mHour + ":"
                         + mMinute + ":00");
                 m.setHora(hr);
-                m.setIdIntraOperatorio(dadosFinal.getDados().getId());
+                m.setIdIntraOperatorio(HomeActivity.getDadosFinal().getDados().getId());
                 adapterMedicacaoAdministrada.add(m);
                 setListViewHeightBasedOnChildren(listView_MedicacaoAdministrada);
 
@@ -363,28 +367,28 @@ public class DadosINtraOperatorioActivity extends ActionBarActivity {
     public void administracaoSangue()
     {
 
-        layoutObsAdminSangue = (LinearLayout) findViewById(R.id.linearLayout_DadosIntra_ObsAdminSangue);
+        layoutObsAdminSangue = (LinearLayout) getView().findViewById(R.id.linearLayout_DadosIntra_ObsAdminSangue);
         layoutObsAdminSangue.setVisibility(View.GONE);
         //VIR AQUI bUSCAR TEXTO
-        obsAdminSangue = (EditText) findViewById(R.id.editText_DadosIntra_ObsAdminSangue);
+        obsAdminSangue = (EditText) getView().findViewById(R.id.editText_DadosIntra_ObsAdminSangue);
         //
 
 
-        listView_AdminSangue = (ListView) findViewById(R.id.listView_DadosIntra_AdminSangue);
+        listView_AdminSangue = (ListView) getView().findViewById(R.id.listView_DadosIntra_AdminSangue);
 
 
 
-        if(dadosFinal.getAdminSangue()==null)
-            dadosFinal.setAdminSangue(new ArrayList<AdministracaoSangue>());
+        if(HomeActivity.getDadosFinal().getAdminSangue()==null)
+            HomeActivity.getDadosFinal().setAdminSangue(new ArrayList<AdministracaoSangue>());
         setListViewHeightBasedOnChildren(listView_AdminSangue);
-        adapterAdministracaoSangue = new AdapterAdministracaoSangue(this,dadosFinal.getAdminSangue());
+        adapterAdministracaoSangue = new AdapterAdministracaoSangue(getActivity(),HomeActivity.getDadosFinal().getAdminSangue());
         listView_AdminSangue.setAdapter(adapterAdministracaoSangue);
         listView_AdminSangue.setScrollContainer(false);
         listView_AdminSangue.setVisibility(View.GONE);
-        adicionarAdminSangue = (ImageView) findViewById(R.id.imageView_DadosIntra_AddAdminSangue);
-        if(dadosFinal.getAdminSangue().size()!=0)
+        adicionarAdminSangue = (ImageView) getView().findViewById(R.id.imageView_DadosIntra_AddAdminSangue);
+        if(HomeActivity.getDadosFinal().getAdminSangue().size()!=0)
             adicionarAdminSangue.setVisibility(View.GONE);
-        expandCollapseAdminSangue = (ImageView) findViewById(R.id.imageView_DadosIntra_ExpandeCollapseAdminSangue);
+        expandCollapseAdminSangue = (ImageView) getView().findViewById(R.id.imageView_DadosIntra_ExpandeCollapseAdminSangue);
         expandCollapseAdminSangue.setClickable(true);
         expandCollapseAdminSangue.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -423,7 +427,7 @@ public class DadosINtraOperatorioActivity extends ActionBarActivity {
                         + mMinute + ":00");
                 s.setHora(hr);
                 s.setFc(0);
-                s.setIdIntraOperatorio(dadosFinal.getDados().getId());
+                s.setIdIntraOperatorio(HomeActivity.getDadosFinal().getDados().getId());
                 if(existsAdminSangue(s)==-1) {
                     adapterAdministracaoSangue.add(s);
                     setListViewHeightBasedOnChildren(listView_AdminSangue);
@@ -439,11 +443,11 @@ public class DadosINtraOperatorioActivity extends ActionBarActivity {
 
     public void eliminacao()
     {
-        linearLayoutDrenagemVesical = (LinearLayout) findViewById(R.id.linearLayout_DadosIntra_Vesical);
+        linearLayoutDrenagemVesical = (LinearLayout) getView().findViewById(R.id.linearLayout_DadosIntra_Vesical);
         linearLayoutDrenagemVesical.setVisibility(View.GONE);
-        linearLayoutDrenagemNasogastrica = (LinearLayout) findViewById(R.id.linearLayout_DadosIntra_Nasogastrica);
+        linearLayoutDrenagemNasogastrica = (LinearLayout) getView().findViewById(R.id.linearLayout_DadosIntra_Nasogastrica);
         linearLayoutDrenagemNasogastrica.setVisibility(View.GONE);
-        expandCollapseEliminacao = (ImageView) findViewById(R.id.imageView_DadosIntra_ExpandeCollapseEliminacao);
+        expandCollapseEliminacao = (ImageView) getView().findViewById(R.id.imageView_DadosIntra_ExpandeCollapseEliminacao);
         expandCollapseEliminacao.setClickable(true);
         expandCollapseEliminacao.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -468,28 +472,28 @@ public class DadosINtraOperatorioActivity extends ActionBarActivity {
     public void cataterismoVesical()
     {
 
-        layoutDadosDrenagemVesical = (LinearLayout) findViewById(R.id.linearLayout_DadosIntra_DadosVesical);
+        layoutDadosDrenagemVesical = (LinearLayout) getView().findViewById(R.id.linearLayout_DadosIntra_DadosVesical);
         layoutDadosDrenagemVesical.setVisibility(View.GONE);
         //VIR AQUI bUSCAR TEXTO
-        calibreDrenagemVesical = (EditText) findViewById(R.id.editText_DadosIntra_calibreSondaVesical);
-        spinner_tipoDrenagemVesical = (Spinner) findViewById(R.id.spinner_DadosIntra_tipoSondaVesical);
+        calibreDrenagemVesical = (EditText) getView().findViewById(R.id.editText_DadosIntra_calibreSondaVesical);
+        spinner_tipoDrenagemVesical = (Spinner) getView().findViewById(R.id.spinner_DadosIntra_tipoSondaVesical);
         //
 
 
-        listView_DrenagemVesical = (ListView) findViewById(R.id.listView_DadosIntra_dreanagemVesical);
+        listView_DrenagemVesical = (ListView) getView().findViewById(R.id.listView_DadosIntra_dreanagemVesical);
 
-        if(dadosFinal.getListaDrenagemVesical()==null)
-        dadosFinal.setListaDrenagemVesical(new ArrayList<Drenagem>());
+        if(HomeActivity.getDadosFinal().getListaDrenagemVesical()==null)
+            HomeActivity.getDadosFinal().setListaDrenagemVesical(new ArrayList<Drenagem>());
 
         setListViewHeightBasedOnChildren(listView_DrenagemVesical);
-        adaptadorDrenagemVesical = new AdapterDrenagem(this,dadosFinal.getListaDrenagemVesical());
+        adaptadorDrenagemVesical = new AdapterDrenagem(getActivity(),HomeActivity.getDadosFinal().getListaDrenagemVesical());
         listView_DrenagemVesical.setAdapter(adaptadorDrenagemVesical);
         listView_DrenagemVesical.setScrollContainer(false);
         listView_DrenagemVesical.setVisibility(View.GONE);
-        adicionarDrenagemVesical = (ImageView) findViewById(R.id.imageView_DadosIntra_AddVesical);
-        if(dadosFinal.getListaDrenagemVesical().size()!=0)
+        adicionarDrenagemVesical = (ImageView) getView().findViewById(R.id.imageView_DadosIntra_AddVesical);
+        if(HomeActivity.getDadosFinal().getListaDrenagemVesical().size()!=0)
             adicionarDrenagemVesical.setVisibility(View.GONE);
-        expandeCollapseDrenagemVesical = (ImageView) findViewById(R.id.imageView_DadosIntra_ExpandeCollapseVesical);
+        expandeCollapseDrenagemVesical = (ImageView) getView().findViewById(R.id.imageView_DadosIntra_ExpandeCollapseVesical);
         expandeCollapseDrenagemVesical.setClickable(true);
         expandeCollapseDrenagemVesical.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -538,28 +542,28 @@ public class DadosINtraOperatorioActivity extends ActionBarActivity {
 
 
 
-        layoutDadosDrenagemNasogastrica = (LinearLayout) findViewById(R.id.linearLayout_DadosIntra_DadosNasogastrica);
+        layoutDadosDrenagemNasogastrica = (LinearLayout) getView().findViewById(R.id.linearLayout_DadosIntra_DadosNasogastrica);
         layoutDadosDrenagemNasogastrica.setVisibility(View.GONE);
         //VIR AQUI bUSCAR TEXTO
-        calibreDrenagemNasogastrica = (EditText) findViewById(R.id.editText_DadosIntra_calibreSondaNasogastrica);
-        spinner_tipoDrenagemNasogastrica = (Spinner) findViewById(R.id.spinner_DadosIntra_tipoSondaNasogastrica);
+        calibreDrenagemNasogastrica = (EditText) getView().findViewById(R.id.editText_DadosIntra_calibreSondaNasogastrica);
+        spinner_tipoDrenagemNasogastrica = (Spinner) getView().findViewById(R.id.spinner_DadosIntra_tipoSondaNasogastrica);
         //
 
 
-        listView_DrenagemNasogastrica = (ListView) findViewById(R.id.listView_DadosIntra_dreanagemNasogastrica);
+        listView_DrenagemNasogastrica = (ListView) getView().findViewById(R.id.listView_DadosIntra_dreanagemNasogastrica);
 
-        if(dadosFinal.getListaDrenagemNasogastrica()==null)
-        dadosFinal.setListaDrenagemNasogastrica(new ArrayList<Drenagem>());
+        if(HomeActivity.getDadosFinal().getListaDrenagemNasogastrica()==null)
+            HomeActivity.getDadosFinal().setListaDrenagemNasogastrica(new ArrayList<Drenagem>());
 
         setListViewHeightBasedOnChildren(listView_DrenagemNasogastrica);
-        adaptadorDrenagemNasogastrica = new AdapterDrenagem(this,dadosFinal.getListaDrenagemNasogastrica());
+        adaptadorDrenagemNasogastrica = new AdapterDrenagem(getActivity(),HomeActivity.getDadosFinal().getListaDrenagemNasogastrica());
         listView_DrenagemNasogastrica.setAdapter(adaptadorDrenagemNasogastrica);
         listView_DrenagemNasogastrica.setScrollContainer(false);
         listView_DrenagemNasogastrica.setVisibility(View.GONE);
-        adicionarDrenagemNasogastrica = (ImageView) findViewById(R.id.imageView_DadosIntra_AddNasogastrica);
-        if(dadosFinal.getListaDrenagemNasogastrica().size()!=0)
+        adicionarDrenagemNasogastrica = (ImageView) getView().findViewById(R.id.imageView_DadosIntra_AddNasogastrica);
+        if(HomeActivity.getDadosFinal().getListaDrenagemNasogastrica().size()!=0)
             adicionarDrenagemNasogastrica.setVisibility(View.GONE);
-        expandeCollapseDrenagemNasogastrica = (ImageView) findViewById(R.id.imageView_DadosIntra_ExpandeCollapseNasogastrica);
+        expandeCollapseDrenagemNasogastrica = (ImageView) getView().findViewById(R.id.imageView_DadosIntra_ExpandeCollapseNasogastrica);
         expandeCollapseDrenagemNasogastrica.setClickable(true);
         expandeCollapseDrenagemNasogastrica.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -607,20 +611,20 @@ public class DadosINtraOperatorioActivity extends ActionBarActivity {
     public void balancoHidrico()
     {
 
-        listView_BalancoHidrico = (ListView) findViewById(R.id.listView_DadosIntra_BalancoHidrico);
+        listView_BalancoHidrico = (ListView) getView().findViewById(R.id.listView_DadosIntra_BalancoHidrico);
 
 
         setListViewHeightBasedOnChildren(listView_DrenagemNasogastrica);
 
-        if(dadosFinal.getListaBalancos()==null)
-            dadosFinal.setListaBalancos(new ArrayList<BalancoHidrico>());
+        if(HomeActivity.getDadosFinal().getListaBalancos()==null)
+            HomeActivity.getDadosFinal().setListaBalancos(new ArrayList<BalancoHidrico>());
 
-        adapterBalancoHidrico = new AdapterBalancoHidrico(this,dadosFinal.getListaBalancos());
+        adapterBalancoHidrico = new AdapterBalancoHidrico(getActivity(),HomeActivity.getDadosFinal().getListaBalancos());
         listView_BalancoHidrico.setAdapter(adapterBalancoHidrico);
         listView_BalancoHidrico.setScrollContainer(false);
         listView_BalancoHidrico.setVisibility(View.GONE);
 
-        expandCollapseBalancoHidrico = (ImageView) findViewById(R.id.imageView_DadosIntra_ExpandCollapseBalancoHidrico);
+        expandCollapseBalancoHidrico = (ImageView) getView().findViewById(R.id.imageView_DadosIntra_ExpandCollapseBalancoHidrico);
         expandCollapseBalancoHidrico.setClickable(true);
         expandCollapseBalancoHidrico.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -644,19 +648,19 @@ public class DadosINtraOperatorioActivity extends ActionBarActivity {
     public void semNome()
     {
 
-        spinner_posicaoOperatoria = (Spinner) findViewById(R.id.spinner_DadosIntra_PosicaoOperatoria);
-        editText_alivioZonasPressao = (EditText) findViewById(R.id.editText_DadosIntra_AlivioZonasPressao);
-        spinner_localPosicaoOperatoria = (Spinner) findViewById(R.id.spinner_DadosIntra_LocalAlivioZonaPressao);
-        radioButton_mantatermica_sim = (RadioButton) findViewById(R.id.radioButton_MantaTermicaProtecaoSim);
-        radioButton_mantatermica_nao = (RadioButton) findViewById(R.id.radioButton_MantaTermicaProtecaoNao);
-        spinner_localMantaTermica = (Spinner) findViewById(R.id.spinner_DadosIntra_localMantaTermica);
-        linearLayout_mantaTermica = (LinearLayout) findViewById(R.id.linearLayout_mantaTermica);
+        spinner_posicaoOperatoria = (Spinner) getView().findViewById(R.id.spinner_DadosIntra_PosicaoOperatoria);
+        editText_alivioZonasPressao = (EditText) getView().findViewById(R.id.editText_DadosIntra_AlivioZonasPressao);
+        spinner_localPosicaoOperatoria = (Spinner) getView().findViewById(R.id.spinner_DadosIntra_LocalAlivioZonaPressao);
+        radioButton_mantatermica_sim = (RadioButton) getView().findViewById(R.id.radioButton_MantaTermicaProtecaoSim);
+        radioButton_mantatermica_nao = (RadioButton) getView().findViewById(R.id.radioButton_MantaTermicaProtecaoNao);
+        spinner_localMantaTermica = (Spinner) getView().findViewById(R.id.spinner_DadosIntra_localMantaTermica);
+        linearLayout_mantaTermica = (LinearLayout) getView().findViewById(R.id.linearLayout_mantaTermica);
 
         radioButton_mantatermica_nao.setSelected(true);
         radioButton_mantatermica_nao.setChecked(true);
 
         linearLayout_mantaTermica.setVisibility(View.GONE);
-        radioGroup_mantatermica = (RadioGroup) findViewById(R.id.radioGroup);
+        radioGroup_mantatermica = (RadioGroup) getView().findViewById(R.id.radioGroup);
 
         radioGroup_mantatermica.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -671,14 +675,14 @@ public class DadosINtraOperatorioActivity extends ActionBarActivity {
         });
 
 
-        radioButton_Garrote_sim = (RadioButton) findViewById(R.id.radioButton_GarroteSim);
-        radioButton_Garrote_nao = (RadioButton) findViewById(R.id.radioButton_GarroteNao);
-        radioGroup_Garrote = (RadioGroup) findViewById(R.id.radioGroup_Garrote);
-        editText_GarrotePressao = (EditText) findViewById(R.id.editText_GarrotePressao);
-        spinner_localizacaoGarrote = (Spinner) findViewById(R.id.spinner_DadosIntra_localGarrote);
-        linearLayout_garrote = (LinearLayout) findViewById(R.id.linearLayout_Garrote);
-        textView_Garrote_horaInicio = (TextView) findViewById(R.id.textView_GarroteHoraInicio);
-        textView_Garrote_horaFim = (TextView) findViewById(R.id.textView_GarroteHoraFim);
+        radioButton_Garrote_sim = (RadioButton) getView().findViewById(R.id.radioButton_GarroteSim);
+        radioButton_Garrote_nao = (RadioButton) getView().findViewById(R.id.radioButton_GarroteNao);
+        radioGroup_Garrote = (RadioGroup) getView().findViewById(R.id.radioGroup_Garrote);
+        editText_GarrotePressao = (EditText) getView().findViewById(R.id.editText_GarrotePressao);
+        spinner_localizacaoGarrote = (Spinner) getView().findViewById(R.id.spinner_DadosIntra_localGarrote);
+        linearLayout_garrote = (LinearLayout) getView().findViewById(R.id.linearLayout_Garrote);
+        textView_Garrote_horaInicio = (TextView) getView().findViewById(R.id.textView_GarroteHoraInicio);
+        textView_Garrote_horaFim = (TextView) getView().findViewById(R.id.textView_GarroteHoraFim);
 
         radioButton_Garrote_nao.setSelected(true);
         radioButton_Garrote_nao.setChecked(true);
@@ -705,7 +709,7 @@ public class DadosINtraOperatorioActivity extends ActionBarActivity {
                 mMinute = c.get(Calendar.MINUTE);
 
                 // Launch Date Picker Dialog
-                TimePickerDialog dpd = new TimePickerDialog(contexto,
+                TimePickerDialog dpd = new TimePickerDialog(getActivity(),
                         new TimePickerDialog.OnTimeSetListener() {
 
                             @Override
@@ -732,7 +736,7 @@ public class DadosINtraOperatorioActivity extends ActionBarActivity {
                 mMinute = c.get(Calendar.MINUTE);
 
                 // Launch Date Picker Dialog
-                TimePickerDialog dpd = new TimePickerDialog(contexto,
+                TimePickerDialog dpd = new TimePickerDialog(getActivity(),
                         new TimePickerDialog.OnTimeSetListener() {
 
                             @Override
@@ -751,11 +755,11 @@ public class DadosINtraOperatorioActivity extends ActionBarActivity {
 
 
 
-        radioButton_Electrodo_sim = (RadioButton) findViewById(R.id.radioButton_Electrodo_Sim);
-        radioButton_Electrodo_nao = (RadioButton) findViewById(R.id.radioButton_Electrodo_Nao);
-        radioGroup_Electrodo = (RadioGroup) findViewById(R.id.radioGroup_electrodoNeutro);
-        spinner_localizacaoElectrodo = (Spinner) findViewById(R.id.spinner_DadosIntra_localizacaoElectrodo);
-        linearLayout_electrodo = (LinearLayout) findViewById(R.id.linearLayout_Electrodo);
+        radioButton_Electrodo_sim = (RadioButton) getView().findViewById(R.id.radioButton_Electrodo_Sim);
+        radioButton_Electrodo_nao = (RadioButton) getView().findViewById(R.id.radioButton_Electrodo_Nao);
+        radioGroup_Electrodo = (RadioGroup) getView().findViewById(R.id.radioGroup_electrodoNeutro);
+        spinner_localizacaoElectrodo = (Spinner) getView().findViewById(R.id.spinner_DadosIntra_localizacaoElectrodo);
+        linearLayout_electrodo = (LinearLayout) getView().findViewById(R.id.linearLayout_Electrodo);
 
         radioButton_Electrodo_nao.setSelected(true);
         radioButton_Electrodo_nao.setChecked(true);
@@ -778,28 +782,28 @@ public class DadosINtraOperatorioActivity extends ActionBarActivity {
     {
 
 
-        linearLayoutBiopsia = (LinearLayout) findViewById(R.id.linearLayoutBiopsia);
+        linearLayoutBiopsia = (LinearLayout) getView().findViewById(R.id.linearLayoutBiopsia);
         linearLayoutBiopsia.setVisibility(View.GONE);
         //VIR AQUI bUSCAR TEXTO
-        nFrascosBiopsia = (EditText) findViewById(R.id.editText_Biopsia_nFrascos);
+        nFrascosBiopsia = (EditText) getView().findViewById(R.id.editText_Biopsia_nFrascos);
         //
 
 
-        listView_PecaBiopsia = (ListView) findViewById(R.id.listViewBiopsia);
+        listView_PecaBiopsia = (ListView) getView().findViewById(R.id.listViewBiopsia);
         setListViewHeightBasedOnChildren(listView_PecaBiopsia);
 
 
-        if(dadosFinal.getListaPecaBiopsia()==null)
-            dadosFinal.setListaPecaBiopsia(new ArrayList<PecaBiopsia>());
+        if(HomeActivity.getDadosFinal().getListaPecaBiopsia()==null)
+            HomeActivity.getDadosFinal().setListaPecaBiopsia(new ArrayList<PecaBiopsia>());
 
-        adapterBiopsia = new AdapterBiopsia(this,dadosFinal.getListaPecaBiopsia());
+        adapterBiopsia = new AdapterBiopsia(getActivity(),HomeActivity.getDadosFinal().getListaPecaBiopsia());
         listView_PecaBiopsia.setAdapter(adapterBiopsia);
         listView_PecaBiopsia.setScrollContainer(false);
         listView_PecaBiopsia.setVisibility(View.GONE);
-        addBiopsia = (ImageView) findViewById(R.id.imageView_addBiopsia);
-        if(dadosFinal.getListaPecaBiopsia().size()!=0)
+        addBiopsia = (ImageView) getView().findViewById(R.id.imageView_addBiopsia);
+        if(HomeActivity.getDadosFinal().getListaPecaBiopsia().size()!=0)
             addBiopsia.setVisibility(View.GONE);
-        expandCollapseBiopsia = (ImageView) findViewById(R.id.imageView_expandCollapse_Biopsia);
+        expandCollapseBiopsia = (ImageView) getView().findViewById(R.id.imageView_expandCollapse_Biopsia);
         expandCollapseBiopsia.setClickable(true);
         expandCollapseBiopsia.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -828,7 +832,7 @@ public class DadosINtraOperatorioActivity extends ActionBarActivity {
                 PecaBiopsia p = new PecaBiopsia();
                 p.setDescricao("");
                 p.setLaboratotio("");
-                p.setIdIntra(dadosFinal.getDados().getId());
+                p.setIdIntra(HomeActivity.getDadosFinal().getDados().getId());
                 adapterBiopsia.add(p);
                 setListViewHeightBasedOnChildren(listView_PecaBiopsia);
 
@@ -842,73 +846,73 @@ public class DadosINtraOperatorioActivity extends ActionBarActivity {
 
     public void preencherAtividade() {
 
-        if(dadosFinal.getDados()!=null){
-            if(dadosFinal.getDados().getTipoAnestesia()!=null)
-                spinner_tipoAnestesia.setSelection(spinnerDaMeATuaPosicao(spinner_tipoAnestesia, dadosFinal.getDados().getTipoAnestesia()));
+        if(HomeActivity.getDadosFinal().getDados()!=null){
+            if(HomeActivity.getDadosFinal().getDados().getTipoAnestesia()!=null)
+                spinner_tipoAnestesia.setSelection(spinnerDaMeATuaPosicao(spinner_tipoAnestesia, HomeActivity.getDadosFinal().getDados().getTipoAnestesia()));
 
-            editText_TET.setText(dadosFinal.getDados().getTet() + "");
-            editText_ML.setText(dadosFinal.getDados().getMl() + "");
-            editText_AgulhaCalibre.setText(dadosFinal.getDados().getCalibreAgulha() + "");
+            editText_TET.setText(HomeActivity.getDadosFinal().getDados().getTet() + "");
+            editText_ML.setText(HomeActivity.getDadosFinal().getDados().getMl() + "");
+            editText_AgulhaCalibre.setText(HomeActivity.getDadosFinal().getDados().getCalibreAgulha() + "");
 
-            if(dadosFinal.getDados().getObsAdminSangue()!=null)
-                obsAdminSangue.setText(dadosFinal.getDados().getObsAdminSangue());
+            if(HomeActivity.getDadosFinal().getDados().getObsAdminSangue()!=null)
+                obsAdminSangue.setText(HomeActivity.getDadosFinal().getDados().getObsAdminSangue());
 
-            if(dadosFinal.getDados().getPosicaoOperatoria()!=null)
-                spinner_posicaoOperatoria.setSelection(spinnerDaMeATuaPosicao(spinner_posicaoOperatoria,dadosFinal.getDados().getPosicaoOperatoria()));
+            if(HomeActivity.getDadosFinal().getDados().getPosicaoOperatoria()!=null)
+                spinner_posicaoOperatoria.setSelection(spinnerDaMeATuaPosicao(spinner_posicaoOperatoria,HomeActivity.getDadosFinal().getDados().getPosicaoOperatoria()));
 
 
-            if(dadosFinal.getDados().getAlivioZonapressao()!=null)
-                editText_alivioZonasPressao.setText(dadosFinal.getDados().getAlivioZonapressao());
+            if(HomeActivity.getDadosFinal().getDados().getAlivioZonapressao()!=null)
+                editText_alivioZonasPressao.setText(HomeActivity.getDadosFinal().getDados().getAlivioZonapressao());
 
-            if(dadosFinal.getDados().getLocalAlivioZonaPressao()!=null)
-                spinner_localPosicaoOperatoria.setSelection(spinnerDaMeATuaPosicao(spinner_localPosicaoOperatoria,dadosFinal.getDados().getLocalAlivioZonaPressao()));
+            if(HomeActivity.getDadosFinal().getDados().getLocalAlivioZonaPressao()!=null)
+                spinner_localPosicaoOperatoria.setSelection(spinnerDaMeATuaPosicao(spinner_localPosicaoOperatoria,HomeActivity.getDadosFinal().getDados().getLocalAlivioZonaPressao()));
 
-            if(dadosFinal.getDados().isMantaTermica())
+            if(HomeActivity.getDadosFinal().getDados().isMantaTermica())
             {
                 radioButton_mantatermica_sim.setChecked(true);
                 linearLayout_mantaTermica.setVisibility(View.VISIBLE);
-                spinner_localMantaTermica.setSelection(spinnerDaMeATuaPosicao(spinner_localMantaTermica,dadosFinal.getDados().getLocalMantaTermica()));
+                spinner_localMantaTermica.setSelection(spinnerDaMeATuaPosicao(spinner_localMantaTermica,HomeActivity.getDadosFinal().getDados().getLocalMantaTermica()));
             }
 
-            if(dadosFinal.getDados().getPressaoGarrotePneumatico()>0.0)
+            if(HomeActivity.getDadosFinal().getDados().getPressaoGarrotePneumatico()>0.0)
             {
                 radioButton_Garrote_sim.setChecked(true);
                 linearLayout_garrote.setVisibility(View.VISIBLE);
-                spinner_localizacaoGarrote.setSelection(spinnerDaMeATuaPosicao(spinner_localizacaoGarrote,dadosFinal.getDados().getLocalizacaoGarrotePneumatico()));
-                editText_GarrotePressao.setText(dadosFinal.getDados().getPressaoGarrotePneumatico()+"");
-                if(dadosFinal.getDados().getHoraInicioGarrotePneum()!=null)
-                    textView_Garrote_horaInicio.setText(dadosFinal.getDados().getHoraInicioGarrotePneum());
-                if(dadosFinal.getDados().getHoraFimGarrotePneum()!=null)
-                    textView_Garrote_horaFim.setText(dadosFinal.getDados().getHoraFimGarrotePneum());
+                spinner_localizacaoGarrote.setSelection(spinnerDaMeATuaPosicao(spinner_localizacaoGarrote,HomeActivity.getDadosFinal().getDados().getLocalizacaoGarrotePneumatico()));
+                editText_GarrotePressao.setText(HomeActivity.getDadosFinal().getDados().getPressaoGarrotePneumatico()+"");
+                if(HomeActivity.getDadosFinal().getDados().getHoraInicioGarrotePneum()!=null)
+                    textView_Garrote_horaInicio.setText(HomeActivity.getDadosFinal().getDados().getHoraInicioGarrotePneum());
+                if(HomeActivity.getDadosFinal().getDados().getHoraFimGarrotePneum()!=null)
+                    textView_Garrote_horaFim.setText(HomeActivity.getDadosFinal().getDados().getHoraFimGarrotePneum());
             }
 
-            if(dadosFinal.getDados().isPlacaEletrodo())
+            if(HomeActivity.getDadosFinal().getDados().isPlacaEletrodo())
             {
                 radioButton_Electrodo_sim.setChecked(true);
                 linearLayout_electrodo.setVisibility(View.VISIBLE);
-                spinner_localizacaoElectrodo.setSelection(spinnerDaMeATuaPosicao(spinner_localizacaoElectrodo,dadosFinal.getDados().getLocalizacaoPlacaEletrodo()));
+                spinner_localizacaoElectrodo.setSelection(spinnerDaMeATuaPosicao(spinner_localizacaoElectrodo,HomeActivity.getDadosFinal().getDados().getLocalizacaoPlacaEletrodo()));
             }
 
-            nFrascosBiopsia.setText(dadosFinal.getDados().getNumFrascosPecaBiopsia()+"");
+            nFrascosBiopsia.setText(HomeActivity.getDadosFinal().getDados().getNumFrascosPecaBiopsia()+"");
 
 
         }
 
-        if(dadosFinal.getListaEliminacao()==null)
-            dadosFinal.setListaEliminacao(new ArrayList<Eliminacao>());
-        if(dadosFinal.getListaEliminacao().size()>0)
+        if(HomeActivity.getDadosFinal().getListaEliminacao()==null)
+            HomeActivity.getDadosFinal().setListaEliminacao(new ArrayList<Eliminacao>());
+        if(HomeActivity.getDadosFinal().getListaEliminacao().size()>0)
         {
-            for(int i=0; i<dadosFinal.getListaEliminacao().size(); i++)
+            for(int i=0; i<HomeActivity.getDadosFinal().getListaEliminacao().size(); i++)
             {
-                if(dadosFinal.getListaEliminacao().get(i).getTipo().toLowerCase().equals("v"))
+                if(HomeActivity.getDadosFinal().getListaEliminacao().get(i).getTipo().toLowerCase().equals("v"))
                 {
-                    calibreDrenagemVesical.setText(dadosFinal.getListaEliminacao().get(i).getCalibre()+"");
-                    spinner_tipoDrenagemVesical.setSelection(spinnerDaMeATuaPosicao(spinner_tipoDrenagemVesical,dadosFinal.getListaEliminacao().get(i).getTipoSonda()));
+                    calibreDrenagemVesical.setText(HomeActivity.getDadosFinal().getListaEliminacao().get(i).getCalibre()+"");
+                    spinner_tipoDrenagemVesical.setSelection(spinnerDaMeATuaPosicao(spinner_tipoDrenagemVesical,HomeActivity.getDadosFinal().getListaEliminacao().get(i).getTipoSonda()));
                 }
-                else if(dadosFinal.getListaEliminacao().get(i).getTipo().toLowerCase().equals("n"))
+                else if(HomeActivity.getDadosFinal().getListaEliminacao().get(i).getTipo().toLowerCase().equals("n"))
                 {
-                    calibreDrenagemNasogastrica.setText(dadosFinal.getListaEliminacao().get(i).getCalibre()+"");
-                    spinner_tipoDrenagemNasogastrica.setSelection(spinnerDaMeATuaPosicao(spinner_tipoDrenagemNasogastrica,dadosFinal.getListaEliminacao().get(i).getTipoSonda()));
+                    calibreDrenagemNasogastrica.setText(HomeActivity.getDadosFinal().getListaEliminacao().get(i).getCalibre()+"");
+                    spinner_tipoDrenagemNasogastrica.setSelection(spinnerDaMeATuaPosicao(spinner_tipoDrenagemNasogastrica,HomeActivity.getDadosFinal().getListaEliminacao().get(i).getTipoSonda()));
                 }
             }
         }
@@ -920,7 +924,7 @@ public class DadosINtraOperatorioActivity extends ActionBarActivity {
 
 
 
-        Log.i("Acessos", dadosFinal.getListaAcessoVenoso().toString());
+        Log.i("Acessos", HomeActivity.getDadosFinal().getListaAcessoVenoso().toString());
 
 
 
@@ -962,23 +966,23 @@ public class DadosINtraOperatorioActivity extends ActionBarActivity {
 
     public static void refreshBalancos()
     {
-        dadosFinal.getListaBalancos().clear();
+        HomeActivity.getDadosFinal().getListaBalancos().clear();
 
-        for(int i=0; i<dadosFinal.getAdminSangue().size(); i++)
+        for(int i=0; i<HomeActivity.getDadosFinal().getAdminSangue().size(); i++)
         {
-            adicionaOuAlteraAdminSangue(dadosFinal.getAdminSangue().get(i));
+            adicionaOuAlteraAdminSangue(HomeActivity.getDadosFinal().getAdminSangue().get(i));
 
         }
 
-        for(int i=0; i<dadosFinal.getListaDrenagemNasogastrica().size(); i++)
+        for(int i=0; i<HomeActivity.getDadosFinal().getListaDrenagemNasogastrica().size(); i++)
         {
-            adicionaOuAlteraDrenagemNasogastrica(dadosFinal.getListaDrenagemNasogastrica().get(i));
+            adicionaOuAlteraDrenagemNasogastrica(HomeActivity.getDadosFinal().getListaDrenagemNasogastrica().get(i));
 
         }
 
-        for(int i=0; i<dadosFinal.getListaDrenagemVesical().size(); i++)
+        for(int i=0; i<HomeActivity.getDadosFinal().getListaDrenagemVesical().size(); i++)
         {
-            adicionaOuAlteraDrenagemVesical(dadosFinal.getListaDrenagemVesical().get(i));
+            adicionaOuAlteraDrenagemVesical(HomeActivity.getDadosFinal().getListaDrenagemVesical().get(i));
 
         }
 
@@ -991,15 +995,15 @@ public class DadosINtraOperatorioActivity extends ActionBarActivity {
     {
         int resultado = existsAdminSangue(a);
         if(resultado!=-1){
-            dadosFinal.getListaBalancos().get(resultado).setValorAdministracaoSangue(a.getValorAdministracao());
+            HomeActivity.getDadosFinal().getListaBalancos().get(resultado).setValorAdministracaoSangue(a.getValorAdministracao());
         }
         else
         {
             BalancoHidrico bal = new BalancoHidrico();
-            bal.setIdIntraOperatorio(dadosFinal.getDados().getId());
+            bal.setIdIntraOperatorio(HomeActivity.getDadosFinal().getDados().getId());
             bal.setValorAdministracaoSangue(a.getValorAdministracao());
             bal.setHora(a.getHora());
-            dadosFinal.getListaBalancos().add(bal);
+            HomeActivity.getDadosFinal().getListaBalancos().add(bal);
             setListViewHeightBasedOnChildren(listView_BalancoHidrico);
         }
 
@@ -1008,15 +1012,15 @@ public class DadosINtraOperatorioActivity extends ActionBarActivity {
     {
         int resultado = existsDrenagemNasogastrica(dre);
         if(resultado!=-1){
-            dadosFinal.getListaBalancos().get(resultado).setValorEliminacao(dre.getDrenagem());
+            HomeActivity.getDadosFinal().getListaBalancos().get(resultado).setValorEliminacao(dre.getDrenagem());
         }
         else
         {
             BalancoHidrico bal = new BalancoHidrico();
-            bal.setIdIntraOperatorio(dadosFinal.getDados().getId());
+            bal.setIdIntraOperatorio(HomeActivity.getDadosFinal().getDados().getId());
             bal.setValorEliminacao(dre.getDrenagem());
             bal.setHora(dre.getHora());
-            dadosFinal.getListaBalancos().add(bal);
+            HomeActivity.getDadosFinal().getListaBalancos().add(bal);
             setListViewHeightBasedOnChildren(listView_BalancoHidrico);
         }
 
@@ -1025,15 +1029,15 @@ public class DadosINtraOperatorioActivity extends ActionBarActivity {
     {
         int resultado = existsDrenagemVesical(dre);
         if(resultado!=-1){
-            dadosFinal.getListaBalancos().get(resultado).setValorEliminacao(dre.getDrenagem());
+            HomeActivity.getDadosFinal().getListaBalancos().get(resultado).setValorEliminacao(dre.getDrenagem());
         }
         else
         {
             BalancoHidrico bal = new BalancoHidrico();
-            bal.setIdIntraOperatorio(dadosFinal.getDados().getId());
+            bal.setIdIntraOperatorio(HomeActivity.getDadosFinal().getDados().getId());
             bal.setValorEliminacao(dre.getDrenagem());
             bal.setHora(dre.getHora());
-            dadosFinal.getListaBalancos().add(bal);
+            HomeActivity.getDadosFinal().getListaBalancos().add(bal);
             setListViewHeightBasedOnChildren(listView_BalancoHidrico);
         }
 
@@ -1042,9 +1046,9 @@ public class DadosINtraOperatorioActivity extends ActionBarActivity {
     public static int existsAdminSangue(AdministracaoSangue ad)
     {
         int resultado = -1;
-        if(dadosFinal.getListaBalancos().size()>0){
-            for (int i=0;i<dadosFinal.getListaBalancos().size();i++){
-                if(dadosFinal.getListaBalancos().get(i).getHora().equals(ad.getHora()))
+        if(HomeActivity.getDadosFinal().getListaBalancos().size()>0){
+            for (int i=0;i<HomeActivity.getDadosFinal().getListaBalancos().size();i++){
+                if(HomeActivity.getDadosFinal().getListaBalancos().get(i).getHora().equals(ad.getHora()))
                     resultado = i;
             }
 
@@ -1054,9 +1058,9 @@ public class DadosINtraOperatorioActivity extends ActionBarActivity {
     public static int existsDrenagemNasogastrica(Drenagem dre)
     {
         int resultado = -1;
-        if(dadosFinal.getListaDrenagemNasogastrica().size()>0){
-            for (int i=0;i<dadosFinal.getListaBalancos().size();i++){
-                if(dadosFinal.getListaBalancos().get(i).getHora().equals(dre.getHora()))
+        if(HomeActivity.getDadosFinal().getListaDrenagemNasogastrica().size()>0){
+            for (int i=0;i<HomeActivity.getDadosFinal().getListaBalancos().size();i++){
+                if(HomeActivity.getDadosFinal().getListaBalancos().get(i).getHora().equals(dre.getHora()))
                     resultado = i;
             }
 
@@ -1066,9 +1070,9 @@ public class DadosINtraOperatorioActivity extends ActionBarActivity {
     public static int existsDrenagemVesical(Drenagem dre)
     {
         int resultado = -1;
-        if(dadosFinal.getListaDrenagemVesical().size()>0){
-            for (int i=0;i<dadosFinal.getListaBalancos().size();i++){
-                if(dadosFinal.getListaBalancos().get(i).getHora().equals(dre.getHora()))
+        if(HomeActivity.getDadosFinal().getListaDrenagemVesical().size()>0){
+            for (int i=0;i<HomeActivity.getDadosFinal().getListaBalancos().size();i++){
+                if(HomeActivity.getDadosFinal().getListaBalancos().get(i).getHora().equals(dre.getHora()))
                     resultado = i;
             }
 
@@ -1077,15 +1081,15 @@ public class DadosINtraOperatorioActivity extends ActionBarActivity {
     }
 
     public void guardarDadosIntraOperatorio() throws ExceptionLog {
-        dadosFinal.getDados().setTipoAnestesia(spinner_tipoAnestesia.getSelectedItem().toString());
-        dadosFinal.getDados().setTet(Integer.parseInt(editText_TET.getText().toString()));
-        dadosFinal.getDados().setMl(Integer.parseInt(editText_ML.getText().toString()));
-        dadosFinal.getDados().setCalibreAgulha(Double.parseDouble(editText_AgulhaCalibre.getText().toString()));
-        dadosFinal.getDados().setObsAdminSangue(obsAdminSangue.getText().toString());
+        HomeActivity.getDadosFinal().getDados().setTipoAnestesia(spinner_tipoAnestesia.getSelectedItem().toString());
+        HomeActivity.getDadosFinal().getDados().setTet(Integer.parseInt(editText_TET.getText().toString()));
+        HomeActivity.getDadosFinal().getDados().setMl(Integer.parseInt(editText_ML.getText().toString()));
+        HomeActivity.getDadosFinal().getDados().setCalibreAgulha(Double.parseDouble(editText_AgulhaCalibre.getText().toString()));
+        HomeActivity.getDadosFinal().getDados().setObsAdminSangue(obsAdminSangue.getText().toString());
 
-        dadosFinal.setListaEliminacao(new ArrayList<Eliminacao>());
+        HomeActivity.getDadosFinal().setListaEliminacao(new ArrayList<Eliminacao>());
         Eliminacao e = new Eliminacao();
-        e.setIdEnfermagemIntra(dadosFinal.getDados().getId());
+        e.setIdEnfermagemIntra(HomeActivity.getDadosFinal().getDados().getId());
         e.setTipo("V");
         e.setTipoSonda(spinner_tipoDrenagemVesical.getSelectedItem().toString());
 
@@ -1099,31 +1103,31 @@ public class DadosINtraOperatorioActivity extends ActionBarActivity {
                 e.setCalibre(0);
                 throw new ExceptionLog(ex.getMessage().toString());
             }
-            dadosFinal.getListaEliminacao().add(e);
+            HomeActivity.getDadosFinal().getListaEliminacao().add(e);
         }
 
         e = new Eliminacao();
-        e.setIdEnfermagemIntra(dadosFinal.getDados().getId());
+        e.setIdEnfermagemIntra(HomeActivity.getDadosFinal().getDados().getId());
         e.setTipo("N");
         e.setTipoSonda(spinner_tipoDrenagemNasogastrica.getSelectedItem().toString());
         if(!isEmpty(calibreDrenagemNasogastrica)) {
             e.setCalibre(Double.parseDouble(calibreDrenagemNasogastrica.getText().toString()));
-            dadosFinal.getListaEliminacao().add(e);
+            HomeActivity.getDadosFinal().getListaEliminacao().add(e);
         }
-        dadosFinal.getDados().setPosicaoOperatoria(spinner_posicaoOperatoria.getSelectedItem().toString());
-        dadosFinal.getDados().setAlivioZonapressao(editText_alivioZonasPressao.getText().toString());
-        dadosFinal.getDados().setLocalAlivioZonaPressao(spinner_localPosicaoOperatoria.getSelectedItem().toString());
-        dadosFinal.getDados().setMantaTermica(radioButton_mantatermica_sim.isChecked());
-        dadosFinal.getDados().setLocalMantaTermica(spinner_localMantaTermica.getSelectedItem().toString());
+        HomeActivity.getDadosFinal().getDados().setPosicaoOperatoria(spinner_posicaoOperatoria.getSelectedItem().toString());
+        HomeActivity.getDadosFinal().getDados().setAlivioZonapressao(editText_alivioZonasPressao.getText().toString());
+        HomeActivity.getDadosFinal().getDados().setLocalAlivioZonaPressao(spinner_localPosicaoOperatoria.getSelectedItem().toString());
+        HomeActivity.getDadosFinal().getDados().setMantaTermica(radioButton_mantatermica_sim.isChecked());
+        HomeActivity.getDadosFinal().getDados().setLocalMantaTermica(spinner_localMantaTermica.getSelectedItem().toString());
         if(!isEmpty(editText_GarrotePressao))
-        dadosFinal.getDados().setPressaoGarrotePneumatico(Double.parseDouble(editText_GarrotePressao.getText().toString()));
-        dadosFinal.getDados().setLocalizacaoGarrotePneumatico(spinner_localizacaoGarrote.getSelectedItem().toString());
-        dadosFinal.getDados().setHoraInicioGarrotePneum(textView_Garrote_horaInicio.getText().toString());
-        dadosFinal.getDados().setHoraFimGarrotePneum(textView_Garrote_horaFim.getText().toString());
-        dadosFinal.getDados().setPlacaEletrodo(radioButton_Electrodo_sim.isChecked());
-        dadosFinal.getDados().setLocalizacaoPlacaEletrodo(spinner_localizacaoElectrodo.getSelectedItem().toString());
+            HomeActivity.getDadosFinal().getDados().setPressaoGarrotePneumatico(Double.parseDouble(editText_GarrotePressao.getText().toString()));
+        HomeActivity.getDadosFinal().getDados().setLocalizacaoGarrotePneumatico(spinner_localizacaoGarrote.getSelectedItem().toString());
+        HomeActivity.getDadosFinal().getDados().setHoraInicioGarrotePneum(textView_Garrote_horaInicio.getText().toString());
+        HomeActivity.getDadosFinal().getDados().setHoraFimGarrotePneum(textView_Garrote_horaFim.getText().toString());
+        HomeActivity.getDadosFinal().getDados().setPlacaEletrodo(radioButton_Electrodo_sim.isChecked());
+        HomeActivity.getDadosFinal().getDados().setLocalizacaoPlacaEletrodo(spinner_localizacaoElectrodo.getSelectedItem().toString());
 
-        dadosFinal.getDados().setNumFrascosPecaBiopsia(Integer.parseInt(nFrascosBiopsia.getText().toString()));
+        HomeActivity.getDadosFinal().getDados().setNumFrascosPecaBiopsia(Integer.parseInt(nFrascosBiopsia.getText().toString()));
 
 
       //  Log.i("DadosIntraFinal", dadosFinal.toString());
@@ -1140,13 +1144,16 @@ public class DadosINtraOperatorioActivity extends ActionBarActivity {
             return true;
         }
     }
-
     @Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.dados_intra_operatorio, menu);
-		return true;
-	}
+    public void onCreateOptionsMenu(Menu menu,  MenuInflater inflater) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        inflater.inflate(R.menu.dados_intra_operatorio, menu);
+
+
+        super.onCreateOptionsMenu(menu, inflater);
+
+    }
+
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
@@ -1161,25 +1168,6 @@ public class DadosINtraOperatorioActivity extends ActionBarActivity {
             } catch (ExceptionLog exceptionLog) {
                 exceptionLog.printStackTrace();
             }
-            return true;
-        }
-        if(id == android.R.id.home)
-        {
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setIcon(R.drawable.ic_launcher);
-            builder.setMessage("Pretende Retroceder sem guardar?")
-                    .setCancelable(false)
-                    .setPositiveButton("Sim", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            finish();                        }
-                    })
-                    .setNegativeButton("Não", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            dialog.cancel();
-                        }
-                    });
-            AlertDialog alert = builder.create();
-            alert.show();
             return true;
         }
 		return super.onOptionsItemSelected(item);
@@ -1208,7 +1196,7 @@ public class DadosINtraOperatorioActivity extends ActionBarActivity {
 		@Override
 		protected void onPreExecute() {
 			ringProgressDialog = new ProgressDialog(
-					DadosINtraOperatorioActivity.this);
+					getActivity());
 			ringProgressDialog.setIcon(R.drawable.ic_launcher);
 			ringProgressDialog.setTitle("Please wait...");
 			ringProgressDialog
@@ -1240,7 +1228,7 @@ public class DadosINtraOperatorioActivity extends ActionBarActivity {
 		protected void onPostExecute(DadosIntraoperatorioFinal dados) {
 			if (dados != null) {
                 Log.i("Dados",dados.toString());
-                dadosFinal = dados;
+                HomeActivity.setDadosFinal(dados);
                 constroiAtividade();
                 preencherAtividade();
 				ringProgressDialog.dismiss();
@@ -1265,9 +1253,10 @@ public class DadosINtraOperatorioActivity extends ActionBarActivity {
             }
 			else
 			{
-				Toast.makeText(getApplicationContext(), "Erro Verificar IntraOperatorio - Verifique a Internet e repita o Processo", Toast.LENGTH_SHORT).show();
+				Toast.makeText(getActivity(), "Erro Verificar IntraOperatorio - Verifique a Internet e repita o Processo", Toast.LENGTH_SHORT).show();
                 ringProgressDialog.dismiss();
-                finish();
+                ((HomeActivity) getActivity()).onItemClickNavigation(0,HomeActivity.getLayoutcontainerid());
+                ((HomeActivity) getActivity()).setCheckedItemNavigation(0, true);
 			}
 
 		}
@@ -1279,7 +1268,7 @@ public class DadosINtraOperatorioActivity extends ActionBarActivity {
         @Override
         protected void onPreExecute() {
             ringProgressDialog = new ProgressDialog(
-                    DadosINtraOperatorioActivity.this);
+                    getActivity());
             ringProgressDialog.setIcon(R.drawable.ic_launcher);
             ringProgressDialog.setTitle("Please wait...");
             ringProgressDialog
@@ -1304,7 +1293,7 @@ public class DadosINtraOperatorioActivity extends ActionBarActivity {
             Boolean resultado = false;
 
             try {
-                resultado = WebServiceUtils.guardarDadosIntraOperatorios(token,dadosFinal);
+                resultado = WebServiceUtils.guardarDadosIntraOperatorios(token,HomeActivity.getDadosFinal());
 
             } catch (IOException | RestClientException | ParseException
                     | JSONException | ExceptionLog e) {
@@ -1317,16 +1306,16 @@ public class DadosINtraOperatorioActivity extends ActionBarActivity {
         @Override
         protected void onPostExecute(Boolean resultado) {
             if (resultado) {
-                Toast.makeText(getApplicationContext(), "Dados IntraOperatorio Salvos Com Sucesso", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Dados IntraOperatorio Salvos Com Sucesso", Toast.LENGTH_SHORT).show();
                 ringProgressDialog.dismiss();
-                finish();
-
+                ((HomeActivity) getActivity()).onItemClickNavigation(0, HomeActivity.getLayoutcontainerid());
+                ((HomeActivity) getActivity()).setCheckedItemNavigation(0,true);
 
 
             }
             else
             {
-                Toast.makeText(getApplicationContext(), "Erro Guardar IntraOperatorio - Verifique a Internet e repita o Processo", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Erro Guardar IntraOperatorio - Verifique a Internet e repita o Processo", Toast.LENGTH_SHORT).show();
                 ringProgressDialog.dismiss();
             }
 

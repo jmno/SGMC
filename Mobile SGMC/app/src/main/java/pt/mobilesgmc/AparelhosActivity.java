@@ -6,13 +6,15 @@ import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -29,15 +31,16 @@ import org.json.JSONException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.LinkedList;
 
+import pt.mobilesgmc.aparelhosCirurgia.AdapterAparelhosCirurgia;
+import pt.mobilesgmc.modelo.ListasProdutosCirurgia;
 import pt.mobilesgmc.modelo.Produtos;
 import pt.mobilesgmc.modelo.ProdutosCirurgia;
 import pt.mobilesgmc.modelo.RestClientException;
 import pt.mobilesgmc.modelo.WebServiceUtils;
 
 
-public class AparelhosActivity extends ActionBarActivity {
+public class AparelhosActivity extends Fragment {
 
     private ArrayList<ProdutosCirurgia> arrayProdutos = new ArrayList<ProdutosCirurgia>();
 
@@ -46,140 +49,82 @@ public class AparelhosActivity extends ActionBarActivity {
     private ListView listaAparelhos;
     private ProgressDialog ringProgressDialog;
     private ArrayAdapter<Produtos> adaptadorAparelhos;
-    private ArrayAdapter<Produtos> adaptadorAparelhosUtilizados;
-    private  ListView listaAparelhosUtilizados;
-    private  LinkedList<Produtos> listaP = new LinkedList<Produtos>();
+    public static ListView listaAparelhosUtilizados;
     private AlertDialog.Builder builder;
     private ProdutosCirurgia p;
-    private int idCirurgia;
-    private ArrayAdapter<ProdutosCirurgia> adaptadorProdutosCirurgia;
     private NumberPicker np;
     private Produtos l;
+    public static AdapterAparelhosCirurgia adaptador;
+
+
+    public AparelhosActivity newInstance(String text){
+        AparelhosActivity mFragment = new AparelhosActivity();
+        Bundle mBundle = new Bundle();
+        mFragment.setArguments(mBundle);
+        return mFragment;
+    }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_aparelhos);
-        getSupportActionBar();
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // TODO Auto-generated method stub
+        View rootView = inflater.inflate(R.layout.activity_aparelhos, container, false);
+        token = HomeActivity.getToken();
 
-        token = PreferenceManager.getDefaultSharedPreferences(this).getString(
-                "token", "defaultStringIfNothingFound");
-        idCirurgia = Integer.parseInt(PreferenceManager
-                .getDefaultSharedPreferences(getApplicationContext())
-                .getString("idCirurgia", "0"));
+        listaAparelhosUtilizados = (ListView) rootView.findViewById(R.id.listView_AparelhosUtilizados);
+        builder = new AlertDialog.Builder(getActivity());
 
-        listaAparelhosUtilizados = (ListView) findViewById(R.id.listView_AparelhosUtilizados);
-        builder = new AlertDialog.Builder(AparelhosActivity.this);
+        if(HomeActivity.getListaProdutos()==null) {
+            HomeActivity.setListaProdutos(new ListasProdutosCirurgia());
 
-        if(idCirurgia!=0) {
-            new getProdutosCirurgia().execute();
+
+            if (HomeActivity.getCirurgia().getId() != 0) {
+                new getProdutosCirurgia().execute();
+            }
+        }
+        else
+        {
+            adaptador = new AdapterAparelhosCirurgia(getActivity(),HomeActivity.getListaProdutos().getListaAparelhos());
+
+
+            adaptador.sort(new Comparator<ProdutosCirurgia>() {
+
+                @Override
+                public int compare(ProdutosCirurgia lhs, ProdutosCirurgia rhs) {
+                    return ("" + lhs.getNomeProduto().toUpperCase()).compareTo(("" + rhs.getNomeProduto()).toUpperCase());
+                }
+            });
+
+            // adaptadorProdutosFinal = new ArrayAdapter<ProdutosCirurgia>(getActivity().getBaseContext(),
+            //       android.R.layout.simple_list_item_multiple_choice, arrayProdutos);
+
+            listaAparelhosUtilizados.setAdapter(adaptador);
         }
 
-        listaAparelhosUtilizados.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                ProdutosCirurgia pc = (ProdutosCirurgia) listaAparelhosUtilizados.getItemAtPosition(position);
-                pc.setUtilizado(!pc.getUtilizado());
 
-            }
-        });
-
-
-        listaAparelhosUtilizados.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-            @Override
-            public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
-
-                p = (ProdutosCirurgia) listaAparelhosUtilizados.getItemAtPosition(position);
-
-
-                builder.setIcon(R.drawable.ic_launcher);
-
-
-                builder.setTitle("Editar / Apagar ?");
-                builder.setMessage(p.getNomeProduto())
-                        .setCancelable(false)
-                        .setNegativeButton("Editar", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                AlertDialog.Builder alert = new AlertDialog.Builder(AparelhosActivity.this);
-
-                                alert.setTitle("Escolha a quantidade: ");
-
-                                np = new NumberPicker(AparelhosActivity.this);
-                                String[] nums = new String[100];
-                                for (int i = 0; i < nums.length; i++)
-                                    nums[i] = Integer.toString(i);
-
-                                np.setMinValue(0);
-                                np.setMaxValue(nums.length - 1);
-                                np.setWrapSelectorWheel(false);
-                                np.setDisplayedValues(nums);
-                                np.setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS);
-                             //   np.setValue(p.getQuantidade() + 1);
-
-                                alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialog, int whichButton) {
-                                        int valor = np.getValue() ;
-                                        ((ProdutosCirurgia) adaptadorProdutosCirurgia.getItem(position)).setQuantidade(valor);
-                                        adaptadorProdutosCirurgia = new ArrayAdapter<ProdutosCirurgia>(
-                                                getBaseContext(), android.R.layout.simple_list_item_multiple_choice,
-                                                arrayProdutos);
-
-                                        listaAparelhosUtilizados.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
-                                        listaAparelhosUtilizados.setAdapter(adaptadorProdutosCirurgia);
-
-                                        for (int i = 0; i < arrayProdutos.size(); i++) {
-                                            if (arrayProdutos.get(i).getUtilizado() == true) {
-                                                listaAparelhosUtilizados.setItemChecked(i, true);
-                                            }
-                                        }
-                                        //  p.setQuantidade(Integer.parseInt(np.getValue()));
-                                    }
-                                });
-
-                                alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialog, int whichButton) {
-                                        // Cancel.
-                                    }
-                                });
-
-                                alert.setView(np);
-                                alert.show();
-                            }
-                        })
-                        .setPositiveButton("Apagar", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                adaptadorProdutosCirurgia.remove(p);
-                                listaAparelhosUtilizados.setAdapter(adaptadorProdutosCirurgia);
-                                for (int j = 0; j < arrayProdutos.size(); j++) {
-                                    if (arrayProdutos.get(j).getUtilizado() == true) {
-                                        listaAparelhosUtilizados.setItemChecked(j, true);
-                                    }
-
-                                }
-                            }
-                        });
-                AlertDialog alert = builder.create();
-                alert.show();
-                return true;
-
-            }     });
-
-
-
+        setHasOptionsMenu(true);
+        return rootView;
     }
+
+
+    public static void atualizaProdutos()
+    {
+        listaAparelhosUtilizados.invalidate();
+        adaptador.notifyDataSetChanged();
+    }
+
 
     public void listenerGuardar(){
 
 
-        new adicionarAparelhos().execute(arrayProdutos);
+        new adicionarAparelhos().execute(HomeActivity.getListaProdutos());
 
     }
 
 
     public void listenerBotaoProcurarProduto(){
         new getProdutos().execute();
-        dialogoAparelhos = new Dialog(AparelhosActivity.this);
+        dialogoAparelhos = new Dialog(getActivity());
 
         // tell the Dialog to use the dialog.xml as it's layout
         // description
@@ -238,11 +183,11 @@ public class AparelhosActivity extends ActionBarActivity {
                         .setCancelable(false);
                        /* .setNegativeButton("Editar", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {*/
-                AlertDialog.Builder alert = new AlertDialog.Builder(AparelhosActivity.this);
+                AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
 
                 alert.setTitle("Escolha a quantidade: ");
 
-                np = new NumberPicker(AparelhosActivity.this);
+                np = new NumberPicker(getActivity());
                 String[] nums = new String[100];
                 for (int i = 0; i < nums.length; i++)
                     nums[i] = Integer.toString(i);
@@ -259,26 +204,17 @@ public class AparelhosActivity extends ActionBarActivity {
                         int valor = (np.getValue());
                         ProdutosCirurgia produtoC = new ProdutosCirurgia();
                         produtoC.setNomeProduto(l.getNome());
-                        produtoC.setIdCirurgia(idCirurgia);
+                        produtoC.setIdCirurgia(HomeActivity.getCirurgia().getId());
                         produtoC.setPreparado(false);
                         produtoC.setIdProduto(l.getId());
                         produtoC.setQuantidade(valor);
                         produtoC.setTipoProduto(l.getTipo());
                         produtoC.setUtilizado(true);
-                        arrayProdutos.add(produtoC);
-                        adaptadorProdutosCirurgia = new ArrayAdapter<ProdutosCirurgia>(getBaseContext(),
-                                android.R.layout.simple_list_item_multiple_choice,
-                                arrayProdutos);
+                        HomeActivity.getListaProdutos().getListaAparelhos().add(produtoC);
+                        adaptador = new AdapterAparelhosCirurgia(getActivity(),HomeActivity.getListaProdutos().getListaAparelhos());
 
+                        listaAparelhosUtilizados.setAdapter(adaptador);
 
-                        listaAparelhosUtilizados.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
-                        listaAparelhosUtilizados.setAdapter(adaptadorProdutosCirurgia);
-
-                        for (int i = 0; i < arrayProdutos.size(); i++) {
-                            if (arrayProdutos.get(i).getUtilizado() == true) {
-                                listaAparelhosUtilizados.setItemChecked(i, true);
-                            }
-                        }
 
                         dialogoAparelhos.dismiss();
                         //  p.setQuantidade(Integer.parseInt(np.getValue()));
@@ -314,13 +250,17 @@ public class AparelhosActivity extends ActionBarActivity {
 
     }
 
-
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
+    public void onCreateOptionsMenu(Menu menu,  MenuInflater inflater) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_aparelhos, menu);
-        return true;
+        inflater.inflate(R.menu.menu_aparelhos, menu);
+
+
+        super.onCreateOptionsMenu(menu, inflater);
+
     }
+
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -339,25 +279,7 @@ public class AparelhosActivity extends ActionBarActivity {
             listenerGuardar();
             return true;
         }
-        if(id == android.R.id.home)
-        {
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setIcon(R.drawable.ic_launcher);
-            builder.setMessage("Pretende Retroceder sem guardar?")
-                    .setCancelable(false)
-                    .setPositiveButton("Sim", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            finish();                        }
-                    })
-                    .setNegativeButton("Não", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            dialog.cancel();
-                        }
-                    });
-            AlertDialog alert = builder.create();
-            alert.show();
-            return true;
-        }
+
 
         return super.onOptionsItemSelected(item);
     }
@@ -367,7 +289,7 @@ public class AparelhosActivity extends ActionBarActivity {
         @Override
         protected void onPreExecute() {
 
-            ringProgressDialog = new ProgressDialog(AparelhosActivity.this);
+            ringProgressDialog = new ProgressDialog(getActivity());
             ringProgressDialog.setIcon(R.drawable.ic_launcher);
             ringProgressDialog.setTitle("Aguarde...");
             ringProgressDialog.setMessage("A Procurar Produtos...");
@@ -410,10 +332,10 @@ public class AparelhosActivity extends ActionBarActivity {
 
                 }
 
-                if(arrayProdutos.size()>0){
+                if(HomeActivity.getListaProdutos().getListaAparelhos().size()>0){
 
-                    for(int i=0; i<arrayProdutos.size(); i++){
-                        listaProdutos = removeElementoDaLista(listaProdutos, arrayProdutos.get(i));
+                    for(int i=0; i<HomeActivity.getListaProdutos().getListaAparelhos().size(); i++){
+                        listaProdutos = removeElementoDaLista(listaProdutos, HomeActivity.getListaProdutos().getListaAparelhos().get(i));
                     }
                 }
 
@@ -422,7 +344,7 @@ public class AparelhosActivity extends ActionBarActivity {
 
 
                 if(listaProdutos.size()>0){
-                adaptadorAparelhos = new ArrayAdapter<Produtos>(getBaseContext(),
+                adaptadorAparelhos = new ArrayAdapter<Produtos>(getActivity().getBaseContext(),
                         android.R.layout.simple_list_item_1, listaProdutos);
                 adaptadorAparelhos.sort(new Comparator<Produtos>() {
 
@@ -440,8 +362,9 @@ public class AparelhosActivity extends ActionBarActivity {
                     ringProgressDialog.dismiss();
             } else {
                 ringProgressDialog.dismiss();
-                Toast.makeText(getApplicationContext(), "Erro Get Produtos", Toast.LENGTH_SHORT).show();
-                finish();
+                Toast.makeText(getActivity().getApplicationContext(), "Erro Get Produtos", Toast.LENGTH_SHORT).show();
+                ((HomeActivity) getActivity()).onItemClickNavigation(0, HomeActivity.getLayoutcontainerid());
+                ((HomeActivity) getActivity()).setCheckedItemNavigation(0, true);
 
             }
         }
@@ -461,12 +384,62 @@ public class AparelhosActivity extends ActionBarActivity {
 
     }
 
+    private class adicionarAparelhos extends
+            AsyncTask<ListasProdutosCirurgia, Void, Boolean> {
+        @Override
+        protected void onPreExecute() {
+            ringProgressDialog = new ProgressDialog(getActivity());
+            ringProgressDialog.setIcon(R.drawable.ic_launcher);
+            ringProgressDialog.setTitle("Please wait...");
+            ringProgressDialog.setMessage("A Adicionar Produtos...");
+
+//ringProgressDialog = ProgressDialog.show(Login.this, "Please wait ...",	"Loging in...", true);
+            ringProgressDialog.setCancelable(false);
+            ringProgressDialog.show();
+        }
+
+        ;
+
+        @Override
+        protected Boolean doInBackground(ListasProdutosCirurgia... params) {
+            Boolean adicionou = false;
+
+            try {
+                adicionou = WebServiceUtils.adicionarProdutosDaCirurgia(params[0], token);
+            } catch (ParseException | IOException | JSONException
+                    | RestClientException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+
+            return adicionou;
+        }
+
+        @Override
+        protected void onPostExecute(Boolean result) {
+            Toast.makeText(getActivity().getApplicationContext(), (result ? "Produtos Adicionados com Sucesso!"
+                    : "Produtos Não Adicionados!"), Toast.LENGTH_LONG)
+                    .show();
+
+            if(result)
+            {
+                ((HomeActivity) getActivity()).onItemClickNavigation(0, HomeActivity.getLayoutcontainerid());
+                ((HomeActivity) getActivity()).setCheckedItemNavigation(0, true);
+            }
+
+            ringProgressDialog.dismiss();
+
+            //  createPDF();
+
+        }
+
+    }
     private class getProdutosCirurgia extends
-            AsyncTask<Integer, Void, ArrayList<ProdutosCirurgia>> {
+            AsyncTask<Integer, Void, ListasProdutosCirurgia> {
         @Override
         protected void onPreExecute() {
 
-            ringProgressDialog = new ProgressDialog(AparelhosActivity.this);
+            ringProgressDialog = new ProgressDialog(getActivity());
             ringProgressDialog.setIcon(R.drawable.ic_launcher);
             ringProgressDialog.setTitle("Aguarde...");
             ringProgressDialog.setMessage("A Procurar Produtos...");
@@ -479,11 +452,11 @@ public class AparelhosActivity extends ActionBarActivity {
         };
 
         @Override
-        protected ArrayList<ProdutosCirurgia> doInBackground(Integer... params) {
-            ArrayList<ProdutosCirurgia> lista = null;
+        protected ListasProdutosCirurgia doInBackground(Integer... params) {
+            ListasProdutosCirurgia lista = null;
 
             try {
-                lista = WebServiceUtils.getProdutosCirurgia(token, idCirurgia);
+                lista = WebServiceUtils.getProdutosCirurgia(token, HomeActivity.getCirurgia().getId());
             } catch (IOException | RestClientException | ParseException
                     | JSONException e) {
                 e.printStackTrace();
@@ -491,37 +464,27 @@ public class AparelhosActivity extends ActionBarActivity {
             return lista;
         }
 
-        protected void onPostExecute(ArrayList<ProdutosCirurgia> lista) {
+        protected void onPostExecute(ListasProdutosCirurgia lista) {
             if (lista != null) {
 
+                HomeActivity.setListaProdutos(lista);
+                if(HomeActivity.getListaProdutos().getListaAparelhos().size()>0) {
+                    adaptador = new AdapterAparelhosCirurgia(getActivity(),HomeActivity.getListaProdutos().getListaAparelhos());
 
-                for(int i=0; i<lista.size(); i++) {
-                    if (lista.get(i).getTipoProduto().equals("A")) {
-                        arrayProdutos.add(lista.get(i));
-                    }
-                }
 
-                if(arrayProdutos.size()>0) {
-                    adaptadorProdutosCirurgia = new ArrayAdapter<ProdutosCirurgia>(getBaseContext(),
-                            android.R.layout.simple_list_item_multiple_choice, arrayProdutos);
-
-                    adaptadorProdutosCirurgia.sort(new Comparator<ProdutosCirurgia>() {
+                    adaptador.sort(new Comparator<ProdutosCirurgia>() {
 
                         @Override
                         public int compare(ProdutosCirurgia lhs, ProdutosCirurgia rhs) {
                             return ("" + lhs.getNomeProduto().toUpperCase()).compareTo(("" + rhs.getNomeProduto()).toUpperCase());
                         }
                     });
-                    listaAparelhosUtilizados.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
-                    listaAparelhosUtilizados.setAdapter(adaptadorProdutosCirurgia);
 
+                    // adaptadorProdutosFinal = new ArrayAdapter<ProdutosCirurgia>(getActivity().getBaseContext(),
+                    //       android.R.layout.simple_list_item_multiple_choice, arrayProdutos);
 
-                    for (int j = 0; j < arrayProdutos.size(); j++) {
-                        if (arrayProdutos.get(j).getUtilizado() == true) {
-                            listaAparelhosUtilizados.setItemChecked(j, true);
-                        }
+                    listaAparelhosUtilizados.setAdapter(adaptador);
 
-                    }
 
 
                 }
@@ -532,57 +495,13 @@ public class AparelhosActivity extends ActionBarActivity {
 
             } else {
                 ringProgressDialog.dismiss();
-                Toast.makeText(getApplicationContext(), "Erro Get Produtos da Cirurgia", Toast.LENGTH_SHORT).show();
-                finish();
+                Toast.makeText(getActivity().getApplicationContext(), "Erro Get Produtos da Cirurgia", Toast.LENGTH_SHORT).show();
+                ((HomeActivity) getActivity()).onItemClickNavigation(0, HomeActivity.getLayoutcontainerid());
+                ((HomeActivity) getActivity()).setCheckedItemNavigation(0,true);
 
             }
         }}
 
-    private class adicionarAparelhos extends
-            AsyncTask<ArrayList<ProdutosCirurgia>, Void, Boolean> {
-        @Override
-        protected void onPreExecute() {
-            ringProgressDialog = new ProgressDialog(AparelhosActivity.this);
-            ringProgressDialog.setIcon(R.drawable.ic_launcher);
-            ringProgressDialog.setTitle("Please wait...");
-            ringProgressDialog.setMessage("A Adicionar Aparelhos...");
-
-//ringProgressDialog = ProgressDialog.show(Login.this, "Please wait ...",	"Loging in...", true);
-            ringProgressDialog.setCancelable(false);
-            ringProgressDialog.show();
-        }
-
-        ;
-
-        @Override
-        protected Boolean doInBackground(ArrayList<ProdutosCirurgia>... params) {
-            Boolean adicionou = false;
-
-            try {
-                adicionou = WebServiceUtils.adicionarAparelhos(params[0], idCirurgia, token);
-            } catch (ParseException | IOException | JSONException
-                    | RestClientException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
-
-            return adicionou;
-        }
-
-        @Override
-        protected void onPostExecute(Boolean result) {
-            String a = (result ? "Aparelhos Adicionados com Sucesso!"
-                    : "Aparelhos Não Adicionados!");
-
-            Toast.makeText(getApplicationContext(), a, Toast.LENGTH_LONG)
-                    .show();
-
-            ringProgressDialog.dismiss();
-
-
-        }
-
-    }
 
 
 

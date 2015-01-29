@@ -1,29 +1,26 @@
 package pt.mobilesgmc;
 
-import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnDismissListener;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.DisplayMetrics;
 import android.util.Log;
-import android.view.Display;
+import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -50,7 +47,7 @@ import pt.mobilesgmc.modelo.WebServiceUtils;
 
 //import pt.mobilesgmc.modelo.Notifications;
 
-public class EquipaCirurgica extends ActionBarActivity implements Serializable {
+public class EquipaCirurgica extends Fragment implements Serializable {
 	/**
 	 *
 	 */
@@ -80,71 +77,55 @@ public class EquipaCirurgica extends ActionBarActivity implements Serializable {
 	private Spinner spinnerEquipa;
 	private EditText editNomeEquipa;
 	private String nomeEquipa;
-	private int idCirurgia;
 	public static ListView listaEquipas;
 	public EquipaComJuncao equipaCirurgica;
-	public int idEquipa;
 	ProgressDialog ringProgressDialog = null;
-    private EquipaComJuncao equipaDaCirurgia;
     private Boolean adicionou = false;
 
 
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_equipa_cirurgica);
-        getSupportActionBar();
-        getSupportActionBar().setTitle("Equipa Cirúrgica");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    public EquipaCirurgica newInstance(String text){
+        EquipaCirurgica mFragment = new EquipaCirurgica();
+        Bundle mBundle = new Bundle();
+        mFragment.setArguments(mBundle);
+        return mFragment;
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // TODO Auto-generated method stub
+        View rootView = inflater.inflate(R.layout.activity_equipa_cirurgica, container, false);
+        token = HomeActivity.getToken();
+
+        atualizaAGui();
 
 
-        // new getProfissionaisSaude().execute();
-		token = PreferenceManager.getDefaultSharedPreferences(this).getString(
-				"token", "defaultStringIfNothingFound");
-		atualizaAGui();
 
-		idCirurgia = Integer.parseInt(PreferenceManager
-				.getDefaultSharedPreferences(getApplicationContext())
-				.getString("idCirurgia", "0"));
-		idEquipa = Integer.parseInt(PreferenceManager
-				.getDefaultSharedPreferences(getApplicationContext())
-				.getString("idEquipa", "-1"));
-		
-		Display display = getWindowManager().getDefaultDisplay();
-		DisplayMetrics outMetrics = new DisplayMetrics();
-		display.getMetrics(outMetrics);
+        editNomeEquipa = (EditText) rootView.findViewById(R.id.edit_text_NomeEquipa);
 
-		float density = getResources().getDisplayMetrics().density;
-		float dpWidth = outMetrics.widthPixels / density;
-		int margin = ((80 * (int) dpWidth) / 100)-50;
+        try{
+            Log.i("equipa",HomeActivity.getCirurgia().toString() + " idEquipa: " + HomeActivity.getCirurgia().getIdEquipa());
+            if (HomeActivity.getCirurgia().getIdEquipa() != 0) {
+                try{
+                    new getEquipaByID().execute(HomeActivity.getCirurgia().getIdEquipa());
+                }
+                catch(Exception e)
+                {
+                    Log.i("Webservice:", "ERROR - " + e.getMessage());
+                }
+            }
+            else{
 
-//		idEquipa = Integer.parseInt(PreferenceManager
-//				.getDefaultSharedPreferences(getApplicationContext())
-//				.getString("idEquipa", "-1"));
+                Log.i("equipa","Não foi encontrada Equipa");}
+        }
+        catch (Exception e)
+        {
+            Log.i("erro", "Equipa Não Selecionada");
+        }
 
-
-		editNomeEquipa = (EditText) findViewById(R.id.edit_text_NomeEquipa);
-
-		try{
-		Log.i("equipa",HomeActivity.getCirurgia().toString() + " idEquipa: " + HomeActivity.getCirurgia().getIdEquipa());
-		if (HomeActivity.getCirurgia().getIdEquipa() != 0) {
-			try{
-			new getEquipaByID().execute(HomeActivity.getCirurgia().getIdEquipa());
-			}
-			catch(Exception e)
-			{
-				Log.i("Webservice:", "ERROR - " + e.getMessage());
-			}
-		}
-		else{
-			
-			Log.i("equipa","Não foi encontrada Equipa");}
-		}
-		catch (Exception e)
-		{
-			Log.i("erro", "Equipa Não Selecionada");
-		}
-	}
+        setHasOptionsMenu(true);
+        return rootView;
+    }
 
 	private int spinnerDaMeATuaPosicao(ArrayAdapter<ProfissonalSaude> adapter,
 			ProfissonalSaude p) {
@@ -179,7 +160,7 @@ public class EquipaCirurgica extends ActionBarActivity implements Serializable {
 				new getEquipas().execute(token);
 				// new getAllCirurgias().execute();
 
-				dialogoEquipas = new Dialog(EquipaCirurgica.this);
+				dialogoEquipas = new Dialog(getActivity());
 
 				// tell the Dialog to use the dialog.xml as it's layout
 				// description
@@ -203,7 +184,8 @@ public class EquipaCirurgica extends ActionBarActivity implements Serializable {
 
 						equipaCirurgica = (EquipaComJuncao) listaEquipas
 								.getItemAtPosition(arg2);
-						preencheSpinnersComEquipa(equipaCirurgica);
+                        HomeActivity.setEquipa(equipaCirurgica);
+                        preencheSpinnersComEquipa(equipaCirurgica);
 						editNomeEquipa.setText(equipaCirurgica.getNomeEquipa());
 						dialogoEquipas.dismiss();
 					}
@@ -245,59 +227,11 @@ public class EquipaCirurgica extends ActionBarActivity implements Serializable {
 
 	}
 
-	public void adicionarProfissional()
-	{
-				new getTipo().execute();
-				dialog = new Dialog(EquipaCirurgica.this);
 
-				// tell the Dialog to use the dialog.xml as it's layout
-				// description
-				dialog.setContentView(R.layout.dialog_novoprofissional);
-				dialog.setTitle("Novo Profissional:");
-				dialog.getWindow()
-						.setSoftInputMode(
-								WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
-
-				final EditText nomeEditText = (EditText) dialog
-						.findViewById(R.id.editText_DialogNovoProfissional_Nome);
-				spinnerTipo = (Spinner) dialog
-						.findViewById(R.id.spinner_DialogNovoProfissional_Tipo);
-				final EditText ccEditText = (EditText) dialog
-						.findViewById(R.id.editText_DialogNovoProfissional_cc);
-
-				ImageView guardar = (ImageView) dialog
-						.findViewById(R.id.btn_DialogNovoProfissional_Guardar);
-                guardar.setClickable(true);
-				guardar.setOnClickListener(new OnClickListener() {
-					@Override
-					public void onClick(View v) {
-						if (!nomeEditText.getText().equals("")) {
-							ProfissonalSaude p = new ProfissonalSaude();
-
-							p.setNome(nomeEditText.getText().toString());
-
-							p.setCc(ccEditText.getText().toString());
-							Tipo ti = (Tipo) spinnerTipo.getSelectedItem();
-							p.setIdTipo(ti.getId());
-							try {
-								new adicionarProfissionalSaude().execute(p);
-								atualizaAGui();
-							} catch (Exception e) {
-
-							}
-						}
-						dialog.dismiss();
-					}
-				});
-
-				
-
-			
-	}
 	
 	public void guardarEquipa(){
 
-				List<ProfissionalDaCirurgia> lista = new LinkedList<>();
+				LinkedList<ProfissionalDaCirurgia> lista = new LinkedList<>();
 				ProfissonalSaude teste = new ProfissonalSaude();
 				ProfissionalDaCirurgia profissional;
 
@@ -378,15 +312,19 @@ public class EquipaCirurgica extends ActionBarActivity implements Serializable {
 
 				nomeEquipa = editNomeEquipa.getText().toString();
 				if (!lista.isEmpty())
-					new adicionarEquipa().execute(lista);
+                    Log.i("nada","nada");
+
+                if(HomeActivity.getEquipa()==null)
+                HomeActivity.setEquipa(new EquipaComJuncao());
+                HomeActivity.getEquipa().setListaProfissionais(lista);
+                HomeActivity.getEquipa().setNomeEquipa(nomeEquipa);
+                new adicionarOuAtualizarEquipa().execute(HomeActivity.getEquipa());
 
 		
 	}
 	public void preencheSpinnersComEquipa(EquipaComJuncao e) {
 		EquipaComJuncao equipa = e;
 		reloadSpinners();
-		Toast.makeText(getApplicationContext(), "Equipa Da Cirurgia - '" +equipa.getNomeEquipa() + "'",
-				Toast.LENGTH_SHORT).show();
 
 		String nomeEquipa = equipa.getNomeEquipa();
 
@@ -462,13 +400,14 @@ public class EquipaCirurgica extends ActionBarActivity implements Serializable {
 		}
 
 	}
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.equipa_cirurgica, menu);
-		return true;
-	}
 
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.equipa_cirurgica, menu);
+
+        super.onCreateOptionsMenu(menu, inflater);
+
+    }
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		// Handle action bar item clicks here. The action bar will
@@ -481,57 +420,17 @@ public class EquipaCirurgica extends ActionBarActivity implements Serializable {
 			procurarEquipas();
 			return true;
 		}
-		if(id == R.id.action_addProfissional){
-			adicionarProfissional();
-			return true;
-		}
+
 		if(id == R.id.action_saveEquipa){
 			guardarEquipa();
 			return true;
 		}
-        if(id == android.R.id.home)
-        {
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setIcon(R.drawable.ic_launcher);
-            builder.setMessage("Pretende Retroceder sem guardar?")
-                    .setCancelable(false)
-                    .setPositiveButton("Sim", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            finish();
-                        }
-                    })
-                    .setNegativeButton("Não", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            dialog.cancel();
-                        }
-                    });
-            AlertDialog alert = builder.create();
-            alert.show();
-            return true;
-        }
+
 
 		return super.onOptionsItemSelected(item);
 	}
 
-    @Override
-    public void onBackPressed() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setIcon(R.drawable.ic_launcher);
-        builder.setMessage("Pretende Retroceder sem guardar?")
-                .setCancelable(false)
-                .setPositiveButton("Sim", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        finish();
-                    }
-                })
-                .setNegativeButton("Não", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        dialog.cancel();
-                    }
-                });
-        AlertDialog alert = builder.create();
-        alert.show();
-    }
+
 
 	// private class getProfissionaisSaude extends
 	// AsyncTask<String, Void, ArrayList<ProfissonalSaude>> {
@@ -573,59 +472,18 @@ public class EquipaCirurgica extends ActionBarActivity implements Serializable {
 	//
 	// }
 
-	private class adicionarProfissionalSaude extends
-			AsyncTask<ProfissonalSaude, Void, Boolean> {
-        @Override
-        protected void onPreExecute() {
-            ringProgressDialog = new ProgressDialog(EquipaCirurgica.this);
-            ringProgressDialog.setIcon(R.drawable.ic_launcher);
-            ringProgressDialog.setTitle("Please wait...");
-            ringProgressDialog.setMessage("A Adicionar Profissional...");
 
-            //ringProgressDialog = ProgressDialog.show(Login.this, "Please wait ...",	"Loging in...", true);
-            ringProgressDialog.setCancelable(false);
-            ringProgressDialog.show();
-        };
-	
-		@Override
-		protected Boolean doInBackground(ProfissonalSaude... params) {
-			Boolean adicionou = false;
 
-			try {
-				adicionou = WebServiceUtils.adicionarProfissionalSaude(
-						params[0], token);
-			} catch (ParseException | IOException | JSONException
-					| RestClientException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+	/*private class adicionarEquipa extends
+            AsyncTask<List<ProfissionalDaCirurgia>, Void, Boolean> {
+                @Override
+                protected void onPreExecute() {
+                    ringProgressDialog = new ProgressDialog(EquipaCirurgica.this);
+                    ringProgressDialog.setIcon(R.drawable.ic_launcher);
+                    ringProgressDialog.setTitle("Please wait...");
+                    ringProgressDialog.setMessage("A Adicionar Equipa...");
 
-			return adicionou;
-		}
-
-		@Override
-		protected void onPostExecute(Boolean result) {
-			String a = (result ? "Profissional Adicionado com Sucesso!"
-					: "Profissional Não Adicionado!");
-
-			Toast.makeText(getApplicationContext(), a, Toast.LENGTH_LONG)
-					.show();
-            adicionou = true;
-            ringProgressDialog.dismiss();
-		}
-
-	}
-
-	private class adicionarEquipa extends
-			AsyncTask<List<ProfissionalDaCirurgia>, Void, Boolean> {
-		@Override
-		protected void onPreExecute() {
-			ringProgressDialog = new ProgressDialog(EquipaCirurgica.this);
-			ringProgressDialog.setIcon(R.drawable.ic_launcher);
-			ringProgressDialog.setTitle("Please wait...");
-			ringProgressDialog.setMessage("A Adicionar Equipa...");
-			
-			//ringProgressDialog = ProgressDialog.show(Login.this, "Please wait ...",	"Loging in...", true);
+                    //ringProgressDialog = ProgressDialog.show(Login.this, "Please wait ...",	"Loging in...", true);
 			ringProgressDialog.setCancelable(false);
 			ringProgressDialog.show();
 		};
@@ -675,40 +533,9 @@ public class EquipaCirurgica extends ActionBarActivity implements Serializable {
 			super.onPostExecute(result);
 		}
 
-	}
+	}*/
 
-	private class getTipo extends AsyncTask<String, Void, ArrayList<Tipo>> {
 
-		@Override
-		protected ArrayList<Tipo> doInBackground(String... params) {
-			ArrayList<Tipo> lista = null;
-
-			try {
-				lista = WebServiceUtils.getAllTipo(token);
-			} catch (IOException | RestClientException | ParseException
-					| JSONException e) {
-				e.printStackTrace();
-			}
-
-			return lista;
-		}
-
-		@Override
-		protected void onPostExecute(ArrayList<Tipo> lista) {
-			if (lista != null) {
-				adaptadorTipo = new ArrayAdapter<Tipo>(getBaseContext(),
-						android.R.layout.simple_list_item_1, lista);
-				spinnerTipo.setAdapter(adaptadorTipo);
-				// new Notifications(getApplicationContext(),
-				// "Connexão Efetuada com Sucesso!");
-				dialog.show();
-			} else
-			{
-				Toast.makeText(getApplicationContext(), "Erro Get Tipos - Verifique a Internet e repita o Processo", Toast.LENGTH_SHORT).show();
-			}
-		}
-
-	}
 
 	private class getProfissionaisSaudeByTipo extends
 			AsyncTask<String, Void, ArrayList<ProfissonalSaude>> {
@@ -737,9 +564,10 @@ public class EquipaCirurgica extends ActionBarActivity implements Serializable {
 				
 				populateSpinners(lista, idTipo);
 
+
 			} else
 			{
-				Toast.makeText(getApplicationContext(), "Erro Get Profissionais- Verifique a Internet e repita o Processo", Toast.LENGTH_SHORT).show();
+				Toast.makeText(getActivity().getApplicationContext(), "Erro Get Profissionais- Verifique a Internet e repita o Processo", Toast.LENGTH_SHORT).show();
 			}
 			
 		}
@@ -751,9 +579,9 @@ public class EquipaCirurgica extends ActionBarActivity implements Serializable {
 		switch (id) {
 		case 1:
 			adaptadorCirurgiao = new ArrayAdapter<ProfissonalSaude>(
-					getBaseContext(), android.R.layout.simple_list_item_1,
+                    getActivity().getBaseContext(), android.R.layout.simple_list_item_1,
 					lista);
-			spinnerCirurgiao = (Spinner) findViewById(R.id.spinner_Cirurgião);
+			spinnerCirurgiao = (Spinner) getView().findViewById(R.id.spinner_Cirurgião);
 			// adaptadorCirurgiao.sort(new Comparator<ProfissonalSaude>() {
 			//
 			// @Override
@@ -764,42 +592,42 @@ public class EquipaCirurgica extends ActionBarActivity implements Serializable {
 			spinnerCirurgiao.setAdapter(adaptadorCirurgiao);
 
 			adaptador1ajudante = new ArrayAdapter<ProfissonalSaude>(
-					getBaseContext(), android.R.layout.simple_list_item_1,
+                    getActivity().getBaseContext(), android.R.layout.simple_list_item_1,
 					lista);
-			spinnerPrimAjudante = (Spinner) findViewById(R.id.spinner_1Ajudante);
+			spinnerPrimAjudante = (Spinner) getView().findViewById(R.id.spinner_1Ajudante);
 			spinnerPrimAjudante.setAdapter(adaptador1ajudante);
 
 			adaptador2ajudante = new ArrayAdapter<ProfissonalSaude>(
-					getBaseContext(), android.R.layout.simple_list_item_1,
+                    getActivity().getBaseContext(), android.R.layout.simple_list_item_1,
 					lista);
-			spinnerSegundoAjudante = (Spinner) findViewById(R.id.spinner_2Ajudante);
+			spinnerSegundoAjudante = (Spinner) getView().findViewById(R.id.spinner_2Ajudante);
 			spinnerSegundoAjudante.setAdapter(adaptador2ajudante);
 
 			adaptador3ajudante = new ArrayAdapter<ProfissonalSaude>(
-					getBaseContext(), android.R.layout.simple_list_item_1,
+                    getActivity().getBaseContext(), android.R.layout.simple_list_item_1,
 					lista);
-			spinnerTerceiroAjudante = (Spinner) findViewById(R.id.spinner_3Ajudante);
+			spinnerTerceiroAjudante = (Spinner) getView().findViewById(R.id.spinner_3Ajudante);
 			spinnerTerceiroAjudante.setAdapter(adaptador3ajudante);
             if(adicionou)
-                preencheSpinnersComEquipa(equipaDaCirurgia);
+                preencheSpinnersComEquipa(HomeActivity.getEquipa());
             break;
 		case 2:
 			adaptadorEnfermeiro = new ArrayAdapter<ProfissonalSaude>(
-					getBaseContext(), android.R.layout.simple_list_item_1,
+                    getActivity().getBaseContext(), android.R.layout.simple_list_item_1,
 					lista);
-			spinnerAnestesista = (Spinner) findViewById(R.id.spinner_Anestesista);
+			spinnerAnestesista = (Spinner) getView().findViewById(R.id.spinner_Anestesista);
 
 			spinnerAnestesista.setAdapter(adaptadorEnfermeiro);
-			spinnerAssistente = (Spinner) findViewById(R.id.spinner_Assistente_Operacional);
+			spinnerAssistente = (Spinner) getView().findViewById(R.id.spinner_Assistente_Operacional);
 			spinnerAssistente.setAdapter(adaptadorEnfermeiro);
-			spinnerEnfermeiroinstrumentista = (Spinner) findViewById(R.id.spinner_Enf_Instrumentista);
+			spinnerEnfermeiroinstrumentista = (Spinner) getView().findViewById(R.id.spinner_Enf_Instrumentista);
 			spinnerEnfermeiroinstrumentista.setAdapter(adaptadorEnfermeiro);
-			spinnerEnfermeiroCiruculante = (Spinner) findViewById(R.id.spinner_Enf_Circulante);
+			spinnerEnfermeiroCiruculante = (Spinner) getView().findViewById(R.id.spinner_Enf_Circulante);
 			spinnerEnfermeiroCiruculante.setAdapter(adaptadorEnfermeiro);
-			spinnerEnfermeiroAnestesia = (Spinner) findViewById(R.id.spinner_Enf_de_Anestesia);
+			spinnerEnfermeiroAnestesia = (Spinner) getView().findViewById(R.id.spinner_Enf_de_Anestesia);
 			spinnerEnfermeiroAnestesia.setAdapter(adaptadorEnfermeiro);
             if(adicionou)
-                preencheSpinnersComEquipa(equipaDaCirurgia);
+                preencheSpinnersComEquipa(HomeActivity.getEquipa());
 			break;
 
 		}
@@ -813,13 +641,22 @@ public class EquipaCirurgica extends ActionBarActivity implements Serializable {
 			AsyncTask<String, Void, ArrayList<EquipaComJuncao>> {
 		@Override
 		protected void onPreExecute() {
-			ringProgressDialog = new ProgressDialog(EquipaCirurgica.this);
+			ringProgressDialog = new ProgressDialog(getActivity());
 			ringProgressDialog.setIcon(R.drawable.ic_launcher);
 			ringProgressDialog.setTitle("Please wait...");
 			ringProgressDialog.setMessage("A verificar Equipas...");
 			
 			//ringProgressDialog = ProgressDialog.show(Login.this, "Please wait ...",	"Loging in...", true);
-			ringProgressDialog.setCancelable(false);
+			ringProgressDialog.setCancelable(true);
+            ringProgressDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+
+                @Override
+                public void onCancel(DialogInterface dialog) {
+                    cancel(true);
+
+                }
+            });
+
 			ringProgressDialog.show();
 		};
 		@Override
@@ -841,7 +678,7 @@ public class EquipaCirurgica extends ActionBarActivity implements Serializable {
 		protected void onPostExecute(ArrayList<EquipaComJuncao> lista) {
 			if (lista != null) {
 				adaptadorEquipa = new ArrayAdapter<EquipaComJuncao>(
-						getBaseContext(), android.R.layout.simple_list_item_1,
+                        getActivity().getBaseContext(), android.R.layout.simple_list_item_1,
 						lista);
 				adaptadorEquipa.sort(new Comparator<EquipaComJuncao>() {
 
@@ -853,11 +690,15 @@ public class EquipaCirurgica extends ActionBarActivity implements Serializable {
 				});
 				listaEquipas.setAdapter(adaptadorEquipa);
 				ringProgressDialog.dismiss();
-				dialogoEquipas.show();
+                dialogoEquipas.show();
 			}
 			else
 			{
-				Toast.makeText(getApplicationContext(), "Erro Get Equipas - Verifique a Internet e repita o Processo", Toast.LENGTH_SHORT).show();
+                ringProgressDialog.dismiss();
+
+                Toast.makeText(getActivity().getApplicationContext(), "Erro Get Equipas - Verifique a Internet e repita o Processo", Toast.LENGTH_SHORT).show();
+                ((HomeActivity) getActivity()).onItemClickNavigation(0,HomeActivity.getLayoutcontainerid());
+                ((HomeActivity) getActivity()).setCheckedItemNavigation(0,true);
 			}
 
 		}
@@ -868,7 +709,7 @@ public class EquipaCirurgica extends ActionBarActivity implements Serializable {
 		
 		@Override
 		protected void onPreExecute() {
-			ringProgressDialog = new ProgressDialog(EquipaCirurgica.this);
+			ringProgressDialog = new ProgressDialog(getActivity());
 			ringProgressDialog.setIcon(R.drawable.ic_launcher);
 			ringProgressDialog.setTitle("Please wait...");
 			ringProgressDialog.setMessage("A verificar Equipa...");
@@ -896,11 +737,11 @@ public class EquipaCirurgica extends ActionBarActivity implements Serializable {
 		@Override
 		protected void onPostExecute(EquipaComJuncao equipa) {
 			if (equipa != null) {
-                equipaDaCirurgia = equipa;
+                HomeActivity.setEquipa(equipa);
 				Log.i("equipa",equipa.toString());
 				preencheSpinnersComEquipa(equipa);
-                if(equipa.getNomeEquipa()!=null)
-                setTitle("Equipa: '" + equipa.getNomeEquipa() + "'");
+
+
 
 				editNomeEquipa.setText(equipa.getNomeEquipa());
 				ringProgressDialog.dismiss();
@@ -912,9 +753,64 @@ public class EquipaCirurgica extends ActionBarActivity implements Serializable {
 			}
 			else
 			{
-				Toast.makeText(getApplicationContext(), "Erro Get Equipa Com Junção - Verifique a Internet e repita o Processo", Toast.LENGTH_SHORT).show();
+				Toast.makeText(getActivity(), "Erro Get Equipa Com Junção - Verifique a Internet e repita o Processo", Toast.LENGTH_SHORT).show();
+                ((HomeActivity) getActivity()).onItemClickNavigation(0,HomeActivity.getLayoutcontainerid());
+                ((HomeActivity) getActivity()).setCheckedItemNavigation(0,true);
 			}
 		}
 	}
+
+    private class adicionarOuAtualizarEquipa extends
+            AsyncTask<EquipaComJuncao, Void, Integer> {
+
+        @Override
+        protected void onPreExecute() {
+            ringProgressDialog = new ProgressDialog(getActivity());
+            ringProgressDialog.setIcon(R.drawable.ic_launcher);
+            ringProgressDialog.setTitle("Please wait...");
+            ringProgressDialog.setMessage("A verificar Equipa...");
+
+            //ringProgressDialog = ProgressDialog.show(Login.this, "Please wait ...",	"Loging in...", true);
+            ringProgressDialog.setCancelable(false);
+            ringProgressDialog.show();
+        };
+
+        @Override
+        protected Integer doInBackground(EquipaComJuncao... params) {
+            int resultado = 0;
+
+            try {
+                resultado = WebServiceUtils.adicionarOuAtualizarEquipa(params[0], HomeActivity.getCirurgia().getId(), token);
+
+            } catch (IOException | RestClientException | ParseException
+                    | JSONException e) {
+                e.printStackTrace();
+            }
+
+            return resultado;
+        }
+
+        @Override
+        protected void onPostExecute(Integer resultado) {
+            if (resultado != 0) {
+                HomeActivity.getEquipa().setIdEquipa(resultado);
+                HomeActivity.getCirurgia().setIdEquipa(resultado);
+                ringProgressDialog.dismiss();
+                ((HomeActivity) getActivity()).onItemClickNavigation(0,HomeActivity.getLayoutcontainerid());
+                ((HomeActivity) getActivity()).setCheckedItemNavigation(0,true);
+                // adaptadorEquipa = new ArrayAdapter<EquipaComJuncao>(
+                // getBaseContext(), android.R.layout.simple_list_item_1,
+                // lista);
+                // listaEquipas.setAdapter(adaptadorEquipa);
+                // dialogoEquipas.show();
+            }
+            else
+            {
+                Toast.makeText(getActivity(), "Erro Get Equipa Com Junção - Verifique a Internet e repita o Processo", Toast.LENGTH_SHORT).show();
+                ((HomeActivity) getActivity()).onItemClickNavigation(0,HomeActivity.getLayoutcontainerid());
+                ((HomeActivity) getActivity()).setCheckedItemNavigation(0,true);
+            }
+        }
+    }
 
 }

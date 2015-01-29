@@ -40,25 +40,16 @@
                 android:value="splitActionBarWhenNarrow" />
 
         </activity>
-        <activity
-            android:name="pt.mobilesgmc.UtentesActivity"
-            android:label="@string/title_activity_utentes"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:windowSoftInputMode="stateHidden|adjustPan"
-            >
-        </activity>
+
         <activity
             android:name="pt.mobilesgmc.HomeActivity"
             android:label="@string/title_activity_home"
             android:configChanges="orientation|keyboardHidden|screenSize"
-            android:windowSoftInputMode="stateHidden|adjustPan">
+            android:windowSoftInputMode="stateHidden|adjustPan"
+            android:theme="@style/nLiveoDrawer"
+            >
         </activity>
-        <activity
-            android:name="pt.mobilesgmc.DadosCirurgia"
-            android:label="@string/title_activity_home"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:windowSoftInputMode="stateHidden|adjustPan">
-        </activity>
+
         <activity
             android:name="pt.mobilesgmc.DadosINtraOperatorioActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"

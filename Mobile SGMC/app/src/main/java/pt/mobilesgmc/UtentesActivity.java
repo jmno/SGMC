@@ -3,19 +3,21 @@ package pt.mobilesgmc;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -43,7 +45,7 @@ import pt.mobilesgmc.modelo.RestClientException;
 import pt.mobilesgmc.modelo.Utente;
 import pt.mobilesgmc.modelo.WebServiceUtils;
 
-public class UtentesActivity extends ActionBarActivity {
+public class UtentesActivity extends Fragment {
 
     private TextView textView__idade;
     private TextView textView_nomeUtente;
@@ -66,120 +68,97 @@ public class UtentesActivity extends ActionBarActivity {
     public boolean isForResult = false;
     private Menu menu;
 
-
+    public UtentesActivity newInstance(String text){
+        UtentesActivity mFragment = new UtentesActivity();
+        Bundle mBundle = new Bundle();
+        mFragment.setArguments(mBundle);
+        return mFragment;
+    }
 
     @Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_utentes);
-        getSupportActionBar();
-        token = PreferenceManager.getDefaultSharedPreferences(this).getString(
-                "token", "defaultStringIfNothingFound");
-
-        textView__idade = (TextView) findViewById(R.id.textView_Utentes_idade);
-        textView_alergia = (TextView) findViewById(R.id.textView_Utentes_alergia);
-        textView_antecedentes_cirugicos = (TextView) findViewById(R.id.textView_Profile_antecedentes);
-        textView_dataNasc = (TextView) findViewById(R.id.textView_Utentes_dataNascimento);
-        textView_nomeUtente = (TextView) findViewById(R.id.textView_Utentes_nome);
-        textView_numProcesso = (TextView) findViewById(R.id.textView_Utentes_numProcesso);
-        textView_patologia = (TextView) findViewById(R.id.textView_Utentes_patologia);
-        textView_subsistema = (TextView) findViewById(R.id.textView_Utentes_subsistema);
-        imagemProfile = (CircleImageView) findViewById(R.id.profile_image);
-        try {
-            String s = getCallingActivity().toString();
-            isForResult = true;
-        }
-        catch (Exception e)
-        {
-            isForResult = false;
-        }
-
-        if(!isForResult){
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            setTitle("");
-
-            if(HomeActivity.getCirurgia()!=null)
-            idUtente = HomeActivity.getCirurgia().getIdUtente();
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // TODO Auto-generated method stub
+        View rootView = inflater.inflate(R.layout.activity_utentes, container, false);
+        token = HomeActivity.getToken();
 
 
-            if(idUtente != 0)
-                new getUtenteById().execute();
-            else
+
+            textView__idade = (TextView) rootView.findViewById(R.id.textView_Utentes_idade);
+            textView_alergia = (TextView) rootView.findViewById(R.id.textView_Utentes_alergia);
+            textView_antecedentes_cirugicos = (TextView) rootView.findViewById(R.id.textView_Profile_antecedentes);
+            textView_dataNasc = (TextView) rootView.findViewById(R.id.textView_Utentes_dataNascimento);
+            textView_nomeUtente = (TextView) rootView.findViewById(R.id.textView_Utentes_nome);
+            textView_numProcesso = (TextView) rootView.findViewById(R.id.textView_Utentes_numProcesso);
+            textView_patologia = (TextView) rootView.findViewById(R.id.textView_Utentes_patologia);
+            textView_subsistema = (TextView) rootView.findViewById(R.id.textView_Utentes_subsistema);
+            imagemProfile = (CircleImageView) rootView.findViewById(R.id.profile_image);
+
+            if (HomeActivity.getCirurgia() != null) {
+                idUtente = HomeActivity.getCirurgia().getIdUtente();
+                if (idUtente != 0)
+                    new getUtenteById().execute();
+                else
+                    abrirDialogoPesquisaUtente();
+
+
+            } else {
+                //setTitle("Escolha o Utente");
+
                 abrirDialogoPesquisaUtente();
+            }
+            setHasOptionsMenu(true);
 
-
-        }
-        else{
-            setTitle("Escolha o Utente");
-
-            abrirDialogoPesquisaUtente();
-        }
-
-	}
-    private void hideOption(int id)
-    {
-        MenuItem item = menu.findItem(id);
-        item.setVisible(false);
+        return rootView;
     }
 
-    private void showOption(int id)
-    {
-        MenuItem item = menu.findItem(id);
-        item.setVisible(true);
-    }
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		this.menu = menu;
-        getMenuInflater().inflate(R.menu.utentes, menu);
 
-        if(!isForResult)
-        {
-            hideOption(R.id.action_UtentesAccept);
-            hideOption(R.id.action_UtentesCancel);
-        }
-		return true;
-	}
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		// Handle action bar item clicks here. The action bar will
-		// automatically handle clicks on the Home/Up button, so long
-		// as you specify a parent activity in AndroidManifest.xml.
+        FragmentManager mFragmentManager = ((HomeActivity)getActivity()).getSupportFragmentManager();
+
 		int id = item.getItemId();
 		if (id == R.id.action_Utentes_Search) {
             abrirDialogoPesquisaUtente();
 			return true;
 		}
-        if(id == android.R.id.home)
-        {
 
-                            finish();
-            return true;
+        if (id == R.id.action_UtentesAccept){
+            HomeActivity.setIsForResultUtentes(false);
+            HomeActivity.getCirurgia().setIdUtente(u.getId());
+            ((HomeActivity) getActivity()).onItemClickNavigation(3,HomeActivity.getLayoutcontainerid());
+            ((HomeActivity) getActivity()).setCheckedItemNavigation(3,true);
         }
 
-        if (id == R.id.action_UtentesCancel) {
-            Intent returnIntent = new Intent();
-            setResult(RESULT_CANCELED, returnIntent);
-            finish();
-            return true;
-        }
-
-        if( id == R.id.action_UtentesAccept){
-            Intent returnIntent = new Intent();
-            returnIntent.putExtra("result",u.getId()+"");
-            setResult(RESULT_OK,returnIntent);
-            finish();
-            return true;
+        if (id == R.id.action_UtentesCancel){
+            HomeActivity.setIsForResultUtentes(false);
+            ((HomeActivity) getActivity()).onItemClickNavigation(3,HomeActivity.getLayoutcontainerid());
+            ((HomeActivity) getActivity()).setCheckedItemNavigation(3,true);
         }
 		return super.onOptionsItemSelected(item);
 	}
+
+
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.utentes, menu);
+
+        if(!HomeActivity.getIsForResultUtentes())
+        {
+            menu.findItem(R.id.action_UtentesAccept).setVisible(false).setEnabled(false);
+            menu.findItem(R.id.action_UtentesCancel).setVisible(false).setEnabled(false);
+        }
+        super.onCreateOptionsMenu(menu, inflater);
+
+    }
 
     public void abrirDialogoPesquisaUtente()
     {
         new getUtentes().execute();
 
-        dialog = new Dialog(UtentesActivity.this);
+        dialog = new Dialog(getActivity());
 
         // tell the Dialog to use the dialog.xml as it's layout
         // description
@@ -295,6 +274,7 @@ public class UtentesActivity extends ActionBarActivity {
 
     }
 
+
     public boolean isbeforeNow(Cirurgia c)
     {
         boolean isBeforeNow =false;
@@ -364,7 +344,7 @@ public class UtentesActivity extends ActionBarActivity {
         catch (Exception e){
             e.printStackTrace();
         }
-       Log.i("HORAS",j + " agora: " +new DateTime());
+       Log.i("HORAS", j + " agora: " + new DateTime());
 
         return resultado;
 
@@ -375,7 +355,7 @@ public class UtentesActivity extends ActionBarActivity {
 		@Override
 		protected void onPreExecute() {
 
-			ringProgressDialog = new ProgressDialog(UtentesActivity.this);
+			ringProgressDialog = new ProgressDialog(getActivity());
 			ringProgressDialog.setIcon(R.drawable.ic_launcher);
 			ringProgressDialog.setTitle("Aguarde...");
 			ringProgressDialog.setMessage("A Procurar Utentes...");
@@ -402,7 +382,7 @@ public class UtentesActivity extends ActionBarActivity {
 
 		protected void onPostExecute(ArrayList<Utente> lista) {
 			if (lista != null) {
-				adaptadorUtente = new ArrayAdapter<Utente>(getBaseContext(),
+				adaptadorUtente = new ArrayAdapter<Utente>(getActivity().getBaseContext(),
 						android.R.layout.simple_list_item_1, lista);
 				adaptadorUtente.sort(new Comparator<Utente>() {
 
@@ -419,8 +399,9 @@ public class UtentesActivity extends ActionBarActivity {
 
 			} else {
                ringProgressDialog.dismiss();
-                Toast.makeText(getApplicationContext(),"Erro Get Utente",Toast.LENGTH_SHORT).show();
-                finish();
+                Toast.makeText(getActivity().getBaseContext(),"Erro Get Utente",Toast.LENGTH_SHORT).show();
+                ((HomeActivity) getActivity()).onItemClickNavigation(0,HomeActivity.getLayoutcontainerid());
+                ((HomeActivity) getActivity()).setCheckedItemNavigation(0,true);
 
 			}
 		}
@@ -433,7 +414,7 @@ public class UtentesActivity extends ActionBarActivity {
         @Override
         protected void onPreExecute() {
 
-            ringProgressDialog = new ProgressDialog(UtentesActivity.this);
+            ringProgressDialog = new ProgressDialog(getActivity());
             ringProgressDialog.setIcon(R.drawable.ic_launcher);
             ringProgressDialog.setTitle("Aguarde...");
             ringProgressDialog.setMessage("A carregar Dados Utente...");
@@ -469,11 +450,13 @@ public class UtentesActivity extends ActionBarActivity {
 
 
             } else {
-                Toast.makeText(getApplicationContext(),
+                Toast.makeText(getActivity().getBaseContext(),
                         "Get Utente unsuccessful...", Toast.LENGTH_LONG)
                         .show();
                 ringProgressDialog.dismiss();
-                finish();
+                ((HomeActivity) getActivity()).onItemClickNavigation(0,HomeActivity.getLayoutcontainerid());
+                ((HomeActivity) getActivity()).setCheckedItemNavigation(0,true);
+
 
             }
 
@@ -487,7 +470,7 @@ public class UtentesActivity extends ActionBarActivity {
 
         @Override
         protected void onPreExecute() {
-            ringProgressDialog = new ProgressDialog(UtentesActivity.this);
+            ringProgressDialog = new ProgressDialog(getActivity());
             ringProgressDialog.setIcon(R.drawable.ic_launcher);
             ringProgressDialog.setTitle("Aguarde...");
             ringProgressDialog.setMessage("A carregar Dados Utente...");
@@ -525,6 +508,7 @@ public class UtentesActivity extends ActionBarActivity {
 
             }
             preencherAtividade(u);
+            getActivity().setTitle("Utente");
         }
     }
 

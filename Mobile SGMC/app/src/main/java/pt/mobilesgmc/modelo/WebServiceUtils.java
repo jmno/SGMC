@@ -34,6 +34,8 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+import pt.mobilesgmc.HomeActivity;
+
 public class WebServiceUtils {
 
 	public static String URL = "https://sgmc.apphb.com/Service1.svc/REST/";
@@ -275,6 +277,37 @@ public class WebServiceUtils {
 		return token;
 
 	}
+
+    public static ProfissonalSaude getDadosProfissional(String token)
+            throws ClientProtocolException, IOException, RestClientException,
+            ParseException, JSONException {
+        ProfissonalSaude pro = new ProfissonalSaude();
+
+        HttpPost httpPost = new HttpPost(URL + "devolveProfissionais?token="+token);
+
+
+            client = new DefaultHttpClient();
+            BasicHttpResponse httpResponse = (BasicHttpResponse) client
+                    .execute(httpPost);
+        Gson g = new Gson();
+
+        if (isOk(httpResponse.getStatusLine().getStatusCode())) {
+
+            pro = g.fromJson(
+                    EntityUtils.toString(httpResponse.getEntity()),
+                    ProfissonalSaude.class);
+            }
+        else {
+                throw new RestClientException(
+                        "HTTP Response with invalid status code "
+                                + httpResponse.getStatusLine().getStatusCode()
+                                + ".");
+            }
+
+
+        return pro;
+
+    }
 
 	public static Boolean isLoggedIn(String token)
 			throws ClientProtocolException, IOException, RestClientException {
@@ -1093,16 +1126,16 @@ public class WebServiceUtils {
     }
 
     public static Boolean adicionarProdutosDaCirurgia(
-            ArrayList<ProdutosCirurgia> produtos, String token)
+            ListasProdutosCirurgia produtos, String token)
             throws ClientProtocolException, IOException, ParseException,
             JSONException, RestClientException {
         Boolean adicionou = false;
         Gson g = new Gson();
 
         HttpPost httpPost = new HttpPost(URL + "addAllProdutosCirurgia?token="
-                + token);
+                + token + "&idCirurgia="+ HomeActivity.getCirurgia().getId());
 
-        Type collectionType = new TypeToken<ArrayList<ProdutosCirurgia>>() {
+        Type collectionType = new TypeToken<ListasProdutosCirurgia>() {
         }.getType();
 
         StringEntity se = new StringEntity(g.toJson(produtos,collectionType), "UTF-8");
@@ -1324,10 +1357,10 @@ public class WebServiceUtils {
         return adicionou;
     }
 
-    public static ArrayList<ProdutosCirurgia> getProdutosCirurgia(String token, int idCirurgia)
+    public static ListasProdutosCirurgia getProdutosCirurgia(String token, int idCirurgia)
             throws ClientProtocolException, IOException, RestClientException,
             ParseException, JSONException {
-        ArrayList<ProdutosCirurgia> produtos = null;
+        ListasProdutosCirurgia produtos = null;
 
         HttpGet request = new HttpGet(URL + "getProdutosDaCirurgia?token=" + token+"&idCirurgia="+idCirurgia);
 
@@ -1339,8 +1372,8 @@ public class WebServiceUtils {
         Gson g = new Gson();
 
         if (isOk(basicHttpResponse.getStatusLine().getStatusCode())) {
-            produtos = new ArrayList<ProdutosCirurgia>();
-            Type collectionType = new TypeToken<ArrayList<ProdutosCirurgia>>() {
+            produtos = new ListasProdutosCirurgia();
+            Type collectionType = new TypeToken<ListasProdutosCirurgia>() {
             }.getType();
             produtos = g.fromJson(
                     EntityUtils.toString(basicHttpResponse.getEntity()),
@@ -1432,4 +1465,41 @@ public class WebServiceUtils {
         return especialidade;
 
     }
+
+    public static Integer adicionarOuAtualizarEquipa(EquipaComJuncao equipa, int idCirurgia,
+                                         String token) throws ClientProtocolException, IOException,
+            ParseException, JSONException, RestClientException {
+        int resultado = 0;
+        Gson g = new Gson();
+
+        HttpPost httpPost = new HttpPost(URL + "atualizarEquipaCirurgica?token="
+                + token + "&idCirurgia=" + idCirurgia);
+        StringEntity se = new StringEntity(g.toJson(equipa, EquipaComJuncao.class),
+                "UTF-8");
+
+        se.setContentType("application/json;charset=UTF-8");// text/plain;charset=UTF-8
+
+        se.setContentType("text/json");
+
+        httpPost.setEntity(se);
+        BasicHttpResponse httpResponse = (BasicHttpResponse) client
+                .execute(httpPost);
+        if (isOk(httpResponse.getStatusLine().getStatusCode())) {
+            HttpEntity entity = httpResponse.getEntity();
+
+            String string = EntityUtils.toString(entity);
+            Log.i("error", string);
+
+            resultado = Integer.valueOf(string);
+        } else {
+            throw new RestClientException(
+                    "HTTP Response with invalid status code"
+                            + httpResponse.getStatusLine().getStatusCode()
+                            + ".");
+
+        }
+
+        return resultado;
+    }
+
 }

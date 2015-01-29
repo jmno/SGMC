@@ -1,500 +1,307 @@
 package pt.mobilesgmc;
 
-import android.app.Activity;
 import android.app.Dialog;
 import android.app.ProgressDialog;
-import android.content.ActivityNotFoundException;
-import android.content.DialogInterface;
-import android.content.DialogInterface.OnCancelListener;
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.speech.RecognizerIntent;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.util.DisplayMetrics;
-import android.util.Log;
-import android.view.Display;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.util.SparseIntArray;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.WindowManager;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.mobilegsmc.R;
 
-import org.apache.http.ParseException;
-import org.json.JSONException;
-
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.Locale;
+import java.util.List;
 
+import br.liveo.interfaces.NavigationLiveoListener;
+import br.liveo.navigationliveo.NavigationLiveo;
 import pt.mobilesgmc.modelo.Cirurgia;
-import pt.mobilesgmc.modelo.OnSwipeTouchListener;
-import pt.mobilesgmc.modelo.RestClientException;
-import pt.mobilesgmc.modelo.WebServiceUtils;
-import pt.mobilesgmc.view.viewgroup.FlyOutContainer;
+import pt.mobilesgmc.modelo.DadosIntraoperatorioFinal;
+import pt.mobilesgmc.modelo.EquipaComJuncao;
+import pt.mobilesgmc.modelo.ListasProdutosCirurgia;
 
-public class HomeActivity extends Activity {
+public class HomeActivity extends NavigationLiveo implements NavigationLiveoListener{
 
-	FlyOutContainer root;
-	String token;
 	private ArrayAdapter<Cirurgia> adaptadorCirurgias;
 	private Dialog dialog;
-	public static ListView listaCirurgias;
-	public static EditText texto_cirurgia;
-	public static TextView textoCirurgiaAUsar;
+
 	private static Cirurgia cirurgia;
+    private static EquipaComJuncao equipa;
+    private static DadosIntraoperatorioFinal dadosFinal;
+    private static ListasProdutosCirurgia listaProdutos;
 	ProgressDialog ringProgressDialog = null;
     private static final int TIME_INTERVAL = 2000; // # milliseconds, desired time passed between two back presses.
     private long mBackPressed;
     private final int REQ_CODE_SPEECH_INPUT = 100;
     private Button buttonSpeech;
 
+    private List<String> mListNameItem;
+
+    private static String token;
+    private static Boolean isForResultUtentes = false;
+    private static int layoutcontainerid;
+    private static String username= "";
+    private static String cc ="";
+    private static boolean isStarted= false;
+
+
 
 
     @Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_home);
-        //View v =  findViewById(R.layout.activity_home);
-
-        setTitle("Ecrã Principal");
-		token = PreferenceManager.getDefaultSharedPreferences(this).getString(
-				"token", "defaultStringIfNothingFound");
-
-		this.root = (FlyOutContainer) this.getLayoutInflater().inflate(
-				R.layout.activity_home, null);
-
-		Display display = getWindowManager().getDefaultDisplay();
-		DisplayMetrics outMetrics = new DisplayMetrics();
-		display.getMetrics(outMetrics);
-
-		float density = getResources().getDisplayMetrics().density;
-		float dpWidth = outMetrics.widthPixels / density;
-		int margin = ((80 * (int) dpWidth) / 100)-50;
-		root.setMargin(margin);
-		this.setContentView(root);
-
-		root.setOnTouchListener(new OnSwipeTouchListener(this) {
-			public void onSwipeTop() {
-				// Toast.makeText(SampleActivity.this, "top",
-				// Toast.LENGTH_SHORT).show();
-			}
-
-			public void onSwipeRight() {
-				String estado = root.getState().toString();
-				if (estado.equals("CLOSED"))
-					toggleMenu(findViewById(R.layout.activity_home));
-				// Toast.makeText(SampleActivity.this, "right",
-				// Toast.LENGTH_SHORT).show();
-			}
-
-			public void onSwipeLeft() {
-				String estado = root.getState().toString();
-				if (estado.equals("OPEN"))
-                    toggleMenu(findViewById(R.layout.activity_home));
-			}
-
-			public void onSwipeBottom() {
-				// Toast.makeText(SampleActivity.this, "bottom",
-				// Toast.LENGTH_SHORT).show();
-			}
-
-			public boolean onTouch(View v, MotionEvent event) {
-				return gestureDetector.onTouchEvent(event);
-			}
-
-		});
-		texto_cirurgia = (EditText) root
-				.findViewById(R.id.editText_escolhaCirurgia);
-
-		setListenersMenus();
-
-		Button button = (Button) findViewById(R.id.button1);
-		button.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				Intent i = new Intent(getApplicationContext(),
-						DadosINtraOperatorioActivity.class);
-				startActivity(i);
-			}
-		});
-
-		textoCirurgiaAUsar = (TextView) root
-				.findViewById(R.id.textViewCirurgia);
-
-
-
-
-		Button btnAdd = (Button) findViewById(R.id.btnEscolhaCirurgia);
-		btnAdd.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View arg0) {
-				new getAllCirurgias().execute();
-
-				dialog = new Dialog(HomeActivity.this);
-
-				// tell the Dialog to use the dialog.xml as it's layout
-				// description
-				dialog.setContentView(R.layout.dialog_procuracirurgias);
-				dialog.setTitle("Escolha a Cirurgia:");
-				dialog.getWindow()
-						.setSoftInputMode(
-								WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
-				final EditText nomeEditText = (EditText) dialog
-						.findViewById(R.id.editText_escolhaCirurgia);
-
-				nomeEditText.addTextChangedListener(new TextWatcher() {
-
-					@Override
-					public void onTextChanged(CharSequence s, int start,
-							int before, int count) {
-						// TODO Auto-generated method stub
-						adaptadorCirurgias.getFilter().filter(s);
-					}
-
-					@Override
-					public void beforeTextChanged(CharSequence s, int start,
-							int count, int after) {
-						// TODO Auto-generated method stub
-
-					}
-
-					@Override
-					public void afterTextChanged(Editable s) {
-						// TODO Auto-generated method stub
-
-					}
-				});
-				listaCirurgias = (ListView) dialog
-						.findViewById(R.id.listView_cirurgias);
-
-				listaCirurgias
-						.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
-							@Override
-							public void onItemClick(AdapterView<?> arg0,
-									View arg1, int arg2, long arg3) {
-
-								Cirurgia c = (Cirurgia) listaCirurgias
-										.getItemAtPosition(arg2);
-								PreferenceManager
-										.getDefaultSharedPreferences(
-												getApplicationContext())
-										.edit()
-										.putString("idCirurgia",
-												String.valueOf(c.getId()))
-										.commit();
-								PreferenceManager
-										.getDefaultSharedPreferences(
-												getApplicationContext()).edit()
-										.putInt("idUtente", c.getIdUtente())
-										.commit();
-								PreferenceManager
-										.getDefaultSharedPreferences(
-												getApplicationContext())
-										.edit()
-										.putString("idEquipa",
-												String.valueOf(c.getIdEquipa()))
-										.commit();
-								HomeActivity.setCirurgia(c);
-								dialog.dismiss();
-							}
-						});
-
-
-				dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
-
-					@Override
-					public void onDismiss(DialogInterface dialog) {
-						String cirurgia = PreferenceManager
-								.getDefaultSharedPreferences(
-										getApplicationContext()).getString(
-										"idCirurgia",
-										"defaultStringIfNothingFound");
-						textoCirurgiaAUsar.setText(cirurgia);
-					}
-				});
-
-               /* Intent i = new Intent(getApplicationContext(), ListaProdutosActivity.class);
-                startActivity(i);*/
-
-                /* Intent i = new Intent(getApplicationContext(), AparelhosActivity.class);
-                startActivity(i);*/
-
-               /*  Intent i = new Intent(getApplicationContext(), InstrumentalActivity.class);
-                startActivity(i); */
-			}
-		});
-
-        buttonSpeech = (Button) findViewById(R.id.button1);
-        buttonSpeech.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                promptSpeechInput();
-            }
-        });
-	}
-
-	public void setListenersMenus() {
-
-       /* TextView btnLista = (TextView) root
-                .findViewById(R.id.textViewMenuListasMateriais);
-        btnLista.setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                if (cirurgia != null) {
-                    Intent equipa = new Intent(getBaseContext(),
-                            ListaProdutosActivity.class);
-                    toggleMenu(findViewById(R.layout.activity_lista_produtos));
-
-                    startActivity(equipa);
-                }
-
-            }
-        });*/
-
-		TextView btnEquipa = (TextView) root
-				.findViewById(R.id.textViewMenuEquipaCirurgica);
-		btnEquipa.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				if (cirurgia != null) {
-				Intent equipa = new Intent(getBaseContext(),
-						EquipaCirurgica.class);
-			//	toggleMenu(findViewById(R.layout.activity_equipa_cirurgica));
-
-				startActivity(equipa);
-				} else {
-					Toast.makeText(getApplicationContext(), "Tem de selecionar uma cirurgia primeiro", Toast.LENGTH_SHORT).show();
-					Log.i("sgmc", "Não tem cirurgia escolhida");
-					root.toggleMenu();
-				}
-
-			}
-		});
-		TextView btnDados = (TextView) root
-				.findViewById(R.id.textViewMenuDadosCirurgia);
-		btnDados.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-                Intent dados = new Intent(getBaseContext(),
-                        DadosCirurgia.class);
-                root.toggleMenu();
-				if (cirurgia == null) {
-                    cirurgia = new Cirurgia();
-                    cirurgia.setId(0);
-                }
-
-                startActivity(dados);
-			}
-		});
-		TextView btnUtentes = (TextView) root
-				.findViewById(R.id.textViewMenuUtentes);
-		btnUtentes.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				Intent utentes = new Intent(getBaseContext(),
-						UtentesActivity.class);
-				//toggleMenu(findViewById(R.layout.activity_utentes));
-				startActivity(utentes);
-			}
-		});
-
-		TextView btnDadosIntraOperatorio = (TextView) findViewById(R.id.textViewMenuDadosIntraOperatorio);
-		btnDadosIntraOperatorio.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				if (HomeActivity.getCirurgia() != null) {
-					Intent dados = new Intent(getBaseContext(),
-							DadosINtraOperatorioActivity.class);
-				//	toggleMenu(findViewById(R.layout.activity_dados_intra_operatorio));
-					startActivity(dados);
-                    //Toast.makeText(getApplicationContext(),"Não perca a próxima versão, porque nós também não!",Toast.LENGTH_SHORT).show();
-                    root.toggleMenu();
-
-				} else {
-					Toast.makeText(getApplicationContext(), "Tem de selecionar uma cirurgia primeiro", Toast.LENGTH_SHORT).show();
-					Log.i("sgmc", "Não tem cirurgia escolhida");
-                 /*   Intent dados = new Intent(getBaseContext(),
-                            DadosINtraOperatorioActivity.class);
-                    //toggleMenu(findViewById(this));
-                    startActivity(dados);*/
-					root.toggleMenu();
-				}
-
-			}
-		});
-		TextView btnSair = (TextView) findViewById(R.id.textViewMenuSair);
-		btnSair.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				PreferenceManager
-						.getDefaultSharedPreferences(getApplicationContext())
-						.edit().clear().commit();
-				Intent intent = new Intent(Intent.ACTION_MAIN);
-				intent.addCategory(Intent.CATEGORY_HOME);
-				intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-				startActivity(intent);
-				finish();
-			}
-		});
-
-        TextView btnListasMateriais = (TextView) findViewById(R.id.textViewMenuListasMateriais);
-        btnListasMateriais.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (HomeActivity.getCirurgia() != null) {
-                    Intent listasMat = new Intent(getBaseContext(),
-                            ListaProdutosActivity.class);
-                    //	toggleMenu(findViewById(R.layout.activity_dados_intra_operatorio));
-                    startActivity(listasMat);
-                    //Toast.makeText(getApplicationContext(),"N„o perca a prÛxima vers„o, porque nÛs tambÈm n„o!",Toast.LENGTH_SHORT).show();
-                    root.toggleMenu();
-
-                } else {
-                    Toast.makeText(getApplicationContext(), "Tem de selecionar uma cirurgia primeiro", Toast.LENGTH_SHORT).show();
-                    Log.i("sgmc", "Não tem cirurgia escolhida");
-                    Intent listasMat = new Intent(getBaseContext(),
-                            ListaProdutosActivity.class);
-                    //	toggleMenu(findViewById(R.layout.activity_dados_intra_operatorio));
-                    startActivity(listasMat);
-                    root.toggleMenu();
-                }
-            }
-        });
-        TextView btnAparelhosUtilizados= (TextView) findViewById(R.id.textViewMenuAparelhosCirurgia);
-        btnAparelhosUtilizados.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (HomeActivity.getCirurgia() != null) {
-                    Intent listasMat = new Intent(getBaseContext(),
-                            AparelhosActivity.class);
-                    //	toggleMenu(findViewById(R.layout.activity_dados_intra_operatorio));
-                    startActivity(listasMat);
-                    //Toast.makeText(getApplicationContext(),"N„o perca a prÛxima vers„o, porque nÛs tambÈm n„o!",Toast.LENGTH_SHORT).show();
-                    root.toggleMenu();
-
-                } else {
-                    Toast.makeText(getApplicationContext(), "Tem de selecionar uma cirurgia primeiro", Toast.LENGTH_SHORT).show();
-                    Log.i("sgmc", "Não tem cirurgia escolhida");
-                    Intent listasMat = new Intent(getBaseContext(),
-                            AparelhosActivity.class);
-                    //	toggleMenu(findViewById(R.layout.activity_dados_intra_operatorio));
-                    startActivity(listasMat);
-
-                }
-            }
-        });
-
-        TextView btnInstrumentosUtilizados= (TextView) findViewById(R.id.textViewMenuInstrumentalCirurgia);
-        btnInstrumentosUtilizados.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (HomeActivity.getCirurgia() != null) {
-                    Intent listasMat = new Intent(getBaseContext(),
-                            InstrumentalActivity.class);
-                    //	toggleMenu(findViewById(R.layout.activity_dados_intra_operatorio));
-                    startActivity(listasMat);
-                    //Toast.makeText(getApplicationContext(),"N„o perca a prÛxima vers„o, porque nÛs tambÈm n„o!",Toast.LENGTH_SHORT).show();
-                    root.toggleMenu();
-
-                } else {
-                    Toast.makeText(getApplicationContext(), "Tem de selecionar uma cirurgia primeiro", Toast.LENGTH_SHORT).show();
-                    Log.i("sgmc", "Não tem cirurgia escolhida");
-                    Intent listasMat = new Intent(getBaseContext(),
-                            InstrumentalActivity.class);
-                    //	toggleMenu(findViewById(R.layout.activity_dados_intra_operatorio));
-                    startActivity(listasMat);
-                }
-            }
-        });
-
-        TextView btnMaterialUtilizado = (TextView) findViewById(R.id.textViewMenuMaterialCirurgia);
-        btnMaterialUtilizado.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (HomeActivity.getCirurgia() != null) {
-                    Intent listasMat = new Intent(getBaseContext(),
-                            MaterialActivity.class);
-                    //	toggleMenu(findViewById(R.layout.activity_dados_intra_operatorio));
-                    startActivity(listasMat);
-                    //Toast.makeText(getApplicationContext(),"N„o perca a prÛxima vers„o, porque nÛs tambÈm n„o!",Toast.LENGTH_SHORT).show();
-                    root.toggleMenu();
-
-                } else {
-                    Toast.makeText(getApplicationContext(), "Tem de selecionar uma cirurgia primeiro", Toast.LENGTH_SHORT).show();
-                    Log.i("sgmc", "Não tem cirurgia escolhida");
-                    Intent listasMat = new Intent(getBaseContext(),
-                            MaterialActivity.class);
-                    //	toggleMenu(findViewById(R.layout.activity_dados_intra_operatorio));
-                    startActivity(listasMat);
-                }
-            }
-        });
-	}
-
-
-    private void promptSpeechInput() {
-        Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
-        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,
-                RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
-        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault());
-        intent.putExtra(RecognizerIntent.EXTRA_PROMPT,
-                getString(R.string.speech_prompt));
-        try {
-            startActivityForResult(intent, REQ_CODE_SPEECH_INPUT);
-        } catch (ActivityNotFoundException a) {
-            Toast.makeText(getApplicationContext(),
-                    getString(R.string.speech_not_supported),
-                    Toast.LENGTH_SHORT).show();
-        }
+    public void onUserInformation() {
+        //User information here
+        this.mUserName.setText(username);
+        this.mUserEmail.setText(cc);
+        this.mUserPhoto.setImageResource(R.drawable.ic_action_user);
+        this.mUserBackground.setImageResource(R.drawable.ic_userbackground_2);
+
+        /*
+        View mCustomHeader = getLayoutInflater().inflate(R.layout.custom_header_user, this.getListView(), false);
+        ImageView imageView = (ImageView) mCustomHeader.findViewById(R.id.imageView);
+        this.addCustomHeader(mCustomHeader); //This will add the new header and remove the default user header*/
+    }
+
+
+
+    @Override
+    public void setTitle(CharSequence title) {
+        super.setTitle(title);
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
+    public void onInt(Bundle savedInstanceState) {
+        //Creation of the list items is here
+        // set listener {required}
+        this.setNavigationListener(this);
+        this.setDefaultStartPositionNavigation(0);
 
-        switch (requestCode) {
-            case REQ_CODE_SPEECH_INPUT: {
-                if (resultCode == RESULT_OK && null != data) {
+        // name of the list items
+        mListNameItem = new ArrayList<>();
+        mListNameItem.add(0, "Home");
+        mListNameItem.add(1, "Ficha Utente");
+        mListNameItem.add(2, "Equipa Cirurgica");
+        mListNameItem.add(3, "Dados Cirurgia");
+        mListNameItem.add(4, "Dados IntraOperatórios");
+        mListNameItem.add(5, "Listas");
+        mListNameItem.add(6, "Produtos");
+        mListNameItem.add(7, "Aparelhos Utilizados");
+        mListNameItem.add(8, "Instrumental Utilizado");
+        mListNameItem.add(9, "Material Utilizado");
+        mListNameItem.add(10, "Criar");
+        mListNameItem.add(11, "Cirurgia");
+        mListNameItem.add(12, "Profissional Saúde");
 
-                    ArrayList<String> result = data
-                            .getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+        // icons list items
+        List<Integer> mListIconItem = new ArrayList<>();
+        mListIconItem.add(0, R.drawable.ic_home);
+        mListIconItem.add(1, R.drawable.ic_action_user);
+        mListIconItem.add(2, R.drawable.ic_medical_doctor);
+        mListIconItem.add(3, R.drawable.ic_surgery);
+        mListIconItem.add(4, R.drawable.ic_home_black);
+        mListIconItem.add(5, 0);
+        mListIconItem.add(6, R.drawable.ic_home_black);
+        mListIconItem.add(7, R.drawable.ic_home_black);
+        mListIconItem.add(8, R.drawable.ic_home_black);
+        mListIconItem.add(9, R.drawable.ic_home_black);
+        mListIconItem.add(10, 0);
+        mListIconItem.add(11, R.drawable.surgery_add);
+        mListIconItem.add(12, R.drawable.ic_medical_doctor_add);
+        //{optional} - Among the names there is some subheader, you must indicate it here
+        List<Integer> mListHeaderItem = new ArrayList<>();
+        mListHeaderItem.add(5);
+        mListHeaderItem.add(10);
+        //{optional} - Among the names there is any item counter, you must indicate it (position) and the value here
+        SparseIntArray mSparseCounterItem = new SparseIntArray(); //indicate all items that have a counter
 
-                    Log.i("Speech", result.get(0));
+        //If not please use the FooterDrawer use the setFooterVisible(boolean visible) method with value false
+        this.setFooterInformationDrawer(R.string.logout, R.drawable.ic_exit_to_app);
+
+        this.setNavigationAdapter(mListNameItem, mListIconItem, mListHeaderItem, mSparseCounterItem);
+        token = PreferenceManager.getDefaultSharedPreferences(this).getString(
+                "token", "defaultStringIfNothingFound");
+        cc = "CC: "+ PreferenceManager.getDefaultSharedPreferences(this).getString(
+                "cc", " ");
+        username ="Nome: "+ PreferenceManager.getDefaultSharedPreferences(this).getString(
+                "username", "Sem Nome");
+        onUserInformation();
+    }
+
+
+    @Override //The "layoutContainerId" should be used in "beginTransaction (). Replace"
+    public void onItemClickNavigation(int position, int layoutContainerId) {
+
+        layoutcontainerid = layoutContainerId;
+        FragmentManager mFragmentManager = getSupportFragmentManager();
+
+
+        switch (position)
+        {
+            case 0:
+                Fragment mFragment = new FragmentMain().newInstance(mListNameItem.get(position));
+                if (mFragment != null){
+                    mFragmentManager.beginTransaction().replace(layoutContainerId, mFragment).commit();
+                }
+                setTitle("Home");
+                break;
+            case 1:
+
+                mFragment = new UtentesActivity().newInstance(mListNameItem.get(position));
+                mFragmentManager.beginTransaction().replace(layoutContainerId, mFragment).commit();
+                setTitle("Escolha o Utente");
+                break;
+            case 2:
+                if(cirurgia == null) {
+                    Toast.makeText(getApplicationContext(), "Escolha/Crie Cirurgia", Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    mFragment = new EquipaCirurgica().newInstance(mListNameItem.get(position));
+                    mFragmentManager.beginTransaction().replace(layoutContainerId,mFragment).commit();
+                    setTitle("Equipa Cirúrgica");
+                }
+
+                break;
+            case 3:
+                if(cirurgia == null) {
+                    Toast.makeText(getApplicationContext(), "Escolha ou Crie Cirurgia", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    mFragment = new DadosCirurgia().newInstance(mListNameItem.get(position));
+                    mFragmentManager.beginTransaction().replace(layoutContainerId, mFragment).commit();
                 }
                 break;
-            }
+            case 4:
+                if(cirurgia == null)
+                {
+                    Toast.makeText(getApplicationContext(), "Escolha ou Crie Cirurgia", Toast.LENGTH_SHORT).show();
+
+                }
+                else
+                {
+                    mFragment = new DadosINtraOperatorioActivity().newInstance(mListNameItem.get(position));
+                    mFragmentManager.beginTransaction().replace(layoutContainerId, mFragment).commit();
+                }
+                break;
+            case 6:
+                if(cirurgia == null)
+                {
+                    Toast.makeText(getApplicationContext(), "Escolha ou Crie Cirurgia", Toast.LENGTH_SHORT).show();
+
+                }
+                else
+                {
+                    mFragment = new ListaProdutosActivity().newInstance(mListNameItem.get(position));
+                    mFragmentManager.beginTransaction().replace(layoutContainerId, mFragment).commit();
+                }
+                break;
+            case 7:
+                if(cirurgia == null)
+                {
+                    Toast.makeText(getApplicationContext(), "Escolha ou Crie Cirurgia", Toast.LENGTH_SHORT).show();
+
+                }
+                else
+                {
+                    mFragment = new AparelhosActivity().newInstance(mListNameItem.get(position));
+                    mFragmentManager.beginTransaction().replace(layoutContainerId, mFragment).commit();
+                }
+                break;
+            case 8:
+                if(cirurgia == null)
+                {
+                    Toast.makeText(getApplicationContext(), "Escolha ou Crie Cirurgia", Toast.LENGTH_SHORT).show();
+
+                }
+                else
+                {
+                    mFragment = new InstrumentalActivity().newInstance(mListNameItem.get(position));
+                    mFragmentManager.beginTransaction().replace(layoutContainerId, mFragment).commit();
+                }
+                break;
+            case 9:
+                if(cirurgia == null)
+                {
+                    Toast.makeText(getApplicationContext(), "Escolha ou Crie Cirurgia", Toast.LENGTH_SHORT).show();
+
+                }
+                else
+                {
+                    mFragment = new MaterialActivity().newInstance(mListNameItem.get(position));
+                    mFragmentManager.beginTransaction().replace(layoutContainerId, mFragment).commit();
+                }
+                break;
+            case 11:
+                setTitle("Nova Cirurgia");
+                cirurgia = new Cirurgia();
+                equipa = new EquipaComJuncao();
+                mFragment = new DadosCirurgia().newInstance(mListNameItem.get(position));
+                mFragmentManager.beginTransaction().replace(layoutContainerId, mFragment).commit();
+                break;
+
+            case 12:
+                setTitle("Novo Profissional Saúde");
+                mFragment = new NovoProfissional().newInstance(mListNameItem.get(position));
+                mFragmentManager.beginTransaction().replace(layoutContainerId, mFragment).commit();
+                break;
+        }
+
+
+    }
+
+
+
+    @Override
+    public void onClickUserPhotoNavigation(View v)
+    {
+        Toast.makeText(this, "teste", Toast.LENGTH_SHORT).show();
+    }
+
+
+
+    @Override
+    public void onClickFooterItemNavigation(View v)
+    {
+        PreferenceManager
+                .getDefaultSharedPreferences(getApplicationContext())
+                .edit().clear().commit();
+        Intent intent = new Intent(Intent.ACTION_MAIN);
+        intent.addCategory(Intent.CATEGORY_HOME);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+        finish();
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
+
+
+    @Override
+    public void onPrepareOptionsMenuNavigation(Menu menu, int position, boolean visible) {
+
+        //hide the menu when the navigation is opens
+        switch (position) {
+            case 0:
+
+                break;
+
+            case 1:
+                break;
+
 
         }
     }
 
-	@Override
+
+    @Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		return true;
@@ -514,17 +321,6 @@ public class HomeActivity extends Activity {
 		return super.onOptionsItemSelected(item);
 	}
 
-	public void toggleMenu(View v) {
-		this.root.toggleMenu();
-	}
-
-	@Override
-	public boolean onTouchEvent(MotionEvent event) {
-		String estado = root.getState().toString();
-		if (estado.equals("OPEN"))
-			this.root.toggleMenu();
-		return super.onTouchEvent(event);
-	}
 
     @Override
     public void onBackPressed()
@@ -542,13 +338,7 @@ public class HomeActivity extends Activity {
         mBackPressed = System.currentTimeMillis();
     }
 
-    @Override
-    protected void onResume() {
-        if(cirurgia!=null)
-            textoCirurgiaAUsar.setText(cirurgia.getId()+"");
-        super.onResume();
 
-    }
 
 	public static Cirurgia getCirurgia() {
 		return cirurgia;
@@ -558,66 +348,69 @@ public class HomeActivity extends Activity {
 		HomeActivity.cirurgia = cirurgia;
 	}
 
-	private class getAllCirurgias extends
-			AsyncTask<Cirurgia, Void, ArrayList<Cirurgia>> {
-		@Override
-		protected void onPreExecute() {
+    public static String getToken(){return token;}
 
-			ringProgressDialog = new ProgressDialog(HomeActivity.this);
-			ringProgressDialog.setIcon(R.drawable.ic_launcher);
-			ringProgressDialog.setTitle("Aguarde...");
-			ringProgressDialog.setMessage("A carregar Dados...");
+    public static Boolean getIsForResultUtentes() {
+        return isForResultUtentes;
+    }
 
-			ringProgressDialog.setCancelable(true);
-			ringProgressDialog.setOnCancelListener(new OnCancelListener() {
+    public static void setIsForResultUtentes(Boolean isForResultUtentes) {
+        HomeActivity.isForResultUtentes = isForResultUtentes;
+    }
+    public static int getLayoutcontainerid() {
+        return layoutcontainerid;
+    }
 
-				@Override
-				public void onCancel(DialogInterface dialog) {
+    public static void setLayoutcontainerid(int layoutcontainerid) {
+        HomeActivity.layoutcontainerid = layoutcontainerid;
+    }
 
-				}
-			});
-			ringProgressDialog.show();
-		};
+    public static String getUsername() {
+        return username;
+    }
 
-		@Override
-		protected ArrayList<Cirurgia> doInBackground(Cirurgia... params) {
-			ArrayList<Cirurgia> lista = null;
-			try {
-				lista = WebServiceUtils.getAllCirurgias(token);
-			} catch (ParseException | IOException | JSONException
-					| RestClientException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+    public static void setUsername(String username) {
+        HomeActivity.username = username;
+    }
 
-			return lista;
-		}
+    public static EquipaComJuncao getEquipa() {
+        return equipa;
+    }
 
-		@Override
-		protected void onPostExecute(ArrayList<Cirurgia> lista) {
-			if (lista != null) {
-				adaptadorCirurgias = new ArrayAdapter<Cirurgia>(
-						getBaseContext(), android.R.layout.simple_list_item_1,
-						lista);
-				adaptadorCirurgias.sort(new Comparator<Cirurgia>() {
+    public static void setEquipa(EquipaComJuncao equipa) {
+        HomeActivity.equipa = equipa;
+    }
 
-					@Override
-					public int compare(Cirurgia lhs, Cirurgia rhs) {
-						return ("" + lhs.getId()).compareTo(("" + rhs.getId()));
-					}
-				});
-				listaCirurgias.setAdapter(adaptadorCirurgias);
-				ringProgressDialog.dismiss();
-				dialog.show();
-			} else {
-				ringProgressDialog.dismiss();
-				Toast.makeText(
-						getApplicationContext(),
-						"Erro Get Cirurgias - Verifique a Internet e repita o Processo",
-						Toast.LENGTH_SHORT).show();
-			}
-		}
+    public static String getCc() {
+        return cc;
+    }
 
-	}
+    public static void setCc(String cc) {
+        HomeActivity.cc = cc;
+    }
 
+    public static boolean isIsStarted() {
+        return isStarted;
+    }
+
+    public static void setIsStarted(boolean isStarted) {
+        HomeActivity.isStarted = isStarted;
+    }
+
+    public static DadosIntraoperatorioFinal getDadosFinal() {
+        return dadosFinal;
+    }
+
+    public static void setDadosFinal(DadosIntraoperatorioFinal dadosFinal) {
+        HomeActivity.dadosFinal = dadosFinal;
+    }
+
+
+    public static ListasProdutosCirurgia getListaProdutos() {
+        return listaProdutos;
+    }
+
+    public static void setListaProdutos(ListasProdutosCirurgia listaProdutos) {
+        HomeActivity.listaProdutos = listaProdutos;
+    }
 }

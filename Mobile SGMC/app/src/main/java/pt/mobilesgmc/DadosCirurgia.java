@@ -1,21 +1,18 @@
 package pt.mobilesgmc;
 
-import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v4.app.Fragment;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -54,9 +51,8 @@ import pt.mobilesgmc.modelo.Horas;
 import pt.mobilesgmc.modelo.RestClientException;
 import pt.mobilesgmc.modelo.TipoCirurgia;
 import pt.mobilesgmc.modelo.WebServiceUtils;
-import pt.mobilesgmc.view.viewgroup.FlyOutContainer;
 
-public class DadosCirurgia extends ActionBarActivity {
+public class DadosCirurgia extends Fragment {
 
     private Spinner especialidadeCirurgica;
     private TextView data;
@@ -79,13 +75,11 @@ public class DadosCirurgia extends ActionBarActivity {
     private TextView horaSaidaRecobro;
     private Spinner destinoDoente;
     private EditText informacoesRelevantes;
-    FlyOutContainer root;
     private int mYear, mMonth, mDay, mHour, mMinute, mSecond;
     private Spinner bloco;
     private ArrayAdapter<BlocoOperatorio> adaptadorBloco;
     private String token;
     private int idCirurgia;
-    private Cirurgia cir;
     private ArrayAdapter<BlocoComSala> adaptadorBlococomSala;
     ProgressDialog ringProgressDialog = null;
     private TextView texto;
@@ -106,48 +100,44 @@ public class DadosCirurgia extends ActionBarActivity {
     private int idUtente = 0;
     private Menu menu;
 
+    public DadosCirurgia newInstance(String text){
+        DadosCirurgia mFragment = new DadosCirurgia();
+        Bundle mBundle = new Bundle();
+        mFragment.setArguments(mBundle);
+        return mFragment;
+    }
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_dados_cirurgia);
-        getSupportActionBar();
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        if(HomeActivity.getCirurgia().getCirurgia()!=null){
-            setTitle("Editar: '" + HomeActivity.getCirurgia().getCirurgia() + "'");
-        }
-        else
-        setTitle("Editar Cirurgia:");
-
-
-        // idEquipa = Integer.parseInt(PreferenceManager
-        // .getDefaultSharedPreferences(getApplicationContext())
-        // .getString("icdEquipa", "-1"));
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // TODO Auto-generated method stub
+        View rootView = inflater.inflate(R.layout.activity_dados_cirurgia, container, false);
+        token = HomeActivity.getToken();
 
         /*
-        ///* FAB BUTTON */
+        if(HomeActivity.getCirurgia()!=null)
+        if(HomeActivity.getCirurgia().getCirurgia()!=null) {
+            getActivity().setTitle("Editar"+ HomeActivity.getCirurgia().getCirurgia());
+            idCirurgia = HomeActivity.getCirurgia().getId();
+        }
 
-
-
-/* FAB But*/
-
-        // new getBlocoOperatorios().execute();
-        token = PreferenceManager.getDefaultSharedPreferences(this).getString(
-                "token", "defaultStringIfNothingFound");
-        idCirurgia = Integer.parseInt(PreferenceManager
-                .getDefaultSharedPreferences(getApplicationContext())
-                .getString("idCirurgia", "0"));
-        dialog = new Dialog(DadosCirurgia.this);
-        scrollView = (ScrollView) findViewById(R.id.scrollDadosCirurgia);
+        if(HomeActivity.getIdUtenteAAssociar()!=0)
+            idUtente = HomeActivity.getIdUtenteAAssociar();
+        else
+            getActivity().setTitle("Editar Cirurgia:");
+*/
+        dialog = new Dialog(getActivity());
+        scrollView = (ScrollView) rootView.findViewById(R.id.scrollDadosCirurgia);
         //   linearLayout = (LinearLayout) findViewById(R.id.linearLayout_DadosCirurgia_Horas);
 
-        data = (TextView) findViewById(R.id.TextViewData);
+        data = (TextView) rootView.findViewById(R.id.TextViewData);
         //horaChamadaUtente = (TextView) findViewById(R.id.editTextHoraChamadaUtente);
-        especialidadeCirurgica = (Spinner) findViewById(R.id.spinnerEspecialidade);
-        tipoCirurgia = (Spinner) findViewById(R.id.spinnerTipoCirurgia);
-        sala = (Spinner) findViewById(R.id.spinnerSala);
-        lateralidade = (Spinner) findViewById(R.id.spinnerLateralidade);
-        classificacaoASA = (Spinner) findViewById(R.id.spinnerASA);
-        horaCirurgia = (TextView) findViewById(R.id.TextViewHoraCirurgia);
+        especialidadeCirurgica = (Spinner) rootView.findViewById(R.id.spinnerEspecialidade);
+        tipoCirurgia = (Spinner) rootView.findViewById(R.id.spinnerTipoCirurgia);
+        sala = (Spinner) rootView.findViewById(R.id.spinnerSala);
+        lateralidade = (Spinner) rootView.findViewById(R.id.spinnerLateralidade);
+        classificacaoASA = (Spinner) rootView.findViewById(R.id.spinnerASA);
+        horaCirurgia = (TextView) rootView.findViewById(R.id.TextViewHoraCirurgia);
 //        horaEntradaBO = (TextView) findViewById(R.id.editTextHoraEntradaBO);
 //        horaSaidaBO = (TextView) findViewById(R.id.editTextHoraSaidaBO);
 //        horaEntradaSala = (TextView) findViewById(R.id.editTextHoraEntradaSala);
@@ -158,9 +148,9 @@ public class DadosCirurgia extends ActionBarActivity {
 //        horaFimCirurgia = (TextView) findViewById(R.id.editTextHoraFimCirurgia);
 //        horaEntradaRecobro = (TextView) findViewById(R.id.editTextHoraEntradaRecobro);
 //        horaSaidaRecobro = (TextView) findViewById(R.id.editTextHoraSaidaRecobro);
-        destinoDoente = (Spinner) findViewById(R.id.spinnerDestinoDoente);
-        informacoesRelevantes = (EditText) findViewById(R.id.editTextInformacoes);
-        cirurgia = (EditText) findViewById(R.id.editTextCirurgia);
+        destinoDoente = (Spinner) rootView.findViewById(R.id.spinnerDestinoDoente);
+        informacoesRelevantes = (EditText) rootView.findViewById(R.id.editTextInformacoes);
+        cirurgia = (EditText) rootView.findViewById(R.id.editTextCirurgia);
         itemsHora = new ArrayList<String>();
         itemsHora.add("Hora Chamada do Utente");
         itemsHora.add("Hora Entrada BO");
@@ -174,7 +164,7 @@ public class DadosCirurgia extends ActionBarActivity {
         itemsHora.add("Hora Entrada Recobro");
         itemsHora.add("Hora Saida Recobro");
 
-        adaptador = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, itemsHora) {
+        adaptador = new ArrayAdapter<String>(getActivity().getBaseContext(), android.R.layout.simple_list_item_1, itemsHora) {
             @Override
             public View getView(int position, View convertView,
                                 ViewGroup parent) {
@@ -186,8 +176,8 @@ public class DadosCirurgia extends ActionBarActivity {
             }
         };
         items = new ArrayList<Horas>();
-        adapter = new AdaptadorHoras(this, items);
-        listView = (ListView) findViewById(R.id.listView_DadosCirurgia_horas);
+        adapter = new AdaptadorHoras(getActivity(), items);
+        listView = (ListView) rootView.findViewById(R.id.listView_DadosCirurgia_horas);
 
         carregaOsListeners();
 
@@ -219,13 +209,13 @@ public class DadosCirurgia extends ActionBarActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 texto = (TextView) view.findViewById(R.id.value);
-                Toast.makeText(getApplicationContext(), texto.getText().toString(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity().getApplicationContext(), texto.getText().toString(), Toast.LENGTH_SHORT).show();
                 final Calendar c = Calendar.getInstance();
                 mHour = c.get(Calendar.HOUR_OF_DAY);
                 mMinute = c.get(Calendar.MINUTE);
 
                 // Launch Date Picker Dialog
-                TimePickerDialog dpd = new TimePickerDialog(DadosCirurgia.this,
+                TimePickerDialog dpd = new TimePickerDialog(getActivity(),
                         new TimePickerDialog.OnTimeSetListener() {
 
                             @Override
@@ -241,16 +231,16 @@ public class DadosCirurgia extends ActionBarActivity {
                 dpd.show();
 
 
-                            }
+            }
         });
 
-        btn_AddHoras = (ImageView) findViewById(R.id.imageView_DadosCirurgia_AddHora);
+        btn_AddHoras = (ImageView) rootView.findViewById(R.id.imageView_DadosCirurgia_AddHora);
         btn_AddHoras.setClickable(true);
         btn_AddHoras.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(itemsHora.size()>0)
-                listenerButtonAddHora();
+                    listenerButtonAddHora();
 
             }
         });
@@ -259,14 +249,21 @@ public class DadosCirurgia extends ActionBarActivity {
         setListViewHeightBasedOnChildren(listView);
         scrollView.requestLayout();
         scrollView.invalidate();
+        setHasOptionsMenu(true);
+
+        return rootView;
     }
 
+
+
+
+/*
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
         if (requestCode == 1) {
             if(resultCode == RESULT_OK){
                 String result=data.getStringExtra("result");
-                result= result.replace("\"","");
+                result= result.replace("\"", "");
                 idUtente = Integer.parseInt(result);
                 Toast.makeText(getApplicationContext(), "Utente selecionado. Não se esqueça de guardar", Toast.LENGTH_SHORT).show();
             }
@@ -274,13 +271,13 @@ public class DadosCirurgia extends ActionBarActivity {
                 Toast.makeText(getApplicationContext(),"Associação Cancelada",Toast.LENGTH_SHORT).show();
             }
         }
-    }
+    } */
 public void atualizaTipoCirurgia(int position)
 {
     EspecialidadeTipoCirurgia e = (EspecialidadeTipoCirurgia)especialidadeCirurgica.getItemAtPosition(position);
 
     ArrayAdapter<TipoCirurgia> arrayAdapterTipoCirurgia;
-    arrayAdapterTipoCirurgia = new ArrayAdapter<TipoCirurgia>(getBaseContext(), android.R.layout.simple_list_item_1, e.getTipoCirurgia());
+    arrayAdapterTipoCirurgia = new ArrayAdapter<TipoCirurgia>(getActivity().getBaseContext(), android.R.layout.simple_list_item_1, e.getTipoCirurgia());
 
     arrayAdapterTipoCirurgia.sort(new Comparator<TipoCirurgia>() {
 
@@ -342,7 +339,7 @@ public void atualizaTipoCirurgia(int position)
         mMinute = c.get(Calendar.MINUTE);
 
         // Launch Date Picker Dialog
-        TimePickerDialog dpd = new TimePickerDialog(DadosCirurgia.this,
+        TimePickerDialog dpd = new TimePickerDialog(getActivity(),
                 new TimePickerDialog.OnTimeSetListener() {
 
                     @Override
@@ -430,7 +427,7 @@ public void atualizaTipoCirurgia(int position)
                 mDay = c.get(Calendar.DAY_OF_MONTH);
 
                 // Launch Date Picker Dialog
-                DatePickerDialog dpd = new DatePickerDialog(DadosCirurgia.this,
+                DatePickerDialog dpd = new DatePickerDialog(getActivity(),
                         new DatePickerDialog.OnDateSetListener() {
 
                             @Override
@@ -458,7 +455,7 @@ public void atualizaTipoCirurgia(int position)
                 mMinute = c.get(Calendar.MINUTE);
 
                 // Launch Date Picker Dialog
-                TimePickerDialog dpd = new TimePickerDialog(DadosCirurgia.this,
+                TimePickerDialog dpd = new TimePickerDialog(getActivity(),
                         new TimePickerDialog.OnTimeSetListener() {
 
                             @Override
@@ -670,81 +667,79 @@ public void atualizaTipoCirurgia(int position)
 
         try {
             if(HomeActivity.getCirurgia().getId()!=0) {
-                final Cirurgia p = HomeActivity.getCirurgia();
-                Cirurgia ci = new Cirurgia();
-                ci.setIdTipoCirurgia(((TipoCirurgia) tipoCirurgia.getSelectedItem()).getId());
-                ci.setIdSala(p.getIdSala());
-                ci.setIdUtente(p.getIdUtente());
-                ci.setIdEquipa(p.getIdEquipa());
-                ci.setLateralidade(lateralidade.getSelectedItem().toString());
-                ci.setClassifASA(classificacaoASA.getSelectedItem()
+
+                HomeActivity.getCirurgia().setIdTipoCirurgia(((TipoCirurgia) tipoCirurgia.getSelectedItem()).getId());
+                HomeActivity.getCirurgia().setLateralidade(lateralidade.getSelectedItem().toString());
+                HomeActivity.getCirurgia().setClassifASA(classificacaoASA.getSelectedItem()
                         .toString());
 
-                ci.setDestinoDoente(destinoDoente.getSelectedItem().toString());
-                ci.setCirurgia(cirurgia.getText().toString());
-                ci.setInfoRelevante(informacoesRelevantes.getText().toString());
-
-                ci.setData(data.getText().toString());
-
-
-                ci.setHora(horaCirurgia.getText().toString());
-
-                TipoCirurgia t = (TipoCirurgia) tipoCirurgia.getSelectedItem();
-                ci.setIdTipoCirurgia(t.getId());
-                cir = ci;
-
-
-                preencherCirurgiaComHorasParaGuardar(adapter, ci);
-
-
-                BlocoComSala blocoCS = (BlocoComSala) sala.getSelectedItem();
-                ci.setIdSala(blocoCS.getSala().getId());
-
-
-                ci.setId(idCirurgia);
-                ci.setIdUtente(idUtente);
-                cir = ci;
-                new atualizarCirurgia().execute(ci);
-            }
-            else
-            {
-
-                cir = new Cirurgia();
-                cir.setIdTipoCirurgia(((TipoCirurgia) tipoCirurgia.getSelectedItem()).getId());
-                cir.setIdSala(((BlocoComSala) sala.getSelectedItem()).getSala().getId());
-                if(idUtente!=0)
-                    cir.setIdUtente(idUtente);
-                //id utente cir.setIdUtente(xxxx); e idEquipa
-                cir.setLateralidade(lateralidade.getSelectedItem().toString());
-                cir.setClassifASA(classificacaoASA.getSelectedItem()
-                        .toString());
-
-                cir.setDestinoDoente(destinoDoente.getSelectedItem().toString());
-                cir.setCirurgia(cirurgia.getText().toString());
-                cir.setInfoRelevante(informacoesRelevantes.getText().toString());
+                HomeActivity.getCirurgia().setDestinoDoente(destinoDoente.getSelectedItem().toString());
+                HomeActivity.getCirurgia().setCirurgia(cirurgia.getText().toString());
+                HomeActivity.getCirurgia().setInfoRelevante(informacoesRelevantes.getText().toString());
                 String da = data.getText().toString();
                 da = da.replace("/","");
                 da = da.replace(" ", "");
                 if(da.length()>1)
-                cir.setData(data.getText().toString());
+                    HomeActivity.getCirurgia().setData(data.getText().toString());
                 String ho = horaCirurgia.getText().toString();
                 ho = ho.replace(":", "");
                 ho = ho.replace(" ","");
                 if(ho.length()>1)
-                    cir.setHora(horaCirurgia.getText().toString());
+                    HomeActivity.getCirurgia().setHora(horaCirurgia.getText().toString());
+
 
                 TipoCirurgia t = (TipoCirurgia) tipoCirurgia.getSelectedItem();
-                cir.setIdTipoCirurgia(t.getId());
-                preencherCirurgiaComHorasParaGuardar(adapter, cir);
+                HomeActivity.getCirurgia().setIdTipoCirurgia(t.getId());
 
-                new guardarCirurgia().execute(cir);
+
+                preencherCirurgiaComHorasParaGuardar(adapter, HomeActivity.getCirurgia());
+
+
+                BlocoComSala blocoCS = (BlocoComSala) sala.getSelectedItem();
+                HomeActivity.getCirurgia().setIdSala(blocoCS.getSala().getId());
+
+                //
+                new atualizarCirurgia().execute(HomeActivity.getCirurgia());
             }
+            else
+                novaCirurgia();
+
         } catch (Exception rn) {
-            Toast.makeText(getApplicationContext(),"ERRO na aplicação - A reverter!",Toast.LENGTH_SHORT).show();
-            finish();
+            novaCirurgia();
         }
 
 
+    }
+    public void novaCirurgia()
+    {
+        HomeActivity.getCirurgia().setIdTipoCirurgia(((TipoCirurgia) tipoCirurgia.getSelectedItem()).getId());
+        HomeActivity.getCirurgia().setIdSala(((BlocoComSala) sala.getSelectedItem()).getSala().getId());
+        if(idUtente!=0)
+            HomeActivity.getCirurgia().setIdUtente(idUtente);
+        //id utente cir.setIdUtente(xxxx); e idEquipa
+        HomeActivity.getCirurgia().setLateralidade(lateralidade.getSelectedItem().toString());
+        HomeActivity.getCirurgia().setClassifASA(classificacaoASA.getSelectedItem()
+                .toString());
+
+        HomeActivity.getCirurgia().setDestinoDoente(destinoDoente.getSelectedItem().toString());
+        HomeActivity.getCirurgia().setCirurgia(cirurgia.getText().toString());
+        HomeActivity.getCirurgia().setInfoRelevante(informacoesRelevantes.getText().toString());
+        String da = data.getText().toString();
+        da = da.replace("/","");
+        da = da.replace(" ", "");
+        if(da.length()>1)
+            HomeActivity.getCirurgia().setData(data.getText().toString());
+        String ho = horaCirurgia.getText().toString();
+        ho = ho.replace(":", "");
+        ho = ho.replace(" ","");
+        if(ho.length()>1)
+            HomeActivity.getCirurgia().setHora(horaCirurgia.getText().toString());
+
+        TipoCirurgia t = (TipoCirurgia) tipoCirurgia.getSelectedItem();
+        HomeActivity.getCirurgia().setIdTipoCirurgia(t.getId());
+        preencherCirurgiaComHorasParaGuardar(adapter, HomeActivity.getCirurgia());
+
+        new guardarCirurgia().execute(HomeActivity.getCirurgia());
     }
 
     public void preencherCirurgiaComHorasParaGuardar(ArrayAdapter<Horas> adap, Cirurgia c1){
@@ -786,14 +781,19 @@ public void atualizaTipoCirurgia(int position)
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
+    public void onCreateOptionsMenu(Menu menu,  MenuInflater inflater) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.dados_cirurgia, menu);
+        inflater.inflate(R.menu.dados_cirurgia, menu);
+
         this.menu = menu;
-        if(HomeActivity.getCirurgia().getIdUtente()!=0){
-            hideOption(R.id.action_associarCirurgia);
-        }
-        return true;
+            if(HomeActivity.getCirurgia().getIdUtente()!=0){
+                menu.findItem(R.id.action_associarCirurgia).setVisible(false).setEnabled(false);
+            }
+            else
+                menu.findItem(R.id.action_associarCirurgia).setVisible(true).setEnabled(true);
+
+        super.onCreateOptionsMenu(menu, inflater);
+
     }
 
     @Override
@@ -808,55 +808,33 @@ public void atualizaTipoCirurgia(int position)
         }
 
         if(id == R.id.action_associarCirurgia){
-            Intent i = new Intent(this,UtentesActivity.class);
-            startActivityForResult(i,1);
+
+            HomeActivity.setIsForResultUtentes(true);
+            ((HomeActivity) getActivity()).onItemClickNavigation(1,HomeActivity.getLayoutcontainerid());
+            ((HomeActivity) getActivity()).setCheckedItemNavigation(1,true);
+            //Intent i = new Intent(this,getActivity().);
         }
 
-        if(id == android.R.id.home)
-        {
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setIcon(R.drawable.ic_launcher);
-            builder.setMessage("Pretende Retroceder sem guardar?")
-                    .setCancelable(false)
-                    .setPositiveButton("Sim", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-finish();                        }
-                    })
-                    .setNegativeButton("Não", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            dialog.cancel();
-                        }
-                    });
-            AlertDialog alert = builder.create();
-            alert.show();
-            return true;
-        }
         return super.onOptionsItemSelected(item);
     }
 
 
 
-    @Override
-    public boolean onTouchEvent(MotionEvent event) {
-        String estado = root.getState().toString();
-        if (estado.equals("OPEN"))
-            this.root.toggleMenu();
-        return super.onTouchEvent(event);
-    }
 
     public void preencher(Cirurgia c) {
 
     }
 
+    /*
     @Override
     public void onBackPressed() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setIcon(R.drawable.ic_launcher);
         builder.setMessage("Pretende Retroceder sem guardar?")
                 .setCancelable(false)
                 .setPositiveButton("Sim", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        finish();
+                       // finish();
                     }
                 })
                 .setNegativeButton("Não", new DialogInterface.OnClickListener() {
@@ -866,7 +844,7 @@ finish();                        }
                 });
         AlertDialog alert = builder.create();
         alert.show();
-    }
+    }*/
 
 
     // private class getBlocoOperatorios extends
@@ -906,7 +884,7 @@ finish();                        }
         @Override
         protected void onPreExecute() {
 
-            ringProgressDialog = new ProgressDialog(DadosCirurgia.this);
+            ringProgressDialog = new ProgressDialog(getActivity());
             ringProgressDialog.setIcon(R.drawable.ic_launcher);
             ringProgressDialog.setTitle("Aguarde...");
             ringProgressDialog.setMessage("A carregar Dados...");
@@ -926,7 +904,7 @@ finish();                        }
 
             try {
                 adicionou = WebServiceUtils.updateCirurgia(params[0],
-                        idCirurgia, token);
+                        HomeActivity.getCirurgia().getId(), token);
 
             } catch (ParseException | IOException | JSONException
                     | RestClientException e) {
@@ -940,15 +918,16 @@ finish();                        }
         @Override
         protected void onPostExecute(Boolean result) {
             String a = (result ? "Cirurgia Alterada com Sucesso!"
-                    : "Cirurgoa Não Alterada!");
+                    : "Cirurgia Não Alterada!");
             if (result) {
-                HomeActivity.setCirurgia(cir);
-
-                Toast.makeText(getApplicationContext(), a, Toast.LENGTH_LONG)
+                Toast.makeText(getActivity(), a, Toast.LENGTH_LONG)
                         .show();
-                finish();
+                ((HomeActivity) getActivity()).onItemClickNavigation(0,HomeActivity.getLayoutcontainerid());
+                ((HomeActivity) getActivity()).setCheckedItemNavigation(0,true);
             } else {
-                Toast.makeText(getApplicationContext(), "Erro Atualizar Cirurgia - Verifique a Internet e repita o Processo", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Erro Atualizar Cirurgia - Verifique a Internet e repita o Processo", Toast.LENGTH_SHORT).show();
+                ((HomeActivity) getActivity()).onItemClickNavigation(0,HomeActivity.getLayoutcontainerid());
+                ((HomeActivity) getActivity()).setCheckedItemNavigation(0,true);
             }
             ringProgressDialog.dismiss();
             super.onPostExecute(result);
@@ -960,7 +939,7 @@ finish();                        }
         @Override
         protected void onPreExecute() {
 
-            ringProgressDialog = new ProgressDialog(DadosCirurgia.this);
+            ringProgressDialog = new ProgressDialog(getActivity());
             ringProgressDialog.setIcon(R.drawable.ic_launcher);
             ringProgressDialog.setTitle("Aguarde...");
             ringProgressDialog.setMessage("A guardar dados...");
@@ -993,11 +972,11 @@ finish();                        }
         @Override
         protected void onPostExecute(Integer result) {
             if (result!=0) {
-                cir.setId(result);
-                HomeActivity.setCirurgia(cir);
-                finish();
+                HomeActivity.getCirurgia().setId(result);
+                ((HomeActivity) getActivity()).onItemClickNavigation(0, HomeActivity.getLayoutcontainerid());
+                ((HomeActivity) getActivity()).setCheckedItemNavigation(0, true);
             } else {
-                Toast.makeText(getApplicationContext(), "Erro Guardar Cirurgia - Verifique a Internet e repita o Processo", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Erro Guardar Cirurgia - Verifique a Internet e repita o Processo", Toast.LENGTH_SHORT).show();
             }
             ringProgressDialog.dismiss();
             super.onPostExecute(result);
@@ -1043,7 +1022,7 @@ finish();                        }
         protected void onPostExecute(ArrayList<BlocoComSala> lista) {
             if (lista != null) {
                 adaptadorBlococomSala = new ArrayAdapter<BlocoComSala>(
-                        getBaseContext(), android.R.layout.simple_list_item_1,
+                        getActivity().getBaseContext(), android.R.layout.simple_list_item_1,
                         lista);
                 adaptadorBlococomSala.sort(new Comparator<BlocoComSala>() {
 
@@ -1058,17 +1037,20 @@ finish();                        }
                     }
                 });
                 sala.setAdapter(adaptadorBlococomSala);
-                int a = spinnerDaMeATuaPosicaoBloco(adaptadorBlococomSala,
-                        HomeActivity.getCirurgia().getIdSala());
-                sala.setSelection(a);
-                if(HomeActivity.getCirurgia().getId()!=0)
-                preencherAtividade(HomeActivity.getCirurgia());
 
+                if(HomeActivity.getCirurgia()!=null) {
+                    int a = spinnerDaMeATuaPosicaoBloco(adaptadorBlococomSala,
+                            HomeActivity.getCirurgia().getIdSala());
+                    sala.setSelection(a);
+                    if (HomeActivity.getCirurgia().getId() != 0)
+                        preencherAtividade(HomeActivity.getCirurgia());
+                }
                 ringProgressDialog.dismiss();
 
             } else {
-                Toast.makeText(getApplicationContext(), "Erro Get Blocos Com Sala - Verifique a Internet e repita o Processo", Toast.LENGTH_SHORT).show();
-                finish();
+                Toast.makeText(getActivity(), "Erro Get Blocos Com Sala - Verifique a Internet e repita o Processo", Toast.LENGTH_SHORT).show();
+                ((HomeActivity) getActivity()).onItemClickNavigation(0, HomeActivity.getLayoutcontainerid());
+                ((HomeActivity) getActivity()).setCheckedItemNavigation(0, true);
             }
         }
     }
@@ -1078,7 +1060,7 @@ finish();                        }
         @Override
         protected void onPreExecute() {
 
-            ringProgressDialog = new ProgressDialog(DadosCirurgia.this);
+            ringProgressDialog = new ProgressDialog(getActivity());
             ringProgressDialog.setIcon(R.drawable.ic_launcher);
             ringProgressDialog.setTitle("Aguarde...");
             ringProgressDialog.setMessage("A carregar Dados...");
@@ -1111,7 +1093,7 @@ finish();                        }
         protected void onPostExecute(ArrayList<EspecialidadeTipoCirurgia> lista) {
             if (lista != null) {
                 adaptadorEspecialidade = new ArrayAdapter<EspecialidadeTipoCirurgia>(
-                        getBaseContext(), android.R.layout.simple_list_item_1,
+                        getActivity().getBaseContext(), android.R.layout.simple_list_item_1,
                         lista);
                 adaptadorEspecialidade.sort(new Comparator<EspecialidadeTipoCirurgia>() {
 
@@ -1137,8 +1119,9 @@ finish();                        }
               //  ringProgressDialog.dismiss();
 
             } else {
-                Toast.makeText(getApplicationContext(), "Erro Get Especialidades - Verifique a Internet e repita o Processo", Toast.LENGTH_SHORT).show();
-                finish();
+                Toast.makeText(getActivity(), "Erro Get Especialidades - Verifique a Internet e repita o Processo", Toast.LENGTH_SHORT).show();
+                ((HomeActivity) getActivity()).onItemClickNavigation(0,HomeActivity.getLayoutcontainerid());
+                ((HomeActivity) getActivity()).setCheckedItemNavigation(0,true);
             }
         }
     }
