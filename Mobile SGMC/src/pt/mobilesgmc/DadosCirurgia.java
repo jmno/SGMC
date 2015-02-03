@@ -1,26 +1,22 @@
-package pt.mobilesgmc;
+package info.mobilesgmc;
 
 import java.io.IOException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Comparator;
-import java.util.Date;
 
 import org.apache.http.ParseException;
 import org.json.JSONException;
-import org.xml.sax.DTDHandler;
 
-import pt.mobilesgmc.modelo.BlocoComSala;
-import pt.mobilesgmc.modelo.BlocoOperatorio;
-import pt.mobilesgmc.modelo.Cirurgia;
-import pt.mobilesgmc.modelo.EquipaComJuncao;
-import pt.mobilesgmc.modelo.OnSwipeTouchListener;
-import pt.mobilesgmc.modelo.ProfissonalSaude;
-import pt.mobilesgmc.modelo.RestClientException;
-import pt.mobilesgmc.modelo.WebServiceUtils;
-import pt.mobilesgmc.view.viewgroup.FlyOutContainer;
+import info.mobilesgmc.modelo.BlocoComSala;
+import info.mobilesgmc.modelo.BlocoOperatorio;
+import info.mobilesgmc.modelo.Cirurgia;
+import info.mobilesgmc.modelo.EquipaComJuncao;
+import info.mobilesgmc.modelo.OnSwipeTouchListener;
+import info.mobilesgmc.modelo.ProfissonalSaude;
+import info.mobilesgmc.modelo.RestClientException;
+import info.mobilesgmc.modelo.WebServiceUtils;
+import info.mobilesgmc.view.viewgroup.FlyOutContainer;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
@@ -49,7 +45,7 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-import com.example.mobilegsmc.R;
+import com.nicolau.mobilegsmc.R;
 
 public class DadosCirurgia extends Activity {
 

@@ -1,9 +1,8 @@
-package pt.mobilesgmc.modelo;
+package info.mobilesgmc.modelo;
 
 import java.io.IOException;
 import java.sql.Date;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 

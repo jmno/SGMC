@@ -1,4 +1,4 @@
-package pt.mobilesgmc.modelo;
+package info.mobilesgmc.modelo;
 
 import java.util.LinkedList;
 

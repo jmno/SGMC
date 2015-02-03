@@ -1,6 +1,6 @@
-package pt.mobilesgmc.view.viewgroup;
+package info.mobilesgmc.view.viewgroup;
 
-import pt.mobilesgmc.EquipaCirurgica;
+import info.mobilesgmc.EquipaCirurgica;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Handler;

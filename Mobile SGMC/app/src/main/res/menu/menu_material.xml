@@ -1,6 +1,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools" tools:context="pt.mobilesgmc.MaterialActivity">
+    xmlns:tools="http://schemas.android.com/tools" tools:context="info.mobilesgmc.MaterialActivity">
     <item android:id="@+id/action_addMaterial"
         android:icon="@drawable/ic_action_novo"
         android:title="@string/add_Material"

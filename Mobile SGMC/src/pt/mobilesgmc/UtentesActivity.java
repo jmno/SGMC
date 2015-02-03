@@ -1,4 +1,4 @@
-package pt.mobilesgmc;
+package info.mobilesgmc;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -7,15 +7,15 @@ import java.util.Comparator;
 import org.apache.http.ParseException;
 import org.json.JSONException;
 
-import pt.mobilesgmc.modelo.RestClientException;
-import pt.mobilesgmc.modelo.Tipo;
-import pt.mobilesgmc.modelo.Utente;
-import pt.mobilesgmc.modelo.WebServiceUtils;
+import info.mobilesgmc.modelo.RestClientException;
+import info.mobilesgmc.modelo.Tipo;
+import info.mobilesgmc.modelo.Utente;
+import info.mobilesgmc.modelo.WebServiceUtils;
 
-import com.example.mobilegsmc.R;
-import com.example.mobilegsmc.R.id;
-import com.example.mobilegsmc.R.layout;
-import com.example.mobilegsmc.R.menu;
+import com.nicolau.mobilegsmc.R;
+import com.nicolau.mobilegsmc.R.id;
+import com.nicolau.mobilegsmc.R.layout;
+import com.nicolau.mobilegsmc.R.menu;
 
 import android.app.Activity;
 import android.app.ProgressDialog;

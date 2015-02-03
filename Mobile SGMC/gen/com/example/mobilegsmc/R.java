@@ -5,7 +5,7 @@
  * should not be modified by hand.
  */
 
-package com.example.mobilegsmc;
+package com.nicolau.mobilegsmc;
 
 public final class R {
     public static final class array {
@@ -510,7 +510,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
             0x7f010000, 0x7f010001
         };
         /**
-          <p>This symbol is the offset where the {@link com.example.mobilegsmc.R.attr#metaButtonBarButtonStyle}
+          <p>This symbol is the offset where the {@link com.nicolau.mobilegsmc.R.attr#metaButtonBarButtonStyle}
           attribute's value can be found in the {@link #ButtonBarContainerTheme} array.
 
 
@@ -520,7 +520,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static final int ButtonBarContainerTheme_metaButtonBarButtonStyle = 1;
         /**
-          <p>This symbol is the offset where the {@link com.example.mobilegsmc.R.attr#metaButtonBarStyle}
+          <p>This symbol is the offset where the {@link com.nicolau.mobilegsmc.R.attr#metaButtonBarStyle}
           attribute's value can be found in the {@link #ButtonBarContainerTheme} array.
 
 

@@ -1,4 +1,4 @@
-package pt.mobilesgmc.modelo;
+package info.mobilesgmc.modelo;
 
 public class AdministracaoSangue {
 

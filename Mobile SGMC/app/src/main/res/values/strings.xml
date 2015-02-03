@@ -55,24 +55,36 @@
     </string-array>
     <string-array name="arrayCateterismovisical">
         <item/>
-        <item>Sonda de Nelaton</item>
-        <item>Sonda de Foley</item>
-        <item>Sonda de Owen</item>
+        <item>Malecot</item>
+        <item>Moss</item>
+        <item>Nasoentérica</item>
+        <item>Nasogástrica</item>
+        <item>Nelaton</item>
+        <item>Retal</item>
+        <item>Sengstaken - blakemore</item>
+        <item>Traqueal comum</item>
     </string-array>
     <string-array name="arrayNasogastrica">
         <item/>
-        <item>Sonda Nasogástrica</item>
+        <item>Malecot</item>
+        <item>Moss</item>
+        <item>Nasoentérica</item>
+        <item>Nasogástrica</item>
+        <item>Nelaton</item>
+        <item>Retal</item>
+        <item>Sengstaken - blakemore</item>
+        <item>Traqueal comum</item>
     </string-array>
     <string-array name="arrayPosicaoOperatoria">
         <item/>
-        <item>Decubito dorsal</item>
-        <item>Decubito ventral</item>
-        <item>Decubito lateral</item>
-        <item>Posicao de litotomia</item>
-        <item>Posiçao trendelenburg</item>
-        <item>Posiçao trendelenburg Reverso</item>
-        <item>Posicao fowler </item>
-        <item>Posicao de canivete </item>
+        <item>Decúbito dorsal ou supina</item>
+        <item>Decúbito ventral ou prona</item>
+        <item>Decúbito lateral ou sims</item>
+        <item>Posição de litotômia ou ginecológica</item>
+        <item>Posição trendelenburg</item>
+        <item>Posição trendelenburg reverso</item>
+        <item>Posição fowler ou sentada</item>
+        <item>Posição de canivete </item>
     </string-array>
     <string-array name="arrayLocalizacao">
         <item/>
@@ -86,18 +98,16 @@
     <string-array name="arrayAdminSangue">
         <item/>
         <item>Sangue</item>
-        <item>Plasma Sanguíneo</item>
+        <item>Plasma</item>
         <item>Plaquetas</item>
         <item>Hemácias</item>
-        <item>Leucócitos</item>
+        <item>Granulócitos</item>
+        <item>Crioprecipitado</item>
     </string-array>
     <string-array name="arrayCaracteristicasDrenagem">
         <item/>
-        <item>C1</item>
-        <item>C2</item>
-        <item>C3</item>
-        <item>C4</item>
-        <item>C5</item>
+        <item>Desobstrução dos gânglios</item>
+        <item>Desobstrução dos vasos</item>
     </string-array>
     <string-array name="arrayClassificacaoASA">
         <item/>
@@ -109,22 +119,58 @@
         <item>ASA VI</item>
     </string-array>
     <string-array name="arrayDestino">
-        <item>Bloco 1</item>
-        <item>Bloco 2</item>
-        <item>Bloco 3</item>
-        <item>Bloco 4</item>
-        <item>Bloco 5</item>
-        <item>Bloco 6</item>
-        <item>Bloco 7</item>
-        <item>Bloco 8</item>
-        <item>Bloco 9</item>
-        <item>Bloco 10</item>
-        <item>Bloco 11</item>
-        <item>Bloco 12</item>
-        <item>Bloco 13</item>
-        <item>Bloco 14</item>
-        <item>Bloco 15</item>
+        <item/>
+        <item>Alta</item>
+        <item>Internamento</item>
+        <item>Não Aplicável</item>
     </string-array>
+
+    <string-array name="arrayLocalizacaoMantaTermica">
+        <item/>
+        <item>Região Anterior</item>
+        <item>Região Posterior</item>
+        <item>Tórax e Membros Superior</item>
+        <item>Região Pélvica e Membros Inferiores</item>
+    </string-array>
+
+
+    <string-array name="arrayLocalizacaoGarrote">
+        <item/>
+        <item>Membro Superior Direito</item>
+        <item>Membro Superior Esquerdo</item>
+        <item>Membro Inferior Direito</item>
+        <item>Membro Inferior Esquerdo</item>
+    </string-array>
+
+
+    <string-array name="arrayPlacaElectrodo">
+        <item/>
+        <item>Membro Superior Direito</item>
+        <item>Membro Superior Esquerdo</item>
+        <item>Membro Inferior Direito</item>
+        <item>Membro Inferior Esquerdo</item>
+    </string-array>
+
+
+    <string-array name="arrayLocalizacaoAlivioZonasPressao">
+        <item/>
+        <item>Região Occipital</item>
+        <item>Omoplatas</item>
+        <item>Olecraneos</item>
+        <item>Cristas Ilíacas</item>
+        <item>Regiões Rotulianas</item>
+        <item>Regiões Trocantericas</item>
+        <item>Regiões Maleolares</item>
+        <item>Calcaneos</item>
+    </string-array>
+
+
+    <string-array name="arrayLocalizacaoAcessoVenoso">
+        <item/>
+        <item>Jugular Direita</item>
+        <item>Femural Direita</item>
+    </string-array>
+
 
     <string name="speech_prompt">Say something…</string>
     <string name="speech_not_supported">Sorry! Your device doesn\'t support speech input</string>

@@ -1,6 +1,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.example.mobilegsmc.DadosINtraOperatorioActivity" >
+    tools:context="com.nicolau.mobilegsmc.DadosINtraOperatorioActivity" >
 
     <item
         android:id="@+id/action_settings"

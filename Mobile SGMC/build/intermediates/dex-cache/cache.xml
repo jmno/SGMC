@@ -30,18 +30,18 @@
         <dex dex="/Users/Nicolau/Dropbox/Leiria/4Ano/1Semestre/SGMC/NEW/Mobile SGMC/app/build/intermediates/pre-dexed/debug/classes-5d00eb29b25bedc6469a499853efb3995d80a8be.jar" />
     </item>
     <item
-        jar="/Users/Nicolau/Dropbox/Leiria/4Ano/1Semestre/SGMC/NEW/Mobile SGMC/app/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.3/classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="2c91c949a45a21cdecf26e03951e46c7beec9ad8">
-        <dex dex="/Users/Nicolau/Dropbox/Leiria/4Ano/1Semestre/SGMC/NEW/Mobile SGMC/app/build/intermediates/pre-dexed/debug/classes-e864eb43bed07d28bbcb4294ab1922bb3fdfe26b.jar" />
-    </item>
-    <item
         jar="/Users/Nicolau/Dropbox/Leiria/4Ano/1Semestre/SGMC/NEW/Mobile SGMC/app/build/intermediates/exploded-aar/com.shamanland/fab/0.0.6/classes.jar"
         jumboMode="false"
         revision="21.1.2"
         sha1="e388595587aab9cb9f919f90de90b1831db908f5">
         <dex dex="/Users/Nicolau/Dropbox/Leiria/4Ano/1Semestre/SGMC/NEW/Mobile SGMC/app/build/intermediates/pre-dexed/debug/classes-c33b77443976774b6facbbb7454a1c6a07e10688.jar" />
+    </item>
+    <item
+        jar="/Users/Nicolau/Dropbox/Leiria/4Ano/1Semestre/SGMC/NEW/Mobile SGMC/app/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.3/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="2c91c949a45a21cdecf26e03951e46c7beec9ad8">
+        <dex dex="/Users/Nicolau/Dropbox/Leiria/4Ano/1Semestre/SGMC/NEW/Mobile SGMC/app/build/intermediates/pre-dexed/debug/classes-e864eb43bed07d28bbcb4294ab1922bb3fdfe26b.jar" />
     </item>
     <item
         jar="/Users/Nicolau/.gradle/caches/modules-2/files-2.1/joda-time/joda-time/2.7/5599707a3eaad13e889f691b3af78c8c03842195/joda-time-2.7.jar"
@@ -58,18 +58,18 @@
         <dex dex="/Users/Nicolau/Dropbox/Leiria/4Ano/1Semestre/SGMC/NEW/Mobile SGMC/app/build/intermediates/pre-dexed/debug/internal_impl-21.0.3-938b16d06b931e5a7417e1f8c250cd7925c36050.jar" />
     </item>
     <item
-        jar="/Users/Nicolau/Dropbox/Leiria/4Ano/1Semestre/SGMC/NEW/Mobile SGMC/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.3/classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="81d42bf983a8741f4888a6e333e454e4a5e0eeb7">
-        <dex dex="/Users/Nicolau/Dropbox/Leiria/4Ano/1Semestre/SGMC/NEW/Mobile SGMC/app/build/intermediates/pre-dexed/debug/classes-48f493afbaf744dd9d5985cc59acb45e910f8ff5.jar" />
-    </item>
-    <item
         jar="/Users/Nicolau/Dropbox/Leiria/4Ano/1Semestre/SGMC/NEW/Mobile SGMC/app/build/intermediates/exploded-aar/de.hdodenhof/circleimageview/1.2.1/classes.jar"
         jumboMode="false"
         revision="21.1.2"
         sha1="4b868b833b0887aa48c4e581558eef4f1196f6a2">
         <dex dex="/Users/Nicolau/Dropbox/Leiria/4Ano/1Semestre/SGMC/NEW/Mobile SGMC/app/build/intermediates/pre-dexed/debug/classes-334c0fd2f1a553ab45c01fd6f912552850420a94.jar" />
+    </item>
+    <item
+        jar="/Users/Nicolau/Dropbox/Leiria/4Ano/1Semestre/SGMC/NEW/Mobile SGMC/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.3/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="81d42bf983a8741f4888a6e333e454e4a5e0eeb7">
+        <dex dex="/Users/Nicolau/Dropbox/Leiria/4Ano/1Semestre/SGMC/NEW/Mobile SGMC/app/build/intermediates/pre-dexed/debug/classes-48f493afbaf744dd9d5985cc59acb45e910f8ff5.jar" />
     </item>
     <item
         jar="/Users/Nicolau/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.3.1/ecb6e1f8e4b0e84c4b886c2f14a1500caf309757/gson-2.3.1.jar"

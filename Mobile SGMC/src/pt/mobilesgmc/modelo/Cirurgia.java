@@ -1,8 +1,4 @@
-package pt.mobilesgmc.modelo;
-
-import java.util.Date;
-
-import java.sql.*;
+package info.mobilesgmc.modelo;
 
 public class Cirurgia {
 

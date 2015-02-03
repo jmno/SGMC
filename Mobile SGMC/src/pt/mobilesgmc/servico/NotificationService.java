@@ -1,4 +1,4 @@
-package pt.mobilesgmc.servico;
+package info.mobilesgmc.servico;
 
 import android.app.Service;
 import android.content.Intent;

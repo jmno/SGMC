@@ -1,6 +1,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.example.mobilegsmc.EquipaCirurgica" >
+    tools:context="com.nicolau.mobilegsmc.EquipaCirurgica" >
 
     <item android:id="@+id/action_search"
         android:icon="@drawable/ic_action_search"

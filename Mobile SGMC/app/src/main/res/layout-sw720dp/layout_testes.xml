@@ -1,4 +1,4 @@
-<pt.mobilesgmc.view.viewgroup.FlyOutContainer xmlns:android="http://schemas.android.com/apk/res/android"
+<info.mobilesgmc.view.viewgroup.FlyOutContainer xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
@@ -1421,4 +1421,4 @@
             android:text="Guardar" />
     </LinearLayout>
 
-</pt.mobilesgmc.view.viewgroup.FlyOutContainer>
+</info.mobilesgmc.view.viewgroup.FlyOutContainer>

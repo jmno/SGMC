@@ -1,20 +1,18 @@
-package pt.mobilesgmc;
+package info.mobilesgmc;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Comparator;
 
 import org.apache.http.ParseException;
 import org.json.JSONException;
 
-import pt.mobilesgmc.modelo.DadosIntraoperatorioFinal;
-import pt.mobilesgmc.modelo.EquipaComJuncao;
-import pt.mobilesgmc.modelo.OnSwipeTouchListener;
-import pt.mobilesgmc.modelo.ProfissonalSaude;
-import pt.mobilesgmc.modelo.RestClientException;
-import pt.mobilesgmc.modelo.WebServiceUtils;
-import pt.mobilesgmc.view.viewgroup.FlyOutContainer;
+import info.mobilesgmc.modelo.DadosIntraoperatorioFinal;
+import info.mobilesgmc.modelo.EquipaComJuncao;
+import info.mobilesgmc.modelo.OnSwipeTouchListener;
+import info.mobilesgmc.modelo.ProfissonalSaude;
+import info.mobilesgmc.modelo.RestClientException;
+import info.mobilesgmc.modelo.WebServiceUtils;
+import info.mobilesgmc.view.viewgroup.FlyOutContainer;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -45,7 +43,7 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-import com.example.mobilegsmc.R;
+import com.nicolau.mobilegsmc.R;
 
 public class DadosINtraOperatorioActivity extends Activity {
 	private TableLayout tableSinaisVitais;

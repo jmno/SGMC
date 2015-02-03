@@ -1,6 +1,4 @@
-package pt.mobilesgmc.modelo;
-
-import java.sql.Date;
+package info.mobilesgmc.modelo;
 
 import android.text.method.DateTimeKeyListener;
 

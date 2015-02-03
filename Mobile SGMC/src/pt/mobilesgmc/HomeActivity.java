@@ -1,4 +1,4 @@
-package pt.mobilesgmc;
+package info.mobilesgmc;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -6,13 +6,12 @@ import java.util.Comparator;
 
 import org.apache.http.ParseException;
 import org.json.JSONException;
-import org.w3c.dom.Text;
 
-import pt.mobilesgmc.modelo.Cirurgia;
-import pt.mobilesgmc.modelo.OnSwipeTouchListener;
-import pt.mobilesgmc.modelo.RestClientException;
-import pt.mobilesgmc.modelo.WebServiceUtils;
-import pt.mobilesgmc.view.viewgroup.FlyOutContainer;
+import info.mobilesgmc.modelo.Cirurgia;
+import info.mobilesgmc.modelo.OnSwipeTouchListener;
+import info.mobilesgmc.modelo.RestClientException;
+import info.mobilesgmc.modelo.WebServiceUtils;
+import info.mobilesgmc.view.viewgroup.FlyOutContainer;
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.ProgressDialog;
@@ -44,8 +43,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.mobilegsmc.R;
-import com.example.mobilegsmc.R.menu;
+import com.nicolau.mobilegsmc.R;
+import com.nicolau.mobilegsmc.R.menu;
 
 public class HomeActivity extends Activity {
 

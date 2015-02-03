@@ -294,7 +294,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
-                    android:text="Administração Sangue"
+                    android:text="Administração de Hemoderivados"
                     android:textColor="#000000"
                     android:textStyle="bold|italic"
                     android:layout_gravity="center"
@@ -713,7 +713,7 @@
                     android:id="@+id/spinner_DadosIntra_LocalAlivioZonaPressao"
                     android:layout_width="match_parent"
                     android:layout_height="fill_parent"
-                    android:entries="@array/arrayLocalizacao"
+                    android:entries="@array/arrayLocalizacaoAlivioZonasPressao"
                     android:layout_marginRight="5dp"
                     android:focusableInTouchMode="false" />
             </LinearLayout>
@@ -788,7 +788,7 @@
                     android:id="@+id/spinner_DadosIntra_localMantaTermica"
                     android:layout_width="match_parent"
                     android:layout_height="fill_parent"
-                    android:entries="@array/arrayLocalizacao"
+                    android:entries="@array/arrayLocalizacaoMantaTermica"
                     android:layout_marginRight="5dp" />
             </LinearLayout>
 
@@ -896,7 +896,7 @@
                         android:id="@+id/spinner_DadosIntra_localGarrote"
                         android:layout_width="match_parent"
                         android:layout_height="fill_parent"
-                        android:entries="@array/arrayLocalizacao"
+                        android:entries="@array/arrayLocalizacaoGarrote"
                         android:layout_marginRight="5dp" />
                 </LinearLayout>
 
@@ -906,55 +906,69 @@
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal">
 
-                    <TextView
-                        android:id="@+id/textView50hi"
-                        android:layout_width="wrap_content"
-                        android:layout_height="fill_parent"
-                        android:gravity="center"
-                        android:textAlignment="center"
-                        android:textColor="#000000"
-                        android:textStyle="italic"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginRight="5dp"
-                        android:text="Inicio" />
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1">
 
-                    <TextView
-                        android:id="@+id/textView_GarroteHoraInicio"
-                        android:layout_width="wrap_content"
-                        android:layout_height="fill_parent"
-                        android:gravity="center"
-                        android:textAlignment="center"
-                        android:textColor="#000000"
-                        android:textStyle="italic"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginRight="5dp"
-                        android:text="00:00" />
+                        <TextView
+                            android:id="@+id/textView50hi"
+                            android:layout_width="wrap_content"
+                            android:layout_height="fill_parent"
+                            android:gravity="center"
+                            android:textAlignment="center"
+                            android:textColor="#000000"
+                            android:textStyle="italic"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:text="Inicio" />
 
-                    <TextView
-                        android:id="@+id/textView50hf"
-                        android:layout_width="wrap_content"
-                        android:layout_height="fill_parent"
-                        android:gravity="center"
-                        android:textAlignment="center"
-                        android:textColor="#000000"
-                        android:textStyle="italic"
-                        android:layout_marginLeft="50dp"
-                        android:layout_marginRight="5dp"
-                        android:text="Fim" />
+                        <TextView
+                            android:id="@+id/textView_GarroteHoraInicio"
+                            android:layout_width="wrap_content"
+                            android:layout_height="fill_parent"
+                            android:gravity="center"
+                            android:textAlignment="center"
+                            android:textColor="#000000"
+                            android:textStyle="italic"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:text="" />
+                    </LinearLayout>
 
-                    <TextView
-                        android:id="@+id/textView_GarroteHoraFim"
-                        android:layout_width="wrap_content"
-                        android:layout_height="fill_parent"
-                        android:gravity="center"
-                        android:textAlignment="center"
-                        android:textColor="#000000"
-                        android:textStyle="italic"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginRight="5dp"
-                        android:text="00:00" />
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1">
 
-                </LinearLayout>
+                        <TextView
+                            android:id="@+id/textView50hf"
+                            android:layout_width="wrap_content"
+                            android:layout_height="fill_parent"
+                            android:gravity="center"
+                            android:textAlignment="center"
+                            android:textColor="#000000"
+                            android:textStyle="italic"
+                            android:layout_marginLeft="50dp"
+                            android:layout_marginRight="5dp"
+                            android:text="Fim" />
+
+                        <TextView
+                            android:id="@+id/textView_GarroteHoraFim"
+                            android:layout_width="wrap_content"
+                            android:layout_height="fill_parent"
+                            android:gravity="center"
+                            android:textAlignment="center"
+                            android:textColor="#000000"
+                            android:textStyle="italic"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:text="" />
+                    </LinearLayout>
+
+               </LinearLayout>
 
             </LinearLayout>
 
@@ -1034,7 +1048,7 @@
                         android:id="@+id/spinner_DadosIntra_localizacaoElectrodo"
                         android:layout_width="match_parent"
                         android:layout_height="fill_parent"
-                        android:entries="@array/arrayLocalizacao"
+                        android:entries="@array/arrayPlacaElectrodo"
                         android:layout_marginRight="5dp" />
                 </LinearLayout>
 

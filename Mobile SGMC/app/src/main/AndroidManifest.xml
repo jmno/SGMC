@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.mobilegsmc"
-    android:versionCode="1"
-    android:versionName="1.0" >
+    package="info.nicolau.mobilegsmc"
+    android:versionCode="2"
+    android:versionName="1.01" >
 
     <uses-sdk
-        android:minSdkVersion="15"
+        android:minSdkVersion="14"
         android:targetSdkVersion="21" />
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -20,7 +20,7 @@
         android:label="@string/app_name"
         android:theme="@style/myTheme" >
         <activity
-            android:name="pt.mobilesgmc.Login"
+            android:name="info.mobilesgmc.Login"
             android:label="@string/app_name"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:windowSoftInputMode="stateHidden|adjustPan">
@@ -30,19 +30,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name="pt.mobilesgmc.EquipaCirurgica"
-            android:label="@string/title_activity_equipa_cirurgica"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:windowSoftInputMode="stateHidden|adjustPan"
-             >
-            <meta-data android:name="android.support.UI_OPTIONS"
-                android:value="splitActionBarWhenNarrow" />
 
-        </activity>
 
         <activity
-            android:name="pt.mobilesgmc.HomeActivity"
+            android:name="info.mobilesgmc.HomeActivity"
             android:label="@string/title_activity_home"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:windowSoftInputMode="stateHidden|adjustPan"
@@ -50,36 +41,7 @@
             >
         </activity>
 
-        <activity
-            android:name="pt.mobilesgmc.DadosINtraOperatorioActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="@string/title_activity_dados_intra_operatorio"
-            android:windowSoftInputMode="stateHidden|adjustPan" >
-        </activity>
-        <activity
-            android:name="pt.mobilesgmc.ListaProdutosActivity"
-            android:label="Lista Materiais"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:windowSoftInputMode="stateHidden|adjustPan" >
-        </activity>
-        <activity
-            android:name="pt.mobilesgmc.AparelhosActivity"
-            android:label="@string/title_activity_aparelhos"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:windowSoftInputMode="stateHidden|adjustPan">
-        </activity>
-        <activity
-            android:name="pt.mobilesgmc.InstrumentalActivity"
-            android:label="@string/title_activity_instrumental"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:windowSoftInputMode="stateHidden|adjustPan">
-        </activity>
-        <activity
-            android:name="pt.mobilesgmc.MaterialActivity"
-            android:label="@string/title_activity_material"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:windowSoftInputMode="stateHidden|adjustPan">
-        </activity>
+
     </application>
 
 </manifest>

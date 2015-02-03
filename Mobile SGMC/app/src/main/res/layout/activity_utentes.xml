@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="pt.pata.patadroid.Profile"
+    tools:context="info.pata.patadroid.Profile"
     android:background="#EEEEEE">
 
     <LinearLayout

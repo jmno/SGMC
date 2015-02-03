@@ -6,6 +6,10 @@
         <option name="name" value="app: com.example.mobilegsmc" />
         <option name="packageNamePattern" value="com.example.mobilegsmc" />
       </filter>
+      <filter>
+        <option name="name" value="app: info.nicolau.mobilegsmc" />
+        <option name="packageNamePattern" value="info.nicolau.mobilegsmc" />
+      </filter>
     </filters>
   </component>
   <component name="AndroidLayouts">
@@ -43,10 +47,7 @@
     </layouts>
   </component>
   <component name="AndroidLogFilters">
-    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="app: com.example.mobilegsmc" />
-  </component>
-  <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/app/src/main/java/pt/mobilesgmc/adminSangue/AdapterAdministracaoSangue.java" line="93" mnemonic="2" />
+    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="app: info.nicolau.mobilegsmc" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a0b19006-6fcb-4889-b750-7670bbdfc33b" name="Default" comment="" />
@@ -59,6 +60,11 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
+  <component name="Commander">
+    <leftPanel />
+    <rightPanel />
+    <splitter proportion="0.5" />
+  </component>
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
   </component>
@@ -71,88 +77,84 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="HomeActivity.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/pt/mobilesgmc/HomeActivity.java">
+      <file leaf-file-name="FragmentMain.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/FragmentMain.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="5074" max-vertical-offset="5565">
-              <caret line="95" column="48" selection-start-line="95" selection-start-column="48" selection-end-line="95" selection-end-column="48" />
-              <folding>
-                <element signature="e#13730#13731#0" expanded="true" />
-                <element signature="e#13762#13763#0" expanded="true" />
-                <element signature="e#13933#13934#0" expanded="true" />
-                <element signature="e#13966#13967#0" expanded="true" />
-                <element signature="e#14160#14161#0" expanded="true" />
-                <element signature="e#14196#14197#0" expanded="true" />
-              </folding>
+            <state vertical-scroll-proportion="0.0" vertical-offset="4230" max-vertical-offset="8250">
+              <caret line="282" column="0" selection-start-line="282" selection-start-column="0" selection-end-line="282" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="fragment_home.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_home.xml">
-          <provider editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="240" max-vertical-offset="915">
-              <caret line="52" column="0" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
+      <file leaf-file-name="DadosCirurgia.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/DadosCirurgia.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="1440" max-vertical-offset="18165">
+              <caret line="96" column="25" selection-start-line="96" selection-start-column="22" selection-end-line="96" selection-end-column="25" />
               <folding />
             </state>
           </provider>
-          <provider selected="true" editor-type-id="android-designer">
+        </entry>
+      </file>
+      <file leaf-file-name="Cirurgia.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/modelo/Cirurgia.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="3360" max-vertical-offset="3975">
+              <caret line="224" column="32" selection-start-line="224" selection-start-column="32" selection-end-line="224" selection-end-column="32" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="activity_dados_intra_operatorio.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_dados_intra_operatorio.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="3585" max-vertical-offset="17220">
+              <caret line="239" column="54" selection-start-line="239" selection-start-column="54" selection-end-line="239" selection-end-column="54" />
+              <folding />
+            </state>
+          </provider>
+          <provider editor-type-id="android-designer">
             <state />
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AparelhosActivity.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/pt/mobilesgmc/AparelhosActivity.java">
+      <file leaf-file-name="AndroidManifest.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="5282" max-vertical-offset="6870">
-              <caret line="428" column="0" selection-start-line="428" selection-start-column="0" selection-end-line="428" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="135" max-vertical-offset="780">
+              <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FragmentMain.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/pt/mobilesgmc/FragmentMain.java">
+      <file leaf-file-name="build.gradle" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/build.gradle">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.15271966" vertical-offset="7157" max-vertical-offset="8070">
-              <caret line="498" column="31" selection-start-line="498" selection-start-column="31" selection-end-line="498" selection-end-column="31" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state vertical-scroll-proportion="0.3008596" vertical-offset="0" max-vertical-offset="645">
+              <caret line="7" column="26" selection-start-line="7" selection-start-column="26" selection-end-line="7" selection-end-column="26" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ListaProdutosActivity.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/pt/mobilesgmc/ListaProdutosActivity.java">
+      <file leaf-file-name="AparelhosActivity.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/AparelhosActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="8327" max-vertical-offset="8805">
-              <caret line="712" column="0" selection-start-line="712" selection-start-column="0" selection-end-line="712" selection-end-column="0" />
-              <folding>
-                <element signature="class#getListas#0;class#ListaProdutosActivity#0" expanded="false" />
-                <element signature="e#24283#24293#0" expanded="true" />
-              </folding>
+            <state vertical-scroll-proportion="0.0" vertical-offset="510" max-vertical-offset="7695">
+              <caret line="34" column="31" selection-start-line="34" selection-start-column="31" selection-end-line="34" selection-end-column="31" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="home.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/menu/home.xml">
+      <file leaf-file-name="strings.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="495">
-              <caret line="20" column="47" selection-start-line="20" selection-start-column="25" selection-end-line="20" selection-end-column="47" />
-              <folding>
-                <element signature="e#426#442#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MaterialActivity.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/pt/mobilesgmc/MaterialActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="5342" max-vertical-offset="6900">
-              <caret line="429" column="0" selection-start-line="420" selection-start-column="12" selection-end-line="429" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="2700" max-vertical-offset="3360">
+              <caret line="180" column="38" selection-start-line="180" selection-start-column="38" selection-end-line="180" selection-end-column="38" />
               <folding />
             </state>
           </provider>
@@ -166,8 +168,8 @@
     </FindUsagesManager>
   </component>
   <component name="GenerateSignedApkSettings">
-    <option name="KEY_STORE_PATH" value="$PROJECT_DIR$/../../../androidNico.jks" />
-    <option name="KEY_ALIAS" value="Nico" />
+    <option name="KEY_STORE_PATH" value="$PROJECT_DIR$/../../../../../../Trabalho/nicolauDroidCertificate.jks" />
+    <option name="KEY_ALIAS" value="nico" />
     <option name="REMEMBER_PASSWORDS" value="true" />
   </component>
   <component name="GradleLocalSettings">
@@ -1041,7 +1043,7 @@
     </option>
     <option name="modificationStamps">
       <map>
-        <entry key="$PROJECT_DIR$" value="4263407241000" />
+        <entry key="$PROJECT_DIR$" value="4263943130000" />
       </map>
     </option>
     <option name="projectBuildClasspath">
@@ -1205,57 +1207,57 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_dados_intra_operatorio.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_equipa_cirurgica.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout-sw720dp/activity_login.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/dialog_add_profissional.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout-sw720dp/activity_equipa_cirurgica.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout-sw720dp/dialog_novoprofissional.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/dialog_novoprofissional.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/pt/mobilesgmc/modelo/RestClientException.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/pt/mobilesgmc/modelo/ExceptionLog.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/pt/mobilesgmc/modelo/AcessoVenoso.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/pt/mobilesgmc/modelo/Drenagem.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/pt/mobilesgmc/dreanagem/EditTextWatcherDrenagem.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout-sw720dp/activity_home.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/rwa.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/drawerlayout.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/pt/mobilesgmc/home.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_home.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_home.xml" />
-        <option value="$PROJECT_DIR$/app/build.gradle" />
-        <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/custom_header_user.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/values/styles.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/pt/mobilesgmc/DadosCirurgia.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/menu/equipa_cirurgica.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/pt/mobilesgmc/NovoProfissional.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_novo_profissional.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/pt/mobilesgmc/modelo/EquipaComJuncao.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/pt/mobilesgmc/EquipaCirurgica.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_main.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/pt/mobilesgmc/Login.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/pt/mobilesgmc/UtentesActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/pt/mobilesgmc/DadosINtraOperatorioActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_lista_produtos.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/child_produtosDaCirurgia.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/child_produtos_da_cirurgia.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/pt/mobilesgmc/produtosDaCirurgia/AdapterProdutosCirurgia.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/pt/mobilesgmc/modelo/ListasProdutosCirurgia.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/pt/mobilesgmc/modelo/WebServiceUtils.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_aparelhos.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/pt/mobilesgmc/aparelhosCirurgia/AdapterAparelhosCirurgia.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/pt/mobilesgmc/instrumentosCirurgia/AdapterInstrumentosCirurgia.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/pt/mobilesgmc/materiaisCirurgia/AdapterMateriaisCirurgia.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/pt/mobilesgmc/MaterialActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/pt/mobilesgmc/InstrumentalActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/pt/mobilesgmc/AparelhosActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/pt/mobilesgmc/HomeActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/menu/home.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/pt/mobilesgmc/ListaProdutosActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/pt/mobilesgmc/FragmentMain.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/pt/mobilesgmc/HomeActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/pt/mobilesgmc/modelo/AdaptadorHoras.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/pt/mobilesgmc/DadosCirurgia.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/layout_rowhoras.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_main.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/pt/mobilesgmc/DadosINtraOperatorioActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/pt/mobilesgmc/adminSangue/AdapterAdministracaoSangue.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/pt/mobilesgmc/dreanagem/AdapterDrenagem.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/pt/mobilesgmc/medicacaoAdministrada/AdapterMedicacaoAdministrada.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/pt/mobilesgmc/sinaisVitais/AdapterSinaisVitais.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/pt/mobilesgmc/Login.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/modelo/Cirurgia.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/AparelhosActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/aparelhosCirurgia/AdapterAparelhosCirurgia.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/acessosVenosos/AdapterAcessosVenosos.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/adminSangue/AdapterAdministracaoSangue.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/balancoHidrico/AdapterBalancoHidrico.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/biopsia/AdapterBiopsia.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/dreanagem/AdapterDrenagem.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/instrumentosCirurgia/AdapterInstrumentosCirurgia.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/modelo/AdaptadorHoras.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/materiaisCirurgia/AdapterMateriaisCirurgia.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/medicacaoAdministrada/AdapterMedicacaoAdministrada.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/sinaisVitais/AdapterSinaisVitais.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/produtosDaCirurgia/AdapterProdutosCirurgia.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/UtentesActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/InstrumentalActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/NovoProfissional.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/MaterialActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/Login.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/HomeActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/ListaProdutosActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/DadosINtraOperatorioActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/EquipaCirurgica.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_dados_cirurgia.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_dados_intra_operatorio.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/DadosCirurgia.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/FragmentMain.java" />
+        <option value="$PROJECT_DIR$/app/build.gradle" />
+        <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
       </list>
     </option>
   </component>
@@ -1263,9 +1265,9 @@
     <treeState />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="y" value="-1001" />
+    <option name="y" value="23" />
     <option name="width" value="1280" />
-    <option name="height" value="1001" />
+    <option name="height" value="773" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -1286,13 +1288,15 @@
       <showMembers />
       <showModules />
       <showLibraryContents />
-      <hideEmptyPackages />
+      <hideEmptyPackages AndroidView="false" />
       <abbreviatePackageNames />
       <autoscrollToSource />
       <autoscrollFromSource />
       <sortByType />
     </navigator>
     <panes>
+      <pane id="ProjectPane" />
+      <pane id="PackagesPane" />
       <pane id="AndroidView">
         <subPane>
           <PATH>
@@ -1325,120 +1329,16 @@
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="values" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderTypeNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="styles.xml" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResGroupNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Mobile SGMC" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="values" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderTypeNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Mobile SGMC" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="menu" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderTypeNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Mobile SGMC" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="layout" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderTypeNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Mobile SGMC" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="drawable" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderTypeNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Mobile SGMC" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Mobile SGMC" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="java" />
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="mobilesgmc" />
+              <option name="myItemId" value="info" />
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mobilesgmc" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -1458,8 +1358,6 @@
         </subPane>
       </pane>
       <pane id="Scope" />
-      <pane id="ProjectPane" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -1476,19 +1374,20 @@
     <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_AVD" value="gio" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/app/src/main/res/drawable" />
     <property name="LayoutCode.rearrangeEntriesJava" value="false" />
-    <property name="ExportApk.ApkPath" value="$PROJECT_DIR$/app" />
+    <property name="ExportApk.ApkPath" value="$USER_HOME$/Desktop" />
     <property name="ExportApk.Flavors" value="" />
     <property name="ExportApk.BuildType" value="release" />
     <property name="DEBUGGABLE_DEVICE" value="lge-nexus_5-071905e013cc8d91" />
-    <property name="DEBUGGABLE_PROCESS" value="com.example.mobilegsmc" />
+    <property name="DEBUGGABLE_PROCESS" value="info.nicolau.mobilegsmc" />
     <property name="SHOW_ALL_PROCESSES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Desktop" />
     <property name="findjar.last.used.dir" value="$PROJECT_DIR$" />
     <property name="FullScreen" value="false" />
     <property name="OverrideImplement.combined" value="true" />
     <property name="OverrideImplement.overriding.sorted" value="false" />
     <property name="UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager2.WIDTH" value="316" />
     <property name="SearchEverywhereHistoryKey" value="spinner_localizacaoElectrodo&#9;PSI&#9;JAVA://com.example.mobilegsmc.R.id#spinner_DadosIntra_localizacaoElectrodo" />
+    <property name="LayoutCode.rearrangeEntries" value="false" />
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
@@ -1718,30 +1617,29 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="-1001" width="1280" height="1001" extended-state="6" />
-    <editor active="true" />
+    <frame x="0" y="23" width="1280" height="773" extended-state="6" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32879046" sideWeight="0.5" order="15" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32768363" sideWeight="0.5" order="15" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.43050846" sideWeight="0.858643" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.23163842" sideWeight="0.14135703" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.42617962" sideWeight="0.32552505" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.20759289" sideWeight="0.21165049" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.20759289" sideWeight="0.21200751" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3242938" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
-      <window_info id="Android" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.41355932" sideWeight="0.86995155" order="14" side_tool="false" content_ui="tabs" />
-      <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.42617962" sideWeight="0.67447495" order="14" side_tool="false" content_ui="tabs" />
+      <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32956383" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32542372" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24959612" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32980332" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32956383" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20516963" sideWeight="0.78640777" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20516963" sideWeight="0.78640777" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.49265537" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Memory Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="true" content_ui="tabs" />
       <window_info id="Documentation" active="false" anchor="right" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32956383" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" x="100" y="123" width="1080" height="573" />
@@ -1749,6 +1647,7 @@
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3291714" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
@@ -1764,21 +1663,21 @@
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32542372" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20516963" sideWeight="0.78640777" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20516963" sideWeight="0.78640777" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.49265537" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.28361583" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Memory Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32879046" sideWeight="0.5" order="15" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3291714" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.43050846" sideWeight="0.858643" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.20759289" sideWeight="0.21165049" order="4" side_tool="true" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3242938" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
-      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.79435027" sideWeight="0.86995155" order="14" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3242938" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
+      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31638417" sideWeight="0.86995155" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24959612" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32980332" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1805,505 +1704,443 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/pt/mobilesgmc/UtentesActivity.java</url>
-          <line>432</line>
+          <url>file://$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/UtentesActivity.java</url>
+          <line>431</line>
           <properties />
           <option name="timeStamp" value="25" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/pt/mobilesgmc/UtentesActivity.java</url>
-          <line>441</line>
+          <url>file://$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/UtentesActivity.java</url>
+          <line>440</line>
           <properties />
           <option name="timeStamp" value="26" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/pt/mobilesgmc/UtentesActivity.java</url>
-          <line>450</line>
+          <url>file://$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/UtentesActivity.java</url>
+          <line>449</line>
           <properties />
           <option name="timeStamp" value="29" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/pt/mobilesgmc/UtentesActivity.java</url>
-          <line>451</line>
+          <url>file://$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/UtentesActivity.java</url>
+          <line>450</line>
           <properties />
           <option name="timeStamp" value="30" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/pt/mobilesgmc/UtentesActivity.java</url>
-          <line>290</line>
+          <url>file://$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/UtentesActivity.java</url>
+          <line>289</line>
           <properties />
           <option name="timeStamp" value="40" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/pt/mobilesgmc/UtentesActivity.java</url>
-          <line>298</line>
+          <url>file://$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/UtentesActivity.java</url>
+          <line>297</line>
           <properties />
           <option name="timeStamp" value="41" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/pt/mobilesgmc/medicacaoAdministrada/AdapterMedicacaoAdministrada.java</url>
-          <line>52</line>
-          <properties />
-          <option name="timeStamp" value="66" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/pt/mobilesgmc/medicacaoAdministrada/AdapterMedicacaoAdministrada.java</url>
-          <line>58</line>
-          <properties />
-          <option name="timeStamp" value="67" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/pt/mobilesgmc/medicacaoAdministrada/AdapterMedicacaoAdministrada.java</url>
-          <line>71</line>
-          <properties />
-          <option name="timeStamp" value="68" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/pt/mobilesgmc/medicacaoAdministrada/AdapterMedicacaoAdministrada.java</url>
-          <line>74</line>
-          <properties />
-          <option name="timeStamp" value="69" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/pt/mobilesgmc/medicacaoAdministrada/AdapterMedicacaoAdministrada.java</url>
-          <line>73</line>
-          <properties />
-          <option name="timeStamp" value="70" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/pt/mobilesgmc/medicacaoAdministrada/AdapterMedicacaoAdministrada.java</url>
-          <line>88</line>
+          <url>file://$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/medicacaoAdministrada/AdapterMedicacaoAdministrada.java</url>
+          <line>87</line>
           <properties />
           <option name="timeStamp" value="71" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/pt/mobilesgmc/medicacaoAdministrada/AdapterMedicacaoAdministrada.java</url>
-          <line>78</line>
-          <properties />
-          <option name="timeStamp" value="72" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/pt/mobilesgmc/medicacaoAdministrada/AdapterMedicacaoAdministrada.java</url>
-          <line>59</line>
-          <properties />
-          <option name="timeStamp" value="73" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/pt/mobilesgmc/adminSangue/EditTextWatcherValor.java</url>
+          <url>file://$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/adminSangue/EditTextWatcherValor.java</url>
           <line>25</line>
           <properties />
           <option name="timeStamp" value="128" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/pt/mobilesgmc/adminSangue/EditTextWatcherValor.java</url>
+          <url>file://$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/adminSangue/EditTextWatcherValor.java</url>
           <line>26</line>
           <properties />
           <option name="timeStamp" value="129" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/pt/mobilesgmc/modelo/WebServiceUtils.java</url>
+          <url>file://$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/modelo/WebServiceUtils.java</url>
           <line>1427</line>
           <properties />
           <option name="timeStamp" value="131" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/pt/mobilesgmc/DadosINtraOperatorioActivity.java</url>
-          <line>1134</line>
+          <url>file://$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/DadosINtraOperatorioActivity.java</url>
+          <line>1170</line>
           <properties />
           <option name="timeStamp" value="133" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/pt/mobilesgmc/modelo/WebServiceUtils.java</url>
+          <url>file://$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/modelo/WebServiceUtils.java</url>
           <line>2</line>
           <properties />
           <option name="timeStamp" value="137" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/pt/mobilesgmc/EquipaCirurgica.java</url>
-          <line>417</line>
+          <url>file://$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/EquipaCirurgica.java</url>
+          <line>416</line>
           <properties />
           <option name="timeStamp" value="141" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/pt/mobilesgmc/EquipaCirurgica.java</url>
-          <line>418</line>
+          <url>file://$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/EquipaCirurgica.java</url>
+          <line>417</line>
           <properties />
           <option name="timeStamp" value="142" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/pt/mobilesgmc/Login.java</url>
-          <line>141</line>
+          <url>file://$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/Login.java</url>
+          <line>147</line>
           <properties />
           <option name="timeStamp" value="144" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/pt/mobilesgmc/Login.java</url>
-          <line>140</line>
+          <url>file://$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/Login.java</url>
+          <line>146</line>
           <properties />
           <option name="timeStamp" value="145" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/pt/mobilesgmc/Login.java</url>
-          <line>139</line>
+          <url>file://$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/Login.java</url>
+          <line>145</line>
           <properties />
           <option name="timeStamp" value="146" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/pt/mobilesgmc/DadosCirurgia.java</url>
-          <line>694</line>
+          <url>file://$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/DadosCirurgia.java</url>
+          <line>724</line>
           <properties />
           <option name="timeStamp" value="200" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/pt/mobilesgmc/DadosINtraOperatorioActivity.java</url>
-          <line>848</line>
-          <properties />
-          <option name="timeStamp" value="201" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/pt/mobilesgmc/UtentesActivity.java</url>
-          <line>134</line>
+          <url>file://$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/UtentesActivity.java</url>
+          <line>133</line>
           <properties />
           <option name="timeStamp" value="215" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/pt/mobilesgmc/DadosCirurgia.java</url>
-          <line>809</line>
+          <url>file://$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/DadosCirurgia.java</url>
+          <line>847</line>
           <properties />
           <option name="timeStamp" value="217" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/pt/mobilesgmc/DadosCirurgia.java</url>
-          <line>812</line>
+          <url>file://$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/DadosCirurgia.java</url>
+          <line>850</line>
           <properties />
           <option name="timeStamp" value="218" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/pt/mobilesgmc/DadosCirurgia.java</url>
-          <line>813</line>
+          <url>file://$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/DadosCirurgia.java</url>
+          <line>851</line>
           <properties />
           <option name="timeStamp" value="219" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/pt/mobilesgmc/DadosCirurgia.java</url>
-          <line>960</line>
+          <url>file://$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/DadosCirurgia.java</url>
+          <line>1027</line>
           <properties />
           <option name="timeStamp" value="220" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/pt/mobilesgmc/DadosCirurgia.java</url>
-          <line>741</line>
+          <url>file://$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/DadosCirurgia.java</url>
+          <line>776</line>
           <properties />
           <option name="timeStamp" value="221" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/pt/mobilesgmc/DadosCirurgia.java</url>
-          <line>701</line>
+          <url>file://$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/DadosCirurgia.java</url>
+          <line>731</line>
           <properties />
           <option name="timeStamp" value="222" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/pt/mobilesgmc/UtentesActivity.java</url>
-          <line>127</line>
+          <url>file://$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/UtentesActivity.java</url>
+          <line>126</line>
           <properties />
           <option name="timeStamp" value="224" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/pt/mobilesgmc/UtentesActivity.java</url>
-          <line>129</line>
+          <url>file://$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/UtentesActivity.java</url>
+          <line>128</line>
           <properties />
           <option name="timeStamp" value="225" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/pt/mobilesgmc/UtentesActivity.java</url>
-          <line>130</line>
+          <url>file://$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/UtentesActivity.java</url>
+          <line>129</line>
           <properties />
           <option name="timeStamp" value="226" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/pt/mobilesgmc/DadosCirurgia.java</url>
-          <line>804</line>
+          <url>file://$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/DadosCirurgia.java</url>
+          <line>839</line>
           <properties />
           <option name="timeStamp" value="236" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/pt/mobilesgmc/UtentesActivity.java</url>
-          <line>128</line>
+          <url>file://$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/UtentesActivity.java</url>
+          <line>127</line>
           <properties />
           <option name="timeStamp" value="237" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/pt/mobilesgmc/DadosCirurgia.java</url>
-          <line>805</line>
+          <url>file://$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/DadosCirurgia.java</url>
+          <line>841</line>
           <properties />
           <option name="timeStamp" value="238" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/pt/mobilesgmc/DadosCirurgia.java</url>
-          <line>905</line>
+          <url>file://$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/DadosCirurgia.java</url>
+          <line>972</line>
           <properties />
           <option name="timeStamp" value="239" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/pt/mobilesgmc/EquipaCirurgica.java</url>
-          <line>547</line>
+          <url>file://$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/EquipaCirurgica.java</url>
+          <line>546</line>
           <properties />
           <option name="timeStamp" value="246" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/pt/mobilesgmc/EquipaCirurgica.java</url>
-          <line>549</line>
+          <url>file://$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/EquipaCirurgica.java</url>
+          <line>548</line>
           <properties />
           <option name="timeStamp" value="247" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/pt/mobilesgmc/EquipaCirurgica.java</url>
-          <line>326</line>
+          <url>file://$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/EquipaCirurgica.java</url>
+          <line>325</line>
           <properties />
           <option name="timeStamp" value="249" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/pt/mobilesgmc/EquipaCirurgica.java</url>
-          <line>325</line>
+          <url>file://$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/EquipaCirurgica.java</url>
+          <line>324</line>
           <properties />
           <option name="timeStamp" value="250" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/pt/mobilesgmc/EquipaCirurgica.java</url>
-          <line>611</line>
+          <url>file://$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/EquipaCirurgica.java</url>
+          <line>610</line>
           <properties />
           <option name="timeStamp" value="251" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/pt/mobilesgmc/EquipaCirurgica.java</url>
-          <line>319</line>
+          <url>file://$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/EquipaCirurgica.java</url>
+          <line>318</line>
           <properties />
           <option name="timeStamp" value="252" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/pt/mobilesgmc/EquipaCirurgica.java</url>
-          <line>318</line>
+          <url>file://$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/EquipaCirurgica.java</url>
+          <line>317</line>
           <properties />
           <option name="timeStamp" value="253" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/pt/mobilesgmc/FragmentMain.java</url>
-          <line>199</line>
+          <url>file://$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/FragmentMain.java</url>
+          <line>200</line>
           <properties />
           <option name="timeStamp" value="254" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/pt/mobilesgmc/EquipaCirurgica.java</url>
-          <line>320</line>
+          <url>file://$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/EquipaCirurgica.java</url>
+          <line>319</line>
           <properties />
           <option name="timeStamp" value="255" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/pt/mobilesgmc/EquipaCirurgica.java</url>
-          <line>789</line>
+          <url>file://$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/EquipaCirurgica.java</url>
+          <line>788</line>
           <properties />
           <option name="timeStamp" value="256" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/pt/mobilesgmc/EquipaCirurgica.java</url>
-          <line>795</line>
+          <url>file://$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/EquipaCirurgica.java</url>
+          <line>794</line>
           <properties />
           <option name="timeStamp" value="257" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/pt/mobilesgmc/EquipaCirurgica.java</url>
-          <line>796</line>
+          <url>file://$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/EquipaCirurgica.java</url>
+          <line>795</line>
           <properties />
           <option name="timeStamp" value="258" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/pt/mobilesgmc/EquipaCirurgica.java</url>
-          <line>797</line>
+          <url>file://$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/EquipaCirurgica.java</url>
+          <line>796</line>
           <properties />
           <option name="timeStamp" value="259" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/pt/mobilesgmc/FragmentMain.java</url>
-          <line>119</line>
+          <url>file://$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/FragmentMain.java</url>
+          <line>120</line>
           <properties />
           <option name="timeStamp" value="260" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/pt/mobilesgmc/FragmentMain.java</url>
-          <line>160</line>
+          <url>file://$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/FragmentMain.java</url>
+          <line>161</line>
           <properties />
           <option name="timeStamp" value="263" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/pt/mobilesgmc/FragmentMain.java</url>
-          <line>108</line>
+          <url>file://$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/FragmentMain.java</url>
+          <line>109</line>
           <properties />
           <option name="timeStamp" value="267" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/pt/mobilesgmc/ListaProdutosActivity.java</url>
-          <line>342</line>
+          <url>file://$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/ListaProdutosActivity.java</url>
+          <line>329</line>
           <properties />
           <option name="timeStamp" value="274" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/pt/mobilesgmc/ListaProdutosActivity.java</url>
-          <line>98</line>
+          <url>file://$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/ListaProdutosActivity.java</url>
+          <line>85</line>
           <properties />
           <option name="timeStamp" value="275" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/pt/mobilesgmc/ListaProdutosActivity.java</url>
-          <line>213</line>
+          <url>file://$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/ListaProdutosActivity.java</url>
+          <line>200</line>
           <properties />
           <option name="timeStamp" value="280" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/pt/mobilesgmc/ListaProdutosActivity.java</url>
-          <line>216</line>
+          <url>file://$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/ListaProdutosActivity.java</url>
+          <line>203</line>
           <properties />
           <option name="timeStamp" value="282" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/pt/mobilesgmc/ListaProdutosActivity.java</url>
-          <line>212</line>
+          <url>file://$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/ListaProdutosActivity.java</url>
+          <line>199</line>
           <properties />
           <option name="timeStamp" value="283" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/pt/mobilesgmc/ListaProdutosActivity.java</url>
-          <line>209</line>
+          <url>file://$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/ListaProdutosActivity.java</url>
+          <line>196</line>
           <properties />
           <option name="timeStamp" value="284" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/pt/mobilesgmc/ListaProdutosActivity.java</url>
-          <line>215</line>
+          <url>file://$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/ListaProdutosActivity.java</url>
+          <line>202</line>
           <properties />
           <option name="timeStamp" value="285" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/pt/mobilesgmc/ListaProdutosActivity.java</url>
-          <line>210</line>
+          <url>file://$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/ListaProdutosActivity.java</url>
+          <line>197</line>
           <properties />
           <option name="timeStamp" value="286" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/pt/mobilesgmc/ListaProdutosActivity.java</url>
-          <line>338</line>
+          <url>file://$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/ListaProdutosActivity.java</url>
+          <line>325</line>
           <properties />
           <option name="timeStamp" value="287" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/pt/mobilesgmc/ListaProdutosActivity.java</url>
-          <line>350</line>
+          <url>file://$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/ListaProdutosActivity.java</url>
+          <line>337</line>
           <properties />
           <option name="timeStamp" value="288" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/pt/mobilesgmc/ListaProdutosActivity.java</url>
-          <line>387</line>
+          <url>file://$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/ListaProdutosActivity.java</url>
+          <line>374</line>
           <properties />
           <option name="timeStamp" value="289" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/pt/mobilesgmc/ListaProdutosActivity.java</url>
-          <line>682</line>
+          <url>file://$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/ListaProdutosActivity.java</url>
+          <line>669</line>
           <properties />
           <option name="timeStamp" value="290" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/HomeActivity.java</url>
+          <line>132</line>
+          <properties />
+          <option name="timeStamp" value="293" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/modelo/WebServiceUtils.java</url>
+          <line>638</line>
+          <properties />
+          <option name="timeStamp" value="295" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/modelo/WebServiceUtils.java</url>
+          <line>637</line>
+          <properties />
+          <option name="timeStamp" value="296" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/DadosINtraOperatorioActivity.java</url>
+          <line>1230</line>
+          <properties />
+          <option name="timeStamp" value="304" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/DadosINtraOperatorioActivity.java</url>
+          <line>1231</line>
+          <properties />
+          <option name="timeStamp" value="306" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/FragmentMain.java</url>
+          <line>283</line>
+          <properties />
+          <option name="timeStamp" value="307" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/FragmentMain.java</url>
+          <line>285</line>
+          <properties />
+          <option name="timeStamp" value="308" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/FragmentMain.java</url>
+          <line>293</line>
+          <properties />
+          <option name="timeStamp" value="309" />
+        </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/app/src/main/java/pt/mobilesgmc/modelo/ListasProdutosCirurgia.java</url>
+          <url>file://$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/modelo/ListasProdutosCirurgia.java</url>
           <line>45</line>
-          <properties class="pt.mobilesgmc.modelo.ListasProdutosCirurgia" method="setListas" />
+          <properties class="info.mobilesgmc.modelo.ListasProdutosCirurgia" method="setListas" />
           <option name="timeStamp" value="276" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="291" />
+      <option name="time" value="311" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$PROJECT_DIR$/app/build/intermediates/exploded-aar/br.com.liveo/navigationdrawer-material/1.0.2/classes.jar!/br/liveo/navigationliveo/NavigationLiveo.class">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/modelo/Horas.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.4615386" vertical-offset="1481" max-vertical-offset="2040">
-          <caret line="8" column="24" selection-start-line="8" selection-start-column="24" selection-end-line="8" selection-end-column="24" />
+        <state vertical-scroll-proportion="0.18907563" vertical-offset="0" max-vertical-offset="476">
+          <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/menu/utentes.xml">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/modelo/WebServiceUtils.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0591716" vertical-offset="0" max-vertical-offset="507">
-          <caret line="2" column="18" selection-start-line="2" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
-          <folding>
-            <element signature="e#429#445#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/ic_home_black.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/ic_action_user.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Desktop/adt-bundle-mac-x86_64-20140702/sdk/sources/android-21/android/os/AsyncTask.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="7222" max-vertical-offset="9450">
-          <caret line="534" column="0" selection-start-line="534" selection-start-column="0" selection-end-line="534" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/menu/dados_cirurgia.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.17751479" vertical-offset="0" max-vertical-offset="507">
-          <caret line="6" column="38" selection-start-line="6" selection-start-column="38" selection-end-line="6" selection-end-column="38" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="618" max-vertical-offset="22155">
+          <caret line="86" column="40" selection-start-line="86" selection-start-column="40" selection-end-line="86" selection-end-column="40" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/menu/dados_intra_operatorio.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="507">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/menu/equipa_cirurgica.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2366864" vertical-offset="0" max-vertical-offset="507">
-          <caret line="8" column="3" selection-start-line="8" selection-start-column="3" selection-end-line="8" selection-end-column="3" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3195266" vertical-offset="543" max-vertical-offset="1350">
-          <caret line="47" column="58" selection-start-line="47" selection-start-column="58" selection-end-line="47" selection-end-column="58" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_home.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.35331905" vertical-offset="240" max-vertical-offset="795">
-          <caret line="27" column="20" selection-start-line="27" selection-start-column="20" selection-end-line="27" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_novo_profissional.xml">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/layout_rowhoras.xml">
       <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="570" max-vertical-offset="1350">
-          <caret line="64" column="45" selection-start-line="64" selection-start-column="45" selection-end-line="64" selection-end-column="45" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="405">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -2311,52 +2148,342 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/pt/mobilesgmc/modelo/ProfissionalDaCirurgia.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.17751479" vertical-offset="0" max-vertical-offset="510">
-          <caret line="6" column="4" selection-start-line="6" selection-start-column="4" selection-end-line="6" selection-end-column="4" />
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_home.xml">
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="795">
+          <caret line="27" column="20" selection-start-line="27" selection-start-column="20" selection-end-line="27" selection-end-column="20" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable-xxhdpi/ic_user_background.jpg">
-      <provider selected="true" editor-type-id="images">
+      <provider selected="true" editor-type-id="android-designer">
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/pt/mobilesgmc/NovoProfissional.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_main.xml">
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="810" max-vertical-offset="1290">
+          <caret line="67" column="39" selection-start-line="67" selection-start-column="39" selection-end-line="67" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/acessosVenosos/AdapterAcessosVenosos.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8805668" vertical-offset="210" max-vertical-offset="2880">
-          <caret line="43" column="0" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="990">
+          <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/acessosVenosos/EditTextWatcherTipoAcessoVenoso.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="720">
+          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/adminSangue/AdapterAdministracaoSangue.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1" max-vertical-offset="2175">
+          <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/adminSangue/EditTextWatcherCodigo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="720">
+          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/adminSangue/EditTextWatcherFC.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="735">
+          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/adminSangue/EditTextWatcherSpo2.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1" max-vertical-offset="735">
+          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/adminSangue/EditTextWatcherTaMax.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="735">
+          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/adminSangue/EditTextWatcherTaMin.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="735">
+          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/adminSangue/EditTextWatcherValor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.31578946" vertical-offset="0" max-vertical-offset="765">
+          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/pt/mobilesgmc/modelo/EquipaComJuncao.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/acessosVenosos/EditTextWatcherCalibreAcessoVenoso.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2366864" vertical-offset="0" max-vertical-offset="507">
-          <caret line="8" column="25" selection-start-line="8" selection-start-column="25" selection-end-line="8" selection-end-column="25" />
+        <state vertical-scroll-proportion="0.2877193" vertical-offset="1" max-vertical-offset="735">
+          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/styles.xml">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/acessosVenosos/EditTextWatcherLocalizacaoAcessoVenoso.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.71005917" vertical-offset="0" max-vertical-offset="507">
-          <caret line="24" column="12" selection-start-line="24" selection-start-column="12" selection-end-line="24" selection-end-column="12" />
+        <state vertical-scroll-proportion="0.28947368" vertical-offset="0" max-vertical-offset="720">
+          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/aparelhosCirurgia/AdapterAparelhosCirurgia.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6052632" vertical-offset="0" max-vertical-offset="1935">
+          <caret line="23" column="13" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/balancoHidrico/AdapterBalancoHidrico.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.2140351" vertical-offset="28" max-vertical-offset="1050">
+          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/biopsia/AdapterBiopsia.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.17894737" vertical-offset="33" max-vertical-offset="960">
+          <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/instrumentosCirurgia/AdapterInstrumentosCirurgia.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.36842105" vertical-offset="0" max-vertical-offset="1935">
+          <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/dreanagem/AdapterDrenagem.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.39298245" vertical-offset="1" max-vertical-offset="2160">
+          <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/materiaisCirurgia/AdapterMateriaisCirurgia.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.36666667" vertical-offset="1" max-vertical-offset="1935">
+          <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/medicacaoAdministrada/AdapterMedicacaoAdministrada.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33508772" vertical-offset="4" max-vertical-offset="1410">
+          <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/ico_mic.png">
-      <provider selected="true" editor-type-id="images">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/modelo/BlocoComSala.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="360">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/modelo/BlocoOperatorio.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="345">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/modelo/DadosIntraoperatorioFinal.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.07001167" vertical-offset="0" max-vertical-offset="1500">
+          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/modelo/BalancoHidrico.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.035005834" vertical-offset="0" max-vertical-offset="1065">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/modelo/AdministracaoSangue.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.035005834" vertical-offset="0" max-vertical-offset="1200">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/modelo/AdaptadorHoras.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.22170362" vertical-offset="125" max-vertical-offset="1470">
+          <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/modelo/AcessoVenoso.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.08751459" vertical-offset="0" max-vertical-offset="885">
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/sinaisVitais/AdapterSinaisVitais.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.22637106" vertical-offset="1" max-vertical-offset="1605">
+          <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/produtosDaCirurgia/AdapterProdutosCirurgia.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.24504083" vertical-offset="0" max-vertical-offset="1920">
+          <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/UtentesActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.49008167" vertical-offset="0" max-vertical-offset="7650">
+          <caret line="28" column="0" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/InstrumentalActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4443128" vertical-offset="0" max-vertical-offset="7410">
+          <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/NovoProfissional.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.31872037" vertical-offset="1" max-vertical-offset="2865">
+          <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/MaterialActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4443128" vertical-offset="0" max-vertical-offset="7440">
+          <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/Login.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33530805" vertical-offset="2" max-vertical-offset="3990">
+          <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/HomeActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.29638273" vertical-offset="1" max-vertical-offset="5910">
+          <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/ListaProdutosActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.44312796" vertical-offset="1" max-vertical-offset="9360">
+          <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+          <folding>
+            <element signature="class#getListas#0;class#ListaProdutosActivity#0" expanded="false" />
+            <element signature="e#23910#23920#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/DadosINtraOperatorioActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.47985783" vertical-offset="0" max-vertical-offset="18765">
+          <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/EquipaCirurgica.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.47985783" vertical-offset="0" max-vertical-offset="12120">
+          <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_equipa_cirurgica.xml">
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="4170">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="android-designer">
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_utentes.xml">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_dados_cirurgia.xml">
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="5475">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/modelo/Cirurgia.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="285" max-vertical-offset="2685">
-          <caret line="9" column="37" selection-start-line="9" selection-start-column="37" selection-end-line="9" selection-end-column="37" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="1798" max-vertical-offset="2625">
+          <caret line="224" column="32" selection-start-line="224" selection-start-column="32" selection-end-line="224" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/DadosCirurgia.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1440" max-vertical-offset="18165">
+          <caret line="96" column="25" selection-start-line="96" selection-start-column="22" selection-end-line="96" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/FragmentMain.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="4230" max-vertical-offset="8250">
+          <caret line="282" column="0" selection-start-line="282" selection-start-column="0" selection-end-line="282" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_dados_intra_operatorio.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="3585" max-vertical-offset="17220">
+          <caret line="239" column="54" selection-start-line="239" selection-start-column="54" selection-end-line="239" selection-end-column="54" />
           <folding />
         </state>
       </provider>
@@ -2364,312 +2491,35 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/pt/mobilesgmc/EquipaCirurgica.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="10455" max-vertical-offset="12330">
-          <caret line="697" column="0" selection-start-line="697" selection-start-column="0" selection-end-line="697" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="135" max-vertical-offset="780">
+          <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/pt/mobilesgmc/Login.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/info/mobilesgmc/AparelhosActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="2115" max-vertical-offset="4080">
-          <caret line="141" column="0" selection-start-line="141" selection-start-column="0" selection-end-line="141" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="330" max-vertical-offset="7410">
+          <caret line="34" column="31" selection-start-line="34" selection-start-column="31" selection-end-line="34" selection-end-column="31" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.591716" vertical-offset="120" max-vertical-offset="645">
-          <caret line="28" column="45" selection-start-line="28" selection-start-column="45" selection-end-line="28" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/pt/mobilesgmc/UtentesActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33488914" vertical-offset="1663" max-vertical-offset="7665">
-          <caret line="130" column="76" selection-start-line="129" selection-start-column="12" selection-end-line="130" selection-end-column="76" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/pt/mobilesgmc/DadosCirurgia.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-12.977273" vertical-offset="9929" max-vertical-offset="15450">
-          <caret line="796" column="5" selection-start-line="782" selection-start-column="4" selection-end-line="796" selection-end-column="5" />
+        <state vertical-scroll-proportion="0.3008596" vertical-offset="0" max-vertical-offset="645">
+          <caret line="7" column="26" selection-start-line="7" selection-start-column="26" selection-end-line="7" selection-end-column="26" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/pt/mobilesgmc/modelo/ProdutosCirurgia.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.24590164" vertical-offset="0" max-vertical-offset="960">
-          <caret line="11" column="31" selection-start-line="11" selection-start-column="31" selection-end-line="11" selection-end-column="31" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="2700" max-vertical-offset="3360">
+          <caret line="180" column="38" selection-start-line="180" selection-start-column="38" selection-end-line="180" selection-end-column="38" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/pt/mobilesgmc/medicacaoAdministrada/AdapterMedicacaoAdministrada.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.8635438" vertical-offset="529" max-vertical-offset="1185">
-          <caret line="23" column="13" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/pt/mobilesgmc/dreanagem/AdapterDrenagem.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.4378818" vertical-offset="811" max-vertical-offset="1890">
-          <caret line="26" column="13" selection-start-line="26" selection-start-column="13" selection-end-line="26" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/pt/mobilesgmc/balancoHidrico/AdapterBalancoHidrico.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.610998" vertical-offset="345" max-vertical-offset="885">
-          <caret line="55" column="58" selection-start-line="55" selection-start-column="48" selection-end-line="55" selection-end-column="58" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/pt/mobilesgmc/DadosINtraOperatorioActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.26987448" vertical-offset="13266" max-vertical-offset="18780">
-          <caret line="968" column="34" selection-start-line="968" selection-start-column="21" selection-end-line="968" selection-end-column="34" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/pt/mobilesgmc/adminSangue/AdapterAdministracaoSangue.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.8064516" vertical-offset="0" max-vertical-offset="1935">
-          <caret line="81" column="66" selection-start-line="81" selection-start-column="66" selection-end-line="81" selection-end-column="66" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/pt/mobilesgmc/modelo/ListaProdutosComJuncao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.21384929" vertical-offset="0" max-vertical-offset="585">
-          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/child_aparelhos_da_cirurgia.xml">
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1005">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/pt/mobilesgmc/modelo/ListasProdutosCirurgia.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.1633663" vertical-offset="570" max-vertical-offset="1440">
-          <caret line="85" column="0" selection-start-line="85" selection-start-column="0" selection-end-line="85" selection-end-column="0" />
-          <folding>
-            <element signature="e#577#578#0" expanded="true" />
-            <element signature="e#614#615#0" expanded="true" />
-            <element signature="e#812#813#0" expanded="true" />
-            <element signature="e#852#853#0" expanded="true" />
-            <element signature="e#1059#1060#0" expanded="true" />
-            <element signature="e#1096#1097#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/pt/mobilesgmc/produtosDaCirurgia/AdapterProdutosCirurgia.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.26072606" vertical-offset="682" max-vertical-offset="2145">
-          <caret line="56" column="0" selection-start-line="56" selection-start-column="0" selection-end-line="56" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2282#2489#0" expanded="true" />
-            <element signature="e#2478#2479#0" expanded="true" />
-            <element signature="e#2537#2743#0" expanded="true" />
-            <element signature="e#2732#2733#0" expanded="true" />
-            <element signature="e#3302#4895#0" expanded="true" />
-            <element signature="e#4074#4480#0" expanded="true" />
-            <element signature="e#4453#4454#0" expanded="true" />
-            <element signature="e#4542#4771#0" expanded="true" />
-            <element signature="e#4744#4745#0" expanded="true" />
-            <element signature="e#4876#4877#0" expanded="true" />
-            <element signature="e#4942#5218#0" expanded="true" />
-            <element signature="e#5199#5200#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/pt/mobilesgmc/modelo/WebServiceUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33620688" vertical-offset="16350" max-vertical-offset="22155">
-          <caret line="1137" column="66" selection-start-line="1137" selection-start-column="66" selection-end-line="1137" selection-end-column="66" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/child_produtos_da_cirurgia.xml">
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="135" max-vertical-offset="1005">
-          <caret line="37" column="55" selection-start-line="37" selection-start-column="55" selection-end-line="37" selection-end-column="55" />
-          <folding />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_aparelhos.xml">
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="795">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/pt/mobilesgmc/aparelhosCirurgia/AdapterAparelhosCirurgia.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6334012" vertical-offset="1204" max-vertical-offset="1695">
-          <caret line="131" column="41" selection-start-line="131" selection-start-column="41" selection-end-line="131" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/pt/mobilesgmc/instrumentosCirurgia/AdapterInstrumentosCirurgia.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.35845214" vertical-offset="1159" max-vertical-offset="1695">
-          <caret line="116" column="52" selection-start-line="116" selection-start-column="52" selection-end-line="116" selection-end-column="52" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/pt/mobilesgmc/MaterialActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="5342" max-vertical-offset="6900">
-          <caret line="429" column="0" selection-start-line="420" selection-start-column="12" selection-end-line="429" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/pt/mobilesgmc/AparelhosActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="5282" max-vertical-offset="6870">
-          <caret line="428" column="0" selection-start-line="428" selection-start-column="0" selection-end-line="428" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/pt/mobilesgmc/materiaisCirurgia/AdapterMateriaisCirurgia.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.305499" vertical-offset="15" max-vertical-offset="1695">
-          <caret line="28" column="28" selection-start-line="28" selection-start-column="28" selection-end-line="28" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/ic_action_share.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_main.xml">
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="795" max-vertical-offset="1275">
-          <caret line="66" column="39" selection-start-line="66" selection-start-column="39" selection-end-line="66" selection-end-column="39" />
-          <folding />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/pt/mobilesgmc/HomeActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1009" max-vertical-offset="5565">
-          <caret line="95" column="48" selection-start-line="95" selection-start-column="48" selection-end-line="95" selection-end-column="48" />
-          <folding>
-            <element signature="e#13730#13731#0" expanded="true" />
-            <element signature="e#13762#13763#0" expanded="true" />
-            <element signature="e#13933#13934#0" expanded="true" />
-            <element signature="e#13966#13967#0" expanded="true" />
-            <element signature="e#14160#14161#0" expanded="true" />
-            <element signature="e#14196#14197#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_lista_produtos.xml">
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="496" max-vertical-offset="1095">
-          <caret line="58" column="12" selection-start-line="58" selection-start-column="12" selection-end-line="58" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_home.xml">
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="240" max-vertical-offset="915">
-          <caret line="52" column="0" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/menu/home.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="495">
-          <caret line="20" column="47" selection-start-line="20" selection-start-column="25" selection-end-line="20" selection-end-column="47" />
-          <folding>
-            <element signature="e#426#442#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/pt/mobilesgmc/InstrumentalActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.6589959" vertical-offset="4847" max-vertical-offset="6870">
-          <caret line="428" column="0" selection-start-line="428" selection-start-column="0" selection-end-line="428" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/pt/mobilesgmc/ListaProdutosActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="8327" max-vertical-offset="8805">
-          <caret line="712" column="0" selection-start-line="712" selection-start-column="0" selection-end-line="712" selection-end-column="0" />
-          <folding>
-            <element signature="class#getListas#0;class#ListaProdutosActivity#0" expanded="false" />
-            <element signature="e#24283#24293#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/pt/mobilesgmc/FragmentMain.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.15271966" vertical-offset="7157" max-vertical-offset="8070">
-          <caret line="498" column="31" selection-start-line="498" selection-start-column="31" selection-end-line="498" selection-end-column="31" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>

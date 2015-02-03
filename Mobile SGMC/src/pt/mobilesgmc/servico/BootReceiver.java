@@ -1,4 +1,4 @@
-package pt.mobilesgmc.servico;
+package info.mobilesgmc.servico;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;

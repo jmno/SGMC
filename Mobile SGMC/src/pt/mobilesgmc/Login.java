@@ -1,4 +1,4 @@
-package pt.mobilesgmc;
+package info.mobilesgmc;
 
 import java.io.IOException;
 
@@ -6,8 +6,8 @@ import org.apache.http.ParseException;
 import org.apache.http.client.ClientProtocolException;
 import org.json.JSONException;
 
-import pt.mobilesgmc.modelo.RestClientException;
-import pt.mobilesgmc.modelo.WebServiceUtils;
+import info.mobilesgmc.modelo.RestClientException;
+import info.mobilesgmc.modelo.WebServiceUtils;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
@@ -25,7 +25,7 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.example.mobilegsmc.R;
+import com.nicolau.mobilegsmc.R;
 
 public class Login extends Activity {
 	EditText txtUser;

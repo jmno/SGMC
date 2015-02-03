@@ -1,4 +1,4 @@
-package pt.mobilesgmc;
+package info.mobilesgmc;
 
 import java.io.IOException;
 import java.io.Serializable;
@@ -11,15 +11,15 @@ import java.util.List;
 import org.apache.http.ParseException;
 import org.json.JSONException;
 
-import pt.mobilesgmc.modelo.Cirurgia;
-import pt.mobilesgmc.modelo.EquipaComJuncao;
-import pt.mobilesgmc.modelo.OnSwipeTouchListener;
-import pt.mobilesgmc.modelo.ProfissionalDaCirurgia;
-import pt.mobilesgmc.modelo.ProfissonalSaude;
-import pt.mobilesgmc.modelo.RestClientException;
-import pt.mobilesgmc.modelo.Tipo;
-import pt.mobilesgmc.modelo.WebServiceUtils;
-import pt.mobilesgmc.view.viewgroup.FlyOutContainer;
+import info.mobilesgmc.modelo.Cirurgia;
+import info.mobilesgmc.modelo.EquipaComJuncao;
+import info.mobilesgmc.modelo.OnSwipeTouchListener;
+import info.mobilesgmc.modelo.ProfissionalDaCirurgia;
+import info.mobilesgmc.modelo.ProfissonalSaude;
+import info.mobilesgmc.modelo.RestClientException;
+import info.mobilesgmc.modelo.Tipo;
+import info.mobilesgmc.modelo.WebServiceUtils;
+import info.mobilesgmc.view.viewgroup.FlyOutContainer;
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.ProgressDialog;
@@ -50,7 +50,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
-import com.example.mobilegsmc.R;
+import com.nicolau.mobilegsmc.R;
 
 //import pt.mobilesgmc.modelo.Notifications;
 
