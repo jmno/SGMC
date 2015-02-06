@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:id="@+id/scrollView2" >
+<RelativeLayout
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:gravity="center_horizontal"
     android:background="#EEEEEE">
+
+
 
     <LinearLayout
         android:orientation="vertical"
@@ -36,37 +42,180 @@
             android:textColor="@color/texto"
             android:textStyle="italic" />
 
-        <TextView
-            android:id="@+id/textViewCirurgia"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:text="Nenhuma Cirurgia"
-            android:textColor="@color/texto"
-            android:textStyle="italic"
-            android:layout_marginTop="50dp" />
-
         <Button
             android:id="@+id/button_ComecarAcabarCirurgia"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignLeft="@+id/textView_HomeActivity"
             android:layout_marginTop="42dp"
-            android:text="Começar Cirurgia"
+            android:text="Começar"
             android:visibility="visible"
             android:background="@color/nliveo_blue_colorPrimary"
             android:elevation="2dp"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+            android:layout_marginBottom="10dp" />
     </LinearLayout>
 
 
-    <Chronometer
-        android:layout_width="match_parent"
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
+        android:id="@+id/linearLayout_dadosHome"
         android:layout_below="@id/linearLayoutHome"
-        android:layout_marginTop="10dp"
-        android:id="@+id/textView_tempoDecorrido" />
+        android:layout_margin="8dp"
+        android:background="@color/white">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cirurgia"
+                android:id="@+id/texViewC"
+                android:textStyle="bold|italic"
+                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                android:layout_marginLeft="10dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="New Text"
+                android:id="@+id/textView_HomeDados_Cirurgia"
+                android:layout_marginLeft="10dp"
+                android:gravity="end"
+                android:layout_marginRight="10dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="10dp" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Equipa Cirúrgica"
+                android:id="@+id/textView64"
+                android:textStyle="bold|italic"
+                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                android:layout_marginLeft="10dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="New Text"
+                android:id="@+id/textView_HomeDados_Equipa"
+                android:layout_marginLeft="10dp"
+                android:gravity="end"
+                android:layout_marginRight="10dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="10dp" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cirurgião"
+                android:id="@+id/textView65"
+                android:textStyle="bold|italic"
+                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                android:layout_marginLeft="10dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="New Text"
+                android:id="@+id/textView_HomeDados_Cirurgiao"
+                android:layout_marginLeft="10dp"
+                android:gravity="end"
+                android:layout_marginRight="10dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="10dp" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Utente"
+                android:id="@+id/textView66"
+                android:textStyle="bold|italic"
+                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                android:layout_marginLeft="10dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="New Text"
+                android:id="@+id/textView_HomeDados_Utente"
+                android:layout_marginLeft="10dp"
+                android:gravity="end"
+                android:layout_marginRight="10dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="10dp" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hora Inicio Cirurgia"
+                android:id="@+id/textView67"
+                android:textStyle="bold|italic"
+                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                android:layout_marginLeft="10dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="New Text"
+                android:id="@+id/textView_HomeDados_HoraInicio"
+                android:layout_marginLeft="10dp"
+                android:gravity="end"
+                android:layout_marginRight="10dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="10dp" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hora Fim Cirurgia"
+                android:id="@+id/textView68"
+                android:textStyle="bold|italic"
+                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                android:layout_marginLeft="10dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="New Text"
+                android:id="@+id/textView_HomeDados_FimCirurgia"
+                android:layout_marginLeft="10dp"
+                android:gravity="end"
+                android:layout_marginRight="10dp" />
+        </LinearLayout>
+
+    </LinearLayout>
 
     <ImageView
         android:layout_width="wrap_content"
@@ -78,4 +227,6 @@
         android:layout_alignParentBottom="true" />
 
 
-</RelativeLayout><!-- From: file:/Users/Nicolau/Dropbox/Leiria/4Ano/1Semestre/SGMC/NEW/Mobile%20SGMC/app/src/main/res/layout/fragment_main.xml -->
+</RelativeLayout>
+
+</ScrollView><!-- From: file:/Users/Nicolau/Dropbox/Leiria/4Ano/1Semestre/SGMC/NEW/Mobile%20SGMC/app/src/main/res/layout/fragment_main.xml -->

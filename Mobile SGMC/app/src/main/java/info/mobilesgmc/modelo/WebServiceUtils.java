@@ -144,6 +144,29 @@ public class WebServiceUtils {
 		return adicionou;
 	}
 
+    public static Boolean isAdmin(String token)
+            throws ClientProtocolException, IOException, ParseException,
+            JSONException, RestClientException {
+        Boolean result = false;
+
+        HttpGet httpGet= new HttpGet(URL + "isAdmin?token="
+                + token);
+        BasicHttpResponse httpResponse = (BasicHttpResponse) client
+                .execute(httpGet);
+
+        if (isOk(httpResponse.getStatusLine().getStatusCode())) {
+            HttpEntity entity = httpResponse.getEntity();
+            String string = EntityUtils.toString(entity);
+            result = Boolean.valueOf(string);
+        } else {
+            throw new RestClientException(
+                    "HTTP Response with invalid status code"
+                            + httpResponse.getStatusLine().getStatusCode()
+                            + ".");
+        }
+        return result;
+    }
+
 	public static ArrayList<Tipo> getAllTipo(String token)
 			throws ClientProtocolException, IOException, ParseException,
 			JSONException, RestClientException {

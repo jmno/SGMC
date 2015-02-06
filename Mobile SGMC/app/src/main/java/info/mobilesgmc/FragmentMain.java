@@ -9,7 +9,6 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
-import android.os.SystemClock;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
@@ -25,9 +24,9 @@ import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.Chronometer;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -40,14 +39,13 @@ import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
 
 import org.apache.http.ParseException;
-import org.joda.time.LocalTime;
-import org.joda.time.Period;
 import org.json.JSONException;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Comparator;
 
 import info.mobilesgmc.modelo.Cirurgia;
@@ -64,13 +62,18 @@ public class FragmentMain extends Fragment {
     private ArrayAdapter<Cirurgia> adaptadorCirurgias;
     private Dialog dialog;
     public static ListView listaCirurgias;
-    public static TextView textoCirurgiaAUsar;
     ProgressDialog ringProgressDialog = null;
     private ImageView btn_gravarSom;
     private Button btn_comecarParar;
-    private Chronometer chronometer;
     private Boolean isChronometer;
     private String nomeFicheiro;
+    private LinearLayout layoutHomeDados;
+    private TextView textView_Cirurgia;
+    private TextView textView_Equipa;
+    private TextView textView_Cirurgiao;
+    private TextView textView_Utente;
+    private TextView textView_HoraInicioCirurgia;
+    private TextView textView_HoraFimCirurgia;
 
 	public FragmentMain newInstance(String text){
 		FragmentMain mFragment = new FragmentMain();
@@ -86,10 +89,6 @@ public class FragmentMain extends Fragment {
 		// TODO Auto-generated method stub		
 		View rootView = inflater.inflate(R.layout.fragment_main, container, false);
 
-        textoCirurgiaAUsar = (TextView) rootView
-                .findViewById(R.id.textViewCirurgia);
-        chronometer = (Chronometer) rootView.findViewById(R.id.textView_tempoDecorrido);
-        chronometer.setText("00:00:00");
 
         btn_gravarSom = (ImageView) rootView.findViewById(R.id.imageView_recordSound);
 
@@ -103,104 +102,151 @@ public class FragmentMain extends Fragment {
 
 
          btn_comecarParar = (Button) rootView.findViewById(R.id.button_ComecarAcabarCirurgia);
-         /*btn_comecarParar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(HomeActivity.getCirurgia()!=null)
-                if(isChronometer) {
-                    btn_comecarParar.setText("Começar Cirurgia");
-                    stopCount();
-                }
-                else {
-                    btn_comecarParar.setText("Terminar Cirurgia");
-                    startCount();
-                }
-            }
-        });
 
-*/
+
 
         btn_gravarSom.setVisibility(View.GONE);
         btn_comecarParar.setText("Começar Cirurgia");
-        chronometer.setVisibility(View.GONE);
-        if(HomeActivity.getCirurgia()!=null)
-        verificaCount();
+        btn_comecarParar.setVisibility(View.INVISIBLE);
+
+
+        btn_comecarParar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final Calendar c = Calendar.getInstance();
+                int mHour = c.get(Calendar.HOUR_OF_DAY);
+                int mMinute = c.get(Calendar.MINUTE);
+
+                int mYear = c.get(Calendar.YEAR);
+                int mMonth = c.get(Calendar.MONTH);
+                int mDay = c.get(Calendar.DAY_OF_MONTH);
+                String hora = mYear+"-"+mMonth+"-"+mDay+" "+mHour+":"+mMinute;
+                if(verificaCondicoesComecar())
+                {
+                    if(isForStart())
+                    {
+                        HomeActivity.getCirurgia().setHoraInicioCirurgia(hora);
+                        new atualizarCirurgia().execute(HomeActivity.getCirurgia());
+                    }
+
+                    else
+                    {
+                        HomeActivity.getCirurgia().setHoraFimCirurgia(hora);
+                        new atualizarCirurgia().execute(HomeActivity.getCirurgia());
+                        btn_comecarParar.setVisibility(View.INVISIBLE);
+                    }
+
+                }
+                else
+                {
+                    Toast.makeText(getActivity(),"Tem de selecionar Utente \n Equipa Cirúrgica",Toast.LENGTH_SHORT).show();
+
+                }
+                atualizanomes();
+            }
+        });
+        layoutHomeDados = (LinearLayout) rootView.findViewById(R.id.linearLayout_dadosHome);
+        textView_Cirurgia = (TextView) rootView.findViewById(R.id.textView_HomeDados_Cirurgia);
+        textView_Equipa = (TextView) rootView.findViewById(R.id.textView_HomeDados_Equipa);
+        textView_Cirurgiao = (TextView) rootView.findViewById(R.id.textView_HomeDados_Cirurgiao);
+        textView_Utente = (TextView) rootView.findViewById(R.id.textView_HomeDados_Utente);
+        textView_HoraInicioCirurgia = (TextView) rootView.findViewById(R.id.textView_HomeDados_HoraInicio);
+        textView_HoraFimCirurgia = (TextView) rootView.findViewById(R.id.textView_HomeDados_FimCirurgia);
+
+        layoutHomeDados.setVisibility(View.INVISIBLE);
 
         setHasOptionsMenu(true);
 		return rootView;
 
 
 	}
-
-    public void verificaCount()
+    public boolean isForStart()
     {
+        boolean resultado=false;
+
         if(HomeActivity.getCirurgia().getHoraInicioCirurgia()!=null)
-        {
-            //restartCount();
-            chronometer.setVisibility(View.VISIBLE);
-            btn_gravarSom.setVisibility(View.VISIBLE);
-        }
-        else {
-            chronometer.setVisibility(View.INVISIBLE);
-            btn_gravarSom.setVisibility(View.INVISIBLE);
-        }
+            resultado=false;
+        else
+            resultado = true;
 
+        return resultado;
     }
-    public void restartCount()
+
+    public void atualizanomes()
     {
-        String horaInicio = HomeActivity.getCirurgia().getHoraInicioCirurgia();
-        LocalTime hInicio = new LocalTime( horaInicio );
-        Period t = Period.fieldDifference(hInicio,LocalTime.now());
-        chronometer.setText(t.getHours()+":"+t.getMinutes()+":"+t.getSeconds());
-        startCount();
+        btn_comecarParar.setVisibility(View.VISIBLE);
+        btn_comecarParar.setText("Começar");
+        layoutHomeDados.setVisibility(View.VISIBLE);
+        if(HomeActivity.getCirurgia()!=null) {
+            textView_Cirurgia.setText(HomeActivity.getCirurgia().getCirurgia());
+            if(HomeActivity.getCirurgia().getHoraInicioCirurgia()!=null){
+                textView_HoraInicioCirurgia.setText(HomeActivity.getCirurgia().getHoraInicioCirurgia());
+                btn_comecarParar.setText("Finalizar");
+            }
+            if(HomeActivity.getCirurgia().getHoraFimCirurgia()!=null){
+                textView_HoraFimCirurgia.setText(HomeActivity.getCirurgia().getHoraFimCirurgia());
+                btn_comecarParar.setVisibility(View.INVISIBLE);
 
-    }
+            }
+        }
+        if(HomeActivity.getEquipa()!=null) {
+            textView_Equipa.setText(HomeActivity.getEquipa().getNomeEquipa());
+            String text = "";
+            if(HomeActivity.getEquipa().getListaProfissionais()!=null){
+                if(HomeActivity.getEquipa().getListaProfissionais().size()>0)
+                {
+                    for(int i=0; i<HomeActivity.getEquipa().getListaProfissionais().size();i++)
+                    {
+                        if(HomeActivity.getEquipa().getListaProfissionais().get(i).getTipo().toLowerCase().equals("c"))
+                            text = HomeActivity.getEquipa().getListaProfissionais().get(i).getProfissional().getNome();
+                    }
+                }
+            }
 
-    public void startCount()
-    {
-        btn_comecarParar.setText("Terminar Cirurgia");
-        chronometer.setVisibility(View.VISIBLE);
-        int stoppedMilliseconds = 0;
-        isChronometer = true;
-        String chronoText = chronometer.getText().toString();
-        String array[] = chronoText.split(":");
-        if (array.length == 2) {
-            stoppedMilliseconds = Integer.parseInt(array[0]) * 60 * 1000
-                    + Integer.parseInt(array[1]) * 1000;
-        } else if (array.length == 3) {
-            stoppedMilliseconds = Integer.parseInt(array[0]) * 60 * 60 * 1000
-                    + Integer.parseInt(array[1]) * 60 * 1000
-                    + Integer.parseInt(array[2]) * 1000;
+            textView_Cirurgiao.setText(text);
         }
 
-        chronometer.setBase(SystemClock.elapsedRealtime() - stoppedMilliseconds);
-        chronometer.start();
+        if(HomeActivity.getUtente()!=null)
+        textView_Utente.setText(HomeActivity.getUtente().getNome());
+
+
+
     }
-
-
-    public void stopCount()
+    public void limpaDados()
     {
-        btn_comecarParar.setText("Começar Cirurgia");
+        layoutHomeDados.setVisibility(View.INVISIBLE);
+        textView_Cirurgia.setText("");
+        textView_Equipa.setText("");
+        textView_Cirurgiao.setText("");
+        textView_Utente.setText("");
+        textView_HoraInicioCirurgia.setText("");
+        textView_HoraFimCirurgia.setText("");
+        btn_comecarParar.setVisibility(View.INVISIBLE);
 
-        isChronometer = false;
-        chronometer.stop();
-        chronometer.setVisibility(View.GONE);
-        chronometer.setText("00:00:00");
-        showElapsedTime();
     }
 
-    private void showElapsedTime() {
-        long elapsedMillis = SystemClock.elapsedRealtime() - chronometer.getBase();
-        Period p = new Period(elapsedMillis);
-        String tempo  =p.getHours() +":" + p.getMinutes() + ":"+p.getSeconds();
-        Log.i("Tempo Cirurgia", tempo);
+    public boolean verificaCondicoesComecar()
+    {
+        boolean resultado=false;
+
+        if(HomeActivity.getCirurgia()!=null)
+            if(HomeActivity.getCirurgia().getIdUtente()!=0)
+                resultado = true;
+            else if (HomeActivity.getCirurgia().getHoraInicioCirurgia()==null)
+                resultado = true;
+        else
+        resultado = false;
+
+
+        return resultado;
     }
+
 
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
         setHasOptionsMenu(true);
-        if(HomeActivity.getCirurgia()!=null)
-            textoCirurgiaAUsar.setText("Cirurgia : " + HomeActivity.getCirurgia().getId() +"\n" +HomeActivity.getCirurgia().getIdEquipa());
+        if(HomeActivity.getCirurgia()!=null || HomeActivity.getUtente() != null || HomeActivity.getEquipa()!=null)
+        atualizanomes();
 		super.onActivityCreated(savedInstanceState);
 
 	}
@@ -225,7 +271,8 @@ public class FragmentMain extends Fragment {
                 HomeActivity.setCirurgia(null);
                 HomeActivity.setEquipa(null);
                 HomeActivity.setListaProdutos(null);
-                textoCirurgiaAUsar.setText("Nenhuma Cirurgia");
+                HomeActivity.setUtente(null);
+                limpaDados();
                 break;
 
             case R.id.action_ExportarSurgery:
@@ -306,7 +353,7 @@ public class FragmentMain extends Fragment {
                                getView().getContext()).getString(
                                "idCirurgia",
                                "defaultStringIfNothingFound");
-               textoCirurgiaAUsar.setText("Cirurgia :" + cirurgia);
+               atualizanomes();
            }
        });
    }
@@ -537,6 +584,54 @@ public class FragmentMain extends Fragment {
 
         intent.setDataAndType( Uri.fromFile(file), "application/pdf" );
         startActivity(intent);
+    }
+
+
+    private class atualizarCirurgia extends AsyncTask<Cirurgia, Void, Boolean> {
+
+        @Override
+        protected void onPreExecute() {
+
+            ringProgressDialog = new ProgressDialog(getActivity());
+            ringProgressDialog.setIcon(R.drawable.ic_launcher);
+            ringProgressDialog.setTitle("Aguarde...");
+            ringProgressDialog.setMessage("A guardar Dados...");
+
+            // ringProgressDialog = ProgressDialog.show(Login.this,
+            // "Please wait ...", "Loging in...", true);
+            ringProgressDialog.setCancelable(false);
+
+            ringProgressDialog.show();
+        }
+
+        ;
+
+        @Override
+        protected Boolean doInBackground(Cirurgia... params) {
+            Boolean adicionou = false;
+
+            try {
+                adicionou = WebServiceUtils.updateCirurgia(params[0],
+                        HomeActivity.getCirurgia().getId(), HomeActivity.getToken());
+
+            } catch (ParseException | IOException | JSONException
+                    | RestClientException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+
+            return adicionou;
+        }
+
+        @Override
+        protected void onPostExecute(Boolean result) {
+            String a = (result ? "Cirurgia Alterada com Sucesso!"
+                    : "Cirurgia Não Alterada!");
+
+            ringProgressDialog.dismiss();
+            super.onPostExecute(result);
+        }
+
     }
 
 

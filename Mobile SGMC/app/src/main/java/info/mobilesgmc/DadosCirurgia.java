@@ -631,10 +631,6 @@ public void atualizaTipoCirurgia(int position)
         if(c.getCirurgia()!=null)
         cirurgia.setText(c.getCirurgia().toString());
 
-        // Spinner
-         //int gh = spinnerDaMeATuaPosicaoBloco(adaptadorBlococomSala,
-       //  c.getIdSala());
-        //sala.setSelection(gh);
         int a =0;
 
         if(c.getIdTipoCirurgia()!=0){

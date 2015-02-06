@@ -70,6 +70,8 @@ public class Login extends Activity {
 					if (txtPass.getText().toString().trim().length()>0){
 						new LogInWeb().execute(txtUser.getText().toString(),
 								txtPass.getText().toString());}
+                    txtPass.setText("");
+                    txtUser.setText("");
 				}
 
 			}
@@ -106,7 +108,7 @@ public class Login extends Activity {
 		protected void onPreExecute() {
 			ringProgressDialog = new ProgressDialog(Login.this);
 			ringProgressDialog.setIcon(R.drawable.ic_launcher);
-			ringProgressDialog.setTitle("Por Favor Espere...");
+			ringProgressDialog.setTitle("Por Favor Aguarde...");
 			ringProgressDialog.setMessage("A entrar...");
 			
 			//ringProgressDialog = ProgressDialog.show(Login.this, "Please wait ...",	"Loging in...", true);
@@ -172,7 +174,7 @@ public class Login extends Activity {
         protected void onPreExecute() {
             ringProgressDialog = new ProgressDialog(Login.this);
             ringProgressDialog.setIcon(R.drawable.ic_launcher);
-            ringProgressDialog.setTitle("Por Favor Espere...");
+            ringProgressDialog.setTitle("Por Favor Aguarde...");
             ringProgressDialog.setMessage("A verificar dados de utilizador...");
 
             //ringProgressDialog = ProgressDialog.show(Login.this, "Please wait ...",	"Loging in...", true);
@@ -190,9 +192,11 @@ public class Login extends Activity {
         @Override
         protected ProfissonalSaude doInBackground(String... params) {
             ProfissonalSaude pro = new ProfissonalSaude();
-
+            Boolean isAdmin = false;
             try {
                 pro = WebServiceUtils.getDadosProfissional(params[0]);
+                isAdmin = WebServiceUtils.isAdmin(params[0]);
+                pro.setAdmin(isAdmin);
             } catch (IOException | RestClientException | ParseException
                     | JSONException e) {
                 e.printStackTrace();
@@ -206,7 +210,7 @@ public class Login extends Activity {
             if (pro != null) {
                PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putString("username", pro.getNome()).commit();
                 PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putString("cc", pro.getCc()+"").commit();
-
+                PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putBoolean("isAdmin",pro.isAdmin()).commit();
                 ringProgressDialog.dismiss();
                             Intent home = new Intent(getBaseContext(),
                                     HomeActivity.class);
@@ -224,8 +228,8 @@ public class Login extends Activity {
 		protected void onPreExecute() {
 			ringProgressDialog = new ProgressDialog(Login.this);
 			ringProgressDialog.setIcon(R.drawable.ic_launcher);
-			ringProgressDialog.setTitle("Please wait...");
-			ringProgressDialog.setMessage("Checking LogIn...");
+			ringProgressDialog.setTitle("Por Favor Aguarde...");
+			ringProgressDialog.setMessage("A verificar LogIn...");
 			
 			//ringProgressDialog = ProgressDialog.show(Login.this, "Please wait ...",	"Loging in...", true);
 			ringProgressDialog.setCancelable(false);
@@ -236,7 +240,7 @@ public class Login extends Activity {
 			Boolean resultado= false;
 
 			try {
-                if(!params[0].toLowerCase().equals("erro no LogIn"))
+                if(!params[0].toLowerCase().equals("erro no login"))
 				resultado = WebServiceUtils.isLoggedIn(params[0]);
 			} catch (ParseException | IOException | RestClientException e) {
 				e.printStackTrace();

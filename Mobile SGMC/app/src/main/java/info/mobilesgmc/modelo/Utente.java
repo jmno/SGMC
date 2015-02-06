@@ -31,7 +31,7 @@ public class Utente {
 		this.id = id;
 	}
 	public String getNome() {
-		return nomeUtente;
+		return (nomeUtente==null && nomeUtente.toLowerCase().equals(" "))?"Sem nome":nomeUtente;
 	}
 	public void setNome(String nome) {
 		this.nomeUtente = nome;

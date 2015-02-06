@@ -8,7 +8,17 @@ public class ProfissonalSaude implements Comparable<ProfissonalSaude>{
 	private String nome;
 	private String cc;
 	private int idTipo;
-	public int getId() {
+    private boolean isAdmin;
+
+    public boolean isAdmin() {
+        return isAdmin;
+    }
+
+    public void setAdmin(boolean isAdmin) {
+        this.isAdmin = isAdmin;
+    }
+
+    public int getId() {
 		return id;
 	}
 	public void setId(int id) {

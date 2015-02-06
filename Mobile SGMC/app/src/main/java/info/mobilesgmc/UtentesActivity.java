@@ -124,16 +124,20 @@ public class UtentesActivity extends Fragment {
 		}
 
         if (id == R.id.action_UtentesAccept){
+            HomeActivity.setUtente(u);
             HomeActivity.setIsForResultUtentes(false);
             HomeActivity.getCirurgia().setIdUtente(u.getId());
-            ((HomeActivity) getActivity()).onItemClickNavigation(3,HomeActivity.getLayoutcontainerid());
-            ((HomeActivity) getActivity()).setCheckedItemNavigation(3,true);
+            int last= HomeActivity.getListaNavegacao().get(HomeActivity.getListaNavegacao().size()-2);
+            HomeActivity.getListaNavegacao().remove(HomeActivity.getListaNavegacao().size()-1);
+            ((HomeActivity) getActivity()).onItemClickNavigation(last,HomeActivity.getLayoutcontainerid());
+            ((HomeActivity) getActivity()).setCheckedItemNavigation(last,true);
         }
 
         if (id == R.id.action_UtentesCancel){
-            HomeActivity.setIsForResultUtentes(false);
-            ((HomeActivity) getActivity()).onItemClickNavigation(3,HomeActivity.getLayoutcontainerid());
-            ((HomeActivity) getActivity()).setCheckedItemNavigation(3,true);
+            int last= HomeActivity.getListaNavegacao().get(HomeActivity.getListaNavegacao().size()-2);
+            HomeActivity.getListaNavegacao().remove(HomeActivity.getListaNavegacao().size()-1);
+            ((HomeActivity) getActivity()).onItemClickNavigation(last,HomeActivity.getLayoutcontainerid());
+            ((HomeActivity) getActivity()).setCheckedItemNavigation(last,true);
         }
 		return super.onOptionsItemSelected(item);
 	}
@@ -443,6 +447,7 @@ public class UtentesActivity extends Fragment {
 
                 if (idUtente != 0)
                 u = lista;
+                HomeActivity.setUtente(u);
 
                 ringProgressDialog.dismiss();
                 new GetImage().execute(u.getSexo());
@@ -507,7 +512,6 @@ public class UtentesActivity extends Fragment {
 
             }
             preencherAtividade(u);
-            getActivity().setTitle("Utente");
         }
     }
 

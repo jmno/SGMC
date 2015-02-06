@@ -24,6 +24,7 @@ import info.mobilesgmc.modelo.Cirurgia;
 import info.mobilesgmc.modelo.DadosIntraoperatorioFinal;
 import info.mobilesgmc.modelo.EquipaComJuncao;
 import info.mobilesgmc.modelo.ListasProdutosCirurgia;
+import info.mobilesgmc.modelo.Utente;
 import info.nicolau.mobilegsmc.R;
 
 public class HomeActivity extends NavigationLiveo implements NavigationLiveoListener{
@@ -35,13 +36,16 @@ public class HomeActivity extends NavigationLiveo implements NavigationLiveoList
     private static EquipaComJuncao equipa;
     private static DadosIntraoperatorioFinal dadosFinal;
     private static ListasProdutosCirurgia listaProdutos;
+    private static Utente utente;
+    private static List<Integer> mListIconItem;
 	ProgressDialog ringProgressDialog = null;
     private static final int TIME_INTERVAL = 2000; // # milliseconds, desired time passed between two back presses.
     private long mBackPressed;
     private final int REQ_CODE_SPEECH_INPUT = 100;
     private Button buttonSpeech;
+    private Boolean isAdmin;
 
-    private List<String> mListNameItem;
+    private static List<String> mListNameItem;
 
     private static String token;
     private static Boolean isForResultUtentes = false;
@@ -50,6 +54,7 @@ public class HomeActivity extends NavigationLiveo implements NavigationLiveoList
     private static String cc ="";
     private static int imageResource=0;
     private static boolean isStarted= false;
+    private static ArrayList<Integer> listaNavegacao;
 
 
 
@@ -82,6 +87,7 @@ public class HomeActivity extends NavigationLiveo implements NavigationLiveoList
         this.setNavigationListener(this);
         this.setDefaultStartPositionNavigation(0);
 
+
         // name of the list items
         mListNameItem = new ArrayList<>();
         mListNameItem.add(0, "Home");
@@ -99,7 +105,7 @@ public class HomeActivity extends NavigationLiveo implements NavigationLiveoList
         mListNameItem.add(12, "Profissional Saúde");
 
         // icons list items
-        List<Integer> mListIconItem = new ArrayList<>();
+        mListIconItem = new ArrayList<>();
         mListIconItem.add(0, R.drawable.ic_home);
         mListIconItem.add(1, R.drawable.ic_action_user);
         mListIconItem.add(2, R.drawable.ic_medical_doctor);
@@ -124,6 +130,7 @@ public class HomeActivity extends NavigationLiveo implements NavigationLiveoList
         this.setFooterInformationDrawer(R.string.logout, R.drawable.ic_exit_to_app);
 
         this.setNavigationAdapter(mListNameItem, mListIconItem, mListHeaderItem, mSparseCounterItem);
+        listaNavegacao = new ArrayList<Integer>() ;
         token = PreferenceManager.getDefaultSharedPreferences(this).getString(
                 "token", "defaultStringIfNothingFound");
         cc = "CC: "+ PreferenceManager.getDefaultSharedPreferences(this).getString(
@@ -134,7 +141,10 @@ public class HomeActivity extends NavigationLiveo implements NavigationLiveoList
            imageResource = R.drawable.nico;
         else
             imageResource = R.drawable.ic_action_user;
+
         onUserInformation();
+
+        isAdmin = PreferenceManager.getDefaultSharedPreferences(this).getBoolean("isAdmin",false);
     }
 
 
@@ -148,6 +158,7 @@ public class HomeActivity extends NavigationLiveo implements NavigationLiveoList
         switch (position)
         {
             case 0:
+                listaNavegacao.add(0);
                 Fragment mFragment = new FragmentMain().newInstance(mListNameItem.get(position));
                 if (mFragment != null){
                     mFragmentManager.beginTransaction().replace(layoutContainerId, mFragment).commit();
@@ -155,12 +166,17 @@ public class HomeActivity extends NavigationLiveo implements NavigationLiveoList
                 setTitle("Home");
                 break;
             case 1:
-
+                listaNavegacao.add(1);
+                if(cirurgia != null && cirurgia.getIdUtente()==0)
+                {
+                    setIsForResultUtentes(true);
+                }
                 mFragment = new UtentesActivity().newInstance(mListNameItem.get(position));
                 mFragmentManager.beginTransaction().replace(layoutContainerId, mFragment).commit();
-                setTitle("Escolha o Utente");
+                setTitle("Utente");
                 break;
             case 2:
+                listaNavegacao.add(2);
                 if(cirurgia == null) {
                     Toast.makeText(getApplicationContext(), "Escolha/Crie Cirurgia", Toast.LENGTH_SHORT).show();
                 }
@@ -172,15 +188,18 @@ public class HomeActivity extends NavigationLiveo implements NavigationLiveoList
 
                 break;
             case 3:
+                listaNavegacao.add(3);
                 if(cirurgia == null) {
                     Toast.makeText(getApplicationContext(), "Escolha ou Crie Cirurgia", Toast.LENGTH_SHORT).show();
                 }
                 else {
                     mFragment = new DadosCirurgia().newInstance(mListNameItem.get(position));
                     mFragmentManager.beginTransaction().replace(layoutContainerId, mFragment).commit();
+                    setTitle("Dados Cirurgia");
                 }
                 break;
             case 4:
+                listaNavegacao.add(4);
                 if(cirurgia == null)
                 {
                     Toast.makeText(getApplicationContext(), "Escolha ou Crie Cirurgia", Toast.LENGTH_SHORT).show();
@@ -190,9 +209,11 @@ public class HomeActivity extends NavigationLiveo implements NavigationLiveoList
                 {
                     mFragment = new DadosINtraOperatorioActivity().newInstance(mListNameItem.get(position));
                     mFragmentManager.beginTransaction().replace(layoutContainerId, mFragment).commit();
+                    setTitle("Dados Intra-Operatório");
                 }
                 break;
             case 6:
+                listaNavegacao.add(6);
                 if(cirurgia == null)
                 {
                     Toast.makeText(getApplicationContext(), "Escolha ou Crie Cirurgia", Toast.LENGTH_SHORT).show();
@@ -202,9 +223,11 @@ public class HomeActivity extends NavigationLiveo implements NavigationLiveoList
                 {
                     mFragment = new ListaProdutosActivity().newInstance(mListNameItem.get(position));
                     mFragmentManager.beginTransaction().replace(layoutContainerId, mFragment).commit();
+                    setTitle("Lista Produtos");
                 }
                 break;
             case 7:
+                listaNavegacao.add(7);
                 if(cirurgia == null)
                 {
                     Toast.makeText(getApplicationContext(), "Escolha ou Crie Cirurgia", Toast.LENGTH_SHORT).show();
@@ -214,9 +237,11 @@ public class HomeActivity extends NavigationLiveo implements NavigationLiveoList
                 {
                     mFragment = new AparelhosActivity().newInstance(mListNameItem.get(position));
                     mFragmentManager.beginTransaction().replace(layoutContainerId, mFragment).commit();
+                    setTitle("Lista Aparelhos");
                 }
                 break;
             case 8:
+                listaNavegacao.add(8);
                 if(cirurgia == null)
                 {
                     Toast.makeText(getApplicationContext(), "Escolha ou Crie Cirurgia", Toast.LENGTH_SHORT).show();
@@ -229,6 +254,7 @@ public class HomeActivity extends NavigationLiveo implements NavigationLiveoList
                 }
                 break;
             case 9:
+                listaNavegacao.add(9);
                 if(cirurgia == null)
                 {
                     Toast.makeText(getApplicationContext(), "Escolha ou Crie Cirurgia", Toast.LENGTH_SHORT).show();
@@ -238,9 +264,11 @@ public class HomeActivity extends NavigationLiveo implements NavigationLiveoList
                 {
                     mFragment = new MaterialActivity().newInstance(mListNameItem.get(position));
                     mFragmentManager.beginTransaction().replace(layoutContainerId, mFragment).commit();
+                    setTitle("Lista Materiais");
                 }
                 break;
             case 11:
+                listaNavegacao.add(11);
                 setTitle("Nova Cirurgia");
                 cirurgia = new Cirurgia();
                 equipa = new EquipaComJuncao();
@@ -249,9 +277,15 @@ public class HomeActivity extends NavigationLiveo implements NavigationLiveoList
                 break;
 
             case 12:
-                setTitle("Novo Profissional Saúde");
-                mFragment = new NovoProfissional().newInstance(mListNameItem.get(position));
-                mFragmentManager.beginTransaction().replace(layoutContainerId, mFragment).commit();
+                listaNavegacao.add(12);
+                if(isAdmin) {
+                    setTitle("Novo Profissional Saúde");
+                    mFragment = new NovoProfissional().newInstance(mListNameItem.get(position));
+                    mFragmentManager.beginTransaction().replace(layoutContainerId, mFragment).commit();
+                }
+                else
+                    Toast.makeText(getApplicationContext(), "Apenas Administradores", Toast.LENGTH_SHORT).show();
+
                 break;
         }
 
@@ -263,7 +297,7 @@ public class HomeActivity extends NavigationLiveo implements NavigationLiveoList
     @Override
     public void onClickUserPhotoNavigation(View v)
     {
-        Toast.makeText(this, "teste", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, username , Toast.LENGTH_SHORT).show();
     }
 
 
@@ -274,10 +308,6 @@ public class HomeActivity extends NavigationLiveo implements NavigationLiveoList
         PreferenceManager
                 .getDefaultSharedPreferences(getApplicationContext())
                 .edit().clear().commit();
-        Intent intent = new Intent(Intent.ACTION_MAIN);
-        intent.addCategory(Intent.CATEGORY_HOME);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(intent);
         finish();
 
     }
@@ -329,6 +359,26 @@ public class HomeActivity extends NavigationLiveo implements NavigationLiveoList
     @Override
     public void onBackPressed()
     {
+        if(listaNavegacao.size()>1){
+            if(listaNavegacao.get(listaNavegacao.size()-1)==0){
+                verificaSair();
+            }
+            else{
+                int last= HomeActivity.getListaNavegacao().get(HomeActivity.getListaNavegacao().size()-2);
+                listaNavegacao.remove(listaNavegacao.size()-1);
+                onItemClickNavigation(last, HomeActivity.getLayoutcontainerid());
+                setCheckedItemNavigation(last, true);
+            }
+        }
+        else
+        {
+            verificaSair();
+        }
+
+
+    }
+    public void verificaSair()
+    {
         if (mBackPressed + TIME_INTERVAL > System.currentTimeMillis())
         {
             Intent startMain = new Intent(Intent.ACTION_MAIN);
@@ -341,7 +391,6 @@ public class HomeActivity extends NavigationLiveo implements NavigationLiveoList
 
         mBackPressed = System.currentTimeMillis();
     }
-
 
 
 	public static Cirurgia getCirurgia() {
@@ -416,5 +465,21 @@ public class HomeActivity extends NavigationLiveo implements NavigationLiveoList
 
     public static void setListaProdutos(ListasProdutosCirurgia listaProdutos) {
         HomeActivity.listaProdutos = listaProdutos;
+    }
+
+    public static ArrayList<Integer> getListaNavegacao() {
+        return listaNavegacao;
+    }
+
+    public static void setListaNavegacao(ArrayList<Integer> listaNavegacao) {
+        HomeActivity.listaNavegacao = listaNavegacao;
+    }
+
+    public static Utente getUtente() {
+        return utente;
+    }
+
+    public static void setUtente(Utente utente) {
+        HomeActivity.utente = utente;
     }
 }

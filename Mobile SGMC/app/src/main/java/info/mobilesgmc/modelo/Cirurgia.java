@@ -250,7 +250,7 @@ public class Cirurgia {
 	}
 
 	public String getCirurgia() {
-		return cirurgia;
+		return (cirurgia==null)?"Sem nome":cirurgia;
 	}
 
 	public void setCirurgia(String cirurgia) {
