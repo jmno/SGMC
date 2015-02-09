@@ -557,7 +557,7 @@ public class FragmentMain extends Fragment {
 
             doc.add(enter);
 
-            p1 = new Paragraph("END OF REPORT", FontFactory.getFont(FontFactory.defaultEncoding, Font.DEFAULTSIZE, Font.BOLDITALIC));
+            p1 = new Paragraph("FIM", FontFactory.getFont(FontFactory.defaultEncoding, Font.DEFAULTSIZE, Font.BOLDITALIC));
             p1.setAlignment(Paragraph.ALIGN_CENTER);
             doc.add(p1);
 
@@ -594,8 +594,8 @@ public class FragmentMain extends Fragment {
 
             ringProgressDialog = new ProgressDialog(getActivity());
             ringProgressDialog.setIcon(R.drawable.ic_launcher);
-            ringProgressDialog.setTitle("Aguarde...");
-            ringProgressDialog.setMessage("A guardar Dados...");
+            ringProgressDialog.setTitle((getActivity().getString(R.string.aguarde)));
+            ringProgressDialog.setMessage(getActivity().getString(R.string.guardar_dados));
 
             // ringProgressDialog = ProgressDialog.show(Login.this,
             // "Please wait ...", "Loging in...", true);

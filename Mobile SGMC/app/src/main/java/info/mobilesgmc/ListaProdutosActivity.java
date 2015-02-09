@@ -420,7 +420,7 @@ public class ListaProdutosActivity extends Fragment {
         protected void onPreExecute() {
             ringProgressDialog = new ProgressDialog(getActivity());
             ringProgressDialog.setIcon(R.drawable.ic_launcher);
-            ringProgressDialog.setTitle("Please wait...");
+            ringProgressDialog.setTitle(getActivity().getString(R.string.aguarde));
             ringProgressDialog.setMessage("A verificar Listas...");
 
             //ringProgressDialog = ProgressDialog.show(Login.this, "Please wait ...",	"Loging in...", true);
@@ -652,7 +652,7 @@ public class ListaProdutosActivity extends Fragment {
         protected void onPreExecute() {
             ringProgressDialog = new ProgressDialog(getActivity());
             ringProgressDialog.setIcon(R.drawable.ic_launcher);
-            ringProgressDialog.setTitle("Please wait...");
+            ringProgressDialog.setTitle(getActivity().getString(R.string.aguarde));
             ringProgressDialog.setMessage("A Adicionar Produtos...");
 
 //ringProgressDialog = ProgressDialog.show(Login.this, "Please wait ...",	"Loging in...", true);

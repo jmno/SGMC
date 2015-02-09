@@ -1,8 +1,11 @@
 package info.mobilesgmc;
 
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.Rect;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -13,7 +16,10 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.widget.AdapterView;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
@@ -32,6 +38,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import info.mobilesgmc.ImageSelection.PanAndZoomListener;
 import info.mobilesgmc.acessosVenosos.AdapterAcessosVenosos;
 import info.mobilesgmc.adminSangue.AdapterAdministracaoSangue;
 import info.mobilesgmc.balancoHidrico.AdapterBalancoHidrico;
@@ -152,6 +159,12 @@ public class DadosINtraOperatorioActivity extends Fragment {
     private ImageView addBiopsia;
     private EditText nFrascosBiopsia;
     private LinearLayout linearLayoutBiopsia;
+
+    //Escolha Imagem
+    ImageView iv_back, iv_front;
+    private static Dialog dialogo;
+    private static int result;
+
 
     public DadosINtraOperatorioActivity newInstance(String text){
         DadosINtraOperatorioActivity mFragment = new DadosINtraOperatorioActivity();
@@ -679,6 +692,23 @@ public class DadosINtraOperatorioActivity extends Fragment {
         radioGroup_Garrote = (RadioGroup) getView().findViewById(R.id.radioGroup_Garrote);
         editText_GarrotePressao = (EditText) getView().findViewById(R.id.editText_GarrotePressao);
         spinner_localizacaoGarrote = (Spinner) getView().findViewById(R.id.spinner_DadosIntra_localGarrote);
+        spinner_localizacaoGarrote.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                final String itemTexto = (String)spinner_localizacaoGarrote.getSelectedItem();
+
+                if(itemTexto.toLowerCase().equals("escolha da imagem")) {
+                    escolheimagemGarrote();
+                }
+
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
         linearLayout_garrote = (LinearLayout) getView().findViewById(R.id.linearLayout_Garrote);
         textView_Garrote_horaInicio = (TextView) getView().findViewById(R.id.textView_GarroteHoraInicio);
         textView_Garrote_horaFim = (TextView) getView().findViewById(R.id.textView_GarroteHoraFim);
@@ -758,6 +788,17 @@ public class DadosINtraOperatorioActivity extends Fragment {
         radioButton_Electrodo_nao = (RadioButton) getView().findViewById(R.id.radioButton_Electrodo_Nao);
         radioGroup_Electrodo = (RadioGroup) getView().findViewById(R.id.radioGroup_electrodoNeutro);
         spinner_localizacaoElectrodo = (Spinner) getView().findViewById(R.id.spinner_DadosIntra_localizacaoElectrodo);
+        spinner_localizacaoElectrodo.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                escolheimagemElectrodo();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
         linearLayout_electrodo = (LinearLayout) getView().findViewById(R.id.linearLayout_Electrodo);
 
         radioButton_Electrodo_nao.setSelected(true);
@@ -777,6 +818,91 @@ public class DadosINtraOperatorioActivity extends Fragment {
 
     }
 
+
+    public void escolheimagemGarrote()
+    {
+        dialogo = new Dialog(getActivity());
+        dialogo.setTitle(getActivity().getString(R.string.escolhaUmaPosicao));
+        dialogo.setCancelable(true);
+        //there are a lot of settings, for dialog, check them all out!
+
+
+        Rect displayRectangle = new Rect();
+        Window window = getActivity().getWindow();
+        window.getDecorView().getWindowVisibleDisplayFrame(displayRectangle);
+        LayoutInflater inflater = (LayoutInflater)getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View layout = inflater.inflate(R.layout.activity_image_selection, null);
+        layout.setMinimumWidth((int)(displayRectangle.width() * 0.9f));
+        layout.setMinimumHeight((int)(displayRectangle.height() * 0.9f));
+
+
+        dialogo.setContentView(layout);
+
+        FrameLayout fl = (FrameLayout) dialogo.findViewById(R.id.frame_layout);
+        iv_front = (ImageView)dialogo.findViewById(R.id.pan_and_zoom_image);
+        iv_back = (ImageView)dialogo.findViewById(R.id.pan_and_zoom_image_areas);
+        View[] views = {iv_front,iv_back};
+        fl.setOnTouchListener(new PanAndZoomListener(fl, views, PanAndZoomListener.Anchor.TOPLEFT, getActivity()));
+
+        //now that the dialog is set up, it's time to show it
+        dialogo.show();
+
+        dialogo.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialog) {
+                if(result != 0)
+                    spinner_localizacaoGarrote.setSelection(result);
+                else
+                    spinner_localizacaoGarrote.setSelection(0);
+
+                result =0;
+            }
+
+        });
+
+    }
+
+    public void escolheimagemElectrodo()
+    {
+        dialogo = new Dialog(getActivity());
+        dialogo.setTitle(getActivity().getString(R.string.escolhaUmaPosicao));
+        dialogo.setCancelable(true);
+        //there are a lot of settings, for dialog, check them all out!
+
+
+        Rect displayRectangle = new Rect();
+        Window window = getActivity().getWindow();
+        window.getDecorView().getWindowVisibleDisplayFrame(displayRectangle);
+        LayoutInflater inflater = (LayoutInflater)getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View layout = inflater.inflate(R.layout.activity_image_selection, null);
+        layout.setMinimumWidth((int)(displayRectangle.width() * 0.9f));
+        layout.setMinimumHeight((int)(displayRectangle.height() * 0.9f));
+
+
+        dialogo.setContentView(layout);
+
+        FrameLayout fl = (FrameLayout) dialogo.findViewById(R.id.frame_layout);
+        iv_front = (ImageView)dialogo.findViewById(R.id.pan_and_zoom_image);
+        iv_back = (ImageView)dialogo.findViewById(R.id.pan_and_zoom_image_areas);
+        View[] views = {iv_front,iv_back};
+        fl.setOnTouchListener(new PanAndZoomListener(fl, views, PanAndZoomListener.Anchor.TOPLEFT, getActivity()));
+
+        //now that the dialog is set up, it's time to show it
+        dialogo.show();
+
+        dialogo.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialog) {
+                if(result != 0)
+                    spinner_localizacaoElectrodo.setSelection(result);
+                else
+                    spinner_localizacaoElectrodo.setSelection(0);
+
+                result =0;
+            }
+
+        });
+    }
     public void biopsia()
     {
 
@@ -1252,7 +1378,7 @@ public class DadosINtraOperatorioActivity extends Fragment {
             }
             else
             {
-                Toast.makeText(getActivity(), "Erro Verificar IntraOperatorio - Verifique a Internet e repita o Processo", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), getActivity().getString(R.string.erro_guardarIntra), Toast.LENGTH_SHORT).show();
                 ringProgressDialog.dismiss();
                 ((HomeActivity) getActivity()).onItemClickNavigation(0,HomeActivity.getLayoutcontainerid());
                 ((HomeActivity) getActivity()).setCheckedItemNavigation(0, true);
@@ -1269,9 +1395,9 @@ public class DadosINtraOperatorioActivity extends Fragment {
             ringProgressDialog = new ProgressDialog(
                     getActivity());
             ringProgressDialog.setIcon(R.drawable.ic_launcher);
-            ringProgressDialog.setTitle("Please wait...");
+            ringProgressDialog.setTitle(getActivity().getString(R.string.aguarde));
             ringProgressDialog
-                    .setMessage("A guardar Dados Intra Operatórios...");
+                    .setMessage(getActivity().getString(R.string.save_DadosIntra));
 
             // ringProgressDialog = ProgressDialog.show(Login.this,
             // "Please wait ...", "Loging in...", true);
@@ -1305,7 +1431,7 @@ public class DadosINtraOperatorioActivity extends Fragment {
         @Override
         protected void onPostExecute(Boolean resultado) {
             if (resultado) {
-                Toast.makeText(getActivity(), "Dados IntraOperatorio Salvos Com Sucesso", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), getActivity().getString(R.string.sucesso_saveIntra), Toast.LENGTH_SHORT).show();
                 ringProgressDialog.dismiss();
                 ((HomeActivity) getActivity()).onItemClickNavigation(0, HomeActivity.getLayoutcontainerid());
                 ((HomeActivity) getActivity()).setCheckedItemNavigation(0,true);
@@ -1314,11 +1440,26 @@ public class DadosINtraOperatorioActivity extends Fragment {
             }
             else
             {
-                Toast.makeText(getActivity(), "Erro Guardar IntraOperatorio - Verifique a Internet e repita o Processo", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), getActivity().getString(R.string.erro_guardarIntra), Toast.LENGTH_SHORT).show();
                 ringProgressDialog.dismiss();
             }
 
         }
     }
 
+    public static Dialog getDialogo() {
+        return dialogo;
+    }
+
+    public static void setDialogo(Dialog dialogo) {
+        DadosINtraOperatorioActivity.dialogo = dialogo;
+    }
+
+    public static int getResult() {
+        return result;
+    }
+
+    public static void setResult(int result) {
+        DadosINtraOperatorioActivity.result = result;
+    }
 }

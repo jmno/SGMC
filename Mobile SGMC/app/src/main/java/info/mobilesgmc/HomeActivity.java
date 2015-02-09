@@ -251,6 +251,7 @@ public class HomeActivity extends NavigationLiveo implements NavigationLiveoList
                 {
                     mFragment = new InstrumentalActivity().newInstance(mListNameItem.get(position));
                     mFragmentManager.beginTransaction().replace(layoutContainerId, mFragment).commit();
+                    setTitle("Lista Instrumentos");
                 }
                 break;
             case 9:

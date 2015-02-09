@@ -26,7 +26,56 @@
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>
     <string name="logout">Logout</string>
-
+    <string name="speech_prompt">Say something…</string>
+    <string name="speech_not_supported">Sorry! Your device doesn\'t support speech input</string>
+    <string name="tap_on_mic">Tap on mic to speak</string>
+    <string name="text_equipa_cirurgia">Equipa Cirurgia</string>
+    <string name="introduza_o_nome_do_novo_profissional_">Introduza o nome do novo profissional...</string>
+    <string name="texto_cirurgiao">Cirurgião:</string>
+    <string name="_1_ajudante_">1ºAjudante:</string>
+    <string name="_2_ajudante_">2ºAjudante:</string>
+    <string name="_3_ajudante_">3ºAjudante:</string>
+    <string name="_Anestesista_">Anestesista:</string>
+    <string name="_Enfermeiro_Instrumentista_">Enfermeiro Instrumentista:</string>
+    <string name="_Enfermeiro_Circulante_">Enfermeiro Circulante:</string>
+    <string name="_Enfermeiro_Anestesia_">Enfermeiro de Anestesia:</string>
+    <string name="_Assistente_Operacional_">Assistente Operacional:</string>
+    <string name="title_activity_utentes">UtentesActivity</string>
+    <string name="_Nome_">Nome:</string>
+    <string name="_NumProc_">Número Processo:</string>
+    <string name="_dataNascimento_">Data Nascimento:</string>
+    <string name="_subsistema_">Subsistema:</string>
+    <string name="_alergias_">Alergias:</string>
+    <string name="_patologias_">Patologias:</string>
+    <string name="_antecedentesCirurgicos_">Antecendentes Cirurgicos:</string>
+    <string name="title_activity_home">HomeActivity</string>
+    <string name="username_">Username ...</string>
+    <string name="password_">Password ...</string>
+    <string name="login">Log In</string>
+    <string name="utentes">Utentes</string>
+    <string name="equipa_cirurgica">Equipa Cirurgica</string>
+    <string name="sair">Sair</string>
+    <string name="_Especialidade_Cirurgica_">Especialidade Cirúrgica:</string>
+    <string name="_Cirurgia_">Cirurgia:</string>
+    <string name="_Data_">Data:</string>
+    <string name="_TipoCirurgia_"></string>
+    <string name="_TipoCirurgia1_">Tipo Cirurgia:</string>
+    <string name="_Sala_">Sala:</string>
+    <string name="_Lateralidade_">Lateralidade:</string>
+    <string name="_ClassifASA_">Classificação ASA</string>
+    <string name="menu">MENU</string>
+    <string name="title_activity_dados_intra_operatorio">DadosINtraOperatorioActivity</string>
+    <string name="title_activity_aparelhos">AparelhosActivity</string>
+    <string name="title_activity_instrumental">InstrumentalActivity</string>
+    <string name="title_activity_material">MaterialActivity</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="color">Color</string>
+    <string name="escolhaUmaPosicao">Escolha uma posição:</string>
+    <string name="erro_guardarIntra">Erro Guardar Intra Operatório - Verifique a Internet e repita o Processo</string>
+    <string name="sucesso_saveIntra">Dados Intra Operatórios Salvos Com Sucesso</string>
+    <string name="save_DadosIntra">A guardar Dados Intra Operatórios...</string>
+    <string name="aguarde">"Aguarde ... "</string>
+    <string name="guardar_dados">A guardar Dados...</string>
     <string-array name="spinnerInicio">
         <item/>
     </string-array>
@@ -136,6 +185,7 @@
 
     <string-array name="arrayLocalizacaoGarrote">
         <item/>
+        <item>Escolha da Imagem</item>
         <item>Membro Superior Direito</item>
         <item>Membro Superior Esquerdo</item>
         <item>Membro Inferior Direito</item>
@@ -145,6 +195,7 @@
 
     <string-array name="arrayPlacaElectrodo">
         <item/>
+        <item>Escolha da Imagem</item>
         <item>Membro Superior Direito</item>
         <item>Membro Superior Esquerdo</item>
         <item>Membro Inferior Direito</item>
@@ -170,50 +221,4 @@
         <item>Jugular Direita</item>
         <item>Femural Direita</item>
     </string-array>
-
-
-    <string name="speech_prompt">Say something…</string>
-    <string name="speech_not_supported">Sorry! Your device doesn\'t support speech input</string>
-    <string name="tap_on_mic">Tap on mic to speak</string>
-    <string name="text_equipa_cirurgia">Equipa Cirurgia</string>
-    <string name="introduza_o_nome_do_novo_profissional_">Introduza o nome do novo profissional...</string>
-    <string name="texto_cirurgiao">Cirurgião:</string>
-    <string name="_1_ajudante_">1ºAjudante:</string>
-    <string name="_2_ajudante_">2ºAjudante:</string>
-    <string name="_3_ajudante_">3ºAjudante:</string>
-    <string name="_Anestesista_">Anestesista:</string>
-    <string name="_Enfermeiro_Instrumentista_">Enfermeiro Instrumentista:</string>
-    <string name="_Enfermeiro_Circulante_">Enfermeiro Circulante:</string>
-    <string name="_Enfermeiro_Anestesia_">Enfermeiro de Anestesia:</string>
-    <string name="_Assistente_Operacional_">Assistente Operacional:</string>
-    <string name="title_activity_utentes">UtentesActivity</string>
-    <string name="_Nome_">Nome:</string>
-    <string name="_NumProc_">Número Processo:</string>
-    <string name="_dataNascimento_">Data Nascimento:</string>
-    <string name="_subsistema_">Subsistema:</string>
-    <string name="_alergias_">Alergias:</string>
-    <string name="_patologias_">Patologias:</string>
-    <string name="_antecedentesCirurgicos_">Antecendentes Cirurgicos:</string>
-    <string name="title_activity_home">HomeActivity</string>
-    <string name="username_">Username ...</string>
-    <string name="password_">Password ...</string>
-    <string name="login">Log In</string>
-    <string name="utentes">Utentes</string>
-    <string name="equipa_cirurgica">Equipa Cirurgica</string>
-    <string name="sair">Sair</string>
-    <string name="_Especialidade_Cirurgica_">Especialidade Cirúrgica:</string>
-    <string name="_Cirurgia_">Cirurgia:</string>
-    <string name="_Data_">Data:</string>
-    <string name="_TipoCirurgia_"></string>
-    <string name="_TipoCirurgia1_">Tipo Cirurgia:</string>
-    <string name="_Sala_">Sala:</string>
-    <string name="_Lateralidade_">Lateralidade:</string>
-    <string name="_ClassifASA_">Classificação ASA</string>
-    <string name="menu">MENU</string>
-    <string name="title_activity_dados_intra_operatorio">DadosINtraOperatorioActivity</string>
-    <string name="title_activity_aparelhos">AparelhosActivity</string>
-    <string name="title_activity_instrumental">InstrumentalActivity</string>
-    <string name="title_activity_material">MaterialActivity</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-
 </resources>

@@ -16,7 +16,7 @@ public class EquipaComJuncao {
 		this.profissional = listaProfissionais;
 	}
 	public String getNomeEquipa() {
-		return (nomeEquipa==null || nomeEquipa.toLowerCase().equals(" "))?"Sem nome":nomeEquipa;
+		return (nomeEquipa==null || nomeEquipa.toLowerCase().equals(" "))?"Sem Nome":nomeEquipa;
 	}
 	public void setNomeEquipa(String nomeEquipa) {
 		this.nomeEquipa = nomeEquipa;

@@ -69,6 +69,7 @@
     </string-array>
     <string-array name="arrayLocalizacaoGarrote">
         <item/>
+        <item>Escolha da Imagem</item>
         <item>Membro Superior Direito</item>
         <item>Membro Superior Esquerdo</item>
         <item>Membro Inferior Direito</item>
@@ -94,6 +95,7 @@
     </string-array>
     <string-array name="arrayPlacaElectrodo">
         <item/>
+        <item>Escolha da Imagem</item>
         <item>Membro Superior Direito</item>
         <item>Membro Superior Esquerdo</item>
         <item>Membro Inferior Direito</item>
@@ -139,9 +141,6 @@
     <!-- From: file:/Users/Nicolau/Dropbox/Leiria/4Ano/1Semestre/SGMC/NEW/Mobile%20SGMC/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.3/res/values/values.xml -->
     <eat-comment/>
     <attr format="reference" name="drawerArrowStyle"/>
-    <!-- From: file:/Users/Nicolau/Dropbox/Leiria/4Ano/1Semestre/SGMC/NEW/Mobile%20SGMC/app/build/intermediates/exploded-aar/com.shamanland/fab/0.0.6/res/values/values.xml -->
-    <eat-comment/>
-    <attr format="reference" name="floatingActionButtonStyle"/>
     <!-- From: file:/Users/Nicolau/Dropbox/Leiria/4Ano/1Semestre/SGMC/NEW/Mobile%20SGMC/app/build/intermediates/exploded-aar/br.com.liveo/navigationdrawer-material/1.0.2/res/values/values.xml -->
     <eat-comment/>
     <attr format="string" name="fontPath"/>
@@ -300,11 +299,9 @@
     <declare-styleable name="ActionMode"><attr name="titleTextStyle"/><attr name="subtitleTextStyle"/><attr name="background"/><attr name="backgroundSplit"/><attr name="height"/><attr format="reference" name="closeItemLayout"/></declare-styleable>
     <declare-styleable name="ActivityChooserView"><attr format="string" name="initialActivityCount"/><attr format="reference" name="expandActivityOverflowButtonDrawable"/></declare-styleable>
     <declare-styleable name="ButtonBarContainerTheme"><attr format="reference" name="metaButtonBarStyle"/><attr format="reference" name="metaButtonBarButtonStyle"/></declare-styleable>
-    <declare-styleable name="CircleButton"><attr format="color" name="cb_color"/><attr format="dimension" name="cb_pressedRingWidth"/></declare-styleable>
     <declare-styleable name="CircleImageView"><attr format="dimension" name="border_width"/><attr format="color" name="border_color"/></declare-styleable>
     <declare-styleable name="CompatTextView"><attr format="reference|boolean" name="textAllCaps"/></declare-styleable>
     <declare-styleable name="DrawerArrowToggle"><attr format="color" name="color"/><attr format="boolean" name="spinBars"/><attr format="dimension" name="drawableSize"/><attr format="dimension" name="gapBetweenBars"/><attr format="dimension" name="topBottomBarArrowSize"/><attr format="dimension" name="middleBarArrowSize"/><attr format="dimension" name="barSize"/><attr format="dimension" name="thickness"/></declare-styleable>
-    <declare-styleable name="FloatingActionButton"><attr format="color|reference" name="floatingActionButtonColor"/><attr format="enum" name="floatingActionButtonSize"><enum name="normal" value="0"/><enum name="mini" value="1"/></attr><attr format="boolean" name="floatingActionButtonImplicitElevation"/></declare-styleable>
     <declare-styleable name="LinearLayoutCompat"><attr name="android:orientation"/><attr name="android:gravity"/><attr name="android:baselineAligned"/><attr name="android:baselineAlignedChildIndex"/><attr name="android:weightSum"/><attr format="boolean" name="measureWithLargestChild"/><attr name="divider"/><attr name="showDividers"><flag name="none" value="0"/><flag name="beginning" value="1"/><flag name="middle" value="2"/><flag name="end" value="4"/></attr><attr format="dimension" name="dividerPadding"/></declare-styleable>
     <declare-styleable name="LinearLayoutCompat_Layout"><attr name="android:layout_width"/><attr name="android:layout_height"/><attr name="android:layout_weight"/><attr name="android:layout_gravity"/></declare-styleable>
     <declare-styleable name="ListPopupWindow"><attr name="android:dropDownVerticalOffset"/><attr name="android:dropDownHorizontalOffset"/></declare-styleable>
@@ -378,18 +375,6 @@
     <!-- From: file:/Users/Nicolau/Dropbox/Leiria/4Ano/1Semestre/SGMC/NEW/Mobile%20SGMC/app/build/intermediates/exploded-aar/br.com.liveo/navigationdrawer-material/1.0.2/res/values/values.xml -->
     <eat-comment/>
     <dimen name="drawer_layout_width">-.5dp</dimen>
-    <!-- From: file:/Users/Nicolau/Dropbox/Leiria/4Ano/1Semestre/SGMC/NEW/Mobile%20SGMC/app/build/intermediates/exploded-aar/com.shamanland/fab/0.0.6/res/values/values.xml -->
-    <eat-comment/>
-    <dimen name="floating_action_button_elevation">4dp</dimen>
-    <dimen name="floating_action_button_margin_mini">26dp</dimen>
-    <dimen name="floating_action_button_margin_mini_minus">-26dp</dimen>
-    <dimen name="floating_action_button_margin_normal">34dp</dimen>
-    <dimen name="floating_action_button_margin_normal_minus">-34dp</dimen>
-    <dimen name="floating_action_button_shadow_radius">6dp</dimen>
-    <dimen name="floating_action_button_size_mini">40dp</dimen>
-    <dimen name="floating_action_button_size_normal">56dp</dimen>
-    <!-- From: file:/Users/Nicolau/Dropbox/Leiria/4Ano/1Semestre/SGMC/NEW/Mobile%20SGMC/app/build/intermediates/exploded-aar/br.com.liveo/navigationdrawer-material/1.0.2/res/values/values.xml -->
-    <eat-comment/>
     <dimen name="userBackground_layout_height">164dp</dimen>
     <dimen name="userData_layout_height">56dp</dimen>
     <dimen name="userData_layout_marginBottom">8dp</dimen>
@@ -470,6 +455,7 @@
     <string name="add_Material">Adicionar Material</string>
     <string name="add_Produto">Adicionar Produto</string>
     <string name="add_Profissional">Adicionar Profissional</string>
+    <string name="aguarde">"Aguarde ... "</string>
     <string name="app_name">Mobile SGMC</string>
     <string name="btn_WebService">WebService</string>
     <!-- From: file:/Users/Nicolau/Dropbox/Leiria/4Ano/1Semestre/SGMC/NEW/Mobile%20SGMC/app/build/intermediates/exploded-aar/br.com.liveo/navigationdrawer-material/1.0.2/res/values/values.xml -->
@@ -477,11 +463,15 @@
     <string name="clear">""</string>
     <!-- From: file:/Users/Nicolau/Dropbox/Leiria/4Ano/1Semestre/SGMC/NEW/Mobile%20SGMC/app/src/main/res/values/strings.xml -->
     <eat-comment/>
+    <string name="color">Color</string>
     <string name="drawer_close">Close navigation drawer</string>
     <string name="drawer_open">Open navigation drawer</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="equipa_cirurgica">Equipa Cirurgica</string>
+    <string name="erro_guardarIntra">Erro Guardar Intra Operatório - Verifique a Internet e repita o Processo</string>
+    <string name="escolhaUmaPosicao">Escolha uma posição:</string>
+    <string name="guardar_dados">A guardar Dados...</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="hello_world">Hello world!</string>
     <string name="introduza_o_nome_do_novo_profissional_">Introduza o nome do novo profissional...</string>
@@ -492,6 +482,7 @@
     <string name="sair">Sair</string>
     <string name="save_Aparelho">Guardar Aparelho Utilizado</string>
     <string name="save_DadosCirurgia">Guardar Dados Cirurgia</string>
+    <string name="save_DadosIntra">A guardar Dados Intra Operatórios...</string>
     <string name="save_Equipa">Guardar Equipa Cirurgica</string>
     <string name="save_Instrumento">Guardar Instrumento Utilizado</string>
     <string name="save_Intra">Salvar Dados</string>
@@ -501,6 +492,7 @@
     <string name="search_Lista">Procurar Lista Material de Cirurgia</string>
     <string name="speech_not_supported">Sorry! Your device doesn\'t support speech input</string>
     <string name="speech_prompt">Say something…</string>
+    <string name="sucesso_saveIntra">Dados Intra Operatórios Salvos Com Sucesso</string>
     <string name="tap_on_mic">Tap on mic to speak</string>
     <string name="text_equipa_cirurgia">Equipa Cirurgia</string>
     <string name="texto_cirurgiao">Cirurgião:</string>
@@ -1294,28 +1286,6 @@
         <item name="android:scaleType">center</item>
         <item name="android:background">?attr/selectableItemBackground</item>
     </style>
-    <!-- From: file:/Users/Nicolau/Dropbox/Leiria/4Ano/1Semestre/SGMC/NEW/Mobile%20SGMC/app/build/intermediates/exploded-aar/com.shamanland/fab/0.0.6/res/values/values.xml -->
-    <eat-comment/>
-    <style name="FloatingActionButton" parent="android:Widget.ImageButton">
-        <item name="floatingActionButtonSize">normal</item>
-    </style>
-    <style name="FloatingActionButton.Dark" parent="FloatingActionButton">
-        <item name="floatingActionButtonColor">@android:color/tab_indicator_text</item>
-    </style>
-    <style name="FloatingActionButton.Dark.Mini" parent="FloatingActionButton.Mini">
-        <item name="floatingActionButtonColor">@android:color/tab_indicator_text</item>
-    </style>
-    <style name="FloatingActionButton.Light" parent="FloatingActionButton">
-        <item name="floatingActionButtonColor">@android:color/primary_text_dark</item>
-    </style>
-    <style name="FloatingActionButton.Light.Mini" parent="FloatingActionButton.Mini">
-        <item name="floatingActionButtonColor">@android:color/primary_text_dark</item>
-    </style>
-    <style name="FloatingActionButton.Mini" parent="FloatingActionButton">
-        <item name="floatingActionButtonSize">mini</item>
-    </style>
-    <!-- From: file:/Users/Nicolau/Dropbox/Leiria/4Ano/1Semestre/SGMC/NEW/Mobile%20SGMC/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.3/res/values/values.xml -->
-    <eat-comment/>
     <style name="Platform.AppCompat" parent="android:Theme">
         <item name="android:windowNoTitle">true</item>
         <item name="buttonBarStyle">@android:style/ButtonBar</item>
